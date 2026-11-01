@@ -172,6 +172,10 @@
     "multifamily": 13,
     "officetel": 455
   },
+  "analytic_by_area_basis": {
+    "전용": 863,
+    "계약": 4936
+  },
   "analytic_by_year": {
     "2021": 921,
     "2022": 1123,
@@ -180,7 +184,7 @@
     "2025": 1492
   },
   "analytic_by_contract": {
-    "-": 2067,
+    "미기재": 2067,
     "신규": 3570,
     "갱신": 162
   },
@@ -206,7 +210,7 @@
   "analytic_2025_contract": {
     "갱신": 60,
     "신규": 1343,
-    "-": 89
+    "미기재": 89
   },
   "example_cohort": {
     "n": 181,
@@ -219,6 +223,10 @@
   "missing_price_campus": 0,
   "detached_rows": 40539,
   "detached_masked_lot": 40534,
+  "jeonju_detached_lot_masking": {
+    "masked": 40534,
+    "total": 40539
+  },
   "campus_detached_rows": 12305,
   "campus_detached_masked_lot": 12303,
   "detached_lot_mask_examples": [
