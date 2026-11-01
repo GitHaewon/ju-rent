@@ -1,0 +1,246 @@
+{
+  "total": 104144,
+  "year_gu": [
+    {
+      "year": 2021,
+      "gu": "wansan",
+      "count": 9835
+    },
+    {
+      "year": 2021,
+      "gu": "deokjin",
+      "count": 11421
+    },
+    {
+      "year": 2022,
+      "gu": "wansan",
+      "count": 11860
+    },
+    {
+      "year": 2022,
+      "gu": "deokjin",
+      "count": 11806
+    },
+    {
+      "year": 2023,
+      "gu": "wansan",
+      "count": 10019
+    },
+    {
+      "year": 2023,
+      "gu": "deokjin",
+      "count": 11064
+    },
+    {
+      "year": 2024,
+      "gu": "wansan",
+      "count": 10082
+    },
+    {
+      "year": 2024,
+      "gu": "deokjin",
+      "count": 9512
+    },
+    {
+      "year": 2025,
+      "gu": "wansan",
+      "count": 8794
+    },
+    {
+      "year": 2025,
+      "gu": "deokjin",
+      "count": 9751
+    }
+  ],
+  "year_type": [
+    {
+      "year": 2021,
+      "type": "apartment",
+      "count": 11022
+    },
+    {
+      "year": 2021,
+      "type": "multifamily",
+      "count": 512
+    },
+    {
+      "year": 2021,
+      "type": "detached_multiunit",
+      "count": 9094
+    },
+    {
+      "year": 2021,
+      "type": "officetel",
+      "count": 628
+    },
+    {
+      "year": 2022,
+      "type": "apartment",
+      "count": 13188
+    },
+    {
+      "year": 2022,
+      "type": "multifamily",
+      "count": 647
+    },
+    {
+      "year": 2022,
+      "type": "detached_multiunit",
+      "count": 8966
+    },
+    {
+      "year": 2022,
+      "type": "officetel",
+      "count": 865
+    },
+    {
+      "year": 2023,
+      "type": "apartment",
+      "count": 12752
+    },
+    {
+      "year": 2023,
+      "type": "multifamily",
+      "count": 493
+    },
+    {
+      "year": 2023,
+      "type": "detached_multiunit",
+      "count": 6933
+    },
+    {
+      "year": 2023,
+      "type": "officetel",
+      "count": 905
+    },
+    {
+      "year": 2024,
+      "type": "apartment",
+      "count": 10956
+    },
+    {
+      "year": 2024,
+      "type": "multifamily",
+      "count": 475
+    },
+    {
+      "year": 2024,
+      "type": "detached_multiunit",
+      "count": 7316
+    },
+    {
+      "year": 2024,
+      "type": "officetel",
+      "count": 847
+    },
+    {
+      "year": 2025,
+      "type": "apartment",
+      "count": 8825
+    },
+    {
+      "year": 2025,
+      "type": "multifamily",
+      "count": 490
+    },
+    {
+      "year": 2025,
+      "type": "detached_multiunit",
+      "count": 8230
+    },
+    {
+      "year": 2025,
+      "type": "officetel",
+      "count": 1000
+    }
+  ],
+  "campus_dong_counts": {
+    "효자동3가": 13307,
+    "효자동2가": 6495
+  },
+  "stages": {
+    "campus_dongs_all": 19802,
+    "campus_dongs_monthly": 12395,
+    "analytic": 5799,
+    "analytic_contract_unknown": 2067,
+    "analytic_new": 3570,
+    "analytic_renewal": 162
+  },
+  "analytic_by_type": {
+    "detached_multiunit": 4936,
+    "apartment": 395,
+    "multifamily": 13,
+    "officetel": 455
+  },
+  "analytic_by_year": {
+    "2021": 921,
+    "2022": 1123,
+    "2023": 1044,
+    "2024": 1219,
+    "2025": 1492
+  },
+  "analytic_by_contract": {
+    "-": 2067,
+    "신규": 3570,
+    "갱신": 162
+  },
+  "median_monthly_2025": 30.0,
+  "median_deposit_2025": 500.0,
+  "analytic_2025_by_type": {
+    "detached_multiunit": 1308,
+    "apartment": 70,
+    "multifamily": 5,
+    "officetel": 109
+  },
+  "analytic_2025_by_dong": {
+    "효자동3가": 1137,
+    "효자동2가": 355
+  },
+  "analytic_2025_monthly_bins": {
+    "under_20": 193,
+    "20_to_29": 233,
+    "30_to_39": 546,
+    "40_to_49": 305,
+    "50_plus": 215
+  },
+  "analytic_2025_contract": {
+    "신규": 1343,
+    "갱신": 60,
+    "-": 89
+  },
+  "example_cohort": {
+    "n": 181,
+    "monthly_p25": 30.0,
+    "monthly_median": 30.0,
+    "monthly_p75": 40.0,
+    "example_40_above_or_equal": 46
+  },
+  "missing_area_campus": 0,
+  "missing_price_campus": 0,
+  "detached_rows": 40539,
+  "detached_masked_lot": 40534,
+  "campus_detached_rows": 12305,
+  "campus_detached_masked_lot": 12303,
+  "detached_lot_mask_examples": [
+    [
+      "1***",
+      16725
+    ],
+    [
+      "6**",
+      4357
+    ],
+    [
+      "8**",
+      3853
+    ],
+    [
+      "7**",
+      3371
+    ],
+    [
+      "1**",
+      2411
+    ]
+  ]
+}

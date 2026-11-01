@@ -9,7 +9,10 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+.uv-cache/
+.uv-python/
 .ipynb_checkpoints/
+.pytest_cache/
 
 # OS / 편집기
 .DS_Store

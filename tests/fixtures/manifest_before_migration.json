@@ -1,0 +1,322 @@
+[
+  {
+    "type": "detached_multiunit",
+    "gu": "wansan",
+    "year": 2021,
+    "rows": 5051,
+    "filename": "detached_multiunit_wansan_2021.csv",
+    "sha256": "2ea48cdc33a0e8f57955cc9a5b1ccb515f6949fb3893fa896927c99eee9739d8"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "wansan",
+    "year": 2022,
+    "rows": 5054,
+    "filename": "detached_multiunit_wansan_2022.csv",
+    "sha256": "4fd14979b00645096914a84bab8723143e7d8a6018f5f12692119de6a46f7b97"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "wansan",
+    "year": 2023,
+    "rows": 4073,
+    "filename": "detached_multiunit_wansan_2023.csv",
+    "sha256": "89f51c32d9faf39c77b1ba421a5b773a1ddeb307a1894cb3657bc751ea131d51"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "wansan",
+    "year": 2024,
+    "rows": 4148,
+    "filename": "detached_multiunit_wansan_2024.csv",
+    "sha256": "ea0621a93f52b80db347bff586635911ada37d70f40fc3e1249cde16734588d9"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "wansan",
+    "year": 2025,
+    "rows": 4643,
+    "filename": "detached_multiunit_wansan_2025.csv",
+    "sha256": "b0b8e39d1b135bfc9ab43e02f30d5f8745ede5f9b733ba7f4b258c8a2b1e1c72"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "deokjin",
+    "year": 2021,
+    "rows": 4043,
+    "filename": "detached_multiunit_deokjin_2021.csv",
+    "sha256": "60a0d1f3fc983606cc468668c7620d6aeb30c4bcbd81fa86b1d12cc98fe2ddcc"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "deokjin",
+    "year": 2022,
+    "rows": 3912,
+    "filename": "detached_multiunit_deokjin_2022.csv",
+    "sha256": "d9c5d96c11c47558fa96cb608f6ef9895b21ba23fac85908eade1c9fc2f03682"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "deokjin",
+    "year": 2023,
+    "rows": 2860,
+    "filename": "detached_multiunit_deokjin_2023.csv",
+    "sha256": "b953a3491c1cab338e140f1c35a37d5dc55adc85e0824f2b8ce0c546973951ef"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "deokjin",
+    "year": 2024,
+    "rows": 3168,
+    "filename": "detached_multiunit_deokjin_2024.csv",
+    "sha256": "ddd7d4ca85d9acc49987a602eada5e43563e1d846aa9dd5dbe683a575231ff6d"
+  },
+  {
+    "type": "detached_multiunit",
+    "gu": "deokjin",
+    "year": 2025,
+    "rows": 3587,
+    "filename": "detached_multiunit_deokjin_2025.csv",
+    "sha256": "360002806f1dac97039a4bf377e67052fed928fadb29726650a59f7f25e8edc1"
+  },
+  {
+    "type": "apartment",
+    "gu": "wansan",
+    "year": 2025,
+    "rows": 3623,
+    "filename": "apartment_wansan_2025.csv",
+    "sha256": "bfc22e4410eed10d9745a1c99c152f54696a6e22c7a2d2a95ffa8554cfb48ca9"
+  },
+  {
+    "type": "apartment",
+    "gu": "wansan",
+    "year": 2021,
+    "rows": 4382,
+    "filename": "apartment_wansan_2021.csv",
+    "sha256": "b270ea11e91cdf265b86e106b38683bb4ebd2225e90a9edf1592056486dc9488"
+  },
+  {
+    "type": "apartment",
+    "gu": "wansan",
+    "year": 2022,
+    "rows": 6094,
+    "filename": "apartment_wansan_2022.csv",
+    "sha256": "b1ecebe6e0d47965eadc8b3064e5c3cbb25c21c72f53f1792e7c18e630e6d09a"
+  },
+  {
+    "type": "apartment",
+    "gu": "wansan",
+    "year": 2023,
+    "rows": 5436,
+    "filename": "apartment_wansan_2023.csv",
+    "sha256": "bca1c1580ecef97173f8b35a94575c2c56ae56ca270e74d9507031adc5ed54ad"
+  },
+  {
+    "type": "apartment",
+    "gu": "wansan",
+    "year": 2024,
+    "rows": 5399,
+    "filename": "apartment_wansan_2024.csv",
+    "sha256": "1b32900bd7579dd1c95cfbcc3ad3ee4a1361fe79bbcdbb904991782a6072d40d"
+  },
+  {
+    "type": "apartment",
+    "gu": "deokjin",
+    "year": 2021,
+    "rows": 6640,
+    "filename": "apartment_deokjin_2021.csv",
+    "sha256": "3b3343f852db68fe25943c6352353a9b9daa25b4292208d80b3a8ef7df87e552"
+  },
+  {
+    "type": "apartment",
+    "gu": "deokjin",
+    "year": 2022,
+    "rows": 7094,
+    "filename": "apartment_deokjin_2022.csv",
+    "sha256": "69c72107216de02774537452a0f4a33db63119575b89ec6d29c2448bfb03625a"
+  },
+  {
+    "type": "apartment",
+    "gu": "deokjin",
+    "year": 2023,
+    "rows": 7316,
+    "filename": "apartment_deokjin_2023.csv",
+    "sha256": "4c643d99392defc7a8d0615f7e6f9ded1289912cc913a969d4cbb553e56c9e6a"
+  },
+  {
+    "type": "apartment",
+    "gu": "deokjin",
+    "year": 2024,
+    "rows": 5557,
+    "filename": "apartment_deokjin_2024.csv",
+    "sha256": "cc9bfd63a9c9bff8b93a71e25045a3f7e8b00c6b82fb7a1653a5bda472ef9ba3"
+  },
+  {
+    "type": "apartment",
+    "gu": "deokjin",
+    "year": 2025,
+    "rows": 5202,
+    "filename": "apartment_deokjin_2025.csv",
+    "sha256": "1cac623e84205fe73b1b661a601fb396c57300a09cb96ffdd1ec58f72138155c"
+  },
+  {
+    "type": "multifamily",
+    "gu": "wansan",
+    "year": 2021,
+    "rows": 220,
+    "filename": "multifamily_wansan_2021.csv",
+    "sha256": "4d5296bd3a798f1b44f5e2cc5ee58dbfceacb3b4bd0dbcbe6edec7e666058158"
+  },
+  {
+    "type": "multifamily",
+    "gu": "wansan",
+    "year": 2022,
+    "rows": 303,
+    "filename": "multifamily_wansan_2022.csv",
+    "sha256": "42d8296b2ee5b0c38ab64335384839c0fae8ca5217e7b13e445b58aef593401d"
+  },
+  {
+    "type": "multifamily",
+    "gu": "wansan",
+    "year": 2023,
+    "rows": 194,
+    "filename": "multifamily_wansan_2023.csv",
+    "sha256": "b621225c52e5c954412ba1e1d61541d542ea3842f62c34d0cfd4af31ac97e6c6"
+  },
+  {
+    "type": "multifamily",
+    "gu": "wansan",
+    "year": 2024,
+    "rows": 203,
+    "filename": "multifamily_wansan_2024.csv",
+    "sha256": "2a35ad1d44fe51cb53f8984d841bb3230944634b65968d6bca87007c26f65619"
+  },
+  {
+    "type": "multifamily",
+    "gu": "wansan",
+    "year": 2025,
+    "rows": 187,
+    "filename": "multifamily_wansan_2025.csv",
+    "sha256": "097038a5fe7d95dba5af25078a1a20eaf59541cd08af0aab3421695a30d0f5e2"
+  },
+  {
+    "type": "multifamily",
+    "gu": "deokjin",
+    "year": 2021,
+    "rows": 292,
+    "filename": "multifamily_deokjin_2021.csv",
+    "sha256": "9de71cda3cdaaf89587b5ec029fa25b2603badd93cf797ab99da3ffb304546d3"
+  },
+  {
+    "type": "multifamily",
+    "gu": "deokjin",
+    "year": 2022,
+    "rows": 344,
+    "filename": "multifamily_deokjin_2022.csv",
+    "sha256": "dd384682bd27c7378c570608fc30d6f859124cc0bf66f1be43f76e2155ca09bd"
+  },
+  {
+    "type": "multifamily",
+    "gu": "deokjin",
+    "year": 2023,
+    "rows": 299,
+    "filename": "multifamily_deokjin_2023.csv",
+    "sha256": "e8e15d5200f7dfc68a519b3a2b645b1b99e518e96fc663f892545c1da585b4fc"
+  },
+  {
+    "type": "multifamily",
+    "gu": "deokjin",
+    "year": 2024,
+    "rows": 272,
+    "filename": "multifamily_deokjin_2024.csv",
+    "sha256": "d9be82c20490e05b71927aba2551f577533f0f2174b780cced7386dbaa0bd3dc"
+  },
+  {
+    "type": "multifamily",
+    "gu": "deokjin",
+    "year": 2025,
+    "rows": 303,
+    "filename": "multifamily_deokjin_2025.csv",
+    "sha256": "84a3292ed64e02c1812567eedf0e4b1a37d1e1b750de8e2c4adcd389b2cd59e8"
+  },
+  {
+    "type": "officetel",
+    "gu": "wansan",
+    "year": 2021,
+    "rows": 182,
+    "filename": "officetel_wansan_2021.csv",
+    "sha256": "4141965881cae22ec47723ff4454028276351850180424ef00952ae07d9941a6"
+  },
+  {
+    "type": "officetel",
+    "gu": "wansan",
+    "year": 2022,
+    "rows": 409,
+    "filename": "officetel_wansan_2022.csv",
+    "sha256": "992d53a2a162ade926a76f7e754a61c38b10b6f20c8ed26559b0610deedaf836"
+  },
+  {
+    "type": "officetel",
+    "gu": "wansan",
+    "year": 2023,
+    "rows": 316,
+    "filename": "officetel_wansan_2023.csv",
+    "sha256": "5f814c164d38f86d25965c7cbccf27147dec8e703da413f8719390d0d6008006"
+  },
+  {
+    "type": "officetel",
+    "gu": "wansan",
+    "year": 2024,
+    "rows": 332,
+    "filename": "officetel_wansan_2024.csv",
+    "sha256": "c62741ba31d4f9c0cb63486db7a4ca876c6404ef12251d67a9b2cc812f98714f"
+  },
+  {
+    "type": "officetel",
+    "gu": "wansan",
+    "year": 2025,
+    "rows": 341,
+    "filename": "officetel_wansan_2025.csv",
+    "sha256": "34c9e49e9c1198d05237b204c8875d8aa014a802cda4ce312f7679b0ffefa07b"
+  },
+  {
+    "type": "officetel",
+    "gu": "deokjin",
+    "year": 2021,
+    "rows": 446,
+    "filename": "officetel_deokjin_2021.csv",
+    "sha256": "25278983e62274019b2ca9ced2e0ae7dd4d7f32ac0566006edb026020b55c8cc"
+  },
+  {
+    "type": "officetel",
+    "gu": "deokjin",
+    "year": 2022,
+    "rows": 456,
+    "filename": "officetel_deokjin_2022.csv",
+    "sha256": "c4d6026a58b31bf17e76fb473d9cbe56c97c3add9e4c45b2aad724f69010969a"
+  },
+  {
+    "type": "officetel",
+    "gu": "deokjin",
+    "year": 2023,
+    "rows": 589,
+    "filename": "officetel_deokjin_2023.csv",
+    "sha256": "7ee8202e20d7b808d5fe09719404c098e8cb63f9ef3d64733bdc05782c54ab18"
+  },
+  {
+    "type": "officetel",
+    "gu": "deokjin",
+    "year": 2024,
+    "rows": 515,
+    "filename": "officetel_deokjin_2024.csv",
+    "sha256": "148e383e7d503f68f2a8f52039c570cfcbbe95a453457108e1c1d9ae72e6ab1d"
+  },
+  {
+    "type": "officetel",
+    "gu": "deokjin",
+    "year": 2025,
+    "rows": 659,
+    "filename": "officetel_deokjin_2025.csv",
+    "sha256": "e5f907be69e70d015238d7a28a35d7be4b791e03d5d39b04f72691e8722fa94d"
+  }
+]
