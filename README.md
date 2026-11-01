@@ -16,14 +16,14 @@
 ## 도구 역할
 | 도구 | 역할 |
 |---|---|
-| Claude (claude.ai) | 기획·리서치·검토 총괄, 작업 지시서 작성, 기획서·발표 자료 |
-| Codex | 메인 개발 (데이터 파이프라인, 분석, 대시보드) |
-| Claude Code | 코드 리뷰·테스트, 수치 재계산 검증 |
+| Claude (claude.ai) | 기획·리서치·검토 총괄. Codex용 작업은 표·체크리스트 형태의 명세서(`specs/`)로 전달, 교수님용 기획서는 별도 작성 |
+| Codex | 메인 개발 + 자체 테스트 (pytest, 고정값 회귀 테스트, ruff) |
+| Claude Code | 고위험 로직만 교차 검증 (`[고위험]` PR의 변경분만) |
 | ChatGPT | 선택: 2차 의견, 반론 검토, 발표 이미지 |
 
 ## 작업 흐름
 ```
-Claude 작업 지시서 → Codex 구현 → Claude Code 검토·테스트 → Claude 결과 해석·문서 반영
+Claude 명세서(specs/) → Codex 구현 + 자체 테스트 → [고위험]이면 Claude Code 교차 검증 → Claude 결과 해석·문서 반영
 ```
 
 ## 폴더 구조
@@ -39,9 +39,11 @@ jeonju-rent/
 │  ├─ raw/            원본 CSV·API 응답 (커밋 제외, 용량·재배포 문제)
 │  ├─ processed/      정제 데이터
 │  └─ audit/          원본 파일 목록·해시(manifest.json), 집계(counts.json)
+├─ specs/             작업 명세서 (Claude 작성 → Codex 입력)
 ├─ src/               수집·정제·분석 코드
+├─ tests/             Codex 자체 테스트 (pytest)
 ├─ outputs/           코드가 만든 결과(표·그래프·json) → NUMBERS.md의 출처
-├─ reviews/           Claude Code 검토 기록
+├─ reviews/           Claude Code 고위험 검증 기록
 └─ docs/              기획서, 발표 자료
 ```
 
