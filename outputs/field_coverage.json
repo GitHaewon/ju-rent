@@ -1,0 +1,39 @@
+{
+  "scope": "2021-01~2026-10, 전주시 완산구·덕진구 전월세 원본 전체 행",
+  "field": "건축년도",
+  "missing_rule": "열이 없거나 값이 빈 문자열 또는 '-'인 행",
+  "by_type": {
+    "apartment": {
+      "files": 12,
+      "files_with_column": 12,
+      "column_in_all_files": true,
+      "rows": 63951,
+      "missing_rows": 0,
+      "missing_rate_pct": 0.0
+    },
+    "multifamily": {
+      "files": 12,
+      "files_with_column": 12,
+      "column_in_all_files": true,
+      "rows": 3050,
+      "missing_rows": 0,
+      "missing_rate_pct": 0.0
+    },
+    "detached_multiunit": {
+      "files": 12,
+      "files_with_column": 12,
+      "column_in_all_files": true,
+      "rows": 47401,
+      "missing_rows": 5151,
+      "missing_rate_pct": 10.87
+    },
+    "officetel": {
+      "files": 12,
+      "files_with_column": 12,
+      "column_in_all_files": true,
+      "rows": 4959,
+      "missing_rows": 0,
+      "missing_rate_pct": 0.0
+    }
+  }
+}
