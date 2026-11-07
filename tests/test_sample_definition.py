@@ -99,6 +99,6 @@ def test_known_contract_is_preserved(value):
     assert contract_label(value) == value
 
 
-@pytest.mark.parametrize("year", [2020, 2021, 2025, 2026])
+@pytest.mark.parametrize("year", [2020, 2021, 2025, 2026, 2027])
 def test_analysis_years(year):
-    assert (year in YEARS) is (2021 <= year <= 2025)
+    assert (year in YEARS) is (2021 <= year <= 2026)
