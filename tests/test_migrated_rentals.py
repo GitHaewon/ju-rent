@@ -29,6 +29,14 @@ def test_raw_exports_match_manifest():
 
 def test_rerun_matches_original_counts():
     expected = json.loads(BASELINE.read_text(encoding="utf-8"))
+    # D-011 preserves the original sample; Q-002 only renames missing contracts.
+    for key in ("analytic_by_contract", "analytic_2025_contract"):
+        expected[key]["미기재"] = expected[key].pop("-")
+    expected["jeonju_detached_lot_masking"] = {
+        "masked": expected["detached_masked_lot"],
+        "total": expected["detached_rows"],
+    }
+    expected["analytic_by_area_basis"] = {"전용": 863, "계약": 4936}
     subprocess.run(
         [sys.executable, str(ROOT / "src" / "analyze_rentals.py")],
         cwd=ROOT,
@@ -38,3 +46,9 @@ def test_rerun_matches_original_counts():
     )
     actual = json.loads((AUDIT / "counts.json").read_text(encoding="utf-8"))
     assert actual == expected
+    # N-001 and N-002 are marked verified in NUMBERS.md.
+    assert actual["total"] == 104144
+    assert [
+        sum(item["count"] for item in actual["year_gu"] if item["year"] == year)
+        for year in range(2021, 2026)
+    ] == [21256, 23666, 21083, 19594, 18545]
