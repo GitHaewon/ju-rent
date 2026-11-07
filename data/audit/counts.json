@@ -250,5 +250,213 @@
       "1**",
       2411
     ]
-  ]
+  ],
+  "contract_by_year": [
+    {
+      "year": 2021,
+      "partial_year": false,
+      "신규": 231,
+      "갱신": 3,
+      "미기재": 687,
+      "total": 921
+    },
+    {
+      "year": 2022,
+      "partial_year": false,
+      "신규": 452,
+      "갱신": 19,
+      "미기재": 652,
+      "total": 1123
+    },
+    {
+      "year": 2023,
+      "partial_year": false,
+      "신규": 509,
+      "갱신": 20,
+      "미기재": 515,
+      "total": 1044
+    },
+    {
+      "year": 2024,
+      "partial_year": false,
+      "신규": 1035,
+      "갱신": 60,
+      "미기재": 124,
+      "total": 1219
+    },
+    {
+      "year": 2025,
+      "partial_year": false,
+      "신규": 1343,
+      "갱신": 60,
+      "미기재": 89,
+      "total": 1492
+    },
+    {
+      "year": 2026,
+      "partial_year": true,
+      "신규": 1173,
+      "갱신": 52,
+      "미기재": 93,
+      "total": 1318
+    }
+  ],
+  "apartment_deokjin_2026_april": {
+    "monthly_rows": [
+      {
+        "month": 1,
+        "count": 329
+      },
+      {
+        "month": 2,
+        "count": 328
+      },
+      {
+        "month": 3,
+        "count": 341
+      },
+      {
+        "month": 4,
+        "count": 1780
+      },
+      {
+        "month": 5,
+        "count": 244
+      },
+      {
+        "month": 6,
+        "count": 301
+      },
+      {
+        "month": 7,
+        "count": 220
+      },
+      {
+        "month": 8,
+        "count": 198
+      },
+      {
+        "month": 9,
+        "count": 252
+      },
+      {
+        "month": 10,
+        "count": 408
+      }
+    ],
+    "april_rows": 1780,
+    "top_complex": "에코시티데시앙네스트8블럭",
+    "top_complex_rows": 794,
+    "top_complex_share_pct": 44.6,
+    "top_complexes": [
+      {
+        "name": "에코시티데시앙네스트8블럭",
+        "count": 794
+      },
+      {
+        "name": "전주에코시티데시앙15BL",
+        "count": 706
+      },
+      {
+        "name": "전주하가사랑으로부영",
+        "count": 33
+      },
+      {
+        "name": "송천주공",
+        "count": 19
+      },
+      {
+        "name": "인후꿈마을부영(2차)",
+        "count": 11
+      }
+    ],
+    "top_two_complexes_rows": 1500,
+    "top_two_complexes_share_pct": 84.3,
+    "majority_single_complex": false,
+    "top_complex_other_months_rows": 0
+  },
+  "year_2026": {
+    "partial_year": true,
+    "period": "2026-01-01~2026-10-31",
+    "total": 15217,
+    "analytic": 1318,
+    "year_gu": {
+      "wansan": 6996,
+      "deokjin": 8221
+    },
+    "year_type": {
+      "apartment": 7208,
+      "multifamily": 433,
+      "detached_multiunit": 6862,
+      "officetel": 714
+    },
+    "analytic_by_type": {
+      "apartment": 61,
+      "detached_multiunit": 1170,
+      "multifamily": 5,
+      "officetel": 82
+    },
+    "months": [
+      {
+        "month": 1,
+        "count": 2085,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 2,
+        "count": 1911,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 3,
+        "count": 1530,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 4,
+        "count": 2767,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 5,
+        "count": 1189,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 6,
+        "count": 1370,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 7,
+        "count": 1163,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 8,
+        "count": 1061,
+        "partial_year": true,
+        "incomplete_recent": false
+      },
+      {
+        "month": 9,
+        "count": 1045,
+        "partial_year": true,
+        "incomplete_recent": true
+      },
+      {
+        "month": 10,
+        "count": 1096,
+        "partial_year": true,
+        "incomplete_recent": true
+      }
+    ]
+  }
 }
