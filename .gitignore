@@ -11,6 +11,10 @@ __pycache__/
 venv/
 .uv-cache/
 .uv-python/
+.tools/
+web/node_modules/
+web/dist/
+web/*.tsbuildinfo
 .ipynb_checkpoints/
 .pytest_cache/
 

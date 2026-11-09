@@ -36,7 +36,7 @@ def show_histogram(result: dict) -> None:
         for item in bins
     ]
     st.vega_lite_chart(
-        {"values": plot_rows},
+        pd.DataFrame(plot_rows),
         {
             "layer": [
                 {
