@@ -1,0 +1,299 @@
+{
+  "source": "https://www.data.go.kr/data/15126474/openapi.do",
+  "checked_on": "2026-11-09",
+  "months": [
+    "202312",
+    "202402"
+  ],
+  "rows": [
+    {
+      "month": "202312",
+      "housing_type": "apartment",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 394,
+      "difference": -394
+    },
+    {
+      "month": "202312",
+      "housing_type": "apartment",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 394,
+      "csv_rows": 394,
+      "difference": 0
+    },
+    {
+      "month": "202312",
+      "housing_type": "apartment",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 450,
+      "difference": -450
+    },
+    {
+      "month": "202312",
+      "housing_type": "apartment",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 450,
+      "csv_rows": 450,
+      "difference": 0
+    },
+    {
+      "month": "202312",
+      "housing_type": "multifamily",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 11,
+      "difference": -11
+    },
+    {
+      "month": "202312",
+      "housing_type": "multifamily",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 11,
+      "csv_rows": 11,
+      "difference": 0
+    },
+    {
+      "month": "202312",
+      "housing_type": "multifamily",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 25,
+      "difference": -25
+    },
+    {
+      "month": "202312",
+      "housing_type": "multifamily",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 25,
+      "csv_rows": 25,
+      "difference": 0
+    },
+    {
+      "month": "202312",
+      "housing_type": "detached_multiunit",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 377,
+      "difference": -377
+    },
+    {
+      "month": "202312",
+      "housing_type": "detached_multiunit",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 377,
+      "csv_rows": 377,
+      "difference": 0
+    },
+    {
+      "month": "202312",
+      "housing_type": "detached_multiunit",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 282,
+      "difference": -282
+    },
+    {
+      "month": "202312",
+      "housing_type": "detached_multiunit",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 282,
+      "csv_rows": 282,
+      "difference": 0
+    },
+    {
+      "month": "202312",
+      "housing_type": "officetel",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 56,
+      "difference": -56
+    },
+    {
+      "month": "202312",
+      "housing_type": "officetel",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 56,
+      "csv_rows": 56,
+      "difference": 0
+    },
+    {
+      "month": "202312",
+      "housing_type": "officetel",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 48,
+      "difference": -48
+    },
+    {
+      "month": "202312",
+      "housing_type": "officetel",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 48,
+      "csv_rows": 48,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "apartment",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 519,
+      "difference": -519
+    },
+    {
+      "month": "202402",
+      "housing_type": "apartment",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 519,
+      "csv_rows": 519,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "apartment",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 442,
+      "difference": -442
+    },
+    {
+      "month": "202402",
+      "housing_type": "apartment",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 442,
+      "csv_rows": 442,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "multifamily",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 28,
+      "difference": -28
+    },
+    {
+      "month": "202402",
+      "housing_type": "multifamily",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 28,
+      "csv_rows": 28,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "multifamily",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 33,
+      "difference": -33
+    },
+    {
+      "month": "202402",
+      "housing_type": "multifamily",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 33,
+      "csv_rows": 33,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "detached_multiunit",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 407,
+      "difference": -407
+    },
+    {
+      "month": "202402",
+      "housing_type": "detached_multiunit",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 407,
+      "csv_rows": 407,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "detached_multiunit",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 327,
+      "difference": -327
+    },
+    {
+      "month": "202402",
+      "housing_type": "detached_multiunit",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 327,
+      "csv_rows": 327,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "officetel",
+      "gu": "wansan",
+      "lawd_code": "45111",
+      "api_rows": 0,
+      "csv_rows": 42,
+      "difference": -42
+    },
+    {
+      "month": "202402",
+      "housing_type": "officetel",
+      "gu": "wansan",
+      "lawd_code": "52111",
+      "api_rows": 42,
+      "csv_rows": 42,
+      "difference": 0
+    },
+    {
+      "month": "202402",
+      "housing_type": "officetel",
+      "gu": "deokjin",
+      "lawd_code": "45113",
+      "api_rows": 0,
+      "csv_rows": 47,
+      "difference": -47
+    },
+    {
+      "month": "202402",
+      "housing_type": "officetel",
+      "gu": "deokjin",
+      "lawd_code": "52113",
+      "api_rows": 47,
+      "csv_rows": 47,
+      "difference": 0
+    }
+  ],
+  "status": "조회 완료"
+}

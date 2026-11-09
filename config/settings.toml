@@ -1,0 +1,7 @@
+[rent_conversion]
+base_rate_pct = 3.00
+base_rate_date = "2026-10-22"
+legal_spread_pct = 2.0
+legal_cap_pct = 10.0
+user_min_pct = 2.0
+user_max_pct = 10.0
