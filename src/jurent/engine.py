@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import math
 import tomllib
+from fractions import Fraction
 from functools import lru_cache
 from pathlib import Path
 
@@ -37,30 +38,38 @@ def default_rate_pct(config: dict | None = None) -> float:
     return min(values["legal_cap_pct"], values["base_rate_pct"] + values["legal_spread_pct"])
 
 
-def converted_monthly(deposit: float, monthly: float, rate_pct: float) -> float:
-    """Return a comparable monthly amount in ten-thousand KRW, unrounded."""
-    if not all(math.isfinite(value) for value in (deposit, monthly, rate_pct)):
-        raise ValueError("Amounts and rate must be finite")
-    if deposit < 0 or monthly < 0:
+def converted_monthly(
+    deposit: float | str, monthly: float | str, rate_pct: float | str,
+) -> Fraction:
+    """Return an exact comparable monthly amount in ten-thousand KRW."""
+    try:
+        exact_deposit = Fraction(str(deposit))
+        exact_monthly = Fraction(str(monthly))
+        exact_rate = Fraction(str(rate_pct))
+    except (ValueError, ZeroDivisionError) as exc:
+        raise ValueError("Amounts and rate must be finite numbers") from exc
+    if exact_deposit < 0 or exact_monthly < 0:
         raise ValueError("Amounts must be nonnegative")
     config = settings()
-    if not config["user_min_pct"] <= rate_pct <= config["user_max_pct"]:
+    if not Fraction(str(config["user_min_pct"])) <= exact_rate <= Fraction(str(config["user_max_pct"])):
         raise ValueError("Conversion rate outside allowed range")
-    return monthly + deposit * (rate_pct / 100) / 12
+    return exact_monthly + exact_deposit * exact_rate / 1200
 
 
-def percentile_rank(value: float, values: list[float]) -> float:
+def percentile_rank(value: Fraction, values: list[Fraction]) -> Fraction:
     if not values:
         raise ValueError("Comparison sample is empty")
-    return 100 * (sum(item < value for item in values) + 0.5 * sum(item == value for item in values)) / len(values)
+    return Fraction(100, len(values)) * (
+        sum(item < value for item in values) + Fraction(sum(item == value for item in values), 2)
+    )
 
 
-def label_for_percentile(percentile: float) -> str:
+def label_for_percentile(percentile: Fraction | float) -> str:
     if percentile < 25:
         return "저렴한 편"
-    if percentile <= 75:
+    if percentile < 75:
         return "보통"
-    if percentile <= 90:
+    if percentile < 90:
         return "비싼 편"
     return "많이 비싼 편"
 
@@ -75,18 +84,20 @@ def select_similar(rows: list[dict], campus: str, housing_type: str, area: float
     ]
     steps = (("기본", 5, RECENT_START), ("면적 ±10㎡", 10, RECENT_START),
              ("기간 확대", 10, ALL_START))
+    exact_area = Fraction(str(area))
     for name, tolerance, start in steps:
         selected = [
             row for row in same_group
-            if row["계약일"] >= start and abs(float(row["면적"]) - area) <= tolerance
+            if row["계약일"] >= start
+            and abs(Fraction(str(row["면적"])) - exact_area) <= tolerance
         ]
         if len(selected) >= MIN_SAMPLE or name == "기간 확대":
             return selected, name, start
     raise AssertionError("Unreachable expansion state")
 
 
-def quantiles(values: list[float]) -> dict[str, float]:
-    points = np.percentile(values, [25, 50, 75, 90], method="linear")
+def quantiles(values: list[Fraction]) -> dict[str, float]:
+    points = np.percentile([float(value) for value in values], [25, 50, 75, 90], method="linear")
     return dict(zip(("p25", "p50", "p75", "p90"), (round(float(v), 2) for v in points), strict=True))
 
 
@@ -118,12 +129,12 @@ def judge(
         raise ValueError("Conversion rate outside allowed range")
     amount = converted_monthly(deposit, monthly, applied_rate)
     selected, step, start = select_similar(load_processed(data_path), campus, housing_type, area)
-    values = [converted_monthly(float(r["보증금"]), float(r["월세"]), applied_rate) for r in selected]
+    values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in selected]
     sufficient = len(values) >= MIN_SAMPLE
     rank = percentile_rank(amount, values) if sufficient else None
     input_band = age_band(2026 - construction_year) if construction_year is not None else None
     band_rows = [r for r in selected if r["경과연수구간"] == input_band] if input_band else []
-    band_values = [converted_monthly(float(r["보증금"]), float(r["월세"]), applied_rate) for r in band_rows]
+    band_values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in band_rows]
     band_rank = percentile_rank(amount, band_values) if len(band_values) >= MIN_SAMPLE else None
     return {
         "input": {
@@ -137,15 +148,15 @@ def judge(
                        "legal_spread_pct": config["legal_spread_pct"],
                        "legal_cap_pct": config["legal_cap_pct"],
                        "basis_note": "법정 전환율 상한을 비교 기준으로 사용하며 시장 전환율이 아닙니다."},
-        "converted_monthly_10k_krw": round(amount, 2),
+        "converted_monthly_10k_krw": round(float(amount), 2),
         "n": len(selected), "step": step,
         "comparison_period": {"start": start, "end": DATA_END},
         "quantiles_10k_krw": quantiles(values) if sufficient else None,
-        "percentile": round(rank, 2) if rank is not None else None,
+        "percentile": round(float(rank), 2) if rank is not None else None,
         "label": label_for_percentile(rank) if rank is not None else "표본 부족",
         "age_band_result": {
             "band": input_band, "n": len(band_rows),
-            "percentile": round(band_rank, 2) if band_rank is not None else None,
+            "percentile": round(float(band_rank), 2) if band_rank is not None else None,
             "label": label_for_percentile(band_rank) if band_rank is not None else "표본 부족",
         } if input_band else None,
         "warnings": WARNINGS.copy(), "data_as_of": DATA_END,

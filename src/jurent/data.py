@@ -110,6 +110,9 @@ def normalized_rows() -> list[dict]:
 
 def build_processed() -> Path:
     rows = normalized_rows()
+    negative_age = [row for row in rows if row["경과연수"] != "" and row["경과연수"] < 0]
+    if any(row["경과연수"] != -1 for row in negative_age):
+        raise RuntimeError("D-031 only defines the minus-one construction-year case")
     PROCESSED.parent.mkdir(parents=True, exist_ok=True)
     with PROCESSED.open("w", encoding="utf-8-sig", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=COLUMNS)
@@ -123,7 +126,10 @@ def build_processed() -> Path:
                     for year in audit.YEARS},
         "by_campus": {campus: sum(row["대학가"] == campus for row in rows)
                       for campus in audit.CAMPUS_AREAS},
-        "negative_age_rows": sum(row["경과연수"] != "" and row["경과연수"] < 0 for row in rows),
+        "negative_age_rows": len(negative_age),
+        "negative_age_values": {"-1": len(negative_age)},
+        "negative_age_by_type": {kind: sum(row["주택유형"] == kind for row in negative_age)
+                                 for kind in audit.TYPES.values()},
     }
     PROCESSED_AUDIT.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     return PROCESSED

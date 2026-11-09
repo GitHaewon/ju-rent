@@ -14,5 +14,14 @@
     "효자동권": 7117,
     "전북대권": 3579
   },
-  "negative_age_rows": 320
+  "negative_age_rows": 320,
+  "negative_age_values": {
+    "-1": 320
+  },
+  "negative_age_by_type": {
+    "apartment": 318,
+    "multifamily": 0,
+    "detached_multiunit": 2,
+    "officetel": 0
+  }
 }

@@ -4,6 +4,7 @@ import csv
 import hashlib
 import json
 from collections import Counter
+from fractions import Fraction
 from pathlib import Path
 
 import pytest
@@ -48,6 +49,20 @@ def test_n020_to_n025_fixed(prepared):
     assert [row["rows"] for row in prepared["apartment_deokjin_top_two_all_years"]["by_year"]] == [
         43, 814, 21, 649, 1, 1508,
     ]
+
+
+def test_n026_to_n028_fixed(prepared):
+    assert read_csv(ROOT / "outputs" / "rationale" / "campus_trend.csv") == read_csv(
+        FIXTURES / "campus_trend_n026.csv"
+    )
+    assert read_csv(ROOT / "outputs" / "rationale" / "duplicate_sensitivity.csv") == read_csv(
+        FIXTURES / "duplicate_sensitivity_n027.csv"
+    )
+    expected = json.loads((FIXTURES / "valid_small_monthly_audit_n028.json").read_text(encoding="utf-8"))
+    actual = json.loads(data.PROCESSED_AUDIT.read_text(encoding="utf-8"))
+    assert {key: actual[key] for key in expected} == expected
+    assert actual["negative_age_values"] == {"-1": 320}
+    assert actual["negative_age_by_type"]["apartment"] == 318
 
 
 def test_t0_new_period_outputs(prepared):
@@ -131,9 +146,13 @@ def test_age_band_boundaries(age, expected):
     assert data.age_band(age) == expected
 
 
+def test_d031_minus_one_age_band():
+    assert data.age_band(-1) == "5년 미만"
+
+
 def test_t2_conversion_rate_and_limits(prepared):
     assert engine.default_rate_pct() == 5.0
-    assert round(engine.converted_monthly(500, 35, 5), 2) == 37.08
+    assert round(float(engine.converted_monthly(500, 35, 5)), 2) == 37.08
     for invalid in (1.99, 10.01):
         with pytest.raises(ValueError):
             engine.converted_monthly(500, 35, invalid)
@@ -172,12 +191,65 @@ def test_t3_area_date_and_campus_boundaries():
     assert (len(selected), step, start) == (30, "기본", "2024-11-01")
 
 
+def test_fractional_area_expansion_boundaries():
+    rows = [similar_row(area=29.7) for _ in range(30)]
+    rows += [similar_row(area=29.69)]
+    selected, step, _ = engine.select_similar(rows, "효자동권", "detached_multiunit", 34.7)
+    assert (len(selected), step) == (30, "기본")
+    assert all(row["면적"] == "29.7" for row in selected)
+    rows = [similar_row(area=34.7) for _ in range(29)] + [similar_row(area=24.7)]
+    selected, step, _ = engine.select_similar(rows, "효자동권", "detached_multiunit", 34.7)
+    assert (len(selected), step) == (30, "면적 ±10㎡")
+
+
 def test_t4_tie_rank_label_boundaries_and_linear_quantiles():
     assert engine.percentile_rank(30, [20, 30, 30, 40]) == 50.0
     assert [engine.label_for_percentile(value) for value in (24.999, 25, 75, 75.001, 90, 90.001)] == [
-        "저렴한 편", "보통", "보통", "비싼 편", "비싼 편", "많이 비싼 편",
+        "저렴한 편", "보통", "비싼 편", "비싼 편", "많이 비싼 편", "많이 비싼 편",
+    ]
+    assert [engine.label_for_percentile(Fraction(value)) for value in (25, 75, 90)] == [
+        "보통", "비싼 편", "많이 비싼 편",
     ]
     assert engine.quantiles([0, 10, 20, 30]) == {"p25": 7.5, "p50": 15.0, "p75": 22.5, "p90": 27.0}
+
+
+@pytest.mark.parametrize("rate,first,second", [
+    (5, (500, 45), (6500, 20)),
+    (2, (500, 45), (6500, 35)),
+    (10, (500, 65), (6500, 15)),
+])
+def test_distinct_deposits_exactly_tie(rate, first, second):
+    left = engine.converted_monthly(*first, rate)
+    right = engine.converted_monthly(*second, rate)
+    assert isinstance(left, Fraction) and left == right
+    assert engine.percentile_rank(right, [left, right]) == Fraction(50)
+
+
+def test_judge_exact_tie_with_different_source_amounts(tmp_path: Path):
+    path = tmp_path / "tied.csv"
+    with path.open("w", encoding="utf-8-sig", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=data.COLUMNS)
+        writer.writeheader()
+        for deposit, monthly in [(500, 45)] * 15 + [(6500, 20)] * 15:
+            writer.writerow({"계약일": "2026-01-01", "대학가": "효자동권",
+                             "주택유형": "detached_multiunit", "면적": 42,
+                             "계약구분": "신규", "보증금": deposit, "월세": monthly,
+                             "경과연수구간": "5~9년"})
+    result = engine.judge("효자동권", "detached_multiunit", 42, 6500, 20,
+                          construction_year=2020, rate_pct=5, data_path=path)
+    assert result["percentile"] == 50.0 and result["label"] == "보통"
+    assert result["age_band_result"]["percentile"] == 50.0
+
+
+@pytest.mark.parametrize("area,deposit,monthly,expected_rank,expected_label", [
+    (42, 6500, 20, 65.54, "보통"),
+    (35, 6500, 25, 91.13, "많이 비싼 편"),
+    (33, 6500, 15, 76.28, "비싼 편"),
+])
+def test_reviewed_real_sample_judgments(prepared, area, deposit, monthly, expected_rank, expected_label):
+    result = engine.judge("효자동권", "detached_multiunit", area, deposit, monthly)
+    assert result["percentile"] == expected_rank
+    assert result["label"] == expected_label
 
 
 def test_t5_result_json_and_age_band_shortage(prepared):
