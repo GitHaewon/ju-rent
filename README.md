@@ -48,6 +48,13 @@ jeonju-rent/
 ```
 
 ## 시작하기
+
+### 계약 판단 화면 실행
+
+Python 가상환경을 만든 뒤 `pip install -r requirements.txt`를 실행한다. `.env.example`을 `.env`로 복사하고, AI 설명을 사용하려면 `OPENAI_API_KEY`와 `OPENAI_MODEL`을 채운다. `OPENAI_REASONING_EFFORT`는 선택 사항이며 비워 두면 설정 모델에서 허용하는 최저 추론 수준을 사용한다. 계약 판단 자체는 API 키 없이 동작한다.
+
+저장소 루트에서 `streamlit run app/streamlit_app.py`로 화면을 연다. 입력 면적은 15~45㎡이고 관리비는 계약 판단에서 제외한다. `pytest -q`와 `ruff check src tests app`으로 검증한다.
+
 1. `.env.example`을 복사해 `.env`를 만들고 공공데이터포털 인증키를 넣는다.
 2. `data/raw/`에 원본 데이터를 내려받는다 (방법은 `src/` 수집 스크립트 참고).
 3. 분석 스크립트를 실행하면 `outputs/`에 결과가 생성된다.

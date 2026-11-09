@@ -136,6 +136,9 @@ def judge(
     band_rows = [r for r in selected if r["경과연수구간"] == input_band] if input_band else []
     band_values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in band_rows]
     band_rank = percentile_rank(amount, band_values) if len(band_values) >= MIN_SAMPLE else None
+    histogram_counts, histogram_edges = np.histogram(
+        [float(value) for value in values], bins=20,
+    ) if values else ([], [])
     return {
         "input": {
             "campus": campus, "housing_type": housing_type, "area_sqm": area,
@@ -152,6 +155,10 @@ def judge(
         "n": len(selected), "step": step,
         "comparison_period": {"start": start, "end": DATA_END},
         "quantiles_10k_krw": quantiles(values) if sufficient else None,
+        "histogram_10k_krw": [
+            {"left": round(float(left), 2), "right": round(float(right), 2), "count": int(count)}
+            for left, right, count in zip(histogram_edges[:-1], histogram_edges[1:], histogram_counts, strict=True)
+        ],
         "percentile": round(float(rank), 2) if rank is not None else None,
         "label": label_for_percentile(rank) if rank is not None else "표본 부족",
         "age_band_result": {
