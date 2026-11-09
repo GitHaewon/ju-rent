@@ -28,6 +28,10 @@ PARTIAL_YEAR = 2026
 RECENT_INCOMPLETE_MONTHS = {9, 10}
 CANDIDATE_TOP_DONGS_PER_GU = 5
 CAMPUS_DONGS = {"효자동2가", "효자동3가"}
+CAMPUS_AREAS = {
+    "효자동권": {"gu": "wansan", "dongs": ("효자동2가", "효자동3가")},
+    "전북대권": {"gu": "deokjin", "dongs": ("덕진동1가", "금암동")},
+}
 CAMPUS_GROUPS = (
     ("효자동권", "전주대학교·전주비전대학교", "효자동2가", "wansan"),
     ("전북대권", "전북대학교", "덕진동1가", "deokjin"),
@@ -137,6 +141,117 @@ def monthly_bin(monthly: float) -> str:
     if monthly < MONTHLY_BIN_EDGES[3]:
         return "40_to_49"
     return "50_plus"
+
+
+def campus_area_of(row: dict) -> str | None:
+    """Return the D-017 legal-dong proxy, preserving gu boundaries."""
+    for name, area in CAMPUS_AREAS.items():
+        if row["gu"] == area["gu"] and row["dong"] in area["dongs"]:
+            return name
+    return None
+
+
+def summarize_campus_areas(rows: list[dict]) -> dict:
+    """Count D-011 samples and masked address combinations in each D-017 area."""
+    result = {}
+    for name, area in CAMPUS_AREAS.items():
+        valid = [r for r in rows if campus_area_of(r) == name and valid_small_monthly(r)]
+        by_year = [
+            {
+                "year": year,
+                "partial_year": year == PARTIAL_YEAR,
+                "count": sum(r["year"] == year for r in valid),
+                "by_type": {
+                    kind: sum(r["year"] == year and r["type"] == kind for r in valid)
+                    for kind in TYPES.values()
+                },
+            }
+            for year in YEARS
+        ]
+        address_rows = [r for r in valid if r["road"] and r["lot"]]
+        addresses = Counter((r["dong"], r["road"], r["lot"]) for r in address_rows)
+        top3 = sorted(addresses.items(), key=lambda item: (-item[1], item[0]))[:3]
+        result[name] = {
+            "gu": area["gu"],
+            "dongs": list(area["dongs"]),
+            "total_valid_small_monthly": len(valid),
+            "by_year": by_year,
+            "by_type": {kind: sum(r["type"] == kind for r in valid) for kind in TYPES.values()},
+            "address_concentration": {
+                "address_rule": "법정동+원본 도로명+원본 번지 문자열; 마스킹 번지는 개별 건물 식별 불가",
+                "address_present_rows": len(address_rows),
+                "address_missing_rows": len(valid) - len(address_rows),
+                "masked_lot_rows": sum("*" in r["lot"] for r in valid),
+                "top3": [
+                    {"dong": dong, "road": road, "lot": lot, "count": count}
+                    for (dong, road, lot), count in top3
+                ],
+                "top3_rows": sum(count for _, count in top3),
+                "top3_share_pct_of_all": round(100 * sum(count for _, count in top3) / len(valid), 2)
+                if valid else 0.0,
+            },
+        }
+    return result
+
+
+def write_rationale_outputs(rows: list[dict], counts: dict) -> None:
+    """Write T9 monthly shares and T10 D-011 trends from the same validated rows."""
+    target = OUTPUTS / "rationale"
+    target.mkdir(parents=True, exist_ok=True)
+    excluded_complexes = {
+        item["name"] for item in counts["apartment_deokjin_2026_april"]["top_complexes"][:2]
+    }
+
+    def excluded_april_complex(row: dict) -> bool:
+        return (
+            row["year"] == PARTIAL_YEAR and row["month"] == 4
+            and row["gu"] == "deokjin" and row["type"] == "apartment"
+            and row["complex"] in excluded_complexes
+        )
+
+    with (target / "monthly_share.csv").open("w", encoding="utf-8-sig", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=[
+            "scope", "variant", "year", "partial_year", "monthly_rows", "total_rows", "monthly_share_pct",
+        ])
+        writer.writeheader()
+        for year in YEARS:
+            annual = [r for r in rows if r["year"] == year]
+            groups = [
+                ("완산·덕진 전체", "포함", annual),
+                ("완산·덕진 전체", "상위 두 단지 제외", [r for r in annual if not excluded_april_complex(r)]),
+                *((name, "전체", [r for r in annual if campus_area_of(r) == name]) for name in CAMPUS_AREAS),
+            ]
+            for scope, variant, subset in groups:
+                monthly_rows = sum(r["tenure"] == "월세" for r in subset)
+                writer.writerow({
+                    "scope": scope, "variant": variant, "year": year,
+                    "partial_year": str(year == PARTIAL_YEAR).lower(),
+                    "monthly_rows": monthly_rows, "total_rows": len(subset),
+                    "monthly_share_pct": round(100 * monthly_rows / len(subset), 2) if subset else "",
+                })
+
+    city_by_year = Counter(r["year"] for r in rows)
+    with (target / "campus_trend.csv").open("w", encoding="utf-8-sig", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=[
+            "scope", "year", "partial_year", "valid_small_monthly", "change_from_2021_pct",
+            "city_public_rows", "city_change_from_2021_pct",
+        ])
+        writer.writeheader()
+        for scope, area in counts["campus_areas"].items():
+            baseline = area["by_year"][0]["count"]
+            for entry in area["by_year"]:
+                year = entry["year"]
+                writer.writerow({
+                    "scope": scope, "year": year,
+                    "partial_year": str(year == PARTIAL_YEAR).lower(),
+                    "valid_small_monthly": entry["count"],
+                    "change_from_2021_pct": round(100 * (entry["count"] / baseline - 1), 2)
+                    if baseline else "",
+                    "city_public_rows": city_by_year[year],
+                    "city_change_from_2021_pct": round(
+                        100 * (city_by_year[year] / city_by_year[2021] - 1), 2
+                    ),
+                })
 
 
 def write_campus_candidates(rows: list[dict], path: Path):
@@ -394,6 +509,8 @@ def main():
             for month in range(1, 11)
         ],
     }
+    counts["campus_areas"] = summarize_campus_areas(all_rows)
+    write_rationale_outputs(all_rows, counts)
     write_campus_candidates(all_rows, OUTPUTS / "campus_dong_candidates.csv")
     (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     (OUT / "file_audit.json").write_text(json.dumps(summaries, ensure_ascii=False, indent=2), encoding="utf-8")

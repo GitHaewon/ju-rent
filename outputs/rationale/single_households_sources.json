@@ -1,0 +1,38 @@
+{
+  "institution": "국가데이터처 KOSIS 인구총조사",
+  "table_id": "DT_1PL1502",
+  "source_url": "https://kosis.kr/statisticsList/mass/mass_list.jsp?org_id=101&process=statHtml&tbl_id=DT_1PL1502&vw_cd=MT_ZTITLE",
+  "retrieved_on": "2026-11-09",
+  "region_code": "35010",
+  "age_codes": {
+    "025": "age_20_to_24",
+    "030": "age_25_to_29"
+  },
+  "raw_files": [
+    {
+      "year": 2021,
+      "filename": "101_DT_1PL1502_Y_2021.zip",
+      "sha256": "d25b1e46b3225c606f73db5518b41daf196adb1c57e8906124d28c7aa2f04e29"
+    },
+    {
+      "year": 2022,
+      "filename": "101_DT_1PL1502_Y_2022.zip",
+      "sha256": "ac5a5f97f197c14dc472172ad039e2e251b60617f7b287f96083f07b2fccbb3c"
+    },
+    {
+      "year": 2023,
+      "filename": "101_DT_1PL1502_Y_2023.zip",
+      "sha256": "37cd06a257d1fabd63e1c33df1dc4c24eebb02ad068514eb31d459cdb23f2012"
+    },
+    {
+      "year": 2024,
+      "filename": "101_DT_1PL1502_Y_2024.zip",
+      "sha256": "80c2d1b4795b84628599113795c69c49391d595704821e1fcedf4413cb140c1b"
+    },
+    {
+      "year": 2025,
+      "filename": "101_DT_1PL1502_Y_2025.zip",
+      "sha256": "e4d02cb0b609fdf65dc22b5298e1d0eebe5077e845aba7d8ecaed4d5c32c61fd"
+    }
+  ]
+}
