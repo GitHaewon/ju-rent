@@ -196,8 +196,32 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
 .panel-progress { position: absolute; top: 0; left: 22px; right: 22px; height: 3px; border-radius: 999px; background: var(--normal); opacity: .75; }
 .field-error { margin: 6px 0 0; color: var(--very); font-size: 12px; line-height: 1.45; }
 .field > label.range-head { display: flex; }
-.year-toggle { display: flex; align-items: center; gap: 8px; color: var(--ink-soft); font-size: 13px; cursor: pointer; margin-bottom: 8px; }
-.year-toggle input { accent-color: var(--ink); }
+.bars { display: block; }
+.bars i { position: absolute; bottom: 0; flex: none; }
+.axis { position: relative; display: block; height: 20px; }
+.axis span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.axis span:first-child { transform: none; }
+.axis span:last-child { transform: translateX(-100%); }
+.pin-low .tag { transform: none; }
+.pin-high .tag { transform: translateX(-100%); }
+.dist-empty { min-height: 74px; display: flex; align-items: center; justify-content: center;
+  margin: 0; border-radius: 18px; background: rgba(255,255,255,.24);
+  color: var(--ink-soft); font-size: 14px; text-align: center; padding: 16px; }
+.source-date { white-space: nowrap; }
+.field > label.year-toggle { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  color: var(--ink-soft); font-size: 13px; cursor: pointer; margin-bottom: 8px; }
+.switch { position: relative; display: inline-flex; width: 50px; height: 28px; flex: none; }
+.switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+  opacity: 0; cursor: pointer; z-index: 2; }
+.switch-track { display: block; width: 100%; border-radius: 999px; border: 1px solid var(--edge);
+  background: rgba(30,34,69,.10); backdrop-filter: blur(28px) saturate(170%);
+  box-shadow: 0 1px 0 rgba(255,255,255,.65) inset; transition: background .25s var(--ease); }
+.switch-knob { display: block; width: 22px; height: 22px; margin: 2px; border-radius: 50%;
+  background: #fff; box-shadow: 0 2px 7px rgba(30,34,69,.24);
+  transition: transform .35s var(--spring); }
+.switch input:checked + .switch-track { background: var(--ink); }
+.switch input:checked + .switch-track .switch-knob { transform: translateX(22px); }
+.switch input:focus-visible + .switch-track { outline: 2px solid var(--normal); outline-offset: 3px; }
 .age-card { border-radius: 26px; padding: 18px 24px; }
 .age-card h3 { margin: 0 0 4px; font-size: 17px; }
 .age-card p { margin: 0; font-size: 14px; color: var(--ink-soft); }

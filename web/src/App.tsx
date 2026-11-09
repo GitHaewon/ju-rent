@@ -1,6 +1,7 @@
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { comparisonSentence, monthPeriod, percentileSentence, rateHint, verdictText } from './copy'
+import { comparisonSentence, displayWarning, monthPeriod, percentileSentence, rateHint, verdictText } from './copy'
+import { axisTicks, pinPlacement, shouldDrawDistribution } from './distribution'
 import type { ContractInput, Explanation, Judgment, Meta } from './types'
 
 type FormState = {
@@ -92,7 +93,12 @@ function Distribution({ result }: { result: Judgment }) {
   const reduced = useReducedMotion()
   const low = bins[0]?.left ?? 0
   const high = bins.at(-1)?.right ?? low + 1
-  const position = (value: number) => Math.min(100, Math.max(0, (value - low) / (high - low) * 100))
+  const draw = shouldDrawDistribution(result.label, bins.length)
+  const ticks = axisTicks(low, high)
+  const axisLow = ticks[0]
+  const axisHigh = ticks.at(-1)!
+  const position = (value: number) => Math.min(100, Math.max(0, (value - axisLow) / (axisHigh - axisLow) * 100))
+  const pin = pinPlacement(result.converted_monthly_10k_krw, low, high, axisLow, axisHigh)
   const maxCount = Math.max(1, ...bins.map(bin => bin.count))
   const regions = q ? [
     { width: position(q.p25), color: 'var(--cheap)', label: '저렴' },
@@ -107,12 +113,13 @@ function Distribution({ result }: { result: Judgment }) {
 
   return <section className="dist glass reveal d3" aria-label="비슷한 거래 분포">
     <h3>비슷한 거래 속 이 방의 위치</h3>
-    <p className="sub">{comparisonSentence(result)}</p>
-    {bins.length ? <>
+    <p className="sub">{draw ? comparisonSentence(result) : `비슷한 거래 ${format(result.n)}건을 찾았어요.`}</p>
+    {draw ? <>
       <div className="chart" role="img" aria-label={`환산 월세 분포, 이 방 ${format(result.converted_monthly_10k_krw, 2)}만 원`}>
         <div className="bars">
           {bins.map((bin, index) => <motion.i key={index}
             className={bin.left < result.converted_monthly_10k_krw ? 'on' : ''}
+            style={{ left: `${position(bin.left)}%`, width: `max(2px, calc(${position(bin.right) - position(bin.left)}% - 2px))` }}
             initial={false}
             animate={{ height: `${bin.count / maxCount * 100}%` }}
             transition={{ duration: reduced ? 0 : 0.45, ease: [0.2, 0.8, 0.2, 1] }} />)}
@@ -121,14 +128,14 @@ function Distribution({ result }: { result: Judgment }) {
           <span key={index} style={{ width: `${zone.width}%`, background: zone.color, opacity: 0.85 }} />)}</div>
           <div className="zones">{regions.map((zone, index) =>
             <em key={zone.label} style={{ left: `${centers[index]}%` }}>{zone.label}</em>)}</div></>}
-        <motion.div className="pin" initial={false}
-          animate={{ left: `${position(result.converted_monthly_10k_krw)}%` }}
+        <motion.div className={`pin ${pin.edge ? `pin-${pin.edge}` : ''}`} initial={false}
+          animate={{ left: `${pin.position}%` }}
           transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 260, damping: 26 }}>
-          <div className="stem" /><div className="dot" /><div className="tag">이 방</div>
+          <div className="stem" /><div className="dot" /><div className="tag">{pin.tag}</div>
         </motion.div>
       </div>
-      <div className="axis"><span>{format(low)}만 원</span><span>{format((low + high) / 2)}만 원</span><span>{format(high)}만 원</span></div>
-    </> : <p className="hint">표시할 거래가 없어요. 면적이나 집 종류를 바꿔 보세요.</p>}
+      <div className="axis">{ticks.map(tick => <span key={tick} style={{ left: `${position(tick)}%` }}>{format(tick)}만 원</span>)}</div>
+    </> : <p className="dist-empty">비슷한 거래가 적어 분포를 그리지 않았어요</p>}
   </section>
 }
 
@@ -279,8 +286,11 @@ export default function App() {
         {errors.fee && <p className="field-error" role="alert">{errors.fee}</p>}
         <div className="hint">실거래 자료에 관리비가 없어 판단에는 넣지 않고, 매달 내는 돈에만 더해요.</div>
       </div>
-      <div className="field"><label className="year-toggle"><input type="checkbox" checked={form.useYear}
-        onChange={event => update({ useYear: event.target.checked, construction_year: event.target.checked ? String(Number(meta?.data_as_of.slice(0, 4)) - 5) : '' })} /> 건축년도 입력 (선택)</label>
+      <div className="field"><label className="year-toggle" htmlFor="year-enabled"><span>건축년도 입력 (선택)</span>
+        <span className="switch"><input id="year-enabled" type="checkbox" checked={form.useYear}
+          onChange={event => update({ useYear: event.target.checked, construction_year: event.target.checked ? String(Number(meta?.data_as_of.slice(0, 4)) - 5) : '' })} />
+          <span className="switch-track" aria-hidden="true"><span className="switch-knob" /></span>
+        </span></label>
         {form.useYear && <><div className="num"><input id="year" aria-label="건축년도" type="number" inputMode="numeric"
           value={form.construction_year} onChange={event => update({ construction_year: event.target.value })} /></div>
           {(errors.construction_year || serverError?.field === 'construction_year') &&
@@ -333,8 +343,8 @@ export default function App() {
               {explainLoading ? '설명 준비 중…' : 'AI 설명 듣기'}</button>
           </div>
           <div className="card glass reveal d4"><h3>알아두세요</h3>
-            <ul className="notes">{result.warnings.map(warning => <li key={warning}>{warning}</li>)}</ul>
-            <div className="source">자료: 국토교통부 실거래가 공개시스템 · 기준일 {result.data_as_of}</div>
+            <ul className="notes">{result.warnings.map(warning => <li key={warning}>{displayWarning(warning)}</li>)}</ul>
+            <div className="source">자료: 국토교통부 실거래가 공개시스템 · 기준일 <span className="source-date">{result.data_as_of}</span></div>
           </div>
         </section>
       </> : <section className="hero glass reveal d2" id="result" aria-live="polite">

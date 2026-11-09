@@ -1,5 +1,16 @@
 import type { Judgment } from './types'
 
+const WARNING_COPY: Record<string, string> = {
+  '실거래 자료에는 관리비가 포함되지 않습니다.': '실거래 자료에는 관리비가 없어요.',
+  '대학가 법정동 범위는 캠퍼스 도보권의 대리범위입니다.': '대학가는 캠퍼스 주변 법정동 기준이라 실제 도보 거리와 다를 수 있어요.',
+  '실거래는 과거 계약이며 현재 공실·호가가 아닙니다.': '과거 계약 기준이며 지금 나와 있는 매물 가격이 아니에요.',
+  '2026년 최근 2개월은 신고 미반영으로 불완전할 수 있습니다.': '2026년 9~10월 계약은 아직 신고가 덜 들어왔을 수 있어요.',
+}
+
+export function displayWarning(warning: string): string {
+  return WARNING_COPY[warning] ?? warning
+}
+
 export function verdictText(result: Pick<Judgment, 'label'>): string {
   return result.label === '표본 부족' ? '판단 보류' : result.label
 }

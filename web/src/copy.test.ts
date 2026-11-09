@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { comparisonSentence, percentileSentence, verdictText } from './copy'
+import { comparisonSentence, displayWarning, percentileSentence, verdictText } from './copy'
 
 describe('student-facing result text', () => {
   it('uses the response percentile for the 100 rooms sentence', () => {
@@ -18,5 +18,10 @@ describe('student-facing result text', () => {
     expect(verdictText({ label: '표본 부족' })).toBe('판단 보류')
     expect(percentileSentence({ label: '표본 부족', percentile: null, n: 8 }))
       .toContain('비슷한 거래가 8건뿐이라 판단하기 어려워요')
+  })
+
+  it('uses mockup warning wording only for known engine messages', () => {
+    expect(displayWarning('실거래 자료에는 관리비가 포함되지 않습니다.')).toBe('실거래 자료에는 관리비가 없어요.')
+    expect(displayWarning('새 경고')).toBe('새 경고')
   })
 })
