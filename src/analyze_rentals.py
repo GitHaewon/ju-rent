@@ -250,9 +250,14 @@ def write_rationale_outputs(rows: list[dict], counts: dict) -> None:
 
     city_by_year = Counter(r["year"] for r in rows)
     city_jan_oct = Counter(r["year"] for r in rows if r["month"] <= 10)
+    city_jan_aug = Counter(r["year"] for r in rows if r["month"] <= 8)
     campus_jan_oct = Counter(
         (campus_area_of(r), r["year"]) for r in rows
         if r["month"] <= 10 and valid_small_monthly(r) and campus_area_of(r)
+    )
+    campus_jan_aug = Counter(
+        (campus_area_of(r), r["year"]) for r in rows
+        if r["month"] <= 8 and valid_small_monthly(r) and campus_area_of(r)
     )
     with (target / "campus_trend.csv").open("w", encoding="utf-8-sig", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=[
@@ -260,6 +265,8 @@ def write_rationale_outputs(rows: list[dict], counts: dict) -> None:
             "city_public_rows", "city_change_from_2021_pct",
             "jan_oct_valid_small_monthly", "jan_oct_change_from_2021_pct",
             "jan_oct_city_public_rows", "jan_oct_city_change_from_2021_pct",
+            "jan_aug_valid_small_monthly", "jan_aug_change_from_2021_pct",
+            "jan_aug_city_public_rows", "jan_aug_city_change_from_2021_pct",
         ])
         writer.writeheader()
         for scope, area in counts["campus_areas"].items():
@@ -283,6 +290,14 @@ def write_rationale_outputs(rows: list[dict], counts: dict) -> None:
                     "jan_oct_city_public_rows": city_jan_oct[year],
                     "jan_oct_city_change_from_2021_pct": round(
                         100 * (city_jan_oct[year] / city_jan_oct[2021] - 1), 2
+                    ),
+                    "jan_aug_valid_small_monthly": campus_jan_aug[(scope, year)],
+                    "jan_aug_change_from_2021_pct": round(
+                        100 * (campus_jan_aug[(scope, year)] / campus_jan_aug[(scope, 2021)] - 1), 2
+                    ) if campus_jan_aug[(scope, 2021)] else "",
+                    "jan_aug_city_public_rows": city_jan_aug[year],
+                    "jan_aug_city_change_from_2021_pct": round(
+                        100 * (city_jan_aug[year] / city_jan_aug[2021] - 1), 2
                     ),
                 })
     write_duplicate_sensitivity(rows, target)
@@ -309,7 +324,16 @@ def write_duplicate_sensitivity(rows: list[dict], target: Path) -> None:
         "deduplicated_rows", "original_monthly_rows", "deduplicated_monthly_rows",
         "original_monthly_share_pct", "deduplicated_monthly_share_pct",
         "original_valid_small_monthly", "deduplicated_valid_small_monthly",
+        "original_valid_change_from_2021_pct", "deduplicated_valid_change_from_2021_pct",
     ]
+    jan_oct_original = Counter(
+        (campus_area_of(r), r["year"]) for r in rows
+        if r["month"] <= 10 and valid_small_monthly(r) and campus_area_of(r)
+    )
+    jan_oct_dedup = Counter(
+        (campus_area_of(r), r["year"]) for r in retained
+        if r["month"] <= 10 and valid_small_monthly(r) and campus_area_of(r)
+    )
     with (target / "duplicate_sensitivity.csv").open("w", encoding="utf-8-sig", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=columns)
         writer.writeheader()
@@ -340,6 +364,28 @@ def write_duplicate_sensitivity(rows: list[dict], target: Path) -> None:
                     "deduplicated_monthly_share_pct": round(100 * dedup_monthly / len(dedup), 2) if dedup else "",
                     "original_valid_small_monthly": sum(valid_small_monthly(r) for r in original) if scope != "완산·덕진 전체" else "",
                     "deduplicated_valid_small_monthly": sum(valid_small_monthly(r) for r in dedup) if scope != "완산·덕진 전체" else "",
+                })
+                original_period = [r for r in original if r["month"] <= 10]
+                dedup_period = [r for r in dedup if r["month"] <= 10]
+                original_monthly = sum(r["tenure"] == "월세" for r in original_period)
+                dedup_monthly = sum(r["tenure"] == "월세" for r in dedup_period)
+                writer.writerow({
+                    "record_kind": "범위·연도·1~10월", "scope": scope, "year": year,
+                    "original_rows": len(original_period),
+                    "duplicate_extra_rows": len(original_period) - len(dedup_period),
+                    "deduplicated_rows": len(dedup_period),
+                    "original_monthly_rows": original_monthly,
+                    "deduplicated_monthly_rows": dedup_monthly,
+                    "original_monthly_share_pct": round(100 * original_monthly / len(original_period), 2) if original_period else "",
+                    "deduplicated_monthly_share_pct": round(100 * dedup_monthly / len(dedup_period), 2) if dedup_period else "",
+                    "original_valid_small_monthly": sum(valid_small_monthly(r) for r in original_period) if scope != "완산·덕진 전체" else "",
+                    "deduplicated_valid_small_monthly": sum(valid_small_monthly(r) for r in dedup_period) if scope != "완산·덕진 전체" else "",
+                    "original_valid_change_from_2021_pct": round(
+                        100 * (jan_oct_original[(scope, year)] / jan_oct_original[(scope, 2021)] - 1), 2
+                    ) if scope != "완산·덕진 전체" and jan_oct_original[(scope, 2021)] else "",
+                    "deduplicated_valid_change_from_2021_pct": round(
+                        100 * (jan_oct_dedup[(scope, year)] / jan_oct_dedup[(scope, 2021)] - 1), 2
+                    ) if scope != "완산·덕진 전체" and jan_oct_dedup[(scope, 2021)] else "",
                 })
 
 

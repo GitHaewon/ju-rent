@@ -1,0 +1,1 @@
+"""JU RENT service calculations."""
