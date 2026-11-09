@@ -114,3 +114,43 @@ def test_april_complex_audit_preserves_all_rows(counts):
     assert next(item["count"] for item in april["monthly_rows"] if item["month"] == 4) == april["april_rows"]
     assert april["top_two_complexes_rows"] == sum(item["count"] for item in april["top_complexes"][:2])
     assert april["top_two_complexes_rows"] <= april["april_rows"]
+
+
+def test_verified_2026_totals_n010_n011(counts):
+    assert counts["year_2026"]["total"] == 15217
+    assert counts["year_2026"]["analytic"] == 1318
+
+
+def test_verified_contract_distribution_n012(counts):
+    assert [
+        (item["year"], item["신규"], item["갱신"], item["미기재"])
+        for item in counts["contract_by_year"]
+    ] == [
+        (2021, 231, 3, 687),
+        (2022, 452, 19, 652),
+        (2023, 509, 20, 515),
+        (2024, 1035, 60, 124),
+        (2025, 1343, 60, 89),
+        (2026, 1173, 52, 93),
+    ]
+
+
+def test_verified_april_complex_n013(counts):
+    april = counts["apartment_deokjin_2026_april"]
+    assert (
+        april["april_rows"],
+        april["top_complex_rows"],
+        april["top_complex_share_pct"],
+        april["top_two_complexes_rows"],
+        april["top_two_complexes_share_pct"],
+    ) == (1780, 794, 44.6, 1500, 84.3)
+
+
+def test_verified_candidate_table_n014(counts):
+    with (ROOT / "tests" / "fixtures" / "campus_dong_candidates_verified.csv").open(
+        encoding="utf-8-sig", newline=""
+    ) as fh:
+        expected = list(csv.DictReader(fh))
+    with (ROOT / "outputs" / "campus_dong_candidates.csv").open(encoding="utf-8-sig", newline="") as fh:
+        actual = list(csv.DictReader(fh))
+    assert actual == expected
