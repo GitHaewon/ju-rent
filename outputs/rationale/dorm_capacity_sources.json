@@ -1,0 +1,18 @@
+{
+  "source": "대학알리미 14-마-1. 기숙사 수용 현황",
+  "source_url": "https://www.academyinfo.go.kr/main/main0830/main0830.do",
+  "downloaded_on": "확인 불가",
+  "processed_on": "2026-11-09",
+  "raw_files": [
+    {
+      "filename": "14-마-1. 기숙사 수용 현황_대학_기숙사 수용률.xlsx",
+      "sha256": "71f702914a5e00926aba01e90a203bf48f6bb78887c7100b32243d582d78f5b6",
+      "rows": 4372
+    },
+    {
+      "filename": "14-마-1. 기숙사 수용 현황_전문대학_기숙사 수용률.xlsx",
+      "sha256": "e08e1c21c8106013f01fdbf6b0f5de1fe49269dd3103d26dfb0ed043b3d2e2d5",
+      "rows": 3061
+    }
+  ]
+}

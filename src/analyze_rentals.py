@@ -201,6 +201,16 @@ def write_rationale_outputs(rows: list[dict], counts: dict) -> None:
     excluded_complexes = {
         item["name"] for item in counts["apartment_deokjin_2026_april"]["top_complexes"][:2]
     }
+    excluded_name_lots = {
+        (item["name"], item["lot"])
+        for item in counts["apartment_deokjin_top_two_all_years"]["complexes"]
+    }
+
+    def excluded_all_years(row: dict) -> bool:
+        return (
+            row["gu"] == "deokjin" and row["type"] == "apartment"
+            and (row["complex"], row["lot"]) in excluded_name_lots
+        )
 
     def excluded_april_complex(row: dict) -> bool:
         return (
@@ -229,12 +239,27 @@ def write_rationale_outputs(rows: list[dict], counts: dict) -> None:
                     "monthly_rows": monthly_rows, "total_rows": len(subset),
                     "monthly_share_pct": round(100 * monthly_rows / len(subset), 2) if subset else "",
                 })
+            subset = [r for r in annual if not excluded_all_years(r)]
+            monthly_rows = sum(r["tenure"] == "월세" for r in subset)
+            writer.writerow({
+                "scope": "완산·덕진 전체", "variant": "두 단지 전 기간 제외", "year": year,
+                "partial_year": str(year == PARTIAL_YEAR).lower(),
+                "monthly_rows": monthly_rows, "total_rows": len(subset),
+                "monthly_share_pct": round(100 * monthly_rows / len(subset), 2) if subset else "",
+            })
 
     city_by_year = Counter(r["year"] for r in rows)
+    city_jan_oct = Counter(r["year"] for r in rows if r["month"] <= 10)
+    campus_jan_oct = Counter(
+        (campus_area_of(r), r["year"]) for r in rows
+        if r["month"] <= 10 and valid_small_monthly(r) and campus_area_of(r)
+    )
     with (target / "campus_trend.csv").open("w", encoding="utf-8-sig", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=[
             "scope", "year", "partial_year", "valid_small_monthly", "change_from_2021_pct",
             "city_public_rows", "city_change_from_2021_pct",
+            "jan_oct_valid_small_monthly", "jan_oct_change_from_2021_pct",
+            "jan_oct_city_public_rows", "jan_oct_city_change_from_2021_pct",
         ])
         writer.writeheader()
         for scope, area in counts["campus_areas"].items():
@@ -251,7 +276,92 @@ def write_rationale_outputs(rows: list[dict], counts: dict) -> None:
                     "city_change_from_2021_pct": round(
                         100 * (city_by_year[year] / city_by_year[2021] - 1), 2
                     ),
+                    "jan_oct_valid_small_monthly": campus_jan_oct[(scope, year)],
+                    "jan_oct_change_from_2021_pct": round(
+                        100 * (campus_jan_oct[(scope, year)] / campus_jan_oct[(scope, 2021)] - 1), 2
+                    ) if campus_jan_oct[(scope, 2021)] else "",
+                    "jan_oct_city_public_rows": city_jan_oct[year],
+                    "jan_oct_city_change_from_2021_pct": round(
+                        100 * (city_jan_oct[year] / city_jan_oct[2021] - 1), 2
+                    ),
                 })
+    write_duplicate_sensitivity(rows, target)
+    write_report_obligation(rows, target)
+
+
+def duplicate_key(row: dict) -> tuple:
+    """Treat NO-only differences within one export as sensitivity candidates."""
+    return (row["type"], row["gu"], row["year"], tuple(
+        (key, value) for key, value in row["raw"].items() if key != "NO"
+    ))
+
+
+def write_duplicate_sensitivity(rows: list[dict], target: Path) -> None:
+    seen = set()
+    retained = []
+    for row in rows:
+        key = duplicate_key(row)
+        if key not in seen:
+            retained.append(row)
+            seen.add(key)
+    columns = [
+        "record_kind", "scope", "year", "housing_type", "original_rows", "duplicate_extra_rows",
+        "deduplicated_rows", "original_monthly_rows", "deduplicated_monthly_rows",
+        "original_monthly_share_pct", "deduplicated_monthly_share_pct",
+        "original_valid_small_monthly", "deduplicated_valid_small_monthly",
+    ]
+    with (target / "duplicate_sensitivity.csv").open("w", encoding="utf-8-sig", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=columns)
+        writer.writeheader()
+        for year in YEARS:
+            for kind in TYPES.values():
+                original = [r for r in rows if r["year"] == year and r["type"] == kind]
+                dedup = [r for r in retained if r["year"] == year and r["type"] == kind]
+                writer.writerow({
+                    "record_kind": "주택유형·연도", "scope": "완산·덕진 전체", "year": year,
+                    "housing_type": kind, "original_rows": len(original),
+                    "duplicate_extra_rows": len(original) - len(dedup), "deduplicated_rows": len(dedup),
+                })
+            for scope in ("완산·덕진 전체", *CAMPUS_AREAS):
+                original = [r for r in rows if r["year"] == year and (
+                    scope == "완산·덕진 전체" or campus_area_of(r) == scope
+                )]
+                dedup = [r for r in retained if r["year"] == year and (
+                    scope == "완산·덕진 전체" or campus_area_of(r) == scope
+                )]
+                original_monthly = sum(r["tenure"] == "월세" for r in original)
+                dedup_monthly = sum(r["tenure"] == "월세" for r in dedup)
+                writer.writerow({
+                    "record_kind": "범위·연도", "scope": scope, "year": year,
+                    "original_rows": len(original), "duplicate_extra_rows": len(original) - len(dedup),
+                    "deduplicated_rows": len(dedup), "original_monthly_rows": original_monthly,
+                    "deduplicated_monthly_rows": dedup_monthly,
+                    "original_monthly_share_pct": round(100 * original_monthly / len(original), 2) if original else "",
+                    "deduplicated_monthly_share_pct": round(100 * dedup_monthly / len(dedup), 2) if dedup else "",
+                    "original_valid_small_monthly": sum(valid_small_monthly(r) for r in original) if scope != "완산·덕진 전체" else "",
+                    "deduplicated_valid_small_monthly": sum(valid_small_monthly(r) for r in dedup) if scope != "완산·덕진 전체" else "",
+                })
+
+
+def reporting_category(row: dict) -> str:
+    """Classify contracts against the stated rent-reporting threshold."""
+    if row["contract_date"] < "2021-06-01":
+        return "제도 시행 전"
+    return "신고 대상" if row["deposit"] > 6000 or row["monthly"] > 30 else "신고 비대상"
+
+
+def write_report_obligation(rows: list[dict], target: Path) -> None:
+    grouped = Counter(
+        (campus_area_of(r), r["year"], 1 if r["month"] <= 6 else 2, reporting_category(r))
+        for r in rows if campus_area_of(r) and valid_small_monthly(r)
+    )
+    with (target / "report_obligation.csv").open("w", encoding="utf-8-sig", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=["scope", "year", "half_year", "reporting_category", "rows"])
+        writer.writeheader()
+        for key, count in sorted(grouped.items()):
+            scope, year, half, category = key
+            writer.writerow({"scope": scope, "year": year, "half_year": half,
+                             "reporting_category": category, "rows": count})
 
 
 def write_campus_candidates(rows: list[dict], path: Path):
@@ -355,6 +465,7 @@ def main():
             all_rows.append({
                 "type": kind, "gu": gu, "year": year, "dong": dong,
                 "month": contract_date.month, "contract_ym": contract_ym,
+                "contract_date": contract_date.isoformat(),
                 **period_flags(year, contract_date.month),
                 "area": area, "area_basis": area_basis,
                 "deposit": deposit, "monthly": monthly,
@@ -494,6 +605,22 @@ def main():
         "top_two_complexes_share_pct": round(100 * top_two_count / len(april), 1) if april else None,
         "majority_single_complex": top_count > len(april) / 2,
         "top_complex_other_months_rows": sum(r["complex"] == top_complex for r in other_apartment),
+    }
+    top_name_lots = []
+    for name, _ in complex_counts.most_common(2):
+        april_lots = {r["lot"] for r in april if r["complex"] == name}
+        if len(april_lots) != 1:
+            raise RuntimeError(f"N-013 complex has ambiguous April lots: {name}")
+        top_name_lots.append({"name": name, "lot": next(iter(april_lots))})
+    pairs = {(item["name"], item["lot"]) for item in top_name_lots}
+    counts["apartment_deokjin_top_two_all_years"] = {
+        "complexes": top_name_lots,
+        "by_year": [
+            {"year": year, "rows": sum(
+                r["year"] == year and r["type"] == "apartment" and r["gu"] == "deokjin"
+                and (r["complex"], r["lot"]) in pairs for r in all_rows
+            )} for year in YEARS
+        ],
     }
     counts["year_2026"] = {
         "partial_year": True,
