@@ -1,7 +1,8 @@
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { comparisonSentence, displayWarning, monthPeriod, percentileSentence, rateHint, verdictText } from './copy'
-import { axisTicks, pinPlacement, shouldDrawDistribution } from './distribution'
+import { distributionAxis, pinPlacement, positionOnAxis, shouldDrawDistribution } from './distribution'
+import { housingName, housingOptions } from './housing'
 import type { ContractInput, Explanation, Judgment, Meta } from './types'
 
 type FormState = {
@@ -94,11 +95,9 @@ function Distribution({ result }: { result: Judgment }) {
   const low = bins[0]?.left ?? 0
   const high = bins.at(-1)?.right ?? low + 1
   const draw = shouldDrawDistribution(result.label, bins.length)
-  const ticks = axisTicks(low, high)
-  const axisLow = ticks[0]
-  const axisHigh = ticks.at(-1)!
-  const position = (value: number) => Math.min(100, Math.max(0, (value - axisLow) / (axisHigh - axisLow) * 100))
-  const pin = pinPlacement(result.converted_monthly_10k_krw, low, high, axisLow, axisHigh)
+  const axis = distributionAxis(low, high, result.converted_monthly_10k_krw)
+  const position = (value: number) => positionOnAxis(value, axis)
+  const pin = pinPlacement(result.converted_monthly_10k_krw, low, high, axis)
   const maxCount = Math.max(1, ...bins.map(bin => bin.count))
   const regions = q ? [
     { width: position(q.p25), color: 'var(--cheap)', label: '저렴' },
@@ -107,8 +106,8 @@ function Distribution({ result }: { result: Judgment }) {
     { width: 100 - position(q.p90), color: 'var(--very)', label: '많이 비쌈' },
   ] : []
   const centers = q ? [
-    position((low + q.p25) / 2), position((q.p25 + q.p75) / 2),
-    position((q.p75 + q.p90) / 2), position((q.p90 + high) / 2),
+    position((axis.low + q.p25) / 2), position((q.p25 + q.p75) / 2),
+    position((q.p75 + q.p90) / 2), position((q.p90 + axis.high) / 2),
   ] : []
 
   return <section className="dist glass reveal d3" aria-label="비슷한 거래 분포">
@@ -134,7 +133,7 @@ function Distribution({ result }: { result: Judgment }) {
           <div className="stem" /><div className="dot" /><div className="tag">{pin.tag}</div>
         </motion.div>
       </div>
-      <div className="axis">{ticks.map(tick => <span key={tick} style={{ left: `${position(tick)}%` }}>{format(tick)}만 원</span>)}</div>
+      <div className="axis">{axis.ticks.map(tick => <span key={tick} style={{ left: `${position(tick)}%` }}>{format(tick)}만 원</span>)}</div>
     </> : <p className="dist-empty">비슷한 거래가 적어 분포를 그리지 않았어요</p>}
   </section>
 }
@@ -164,7 +163,7 @@ export default function App() {
       .then(data => {
         setMeta(data)
         setForm(current => ({ ...current, campus: data.campuses[0],
-          housing_type: data.housing_types[0].code, rate_pct: data.rate.default_pct }))
+          housing_type: housingOptions(data)[0]?.code ?? '', rate_pct: data.rate.default_pct }))
       })
       .catch(error => { if (error.name !== 'AbortError') setServerError({ field: 'general', message: error.message }) })
     return () => controller.abort()
@@ -224,7 +223,7 @@ export default function App() {
     } finally { if (!controller.signal.aborted) setExplainLoading(false) }
   }
 
-  const selectedName = meta?.housing_types.find(item => item.code === result?.input.housing_type)?.name ?? ''
+  const selectedName = housingName(result?.input.housing_type ?? '')
   const converted = result?.converted_monthly_10k_krw ?? 0
   const label = result ? verdictText(result) : ''
   const progress = result?.percentile ?? null
@@ -261,10 +260,11 @@ export default function App() {
       <div className="field">
         <div className="lab">집 종류</div>
         <div className="chips" role="group" aria-label="집 종류">
-          {meta?.housing_types.map(kind => <button key={kind.code} type="button"
-            aria-pressed={form.housing_type === kind.code} title={kind.description}
+          {meta && housingOptions(meta).map(kind => <button key={kind.code} type="button"
+            aria-pressed={form.housing_type === kind.code}
             onClick={() => update({ housing_type: kind.code })}>{kind.name}</button>)}
         </div>
+        <div className="hint">건물 이름에 '오피스텔'이 있으면 오피스텔, 나머지는 원룸·투룸·빌라를 고르세요.</div>
       </div>
       <div className="field">
         <label className="range-head" htmlFor="area"><span>전용·계약 면적</span><b>{form.area.toFixed(1)}㎡ · 약 {(form.area / 3.305785).toFixed(1)}평</b></label>

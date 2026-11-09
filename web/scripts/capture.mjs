@@ -19,12 +19,17 @@ async function capture(prefix, contextOptions) {
     page.on('pageerror', error => errors.push(error.message))
     await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' })
     await page.locator('.verdict').waitFor()
+    await expect(page.getByRole('group', { name: '집 종류' }).getByRole('button')).toHaveCount(2)
+    await expect(page.getByRole('button', { name: '아파트', exact: true })).toHaveCount(0)
+    await expect(page.locator('.context')).toContainText('원룸·투룸·빌라')
+    await expect(page.getByText("건물 이름에 '오피스텔'이 있으면 오피스텔, 나머지는 원룸·투룸·빌라를 고르세요.")).toBeVisible()
     if (scenario === 'monthly-45') {
       await page.locator('#mon').fill('45')
       await page.waitForFunction(() => document.querySelector('.converted .big')?.textContent?.includes('47.08'))
       await page.locator('#mon').evaluate(element => element.blur())
     } else if (scenario === 'insufficient') {
-      await page.getByRole('button', { name: '빌라', exact: true }).click()
+      await page.getByRole('button', { name: '오피스텔', exact: true }).click()
+      await page.getByRole('button', { name: '전북대권', exact: true }).click()
       await page.locator('#area').focus()
       await page.locator('#area').press('End')
       await page.waitForFunction(() => document.querySelector('.verdict')?.textContent === '판단 보류')
@@ -62,9 +67,21 @@ await expect(page.getByText('월세를 0보다 큰 정수로 입력해 주세요
 await expect(page.locator('.verdict')).toHaveText('많이 비싼 편')
 await page.locator('#mon').fill('1000')
 await expect(page.locator('.pin-high .tag')).toHaveText('비교한 거래보다 비싸요')
+await expect(page.locator('.axis span')).toHaveCount(5)
 await page.locator('#dep').fill('0')
 await page.locator('#mon').fill('1')
 await expect(page.locator('.pin-low .tag')).toHaveText('비교한 거래보다 싸요')
+const housingRequests = []
+page.on('request', request => {
+  if (request.url().endsWith('/api/judge') && request.postData()) housingRequests.push(JSON.parse(request.postData()).housing_type)
+})
+await page.getByRole('button', { name: '오피스텔', exact: true }).click()
+await expect(page.locator('.context')).toContainText('오피스텔')
+await page.getByRole('button', { name: '원룸·투룸·빌라', exact: true }).click()
+await expect(page.locator('.context')).toContainText('원룸·투룸·빌라')
+if (!housingRequests.includes('officetel') || !housingRequests.includes('detached_multiunit')) {
+  throw new Error('Housing choice was not sent using its API code')
+}
 const yearToggle = page.getByRole('checkbox', { name: '건축년도 입력 (선택)' })
 await yearToggle.focus()
 await yearToggle.press('Space')

@@ -177,7 +177,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
   .converted { justify-self: start; text-align: left; }
   .verdict { font-size: 52px; }
   .facts, .split { grid-template-columns: 1fr; }
-  .chips { grid-template-columns: repeat(4, auto); justify-content: start; }
+  .chips { grid-template-columns: 1fr 1fr; }
   .note { display: none; }
   .mini {
     display: flex; align-items: center; gap: 10px; position: sticky; top: 10px; z-index: 4;
@@ -232,8 +232,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
 .num input[type=number] { appearance: textfield; }
 .num input[type=number]::-webkit-inner-spin-button { appearance: none; }
 @media (max-width: 480px) {
-  .chips { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
-  .chips button { font-size: 11px; padding: 7px 3px; }
+  .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .chips button { font-size: 13px; padding: 7px 8px; }
   .brand span { font-size: 12px; }
   .hero .verdict { font-size: 46px; }
 }
