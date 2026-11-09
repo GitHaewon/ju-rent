@@ -62,7 +62,12 @@ def test_n026_to_n028_fixed(prepared):
     actual = json.loads(data.PROCESSED_AUDIT.read_text(encoding="utf-8"))
     assert {key: actual[key] for key in expected} == expected
     assert actual["negative_age_values"] == {"-1": 320}
-    assert actual["negative_age_by_type"]["apartment"] == 318
+    assert actual["negative_age_by_type"] == {
+        "apartment": 318,
+        "detached_multiunit": 2,
+        "multifamily": 0,
+        "officetel": 0,
+    }
 
 
 def test_t0_new_period_outputs(prepared):

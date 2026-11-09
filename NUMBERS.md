@@ -35,7 +35,7 @@
 | N-025 | 대학가 유효 표본 반기별 신고 의무 기준 분포 | 각 행의 `rows` 참조 | outputs/rationale/report_obligation.csv | src/analyze_rentals.py | 2026-11-09 | 검증됨 (reviews/2026-11-09-근거보강-민감도.md) |
 | N-026 | 대학가 유효 표본·전주 전체 공개 행의 1~8월 동기간 증감률 | `jan_aug_` 열 참조 | outputs/rationale/campus_trend.csv | src/analyze_rentals.py | 2026-11-09 | 검증됨 (reviews/2026-11-09-계약판단엔진.md) |
 | N-027 | 1~10월 동기간 NO 차이 중복 제거 민감도 | `record_kind=범위·연도·1~10월` 행 참조 | outputs/rationale/duplicate_sensitivity.csv | src/analyze_rentals.py | 2026-11-09 | 검증됨 (reviews/2026-11-09-계약판단엔진.md) |
-| N-028 | 전주 전체 D-011 유효 표본 정제 행 수·계약연도보다 건축년도가 뒤인 행 수 | 26,738 / 320 | data/processed/valid_small_monthly_audit.json (`total_rows`·`negative_age_rows`) | src/jurent/data.py | 2026-11-09 | 검증됨 (음수 경과연수 처리는 Q-010 미정, reviews/2026-11-09-계약판단엔진.md) |
+| N-028 | 전주 전체 D-011 유효 표본 정제 행 수·계약연도보다 건축년도가 뒤인 행 수 | 26,738 / 320 | data/processed/valid_small_monthly_audit.json (`total_rows`·`negative_age_rows`) | src/jurent/data.py | 2026-11-09 | 검증됨 (음수 경과연수 처리는 D-031로 해결, reviews/2026-11-09-계약판단엔진.md) |
 | N-029 | 계약연도보다 건축년도가 1년 뒤인 행의 주택유형별 건수 | 전체 320 (아파트 318 / 단독다가구 2 / 연립다세대 0 / 오피스텔 0) | data/processed/valid_small_monthly_audit.json (`negative_age_values`·`negative_age_by_type`) | src/jurent/data.py | 2026-11-09 | 검증됨 (reviews/2026-11-09-계약판단엔진.md 재검증) |
 
 > N-001~N-007은 Codex 심층 검증 결과에서 옮긴 값이다. 저장소 이전 후 Claude Code가 스크립트를 재실행해 검증 상태를 갱신한다. 출처 파일·스크립트 경로는 저장소 정리 후 실제 경로로 수정한다.
