@@ -458,5 +458,227 @@
         "incomplete_recent": true
       }
     ]
+  },
+  "campus_areas": {
+    "효자동권": {
+      "gu": "wansan",
+      "dongs": [
+        "효자동2가",
+        "효자동3가"
+      ],
+      "total_valid_small_monthly": 7117,
+      "by_year": [
+        {
+          "year": 2021,
+          "partial_year": false,
+          "count": 921,
+          "by_type": {
+            "apartment": 77,
+            "multifamily": 4,
+            "detached_multiunit": 788,
+            "officetel": 52
+          }
+        },
+        {
+          "year": 2022,
+          "partial_year": false,
+          "count": 1123,
+          "by_type": {
+            "apartment": 97,
+            "multifamily": 3,
+            "detached_multiunit": 938,
+            "officetel": 85
+          }
+        },
+        {
+          "year": 2023,
+          "partial_year": false,
+          "count": 1044,
+          "by_type": {
+            "apartment": 77,
+            "multifamily": 0,
+            "detached_multiunit": 863,
+            "officetel": 104
+          }
+        },
+        {
+          "year": 2024,
+          "partial_year": false,
+          "count": 1219,
+          "by_type": {
+            "apartment": 74,
+            "multifamily": 1,
+            "detached_multiunit": 1039,
+            "officetel": 105
+          }
+        },
+        {
+          "year": 2025,
+          "partial_year": false,
+          "count": 1492,
+          "by_type": {
+            "apartment": 70,
+            "multifamily": 5,
+            "detached_multiunit": 1308,
+            "officetel": 109
+          }
+        },
+        {
+          "year": 2026,
+          "partial_year": true,
+          "count": 1318,
+          "by_type": {
+            "apartment": 61,
+            "multifamily": 5,
+            "detached_multiunit": 1170,
+            "officetel": 82
+          }
+        }
+      ],
+      "by_type": {
+        "apartment": 456,
+        "multifamily": 18,
+        "detached_multiunit": 6106,
+        "officetel": 537
+      },
+      "address_concentration": {
+        "address_rule": "법정동+원본 도로명+원본 번지 문자열; 마스킹 번지는 개별 건물 식별 불가",
+        "address_present_rows": 6766,
+        "address_missing_rows": 351,
+        "masked_lot_rows": 6104,
+        "top3": [
+          {
+            "dong": "효자동2가",
+            "road": "구룡1길",
+            "lot": "1***",
+            "count": 289
+          },
+          {
+            "dong": "효자동3가",
+            "road": "배학2길",
+            "lot": "1***",
+            "count": 243
+          },
+          {
+            "dong": "효자동3가",
+            "road": "홍산로 270",
+            "lot": "1525-3",
+            "count": 235
+          }
+        ],
+        "top3_rows": 767,
+        "top3_share_pct_of_all": 10.78
+      }
+    },
+    "전북대권": {
+      "gu": "deokjin",
+      "dongs": [
+        "덕진동1가",
+        "금암동"
+      ],
+      "total_valid_small_monthly": 3579,
+      "by_year": [
+        {
+          "year": 2021,
+          "partial_year": false,
+          "count": 452,
+          "by_type": {
+            "apartment": 1,
+            "multifamily": 20,
+            "detached_multiunit": 372,
+            "officetel": 59
+          }
+        },
+        {
+          "year": 2022,
+          "partial_year": false,
+          "count": 582,
+          "by_type": {
+            "apartment": 59,
+            "multifamily": 31,
+            "detached_multiunit": 437,
+            "officetel": 55
+          }
+        },
+        {
+          "year": 2023,
+          "partial_year": false,
+          "count": 484,
+          "by_type": {
+            "apartment": 61,
+            "multifamily": 38,
+            "detached_multiunit": 343,
+            "officetel": 42
+          }
+        },
+        {
+          "year": 2024,
+          "partial_year": false,
+          "count": 564,
+          "by_type": {
+            "apartment": 3,
+            "multifamily": 63,
+            "detached_multiunit": 418,
+            "officetel": 80
+          }
+        },
+        {
+          "year": 2025,
+          "partial_year": false,
+          "count": 821,
+          "by_type": {
+            "apartment": 60,
+            "multifamily": 72,
+            "detached_multiunit": 598,
+            "officetel": 91
+          }
+        },
+        {
+          "year": 2026,
+          "partial_year": true,
+          "count": 676,
+          "by_type": {
+            "apartment": 47,
+            "multifamily": 65,
+            "detached_multiunit": 493,
+            "officetel": 71
+          }
+        }
+      ],
+      "by_type": {
+        "apartment": 231,
+        "multifamily": 289,
+        "detached_multiunit": 2661,
+        "officetel": 398
+      },
+      "address_concentration": {
+        "address_rule": "법정동+원본 도로명+원본 번지 문자열; 마스킹 번지는 개별 건물 식별 불가",
+        "address_present_rows": 3396,
+        "address_missing_rows": 183,
+        "masked_lot_rows": 2661,
+        "top3": [
+          {
+            "dong": "덕진동1가",
+            "road": "기린대로 465",
+            "lot": "1267-22",
+            "count": 173
+          },
+          {
+            "dong": "금암동",
+            "road": "권삼득로",
+            "lot": "5**",
+            "count": 139
+          },
+          {
+            "dong": "덕진동1가",
+            "road": "들사평서로 25",
+            "lot": "1547-89",
+            "count": 123
+          }
+        ],
+        "top3_rows": 435,
+        "top3_share_pct_of_all": 12.15
+      }
+    }
   }
 }
