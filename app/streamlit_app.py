@@ -131,7 +131,11 @@ def main() -> None:
     st.subheader("설명")
     st.write(rule_explanation(result))
     if st.button("AI로 쉽게 설명"):
-        st.write(ai_explanation(result))
+        ai_result = ai_explanation(result)
+        if ai_result.fallback_reason:
+            st.info(f"AI 설명을 쓰지 못해 기본 설명을 유지합니다(사유: {ai_result.fallback_reason})")
+        else:
+            st.write(ai_result.text)
 
     st.subheader("해석 시 주의")
     for warning in result["warnings"]:
