@@ -27,6 +27,12 @@
 | N-017 | 효자동권·전북대권 소형 월세 유효 표본 연도별 건수·2021 대비 증감률, 전주 전체 공개 행 증감률 | 각 행의 `valid_small_monthly`·`change_from_2021_pct`·`city_change_from_2021_pct` 참조 | outputs/rationale/campus_trend.csv | src/analyze_rentals.py | 2026-11-09 | 검증됨 (2026 증감률은 10개월 대 12개월, reviews/2026-11-09-필요성근거-대학가추세.md) |
 | N-018 | 전주시 20대 1인가구 (2021→2025, 20~24세와 25~29세 합계) | 23,511 / 22,249 / 22,723 / 21,739 / 21,781 | outputs/rationale/single_households.csv (`age_20s_total`), outputs/rationale/single_households_sources.json | src/build_single_households.py | 2026-11-09 | 검증됨 (reviews/2026-11-09-필요성근거-대학가추세.md) |
 | N-019 | 대학가별 D-011 유효 표본 연도·주택유형·상위 3개 원본 주소 조합 집중도 (2021~2026) | `campus_areas`의 대학가별 `by_year`·`by_type`·`address_concentration` 참조 | data/audit/counts.json | src/analyze_rentals.py | 2026-11-09 | 검증됨 (reviews/2026-11-09-필요성근거-대학가추세.md) |
+| N-020 | 2023-12·2024-02 법정동 코드별 API·CSV 건수 대조 | 각 `rows`의 `api_rows`·`csv_rows`·`difference` 참조 | outputs/audit/lawd_code_check.json | src/check_lawd_codes.py | 2026-11-09 | 미검증 |
+| N-021 | 3개 대학 본교 연도별 재학생·기숙사 수용가능 인원·기숙사 밖 재학생 수 (2021~2026) | 각 행의 `재학생수`·`수용가능인원`·`기숙사 밖 재학생 수` 참조 | outputs/rationale/dorm_capacity.csv; outputs/rationale/dorm_capacity_sources.json | src/build_dorm_capacity.py | 2026-11-09 | 미검증 |
+| N-022 | 대학가 유효 표본·전주 전체 공개 행의 1~10월 동기간 증감률 | `jan_oct_` 열 참조 | outputs/rationale/campus_trend.csv | src/analyze_rentals.py | 2026-11-09 | 미검증 |
+| N-023 | 덕진구 아파트 상위 두 단지 전 기간 제외 민감도·연도별 제외 행 | `variant=두 단지 전 기간 제외` 행과 `apartment_deokjin_top_two_all_years` 참조 | outputs/rationale/monthly_share.csv; data/audit/counts.json | src/analyze_rentals.py | 2026-11-09 | 미검증 |
+| N-024 | NO만 다른 완전 중복 행의 유형·연도별 건수와 대학가 지표 민감도 | 각 행의 원본·중복 제거 시 열 참조 | outputs/rationale/duplicate_sensitivity.csv | src/analyze_rentals.py | 2026-11-09 | 미검증 |
+| N-025 | 대학가 유효 표본 반기별 신고 의무 기준 분포 | 각 행의 `rows` 참조 | outputs/rationale/report_obligation.csv | src/analyze_rentals.py | 2026-11-09 | 미검증 |
 
 > N-001~N-007은 Codex 심층 검증 결과에서 옮긴 값이다. 저장소 이전 후 Claude Code가 스크립트를 재실행해 검증 상태를 갱신한다. 출처 파일·스크립트 경로는 저장소 정리 후 실제 경로로 수정한다.
 

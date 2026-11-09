@@ -1,0 +1,34 @@
+{
+  "apartment": {
+    "files": 12,
+    "files_with_column": 12,
+    "column_in_all_files": true,
+    "rows": 63951,
+    "missing_rows": 0,
+    "missing_rate_pct": 0.0
+  },
+  "multifamily": {
+    "files": 12,
+    "files_with_column": 12,
+    "column_in_all_files": true,
+    "rows": 3050,
+    "missing_rows": 0,
+    "missing_rate_pct": 0.0
+  },
+  "detached_multiunit": {
+    "files": 12,
+    "files_with_column": 12,
+    "column_in_all_files": true,
+    "rows": 47401,
+    "missing_rows": 5151,
+    "missing_rate_pct": 10.87
+  },
+  "officetel": {
+    "files": 12,
+    "files_with_column": 12,
+    "column_in_all_files": true,
+    "rows": 4959,
+    "missing_rows": 0,
+    "missing_rate_pct": 0.0
+  }
+}

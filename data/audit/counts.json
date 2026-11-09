@@ -375,6 +375,44 @@
     "majority_single_complex": false,
     "top_complex_other_months_rows": 0
   },
+  "apartment_deokjin_top_two_all_years": {
+    "complexes": [
+      {
+        "name": "에코시티데시앙네스트8블럭",
+        "lot": "1345"
+      },
+      {
+        "name": "전주에코시티데시앙15BL",
+        "lot": "1519"
+      }
+    ],
+    "by_year": [
+      {
+        "year": 2021,
+        "rows": 43
+      },
+      {
+        "year": 2022,
+        "rows": 814
+      },
+      {
+        "year": 2023,
+        "rows": 21
+      },
+      {
+        "year": 2024,
+        "rows": 649
+      },
+      {
+        "year": 2025,
+        "rows": 1
+      },
+      {
+        "year": 2026,
+        "rows": 1508
+      }
+    ]
+  },
   "year_2026": {
     "partial_year": true,
     "period": "2026-01-01~2026-10-31",
