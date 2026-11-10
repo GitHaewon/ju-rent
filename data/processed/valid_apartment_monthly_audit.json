@@ -1,0 +1,13 @@
+{
+  "source_manifest": "data/audit/manifest.json",
+  "processed_sha256": "4bfabfce946c363829d4ca4543d99a80264e8660afc9042c194c9b2915508297",
+  "total_rows": 24965,
+  "by_year": {
+    "2021": 3175,
+    "2022": 4769,
+    "2023": 4311,
+    "2024": 4451,
+    "2025": 3970,
+    "2026": 4289
+  }
+}

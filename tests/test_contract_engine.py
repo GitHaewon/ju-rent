@@ -270,7 +270,7 @@ def test_t5_result_json_and_age_band_shortage(prepared):
 @pytest.mark.parametrize("area", [14.99, 45.01])
 def test_input_area_outside_d011_rejected(area):
     with pytest.raises(ValueError):
-        engine.judge("효자동권", "apartment", area, 500, 35)
+        engine.judge("효자동권", "detached_multiunit", area, 500, 35)
 
 
 def test_t5_insufficient_sample_returns_no_judgment(tmp_path: Path):
@@ -278,9 +278,9 @@ def test_t5_insufficient_sample_returns_no_judgment(tmp_path: Path):
     with path.open("w", encoding="utf-8-sig", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=data.COLUMNS)
         writer.writeheader()
-        writer.writerow({"계약일": "2026-01-01", "대학가": "효자동권", "주택유형": "apartment",
+        writer.writerow({"계약일": "2026-01-01", "대학가": "효자동권", "주택유형": "officetel",
                          "면적": 25, "계약구분": "신규", "보증금": 500, "월세": 35})
-    result = engine.judge("효자동권", "apartment", 25, 500, 35, data_path=path)
+    result = engine.judge("효자동권", "officetel", 25, 500, 35, data_path=path)
     assert result["n"] == 1 and result["step"] == "기간 확대"
     assert result["label"] == "표본 부족" and result["percentile"] is None
     assert result["quantiles_10k_krw"] is None

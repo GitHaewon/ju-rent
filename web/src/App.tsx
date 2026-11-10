@@ -1,8 +1,8 @@
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { comparisonSentence, displayWarning, monthPeriod, percentileSentence, rateHint, verdictText } from './copy'
+import { comparisonSentence, displayWarning, monthPeriod, negotiationSentence, percentileSentence, rateHint, verdictText } from './copy'
 import { distributionAxis, pinPlacement, positionOnAxis, shouldDrawDistribution } from './distribution'
-import { housingName, housingOptions } from './housing'
+import { areaBounds, clampArea, housingName, housingOptions } from './housing'
 import type { ContractInput, Explanation, Judgment, Meta } from './types'
 
 type FormState = {
@@ -26,6 +26,7 @@ const colors: Record<string, string> = {
   '저렴한 편': 'var(--cheap)', '보통': 'var(--normal)',
   '비싼 편': 'var(--pricey)', '많이 비싼 편': 'var(--very)',
   '표본 부족': 'var(--ink-faint)',
+  '판단 보류': 'var(--ink-faint)', '제공 안 함': 'var(--ink-faint)',
 }
 
 function format(value: number, digits = 0): string {
@@ -95,9 +96,9 @@ function Distribution({ result }: { result: Judgment }) {
   const low = bins[0]?.left ?? 0
   const high = bins.at(-1)?.right ?? low + 1
   const draw = shouldDrawDistribution(result.label, bins.length)
-  const axis = distributionAxis(low, high, result.converted_monthly_10k_krw)
+  const axis = distributionAxis(low, high, result.converted_monthly_10k_krw ?? 0)
   const position = (value: number) => positionOnAxis(value, axis)
-  const pin = pinPlacement(result.converted_monthly_10k_krw, low, high, axis)
+  const pin = pinPlacement(result.converted_monthly_10k_krw ?? 0, low, high, axis)
   const maxCount = Math.max(1, ...bins.map(bin => bin.count))
   const regions = q ? [
     { width: position(q.p25), color: 'var(--cheap)', label: '저렴' },
@@ -112,12 +113,12 @@ function Distribution({ result }: { result: Judgment }) {
 
   return <section className="dist glass reveal d3" aria-label="비슷한 거래 분포">
     <h3>비슷한 거래 속 이 방의 위치</h3>
-    <p className="sub">{draw ? comparisonSentence(result) : `비슷한 거래 ${format(result.n)}건을 찾았어요.`}</p>
+    <p className="sub">{draw ? comparisonSentence(result) : result.label === '제공 안 함' ? '이 면적은 비교 대상에서 제외했어요.' : `비슷한 거래 ${format(result.n)}건을 찾았어요.`}</p>
     {draw ? <>
-      <div className="chart" role="img" aria-label={`환산 월세 분포, 이 방 ${format(result.converted_monthly_10k_krw, 2)}만 원`}>
+      <div className="chart" role="img" aria-label={`환산 월세 분포, 이 방 ${format(result.converted_monthly_10k_krw ?? 0, 2)}만 원`}>
         <div className="bars">
           {bins.map((bin, index) => <motion.i key={index}
-            className={bin.left < result.converted_monthly_10k_krw ? 'on' : ''}
+            className={bin.left < (result.converted_monthly_10k_krw ?? 0) ? 'on' : ''}
             style={{ left: `${position(bin.left)}%`, width: `max(2px, calc(${position(bin.right) - position(bin.left)}% - 2px))` }}
             initial={false}
             animate={{ height: `${bin.count / maxCount * 100}%` }}
@@ -134,7 +135,8 @@ function Distribution({ result }: { result: Judgment }) {
         </motion.div>
       </div>
       <div className="axis">{axis.ticks.map(tick => <span key={tick} style={{ left: `${position(tick)}%` }}>{format(tick)}만 원</span>)}</div>
-    </> : <p className="dist-empty">비슷한 거래가 적어 분포를 그리지 않았어요</p>}
+    </> : <p className="dist-empty">{result.label === '판단 보류' ? '한 건물에 거래가 몰려 분포 판단을 보류했어요' :
+      result.label === '제공 안 함' ? '이 면적의 아파트 비교는 제공하지 않아요' : '비슷한 거래가 적어 분포를 그리지 않았어요'}</p>}
   </section>
 }
 
@@ -224,9 +226,10 @@ export default function App() {
   }
 
   const selectedName = housingName(result?.input.housing_type ?? '')
-  const converted = result?.converted_monthly_10k_krw ?? 0
+  const converted = result?.converted_monthly_10k_krw ?? null
   const label = result ? verdictText(result) : ''
-  const progress = result?.percentile ?? null
+  const progress = result?.label === '판단 보류' || result?.label === '제공 안 함' ? null : result?.percentile ?? null
+  const bounds = areaBounds(form.housing_type)
   const pillVisible = !!result && !heroVisible
   const resultMatchesForm = !!result && result.input.campus === form.campus &&
     result.input.housing_type === form.housing_type && result.input.area_sqm === form.area &&
@@ -239,7 +242,7 @@ export default function App() {
     <header className="brand reveal"><b>JU RENT</b><span>전주 대학가 월세, 계약 전에 확인하세요</span><em className="note">국토교통부 실거래 자료</em></header>
     <div className={`mini glass ${pillVisible ? 'show' : ''}`} aria-hidden={!pillVisible}>
       <b style={{ color: result ? colors[result.label] : undefined }}>{label}</b>
-      <span><Count value={converted} digits={2} />만 원</span><a href="#result">결과 보기</a>
+      {converted !== null && <span><Count value={converted} digits={2} />만 원</span>}<a href="#result">결과 보기</a>
     </div>
 
     <aside className="panel glass reveal d2" aria-label="방 조건">
@@ -262,13 +265,13 @@ export default function App() {
         <div className="chips" role="group" aria-label="집 종류">
           {meta && housingOptions(meta).map(kind => <button key={kind.code} type="button"
             aria-pressed={form.housing_type === kind.code}
-            onClick={() => update({ housing_type: kind.code })}>{kind.name}</button>)}
+            onClick={() => update({ housing_type: kind.code, area: clampArea(form.area, kind.code) })}>{kind.name}</button>)}
         </div>
-        <div className="hint">건물 이름에 '오피스텔'이 있으면 오피스텔, 나머지는 원룸·투룸·빌라를 고르세요.</div>
+        <div className="hint">건물 이름에 '오피스텔'이 있으면 오피스텔, 아파트라면 아파트, 나머지는 원룸·투룸·빌라를 고르세요.</div>
       </div>
       <div className="field">
         <label className="range-head" htmlFor="area"><span>전용·계약 면적</span><b>{form.area.toFixed(1)}㎡ · 약 {(form.area / 3.305785).toFixed(1)}평</b></label>
-        <input id="area" type="range" min="15" max="45" step="0.5" value={form.area}
+        <input id="area" type="range" min={bounds.min} max={bounds.max} step="0.5" value={form.area}
           onChange={event => update({ area: Number(event.target.value) })} />
         {serverError?.field === 'area' && <p className="field-error" role="alert">{serverError.message}</p>}
       </div>
@@ -301,34 +304,36 @@ export default function App() {
           step="0.1" value={form.rate_pct} onChange={event => update({ rate_pct: Number(event.target.value) })} />
         {serverError?.field === 'rate_pct' && <p className="field-error" role="alert">{serverError.message}</p>}
         {meta && <div className="hint">{rateHint(meta.rate)}</div>}
+        {form.housing_type === 'apartment' && <div className="hint">보증금이 커서 환산율에 따라 결과가 크게 달라져요.</div>}
       </div>
     </aside>
 
     <main className="main">
       {result ? <>
-        <section className="hero glass reveal d2" id="result" aria-live="polite" ref={heroRef}>
+        <section className={`hero glass reveal d2 ${converted === null ? 'hero-unavailable' : ''}`} id="result" aria-live="polite" ref={heroRef}>
           <div><div className="context">{result.input.campus} {selectedName}, {format(result.input.area_sqm, 1)}㎡</div>
             <div className="verdict" style={{ color: colors[result.label] }}>{label}</div>
             <div className="verdict-line">{progress === null ? percentileSentence(result) :
               <>비슷한 방 100곳 중 <b><Count value={Math.round(progress)} /></b>곳이 이 방보다 쌌어요.</>}</div>
+            {negotiationSentence(result.hint) && <div className="negotiation-hint">{negotiationSentence(result.hint)}</div>}
           </div>
-          <div className="converted"><div className="big"><Count value={converted} digits={2} /><small>만 원</small></div>
+          {converted !== null && <div className="converted"><div className="big"><Count value={converted} digits={2} /><small>만 원</small></div>
             <p>보증금을 월세로 바꿔 더한 금액이에요</p>
             <p>매달 내는 돈 <b>{format(result.input.monthly_10k_krw + settledFee)}</b>만 원 (월세 + 관리비)</p>
-          </div>
+          </div>}
         </section>
         <Distribution result={result} />
-        <section className="facts">
-          {result.quantiles_10k_krw && <div className="fact glass reveal d3"><div className="k">중간값</div>
+        {result.label !== '제공 안 함' && <section className="facts">
+          {result.quantiles_10k_krw && <div className="fact glass reveal d3"><div className="k">중간값{result.label === '판단 보류' ? ' (참고)' : ''}</div>
             <div className="v"><Count value={result.quantiles_10k_krw.p50} digits={2} /><small>만 원</small></div>
             <div className="d">비슷한 거래의 한가운데 가격</div></div>}
           <div className="fact glass reveal d3"><div className="k">비교한 거래</div>
             <div className="v"><Count value={result.n} /><small>건</small></div>
-            <div className="d">{monthPeriod(result.comparison_period.start, result.comparison_period.end)}</div></div>
-          {result.quantiles_10k_krw && <div className="fact glass reveal d3"><div className="k">비싼 편이 되는 선</div>
+            <div className="d">{result.comparison_period && monthPeriod(result.comparison_period.start, result.comparison_period.end)}</div></div>
+          {result.quantiles_10k_krw && <div className="fact glass reveal d3"><div className="k">비싼 편이 되는 선{result.label === '판단 보류' ? ' (참고)' : ''}</div>
             <div className="v"><Count value={result.quantiles_10k_krw.p75} digits={2} /><small>만 원</small></div>
             <div className="d">이보다 비싼 거래는 4곳 중 1곳</div></div>}
-        </section>
+        </section>}
         {result.age_band_result && <section className="age-card glass" aria-label="건축연도 비교">
           <h3>비슷한 연식의 방과 비교하면</h3>
           <p>{result.age_band_result.band} 거래 {format(result.age_band_result.n)}건 · {result.age_band_result.label}

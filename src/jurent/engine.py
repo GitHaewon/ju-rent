@@ -4,14 +4,23 @@ from __future__ import annotations
 
 import math
 import tomllib
+from collections import Counter
 from fractions import Fraction
 from functools import lru_cache
 from pathlib import Path
+from statistics import median
 
 import numpy as np
 
 from src import analyze_rentals as audit
-from src.jurent.data import PROCESSED, age_band, load_processed
+from src.jurent.data import (
+    APARTMENT_MAX_AREA_SQM,
+    APARTMENT_MIN_AREA_SQM,
+    APARTMENT_PROCESSED,
+    PROCESSED,
+    age_band,
+    load_processed,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 SETTINGS = ROOT / "config" / "settings.toml"
@@ -19,6 +28,8 @@ RECENT_START = "2024-11-01"
 ALL_START = "2021-01-01"
 DATA_END = "2026-10-31"
 MIN_SAMPLE = 30
+ONEROOM_TYPES = frozenset({"detached_multiunit", "multifamily"})
+SMALL_APARTMENT_REASON = "소형 아파트는 공공임대·특정 단지에 몰려 시세 비교를 제공하지 않아요"
 WARNINGS = [
     "실거래 자료에는 관리비가 포함되지 않습니다.",
     "대학가 법정동 범위는 캠퍼스 도보권의 대리범위입니다.",
@@ -76,9 +87,10 @@ def label_for_percentile(percentile: Fraction | float) -> str:
 
 def select_similar(rows: list[dict], campus: str, housing_type: str, area: float) -> tuple[list[dict], str, str]:
     """Apply D-028 expansions in order; preserve all NO-only duplicate rows."""
+    kinds = ONEROOM_TYPES if housing_type == "oneroom" else {housing_type}
     same_group = [
         row for row in rows
-        if row["대학가"] == campus and row["주택유형"] == housing_type
+        if row["대학가"] == campus and row["주택유형"] in kinds
         and row["계약구분"] in {"신규", "미기재"}
         and ALL_START <= row["계약일"] <= DATA_END
     ]
@@ -101,6 +113,31 @@ def quantiles(values: list[Fraction]) -> dict[str, float]:
     return dict(zip(("p25", "p50", "p75", "p90"), (round(float(v), 2) for v in points), strict=True))
 
 
+def dominant_complex(rows: list[dict]) -> dict | None:
+    """Count named complexes over every similar transaction, including unnamed homes."""
+    if not rows:
+        return None
+    counts = Counter(name for row in rows if (name := str(row.get("단지명", "")).strip()))
+    if not counts:
+        return None
+    name, count = min(counts.items(), key=lambda item: (-item[1], item[0]))
+    if count * 2 < len(rows):
+        return None
+    return {"name": name, "count": count, "share_pct": round(count / len(rows) * 100, 2)}
+
+
+def rejudged_reduction(deposit: float, monthly: float, rate: float, values: list[Fraction]) -> int | None:
+    """Reapply the judgment boundary at each one-man-won lower monthly rent."""
+    for reduction in range(1, 31):
+        if monthly - reduction <= 0:
+            break
+        lower_amount = converted_monthly(deposit, monthly - reduction, rate)
+        lower_label = label_for_percentile(percentile_rank(lower_amount, values))
+        if lower_label in {"저렴한 편", "보통"}:
+            return reduction
+    return None
+
+
 def judge(
     campus: str,
     housing_type: str,
@@ -109,13 +146,18 @@ def judge(
     monthly: float,
     construction_year: int | None = None,
     rate_pct: float | None = None,
-    data_path: Path = PROCESSED,
+    data_path: Path | None = None,
 ) -> dict:
     """Return the complete UI-ready contract judgment without any LLM input."""
     config = settings()
-    if campus not in audit.CAMPUS_AREAS or housing_type not in audit.TYPES.values():
+    if campus not in audit.CAMPUS_AREAS or housing_type not in (*audit.TYPES.values(), "oneroom"):
         raise ValueError("Unknown campus area or housing type")
-    if not math.isfinite(area) or not audit.MIN_AREA_SQM <= area <= audit.MAX_AREA_SQM:
+    if not math.isfinite(area):
+        raise ValueError("Area is outside the supported sample range")
+    if housing_type == "apartment":
+        if not 0 < area <= APARTMENT_MAX_AREA_SQM:
+            raise ValueError("Area is outside the apartment sample range")
+    elif not audit.MIN_AREA_SQM <= area <= audit.MAX_AREA_SQM:
         raise ValueError("Area is outside the D-011 sample range")
     if not math.isfinite(deposit) or deposit < 0 or not math.isfinite(monthly) or monthly <= 0:
         raise ValueError("Deposit must be nonnegative and monthly rent positive")
@@ -127,19 +169,7 @@ def judge(
     applied_rate = default_rate_pct(config) if rate_pct is None else rate_pct
     if not math.isfinite(applied_rate) or not config["user_min_pct"] <= applied_rate <= config["user_max_pct"]:
         raise ValueError("Conversion rate outside allowed range")
-    amount = converted_monthly(deposit, monthly, applied_rate)
-    selected, step, start = select_similar(load_processed(data_path), campus, housing_type, area)
-    values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in selected]
-    sufficient = len(values) >= MIN_SAMPLE
-    rank = percentile_rank(amount, values) if sufficient else None
-    input_band = age_band(2026 - construction_year) if construction_year is not None else None
-    band_rows = [r for r in selected if r["경과연수구간"] == input_band] if input_band else []
-    band_values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in band_rows]
-    band_rank = percentile_rank(amount, band_values) if len(band_values) >= MIN_SAMPLE else None
-    histogram_counts, histogram_edges = np.histogram(
-        [float(value) for value in values], bins=20,
-    ) if values else ([], [])
-    return {
+    common = {
         "input": {
             "campus": campus, "housing_type": housing_type, "area_sqm": area,
             "deposit_10k_krw": deposit, "monthly_10k_krw": monthly,
@@ -151,6 +181,47 @@ def judge(
                        "legal_spread_pct": config["legal_spread_pct"],
                        "legal_cap_pct": config["legal_cap_pct"],
                        "basis_note": "법정 전환율 상한을 비교 기준으로 사용하며 시장 전환율이 아닙니다."},
+        "warnings": WARNINGS.copy(), "data_as_of": DATA_END,
+    }
+    if housing_type == "apartment" and area < APARTMENT_MIN_AREA_SQM:
+        return {
+            **common, "converted_monthly_10k_krw": None, "n": 0,
+            "step": None, "comparison_period": None, "quantiles_10k_krw": None,
+            "histogram_10k_krw": [], "percentile": None, "label": "제공 안 함",
+            "reason": SMALL_APARTMENT_REASON, "complex_concentration": None,
+            "age_band_result": None, "hint": None,
+        }
+    amount = converted_monthly(deposit, monthly, applied_rate)
+    source = data_path or (APARTMENT_PROCESSED if housing_type == "apartment" else PROCESSED)
+    selected, step, start = select_similar(load_processed(source), campus, housing_type, area)
+    values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in selected]
+    sufficient = len(values) >= MIN_SAMPLE
+    rank = percentile_rank(amount, values) if sufficient else None
+    input_band = age_band(2026 - construction_year) if construction_year is not None else None
+    band_rows = [r for r in selected if r["경과연수구간"] == input_band] if input_band else []
+    band_values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in band_rows]
+    band_rank = percentile_rank(amount, band_values) if len(band_values) >= MIN_SAMPLE else None
+    histogram_counts, histogram_edges = np.histogram(
+        [float(value) for value in values], bins=20,
+    ) if values else ([], [])
+    concentration = dominant_complex(selected)
+    label = label_for_percentile(rank) if rank is not None else "표본 부족"
+    reason = None
+    if concentration is not None:
+        label = "판단 보류"
+        reason = (f"비교 거래 {len(selected)}건 중 {concentration['count']}건이 "
+                  f"{concentration['name']} 한 건물이에요")
+    hint = None
+    if rank is not None and concentration is None:
+        difference = round(float(amount - median(values)), 2)
+        reduction = (
+            rejudged_reduction(deposit, monthly, applied_rate, values)
+            if label in {"비싼 편", "많이 비싼 편"} else None
+        )
+        hint = {"difference_from_median_10k_krw": difference,
+                "monthly_reduction_10k_krw": reduction}
+    return {
+        **common,
         "converted_monthly_10k_krw": round(float(amount), 2),
         "n": len(selected), "step": step,
         "comparison_period": {"start": start, "end": DATA_END},
@@ -160,11 +231,11 @@ def judge(
             for left, right, count in zip(histogram_edges[:-1], histogram_edges[1:], histogram_counts, strict=True)
         ],
         "percentile": round(float(rank), 2) if rank is not None else None,
-        "label": label_for_percentile(rank) if rank is not None else "표본 부족",
+        "label": label, "reason": reason, "complex_concentration": concentration,
+        "hint": hint,
         "age_band_result": {
             "band": input_band, "n": len(band_rows),
             "percentile": round(float(band_rank), 2) if band_rank is not None else None,
             "label": label_for_percentile(band_rank) if band_rank is not None else "표본 부족",
         } if input_band else None,
-        "warnings": WARNINGS.copy(), "data_as_of": DATA_END,
     }

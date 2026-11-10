@@ -84,11 +84,36 @@ def test_openai_uses_only_engine_json_and_lowest_effort(tmp_path, monkeypatch):
     assert calls[0][1]["max_retries"] == 0
     assert calls[1][1]["reasoning"] == {"effort": "none"}
     assert calls[1][1]["max_output_tokens"] == 500
-    assert "존댓말로 3~4문장" in calls[1][1]["instructions"]
+    assert "해요체로 3문장 이내" in calls[1][1]["instructions"]
+    assert "hint에 있는 협상 힌트" in calls[1][1]["instructions"]
+    assert "2024년 11월부터 2026년 10월까지" in calls[1][1]["instructions"]
     assert "차이와 비율을 새로 계산하지 마세요" in calls[1][1]["instructions"]
-    assert "warnings 중 하나" in calls[1][1]["instructions"]
+    assert "warnings 중 주의할 점 하나" in calls[1][1]["instructions"]
     assert json.loads(calls[1][1]["input"]) == result
     assert len([call for call in calls if call[0] == "create"]) == 1
+
+
+def test_prompt_sends_code_calculated_hint_without_changing_number_guard(tmp_path, monkeypatch):
+    env = tmp_path / ".env"
+    env.write_text("OPENAI_API_KEY=test-key\nOPENAI_MODEL=gpt-6-luna\n", encoding="utf-8")
+    captured = {}
+
+    class FakeClient:
+        def __init__(self, **_kwargs):
+            self.responses = self
+
+        def create(self, **kwargs):
+            captured.update(kwargs)
+            return SimpleNamespace(output_text="월세를 1만 원 낮추면 보통이에요.")
+
+    monkeypatch.setattr("openai.OpenAI", FakeClient)
+    result = {**sample_result(), "hint": {"difference_from_median_10k_krw": 5.83,
+                                          "monthly_reduction_10k_krw": 1},
+              "warnings": ["실거래 자료에는 관리비가 포함되지 않습니다."]}
+    assert explanation.ai_explanation(result, env).fallback_reason is None
+    assert json.loads(captured["input"])["hint"] == result["hint"]
+    assert "3문장 이내" in captured["instructions"]
+    assert explanation.unsupported_numbers("월세를 2만 원 낮추세요.", result) == ["2"]
 
 
 def test_explicit_effort_and_unsupported_output_fall_back(tmp_path, monkeypatch):

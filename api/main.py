@@ -14,6 +14,7 @@ from src.jurent.explanation import ai_explanation
 app = FastAPI(title="JU RENT API")
 
 HOUSING = [
+    {"code": "oneroom", "name": "원룸·투룸·빌라", "description": "단독다가구·연립다세대 합친 비교"},
     {"code": "detached_multiunit", "name": "원룸·다가구", "description": "단독다가구 실거래 자료"},
     {"code": "officetel", "name": "오피스텔", "description": "오피스텔 실거래 자료"},
     {"code": "multifamily", "name": "빌라", "description": "연립다세대 실거래 자료"},
@@ -38,6 +39,8 @@ def input_error(exc: ValueError) -> str:
     if "campus" in message or "housing type" in message:
         return "대학가와 집 종류를 목록에서 다시 선택해 주세요."
     if "Area" in message:
+        if "apartment" in message:
+            return "아파트 면적은 132㎡ 이하로 입력해 주세요."
         return "면적은 15㎡ 이상 45㎡ 이하로 입력해 주세요."
     if "Deposit" in message:
         return "보증금은 0 이상, 월세는 0보다 크게 입력해 주세요."

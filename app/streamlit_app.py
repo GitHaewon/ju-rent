@@ -28,6 +28,8 @@ HOUSING_HELP = (
 
 
 def show_histogram(result: dict) -> None:
+    if result["label"] in {"판단 보류", "제공 안 함"}:
+        return
     bins = result["histogram_10k_krw"]
     if not bins:
         return
@@ -68,7 +70,11 @@ def main() -> None:
         st.header("계약 조건")
         campus = st.selectbox("대학가", ["효자동권", "전북대권"])
         housing_label = st.selectbox("집 종류", list(HOUSING), help=HOUSING_HELP)
-        area = st.number_input("면적 (㎡)", min_value=15.0, max_value=45.0, value=25.0, step=0.1)
+        apartment = HOUSING[housing_label] == "apartment"
+        area = st.number_input("면적 (㎡)", min_value=40.0 if apartment else 15.0,
+                               max_value=132.0 if apartment else 45.0,
+                               value=40.0 if apartment else 25.0, step=0.1,
+                               key=f"area_{HOUSING[housing_label]}")
         st.caption(f"약 {area / 3.305785:.1f}평")
         deposit = st.number_input("보증금 (만 원)", min_value=0.0, value=500.0, step=10.0)
         monthly = st.number_input("월세 (만 원)", min_value=0.01, value=35.0, step=1.0)
@@ -104,10 +110,25 @@ def main() -> None:
         st.error(f"계약 판단을 표시할 수 없습니다: {exc}")
         return
 
+    if result["label"] == "제공 안 함":
+        st.warning(result["reason"])
+        return
+
     first, second, third = st.columns(3)
     first.metric("판단", result["label"])
     second.metric("백분위", "표본 부족" if result["percentile"] is None else f"{result['percentile']:.2f}")
     third.metric("환산 월세", f"{result['converted_monthly_10k_krw']:,.2f}만 원")
+    if result["label"] == "판단 보류":
+        st.warning(result["reason"])
+        st.caption("백분위와 분위수는 참고값입니다.")
+    elif result["hint"] is not None:
+        hint = result["hint"]
+        reduction = hint["monthly_reduction_10k_krw"]
+        if reduction is not None:
+            st.caption(f"월세를 {reduction}만 원 낮추면 보통 수준이 됩니다.")
+        else:
+            difference = hint["difference_from_median_10k_krw"]
+            st.caption(f"중간값 대비 {difference:+.2f}만 원")
     st.caption(f"총 월 부담(월세 + 관리비): {monthly + fee:,.2f}만 원 · 관리비는 판단에서 제외")
 
     period = result["comparison_period"]

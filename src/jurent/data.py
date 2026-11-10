@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import math
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -16,12 +17,16 @@ RAW = ROOT / "data" / "raw"
 MANIFEST = ROOT / "data" / "audit" / "manifest.json"
 PROCESSED = ROOT / "data" / "processed" / "valid_small_monthly.csv"
 PROCESSED_AUDIT = ROOT / "data" / "processed" / "valid_small_monthly_audit.json"
+APARTMENT_PROCESSED = ROOT / "data" / "processed" / "valid_apartment_monthly.csv"
+APARTMENT_AUDIT = ROOT / "data" / "processed" / "valid_apartment_monthly_audit.json"
 DATE_START = date(2021, 1, 1)
 DATE_END = date(2026, 10, 31)
+APARTMENT_MIN_AREA_SQM = 40
+APARTMENT_MAX_AREA_SQM = 132
 AGE_BANDS = ("5년 미만", "5~9년", "10~19년", "20년 이상", "미기재")
 COLUMNS = (
     "계약일", "대학가", "법정동", "주택유형", "면적", "면적기준", "보증금", "월세",
-    "계약구분", "건축년도", "경과연수", "경과연수구간", "완전중복여부", "incomplete_recent",
+    "계약구분", "건축년도", "경과연수", "경과연수구간", "완전중복여부", "incomplete_recent", "단지명",
 )
 
 
@@ -44,13 +49,30 @@ def construction_year(value: str) -> int | None:
     return int(parsed)
 
 
-def normalized_rows() -> list[dict]:
+def valid_apartment_monthly(item: dict) -> bool:
+    return (
+        item["type"] == "apartment"
+        and item["area"] is not None
+        and math.isfinite(item["area"])
+        and APARTMENT_MIN_AREA_SQM <= item["area"] <= APARTMENT_MAX_AREA_SQM
+        and item["deposit"] is not None
+        and math.isfinite(item["deposit"])
+        and item["deposit"] >= 0
+        and item["monthly"] is not None
+        and math.isfinite(item["monthly"])
+        and item["monthly"] > 0
+        and item["tenure"] == "월세"
+    )
+
+
+def normalized_rows() -> tuple[list[dict], list[dict]]:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     expected = {entry["filename"]: entry for entry in manifest}
     files = sorted(RAW.glob("*.csv"))
     if {path.name for path in files} != set(expected):
         raise RuntimeError("Raw CSV set does not match manifest")
-    result = []
+    small_rows = []
+    apartment_rows = []
     for path in files:
         entry = expected[path.name]
         if hashlib.sha256(path.read_bytes()).hexdigest() != entry["sha256"]:
@@ -87,12 +109,14 @@ def normalized_rows() -> list[dict]:
                 "monthly": audit.number(row["월세금(만원)"]),
                 "tenure": row["전월세구분"].strip(),
             }
-            if not audit.valid_small_monthly(item):
+            is_small = audit.valid_small_monthly(item)
+            is_apartment = valid_apartment_monthly(item)
+            if not is_small and not is_apartment:
                 continue
             built_year = construction_year(row.get("건축년도", ""))
             age = signed_on.year - built_year if built_year is not None else None
             fingerprint = tuple((key, value) for key, value in row.items() if key != "NO")
-            result.append({
+            normalized = {
                 "계약일": signed_on.isoformat(),
                 "대학가": audit.campus_area_of(item) or "",
                 "법정동": item["dong"], "주택유형": kind,
@@ -104,12 +128,17 @@ def normalized_rows() -> list[dict]:
                 "경과연수구간": age_band(age),
                 "완전중복여부": str(duplicates[fingerprint] > 1).lower(),
                 "incomplete_recent": str(audit.period_flags(signed_on.year, signed_on.month)["incomplete_recent"]).lower(),
-            })
-    return result
+                "단지명": row.get("단지명", "") if kind != "detached_multiunit" else "",
+            }
+            if is_small:
+                small_rows.append(normalized)
+            if is_apartment:
+                apartment_rows.append(normalized)
+    return small_rows, apartment_rows
 
 
 def build_processed() -> Path:
-    rows = normalized_rows()
+    rows, apartment_rows = normalized_rows()
     negative_age = [row for row in rows if row["경과연수"] != "" and row["경과연수"] < 0]
     if any(row["경과연수"] != -1 for row in negative_age):
         raise RuntimeError("D-031 only defines the minus-one construction-year case")
@@ -118,6 +147,10 @@ def build_processed() -> Path:
         writer = csv.DictWriter(fh, fieldnames=COLUMNS)
         writer.writeheader()
         writer.writerows(rows)
+    with APARTMENT_PROCESSED.open("w", encoding="utf-8-sig", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=COLUMNS)
+        writer.writeheader()
+        writer.writerows(apartment_rows)
     summary = {
         "source_manifest": "data/audit/manifest.json",
         "processed_sha256": hashlib.sha256(PROCESSED.read_bytes()).hexdigest(),
@@ -132,6 +165,14 @@ def build_processed() -> Path:
                                  for kind in audit.TYPES.values()},
     }
     PROCESSED_AUDIT.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    apartment_summary = {
+        "source_manifest": "data/audit/manifest.json",
+        "processed_sha256": hashlib.sha256(APARTMENT_PROCESSED.read_bytes()).hexdigest(),
+        "total_rows": len(apartment_rows),
+        "by_year": {str(year): sum(row["계약일"].startswith(str(year)) for row in apartment_rows)
+                    for year in audit.YEARS},
+    }
+    APARTMENT_AUDIT.write_text(json.dumps(apartment_summary, ensure_ascii=False, indent=2), encoding="utf-8")
     return PROCESSED
 
 

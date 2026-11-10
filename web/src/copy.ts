@@ -15,7 +15,10 @@ export function verdictText(result: Pick<Judgment, 'label'>): string {
   return result.label === '표본 부족' ? '판단 보류' : result.label
 }
 
-export function percentileSentence(result: Pick<Judgment, 'label' | 'percentile' | 'n'>): string {
+export function percentileSentence(result: Pick<Judgment, 'label' | 'percentile' | 'n'> & { reason?: string | null }): string {
+  if (result.label === '판단 보류' || result.label === '제공 안 함') {
+    return result.reason ?? '이 조건의 비교 판단을 제공하지 않아요.'
+  }
   if (result.label === '표본 부족' || result.percentile === null) {
     return `비슷한 거래가 ${result.n.toLocaleString('ko-KR')}건뿐이라 판단하기 어려워요. 면적이나 집 종류를 바꿔 보세요.`
   }
@@ -29,6 +32,17 @@ export function comparisonSentence(result: Pick<Judgment, 'step' | 'n' | 'compar
       ? '최근 24개월, 같은 집 종류, 면적 ±10㎡로 넓혀'
       : '최근 24개월, 같은 집 종류, 면적 ±5㎡'
   return `${range} 거래 ${result.n.toLocaleString('ko-KR')}건의 환산 월세 분포예요.`
+}
+
+export function negotiationSentence(hint: Judgment['hint']): string | null {
+  if (!hint) return null
+  if (hint.monthly_reduction_10k_krw !== null) {
+    return `월세를 ${hint.monthly_reduction_10k_krw}만 원 낮추면 '보통'이 돼요`
+  }
+  const difference = hint.difference_from_median_10k_krw
+  if (difference === 0) return '중간값과 같아요'
+  const direction = difference >= 0 ? '비싸요' : '싸요'
+  return `중간값보다 ${Math.abs(difference).toFixed(2)}만 원 ${direction}`
 }
 
 export function monthPeriod(start: string, end: string): string {

@@ -26,14 +26,17 @@ export type Meta = {
 export type Judgment = {
   input: { campus: string; housing_type: string; area_sqm: number; deposit_10k_krw: number; monthly_10k_krw: number; construction_year: number | null }
   rate_pct: number
-  converted_monthly_10k_krw: number
+  converted_monthly_10k_krw: number | null
   n: number
-  step: string
-  comparison_period: { start: string; end: string }
+  step: string | null
+  comparison_period: { start: string; end: string } | null
   quantiles_10k_krw: { p25: number; p50: number; p75: number; p90: number } | null
   histogram_10k_krw: { left: number; right: number; count: number }[]
   percentile: number | null
   label: string
+  reason: string | null
+  complex_concentration: { name: string; count: number; share_pct: number } | null
+  hint: { difference_from_median_10k_krw: number; monthly_reduction_10k_krw: number | null } | null
   age_band_result: { band: string; n: number; percentile: number | null; label: string } | null
   warnings: string[]
   data_as_of: string

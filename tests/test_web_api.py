@@ -18,7 +18,7 @@ def test_meta_comes_from_engine_configuration():
     meta = response.json()
     assert meta["campuses"] == ["효자동권", "전북대권"]
     assert {item["code"] for item in meta["housing_types"]} == {
-        "detached_multiunit", "officetel", "multifamily", "apartment",
+        "oneroom", "detached_multiunit", "officetel", "multifamily", "apartment",
     }
     assert meta["rate"]["default_pct"] == engine.default_rate_pct()
     assert meta["data_as_of"] == engine.DATA_END
@@ -26,7 +26,7 @@ def test_meta_comes_from_engine_configuration():
 
 def test_judge_matches_engine_for_every_campus_and_type():
     for campus in ("효자동권", "전북대권"):
-        for housing_type in ("detached_multiunit", "officetel", "multifamily", "apartment"):
+        for housing_type in ("oneroom", "detached_multiunit", "officetel", "multifamily", "apartment"):
             payload = {**BASE, "campus": campus, "housing_type": housing_type}
             response = client.post("/api/judge", json=payload)
             assert response.status_code == 200
@@ -43,6 +43,17 @@ def test_invalid_inputs_return_korean_422():
     response = client.post("/api/judge", json={**valid, "area": "잘못된 숫자"})
     assert response.status_code == 422
     assert "확인해 주세요" in response.json()["detail"]
+
+
+def test_small_apartment_returns_unavailable_without_comparison():
+    response = client.post("/api/judge", json={**BASE, "campus": "효자동권",
+                                               "housing_type": "apartment", "area": 39.99})
+    assert response.status_code == 200
+    result = response.json()
+    assert result["label"] == "제공 안 함"
+    assert result["reason"] == engine.SMALL_APARTMENT_REASON
+    assert result["converted_monthly_10k_krw"] is None
+    assert result["hint"] is None and result["histogram_10k_krw"] == []
 
 
 def test_explain_recomputes_on_server_and_rejects_result_dict(monkeypatch):
