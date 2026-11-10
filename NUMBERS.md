@@ -40,8 +40,8 @@
 | N-030 | 대학가·면적 구간·단독다가구/연립다세대/합친 유형의 최근 24개월 갱신 제외 환산 월세(r 5%) 건수·사분위·중앙값 | 각 행의 `건수`·`p25_만원`·`중앙값_만원`·`p75_만원` 참조 | outputs/compare/oneroom_pool_check.csv | src/jurent/compare.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-아파트비교.md, 효자동권 빌라 1~4건 구간 주의) |
 | N-031 | 대학가·아파트 면적 구간의 최근 24개월 갱신 제외 환산 월세(r 5%) 건수·사분위·중앙값 | 각 행의 `건수`·`p25_만원`·`중앙값_만원`·`p75_만원` 참조 | outputs/compare/apartment_check.csv | src/jurent/compare.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-아파트비교.md, 전북대권 90~132㎡ 2건) |
 | N-032 | 아파트 전용 40~132㎡ 월세 정제 행 수·연도별 행 수 | 전체 24,965 / 2021~2026: 3,175 / 4,769 / 4,311 / 4,451 / 3,970 / 4,289 | data/processed/valid_apartment_monthly_audit.json (`total_rows`·`by_year`) | src/jurent/data.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-아파트비교.md) |
-| N-033 | 2024-11 이후 두 대학가 15~45㎡ 아파트 월세 건수 / 최다 단지 건수 / 휴먼시아 4개 단지 합계 (갱신 포함·제외) | 갱신 포함 245 / 98 / 104 · 갱신 제외 178 / 96 / 41 | outputs/compare/small_apartment_concentration.json | src/jurent/compare.py | 2026-11-10 | 미검증 |
-| N-033 | 2024-11 이후 두 대학가 15~45㎡ 아파트 월세 건수 / 최다 단지 건수 / 휴먼시아 4개 단지 합계 (갱신 포함·제외) | 갱신 포함 245 / 98 / 104 · 갱신 제외 178 / 96 / 41 | outputs/compare/small_apartment_concentration.json | src/jurent/compare.py | 2026-11-10 | 미검증 |
+| N-033 | 2024-11 이후 두 대학가 15~45㎡ 아파트 월세 건수 / 최다 단지 건수 / 휴먼시아 4개 단지 합계 (갱신 포함·제외) | 갱신 포함 245 / 98 / 104 · 갱신 제외 178 / 96 / 41 | outputs/compare/small_apartment_concentration.json | src/jurent/compare.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-후속수정.md) |
+| N-033 | 2024-11 이후 두 대학가 15~45㎡ 아파트 월세 건수 / 최다 단지 건수 / 휴먼시아 4개 단지 합계 (갱신 포함·제외) | 갱신 포함 245 / 98 / 104 · 갱신 제외 178 / 96 / 41 | outputs/compare/small_apartment_concentration.json | src/jurent/compare.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-후속수정.md) |
 
 > N-001~N-007은 Codex 심층 검증 결과에서 옮긴 값이다. 저장소 이전 후 Claude Code가 스크립트를 재실행해 검증 상태를 갱신한다. 출처 파일·스크립트 경로는 저장소 정리 후 실제 경로로 수정한다.
 
