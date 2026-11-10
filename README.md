@@ -51,7 +51,7 @@ jeonju-rent/
 
 ### 웹 계약 판단 화면
 
-저장소 루트에서 `pip install -r requirements.txt`를 실행하고 `data/processed/valid_small_monthly.csv`를 준비한다. 첫 번째 터미널에서 `uvicorn api.main:app --reload --port 8000`으로 Python API를 실행한다.
+저장소 루트에서 `pip install -r requirements.txt`를 실행한다. 저장된 정제본은 `data/processed/valid_small_monthly.csv`와 `data/processed/valid_apartment_monthly.csv`다. 원본 CSV가 `data/raw/`에 있으면 `python -m src.jurent.data`로 두 정제본을 재생성하고, `python -m src.jurent.compare`로 N-030·N-031 근거 파일을 만든다. 첫 번째 터미널에서 `uvicorn api.main:app --reload --port 8000`으로 Python API를 실행한다.
 
 두 번째 터미널에서 `cd web`, `npm install`, `npm run dev`를 순서대로 실행한다. Vite가 `/api` 요청을 로컬 API로 전달한다. `OPENAI_API_KEY`와 `OPENAI_MODEL`은 선택형 AI 설명에만 필요하며 `.env`에만 저장한다. UI 회귀 검사는 `npm test`, 빌드 검사는 `npm run build`다. 두 서버가 실행 중일 때 `npm run screenshots`로 `docs/design/screens/`의 화면을 갱신할 수 있다.
 
@@ -59,7 +59,7 @@ jeonju-rent/
 
 Python 가상환경을 만든 뒤 `pip install -r requirements.txt`를 실행한다. `.env.example`을 `.env`로 복사하고, AI 설명을 사용하려면 `OPENAI_API_KEY`와 `OPENAI_MODEL`을 채운다. `OPENAI_REASONING_EFFORT`는 선택 사항이며 비워 두면 설정 모델에서 허용하는 최저 추론 수준을 사용한다. 계약 판단 자체는 API 키 없이 동작한다.
 
-내부 확인용 Streamlit 앱은 저장소 루트에서 `streamlit run app/streamlit_app.py`로 연다. 입력 면적은 15~45㎡이고 관리비는 계약 판단에서 제외한다. `pytest -q`와 `ruff check src tests app api`로 검증한다.
+내부 확인용 Streamlit 앱은 저장소 루트에서 `streamlit run app/streamlit_app.py`로 연다. 입력 면적은 아파트 40~132㎡, 그 외 15~45㎡이고 관리비는 계약 판단에서 제외한다. `pytest -q`와 `ruff check src tests app api`로 검증한다.
 
 1. `.env.example`을 복사해 `.env`를 만들고 공공데이터포털 인증키를 넣는다.
 2. `data/raw/`에 원본 데이터를 내려받는다 (방법은 `src/` 수집 스크립트 참고).

@@ -4,6 +4,8 @@ import { distributionAxis, pinPlacement, positionOnAxis, shouldDrawDistribution 
 describe('distribution presentation', () => {
   it('hides all plotted elements when judgment is on hold', () => {
     expect(shouldDrawDistribution('표본 부족', 20)).toBe(false)
+    expect(shouldDrawDistribution('판단 보류', 20)).toBe(false)
+    expect(shouldDrawDistribution('제공 안 함', 0)).toBe(false)
     expect(shouldDrawDistribution('보통', 20)).toBe(true)
   })
 

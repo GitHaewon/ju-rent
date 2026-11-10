@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { comparisonSentence, displayWarning, percentileSentence, verdictText } from './copy'
+import { comparisonSentence, displayWarning, negotiationSentence, percentileSentence, verdictText } from './copy'
 
 describe('student-facing result text', () => {
   it('uses the response percentile for the 100 rooms sentence', () => {
@@ -18,6 +18,24 @@ describe('student-facing result text', () => {
     expect(verdictText({ label: '표본 부족' })).toBe('판단 보류')
     expect(percentileSentence({ label: '표본 부족', percentile: null, n: 8 }))
       .toContain('비슷한 거래가 8건뿐이라 판단하기 어려워요')
+  })
+
+  it('shows concentration and unavailable reasons before any percentile', () => {
+    expect(percentileSentence({ label: '판단 보류', percentile: 85, n: 30,
+      reason: '비교 거래 30건 중 15건이 한 단지 한 건물이에요' }))
+      .toContain('비교 거래 30건 중 15건')
+    expect(percentileSentence({ label: '제공 안 함', percentile: null, n: 0,
+      reason: '소형 아파트는 제공하지 않아요' })).toBe('소형 아파트는 제공하지 않아요')
+  })
+
+  it('uses only the returned negotiation hint', () => {
+    expect(negotiationSentence({ difference_from_median_10k_krw: 10,
+      monthly_reduction_10k_krw: 1 })).toBe("월세를 1만 원 낮추면 '보통'이 돼요")
+    expect(negotiationSentence({ difference_from_median_10k_krw: -5.83,
+      monthly_reduction_10k_krw: null })).toBe('중간값보다 5.83만 원 싸요')
+    expect(negotiationSentence({ difference_from_median_10k_krw: 0,
+      monthly_reduction_10k_krw: null })).toBe('중간값과 같아요')
+    expect(negotiationSentence(null)).toBeNull()
   })
 
   it('uses mockup warning wording only for known engine messages', () => {

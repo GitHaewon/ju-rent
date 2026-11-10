@@ -1,5 +1,5 @@
 export function shouldDrawDistribution(label: string, binCount: number): boolean {
-  return label !== '표본 부족' && binCount > 0
+  return !['표본 부족', '판단 보류', '제공 안 함'].includes(label) && binCount > 0
 }
 
 export type DistributionAxis = { low: number; high: number; ticks: number[] }

@@ -85,6 +85,7 @@ header.brand {
   transition: background .25s var(--ease), color .25s var(--ease);
 }
 .chips button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.chips button:first-child { grid-column: 1 / -1; }
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .num {
   display: flex; align-items: baseline; gap: 4px; padding: 10px 12px; border-radius: 14px;
@@ -105,12 +106,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
 /* 결과 */
 .main { display: grid; gap: 20px; }
 .hero { border-radius: 32px; padding: 28px 32px 30px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; }
+.hero-unavailable { grid-template-columns: 1fr; }
 .context { font-size: 14px; color: var(--ink-soft); }
 .verdict {
   font-size: 64px; font-weight: 800; letter-spacing: -.035em; line-height: 1.05; margin: 10px 0 12px;
   color: var(--pricey); transition: color .5s var(--ease);
 }
 .verdict-line { font-size: 17px; color: var(--ink); max-width: 34ch; }
+.negotiation-hint { margin-top: 12px; font-size: 14px; font-weight: 650; color: var(--ink); }
 .converted { align-self: end; justify-self: end; text-align: right; }
 .converted .big { font-size: 40px; font-weight: 750; letter-spacing: -.02em; }
 .converted .big small { font-size: 18px; font-weight: 600; margin-left: 2px; }
