@@ -26,7 +26,7 @@ APARTMENT_MAX_AREA_SQM = 132
 AGE_BANDS = ("5년 미만", "5~9년", "10~19년", "20년 이상", "미기재")
 COLUMNS = (
     "계약일", "대학가", "법정동", "주택유형", "면적", "면적기준", "보증금", "월세",
-    "계약구분", "건축년도", "경과연수", "경과연수구간", "완전중복여부", "incomplete_recent", "단지명",
+    "계약구분", "건축년도", "경과연수", "경과연수구간", "완전중복여부", "incomplete_recent", "단지명", "번지",
 )
 
 
@@ -128,7 +128,9 @@ def normalized_rows() -> tuple[list[dict], list[dict]]:
                 "경과연수구간": age_band(age),
                 "완전중복여부": str(duplicates[fingerprint] > 1).lower(),
                 "incomplete_recent": str(audit.period_flags(signed_on.year, signed_on.month)["incomplete_recent"]).lower(),
-                "단지명": row.get("단지명", "") if kind != "detached_multiunit" else "",
+                "단지명": ("" if kind == "detached_multiunit" else
+                        row.get("건물명", "") if kind == "multifamily" else row.get("단지명", "")),
+                "번지": row.get("번지", ""),
             }
             if is_small:
                 small_rows.append(normalized)

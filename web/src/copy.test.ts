@@ -30,12 +30,15 @@ describe('student-facing result text', () => {
 
   it('uses only the returned negotiation hint', () => {
     expect(negotiationSentence({ difference_from_median_10k_krw: 10,
-      monthly_reduction_10k_krw: 1 })).toBe("월세를 1만 원 낮추면 '보통'이 돼요")
+      monthly_reduction_10k_krw: 1 }, '비싼 편')).toBe("월세를 1만 원 낮추면 '보통'이 돼요")
     expect(negotiationSentence({ difference_from_median_10k_krw: -5.83,
-      monthly_reduction_10k_krw: null })).toBe('중간값보다 5.83만 원 싸요')
+      monthly_reduction_10k_krw: null }, '보통')).toBe('중간값보다 5.83만 원 싸요')
     expect(negotiationSentence({ difference_from_median_10k_krw: 0,
-      monthly_reduction_10k_krw: null })).toBe('중간값과 같아요')
-    expect(negotiationSentence(null)).toBeNull()
+      monthly_reduction_10k_krw: null }, '보통')).toBe('중간값과 같아요')
+    expect(negotiationSentence({ difference_from_median_10k_krw: 40,
+      monthly_reduction_10k_krw: null }, '많이 비싼 편'))
+      .toBe("월세만 깎아서는 '보통'이 되기 어려워요")
+    expect(negotiationSentence(null, '표본 부족')).toBeNull()
   })
 
   it('uses mockup warning wording only for known engine messages', () => {

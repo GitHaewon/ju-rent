@@ -114,16 +114,20 @@ def quantiles(values: list[Fraction]) -> dict[str, float]:
 
 
 def dominant_complex(rows: list[dict]) -> dict | None:
-    """Count named complexes over every similar transaction, including unnamed homes."""
+    """Count (dong, lot, name) over every transaction, including unnamed homes."""
     if not rows:
         return None
-    counts = Counter(name for row in rows if (name := str(row.get("단지명", "")).strip()))
+    counts = Counter(
+        (str(row.get("법정동", "")).strip(), str(row.get("번지", "")).strip(), name)
+        for row in rows if (name := str(row.get("단지명", "")).strip())
+    )
     if not counts:
         return None
-    name, count = min(counts.items(), key=lambda item: (-item[1], item[0]))
+    (dong, lot, name), count = min(counts.items(), key=lambda item: (-item[1], item[0]))
     if count * 2 < len(rows):
         return None
-    return {"name": name, "count": count, "share_pct": round(count / len(rows) * 100, 2)}
+    return {"dong": dong, "lot": lot, "name": name, "count": count,
+            "share_pct": round(count / len(rows) * 100, 2)}
 
 
 def rejudged_reduction(deposit: float, monthly: float, rate: float, values: list[Fraction]) -> int | None:
@@ -204,13 +208,15 @@ def judge(
     histogram_counts, histogram_edges = np.histogram(
         [float(value) for value in values], bins=20,
     ) if values else ([], [])
-    concentration = dominant_complex(selected)
+    concentration = dominant_complex(selected) if sufficient else None
     label = label_for_percentile(rank) if rank is not None else "표본 부족"
     reason = None
     if concentration is not None:
         label = "판단 보류"
+        location = " ".join(part for part in (concentration["dong"], concentration["lot"]) if part)
+        complex_name = (f"{concentration['name']}({location})" if location else concentration["name"])
         reason = (f"비교 거래 {len(selected)}건 중 {concentration['count']}건이 "
-                  f"{concentration['name']} 한 건물이에요")
+                  f"{complex_name} 한 건물이에요")
     hint = None
     if rank is not None and concentration is None:
         difference = round(float(amount - median(values)), 2)

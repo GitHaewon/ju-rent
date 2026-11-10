@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import pytest
 from fastapi.testclient import TestClient
 
 from api import main
@@ -84,3 +85,21 @@ def test_api_never_serializes_key(monkeypatch):
     payload = {**BASE, "campus": "효자동권", "housing_type": "detached_multiunit"}
     assert secret not in client.post("/api/judge", json=payload).text
     assert secret not in client.post("/api/explain", json=payload).text
+
+
+@pytest.mark.parametrize("label", ["판단 보류", "제공 안 함", "표본 부족"])
+def test_explain_uses_rules_without_ai_for_nonjudgments(monkeypatch, label):
+    result = {"label": label, "reason": "비교를 제공하지 않아요", "n": 12,
+              "comparison_period": {"start": "2024-11-01", "end": "2026-10-31"},
+              "step": "기간 확대"}
+    monkeypatch.setattr(main.engine, "judge", lambda **_kwargs: result)
+
+    def forbidden_ai(_result):
+        raise AssertionError("AI must not be called")
+
+    monkeypatch.setattr(main, "ai_explanation", forbidden_ai)
+    payload = {**BASE, "campus": "효자동권", "housing_type": "oneroom"}
+    response = client.post("/api/explain", json=payload)
+    assert response.status_code == 200
+    assert response.json() == {"text": main.rule_explanation(result),
+                               "source": "rule", "reason": label}
