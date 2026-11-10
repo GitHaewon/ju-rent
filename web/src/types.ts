@@ -35,7 +35,7 @@ export type Judgment = {
   percentile: number | null
   label: string
   reason: string | null
-  complex_concentration: { name: string; count: number; share_pct: number } | null
+  complex_concentration: { dong: string; lot: string; name: string; count: number; share_pct: number } | null
   hint: { difference_from_median_10k_krw: number; monthly_reduction_10k_krw: number | null } | null
   age_band_result: { band: string; n: number; percentile: number | null; label: string } | null
   warnings: string[]

@@ -34,10 +34,13 @@ export function comparisonSentence(result: Pick<Judgment, 'step' | 'n' | 'compar
   return `${range} 거래 ${result.n.toLocaleString('ko-KR')}건의 환산 월세 분포예요.`
 }
 
-export function negotiationSentence(hint: Judgment['hint']): string | null {
+export function negotiationSentence(hint: Judgment['hint'], label: Judgment['label']): string | null {
   if (!hint) return null
   if (hint.monthly_reduction_10k_krw !== null) {
     return `월세를 ${hint.monthly_reduction_10k_krw}만 원 낮추면 '보통'이 돼요`
+  }
+  if (label === '비싼 편' || label === '많이 비싼 편') {
+    return "월세만 깎아서는 '보통'이 되기 어려워요"
   }
   const difference = hint.difference_from_median_10k_krw
   if (difference === 0) return '중간값과 같아요'

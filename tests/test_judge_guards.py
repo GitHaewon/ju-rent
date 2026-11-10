@@ -11,14 +11,16 @@ from pathlib import Path
 
 import pytest
 
+from src import analyze_rentals as audit
 from src.jurent import compare, data, engine
 
 
 def make_row(*, kind="detached_multiunit", area=25, monthly=30, deposit=0,
-             complex_name="", contract="신규", campus="효자동권") -> dict:
+             complex_name="", contract="신규", campus="효자동권", dong="", lot="") -> dict:
     return {"계약일": "2026-01-01", "대학가": campus, "주택유형": kind,
             "면적": area, "계약구분": contract, "보증금": deposit,
-            "월세": monthly, "단지명": complex_name, "경과연수구간": "5~9년"}
+            "월세": monthly, "단지명": complex_name, "법정동": dong, "번지": lot,
+            "경과연수구간": "5~9년"}
 
 
 def save_rows(path: Path, rows: list[dict]) -> Path:
@@ -32,11 +34,12 @@ def save_rows(path: Path, rows: list[dict]) -> Path:
 def test_processed_column_added_without_changing_old_counts():
     rows = data.load_processed()
     assert len(rows) == 26738
-    assert list(rows[0])[-1] == "단지명"
+    assert list(rows[0])[-2:] == ["단지명", "번지"]
     assert all(row["단지명"] == "" for row in rows if row["주택유형"] == "detached_multiunit")
     assert any(row["단지명"] for row in rows if row["주택유형"] == "apartment")
+    assert all(row["단지명"] for row in rows if row["주택유형"] == "multifamily")
     old_bytes = io.StringIO(newline="")
-    writer = csv.DictWriter(old_bytes, fieldnames=data.COLUMNS[:-1], extrasaction="ignore")
+    writer = csv.DictWriter(old_bytes, fieldnames=data.COLUMNS[:-2], extrasaction="ignore")
     writer.writeheader()
     writer.writerows(rows)
     assert hashlib.sha256(old_bytes.getvalue().encode("utf-8-sig")).hexdigest() == (
@@ -45,6 +48,24 @@ def test_processed_column_added_without_changing_old_counts():
     audit = json.loads(data.PROCESSED_AUDIT.read_text(encoding="utf-8"))
     assert audit["total_rows"] == len(rows)
     assert audit["negative_age_rows"] == 320
+
+
+def test_multifamily_names_match_raw_building_names():
+    expected = Counter()
+    for path in data.RAW.glob("multifamily_*.csv"):
+        _, _, rows = audit.read_csv(path)
+        for row in rows:
+            item = {
+                "area": audit.area_with_basis("multifamily", row)[0],
+                "deposit": audit.number(row["보증금(만원)"]),
+                "monthly": audit.number(row["월세금(만원)"]),
+                "tenure": row["전월세구분"].strip(),
+            }
+            if audit.valid_small_monthly(item):
+                expected[row["건물명"]] += 1
+    actual = Counter(row["단지명"] for row in data.load_processed()
+                     if row["주택유형"] == "multifamily")
+    assert actual == expected
 
 
 @pytest.mark.parametrize("area,allowed", [(39.99, False), (40, True), (132, True), (132.01, False)])
@@ -115,7 +136,9 @@ def test_exact_half_of_all_transactions_holds_even_with_unnamed_homes(tmp_path):
     result = engine.judge("효자동권", "oneroom", 25, 0, 40,
                           data_path=save_rows(tmp_path / "half.csv", rows))
     assert result["label"] == "판단 보류"
-    assert result["complex_concentration"] == {"name": "한 단지", "count": 15, "share_pct": 50.0}
+    assert result["complex_concentration"] == {
+        "dong": "", "lot": "", "name": "한 단지", "count": 15, "share_pct": 50.0,
+    }
     assert result["reason"] == "비교 거래 30건 중 15건이 한 단지 한 건물이에요"
     assert result["percentile"] is not None and result["quantiles_10k_krw"] is not None
     assert result["hint"] is None
@@ -124,6 +147,37 @@ def test_exact_half_of_all_transactions_holds_even_with_unnamed_homes(tmp_path):
                           data_path=save_rows(tmp_path / "below.csv", rows))
     assert result["label"] != "판단 보류"
     assert result["complex_concentration"] is None
+
+
+def test_same_name_on_different_lots_is_not_a_single_complex(tmp_path):
+    rows = ([make_row(kind="officetel", complex_name="주건축물제1동",
+                      dong="효자동2가", lot="1235-6") for _ in range(12)]
+            + [make_row(kind="officetel", complex_name="주건축물제1동",
+                        dong="효자동2가", lot="1235-3") for _ in range(11)]
+            + [make_row(kind="officetel", complex_name="다른 건물",
+                        dong="효자동2가", lot="99") for _ in range(7)])
+    path = save_rows(tmp_path / "lots.csv", rows)
+    result = engine.judge("효자동권", "officetel", 25, 0, 40, data_path=path)
+    assert result["n"] == 30
+    assert result["label"] != "판단 보류"
+    assert result["complex_concentration"] is None
+    rows[12:16] = [make_row(kind="officetel", complex_name="주건축물제1동",
+                           dong="효자동2가", lot="1235-6") for _ in range(4)]
+    result = engine.judge("효자동권", "officetel", 25, 0, 40,
+                          data_path=save_rows(tmp_path / "lots_dominant.csv", rows))
+    assert result["complex_concentration"]["count"] == 16
+    assert result["complex_concentration"]["lot"] == "1235-6"
+    assert "주건축물제1동(효자동2가 1235-6)" in result["reason"]
+
+
+def test_insufficient_sample_precedes_concentration(tmp_path):
+    rows = [make_row(complex_name="한 단지", dong="금암동", lot="1") for _ in range(29)]
+    result = engine.judge("효자동권", "oneroom", 25, 0, 40,
+                          data_path=save_rows(tmp_path / "insufficient.csv", rows))
+    assert result["n"] == 29
+    assert result["label"] == "표본 부족"
+    assert result["complex_concentration"] is None
+    assert result["hint"] is None
 
 
 def test_negotiation_rejudges_one_man_won_steps_and_stops_at_30(tmp_path):
@@ -161,3 +215,23 @@ def test_evidence_outputs_keep_pools_and_area_bands_separate():
             assert group["oneroom"] == group["detached_multiunit"] + group["multifamily"]
     assert all(row["기간시작"] == engine.RECENT_START and row["기간끝"] == engine.DATA_END
                and row["환산율_pct"] == "5" for row in pool + apartments)
+    assert all(row["sample_note"] == ("표본 부족" if int(row["건수"]) < 30 else "")
+               for row in pool + apartments)
+    for path, fixture in ((oneroom, "oneroom_pool_check_n030.csv"),
+                          (apartment, "apartment_check_n031.csv")):
+        with (Path(__file__).parent / "fixtures" / fixture).open(encoding="utf-8-sig", newline="") as fh:
+            expected = list(csv.DictReader(fh))
+        with path.open(encoding="utf-8-sig", newline="") as fh:
+            actual = list(csv.DictReader(fh))
+        assert [{key: row[key] for key in expected[0]} for row in actual] == expected
+
+
+def test_n033_small_apartment_evidence_is_reproducible():
+    path = compare.write_small_apartment_evidence()
+    evidence = json.loads(path.read_text(encoding="utf-8"))
+    assert {key: (value["rows"], value["top_complex"], value["top_complex_rows"],
+                  len(value["humancia_complexes"]), value["humancia_rows"])
+            for key, value in evidence.items()} == {
+                "갱신 포함": (245, "페리스틸리움", 98, 4, 104),
+                "갱신 제외": (178, "페리스틸리움", 96, 4, 41),
+            }

@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict
 
 from src import analyze_rentals as audit
 from src.jurent import engine
-from src.jurent.explanation import ai_explanation
+from src.jurent.explanation import ai_explanation, rule_explanation
 
 app = FastAPI(title="JU RENT API")
 
@@ -93,6 +93,8 @@ def judge(payload: ContractInput) -> dict:
 @app.post("/api/explain")
 def explain(payload: ContractInput) -> dict:
     result = calculate(payload)
+    if result["label"] in {"판단 보류", "제공 안 함", "표본 부족"}:
+        return {"text": rule_explanation(result), "source": "rule", "reason": result["label"]}
     explanation = ai_explanation(result)
     return {
         "text": explanation.text,

@@ -1,0 +1,26 @@
+{
+  "갱신 포함": {
+    "rows": 245,
+    "top_complex": "페리스틸리움",
+    "top_complex_rows": 98,
+    "humancia_complexes": {
+      "효자휴먼시아5단지": 13,
+      "효자휴먼시아6단지": 27,
+      "휴먼시아1단지": 29,
+      "휴먼시아3단지": 35
+    },
+    "humancia_rows": 104
+  },
+  "갱신 제외": {
+    "rows": 178,
+    "top_complex": "페리스틸리움",
+    "top_complex_rows": 96,
+    "humancia_complexes": {
+      "효자휴먼시아5단지": 4,
+      "효자휴먼시아6단지": 15,
+      "휴먼시아1단지": 9,
+      "휴먼시아3단지": 13
+    },
+    "humancia_rows": 41
+  }
+}

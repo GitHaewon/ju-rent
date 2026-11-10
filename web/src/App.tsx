@@ -315,7 +315,7 @@ export default function App() {
             <div className="verdict" style={{ color: colors[result.label] }}>{label}</div>
             <div className="verdict-line">{progress === null ? percentileSentence(result) :
               <>비슷한 방 100곳 중 <b><Count value={Math.round(progress)} /></b>곳이 이 방보다 쌌어요.</>}</div>
-            {negotiationSentence(result.hint) && <div className="negotiation-hint">{negotiationSentence(result.hint)}</div>}
+            {negotiationSentence(result.hint, result.label) && <div className="negotiation-hint">{negotiationSentence(result.hint, result.label)}</div>}
           </div>
           {converted !== null && <div className="converted"><div className="big"><Count value={converted} digits={2} /><small>만 원</small></div>
             <p>보증금을 월세로 바꿔 더한 금액이에요</p>

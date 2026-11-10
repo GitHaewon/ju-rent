@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import csv
+import json
+from collections import Counter
 from pathlib import Path
 
 from src import analyze_rentals as audit
@@ -13,7 +15,8 @@ OUT = Path(__file__).resolve().parents[2] / "outputs" / "compare"
 ONEROOM_BANDS = ((15, 25), (25, 35), (35, 45))
 APARTMENT_BANDS = ((40, 65), (65, 90), (90, 132))
 FIELDS = ("대학가", "주택유형", "면적구간", "기간시작", "기간끝", "환산율_pct", "건수",
-          "p25_만원", "중앙값_만원", "p75_만원")
+          "p25_만원", "중앙값_만원", "p75_만원", "sample_note")
+SMALL_APARTMENT_EVIDENCE = OUT / "small_apartment_concentration.json"
 
 
 def in_band(area: float, low: int, high: int, final: bool) -> bool:
@@ -40,6 +43,7 @@ def summarize(rows: list[dict], bands: tuple[tuple[int, int], ...], kinds: tuple
                     "p25_만원": points.get("p25", ""),
                     "중앙값_만원": points.get("p50", ""),
                     "p75_만원": points.get("p75", ""),
+                    "sample_note": "표본 부족" if len(chosen) < engine.MIN_SAMPLE else "",
                 })
     return result
 
@@ -60,7 +64,36 @@ def write_outputs() -> tuple[Path, Path]:
             writer = csv.DictWriter(fh, fieldnames=FIELDS)
             writer.writeheader()
             writer.writerows(rows)
+    write_small_apartment_evidence()
     return destinations[0][0], destinations[1][0]
+
+
+def write_small_apartment_evidence() -> Path:
+    """Reproduce both renewal definitions behind D-034 from the D-011 table."""
+    eligible = [
+        row for row in load_processed(PROCESSED)
+        if row["대학가"] in audit.CAMPUS_AREAS
+        and row["주택유형"] == "apartment"
+        and engine.RECENT_START <= row["계약일"] <= engine.DATA_END
+        and 15 <= float(row["면적"]) <= 45
+    ]
+    variants = {}
+    for label, rows in (
+        ("갱신 포함", eligible),
+        ("갱신 제외", [row for row in eligible if row["계약구분"] != "갱신"]),
+    ):
+        counts = Counter(row["단지명"] for row in rows if row["단지명"])
+        top_name, top_count = min(counts.items(), key=lambda item: (-item[1], item[0]))
+        humancia = {name: count for name, count in sorted(counts.items()) if "휴먼시아" in name}
+        variants[label] = {
+            "rows": len(rows), "top_complex": top_name, "top_complex_rows": top_count,
+            "humancia_complexes": humancia, "humancia_rows": sum(humancia.values()),
+        }
+    OUT.mkdir(parents=True, exist_ok=True)
+    SMALL_APARTMENT_EVIDENCE.write_text(
+        json.dumps(variants, ensure_ascii=False, indent=2), encoding="utf-8",
+    )
+    return SMALL_APARTMENT_EVIDENCE
 
 
 if __name__ == "__main__":
