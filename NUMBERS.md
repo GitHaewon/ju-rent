@@ -41,6 +41,9 @@
 | N-031 | 대학가·아파트 면적 구간의 최근 24개월 갱신 제외 환산 월세(r 5%) 건수·사분위·중앙값 | 각 행의 `건수`·`p25_만원`·`중앙값_만원`·`p75_만원` 참조 | outputs/compare/apartment_check.csv | src/jurent/compare.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-아파트비교.md, 전북대권 90~132㎡ 2건) |
 | N-032 | 아파트 전용 40~132㎡ 월세 정제 행 수·연도별 행 수 | 전체 24,965 / 2021~2026: 3,175 / 4,769 / 4,311 / 4,451 / 3,970 / 4,289 | data/processed/valid_apartment_monthly_audit.json (`total_rows`·`by_year`) | src/jurent/data.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-아파트비교.md) |
 | N-033 | 2024-11 이후 두 대학가 15~45㎡ 아파트 월세 건수 / 최다 단지 건수 / 휴먼시아 4개 단지 합계 (갱신 포함·제외) | 갱신 포함 245 / 98 / 104 · 갱신 제외 178 / 96 / 41 | outputs/compare/small_apartment_concentration.json | src/jurent/compare.py | 2026-11-10 | 검증됨 (reviews/2026-11-10-판단보류-후속수정.md) |
+| N-034 | 두 대학가·집 종류·면적 구간의 최근 24개월 갱신 제외 환산 월세 사분위·보통 보증금·월세·건수(r 5%) | `campus_compare.csv` 18행의 `n`·중앙값·p25·p75·보증금·월세 열 참조 (표본 부족 4행) | outputs/compare/campus_compare.csv | src/jurent/area.py | 2026-11-12 | 미검증 |
+| N-035 | 두 대학가의 원룸·투룸·빌라 25~35㎡ 연도별 환산 월세 중앙값 추이(r 5%) | `campus_price_trend.csv` 12행의 `n`·중앙값 열 참조 (2026은 1~10월) | outputs/compare/campus_price_trend.csv | src/jurent/area.py | 2026-11-12 | 미검증 |
+| N-036 | 예시 예산 500/35만 원·최소 15㎡·저렴함 순의 대학가별 추천·제외 조합 | 효자동권 전체 21·추천 6·제외 5/4/6, 전북대권 전체 21·추천 7·제외 11/1/2 (표본 부족/쏠림/예산 안 25% 미만) | outputs/compare/budget_example.json | src/jurent/area.py | 2026-11-12 | 미검증 |
 
 > N-001~N-007은 Codex 심층 검증 결과에서 옮긴 값이다. 저장소 이전 후 Claude Code가 스크립트를 재실행해 검증 상태를 갱신한다. 출처 파일·스크립트 경로는 저장소 정리 후 실제 경로로 수정한다.
 
