@@ -85,15 +85,20 @@ def label_for_percentile(percentile: Fraction | float) -> str:
     return "많이 비싼 편"
 
 
-def select_similar(rows: list[dict], campus: str, housing_type: str, area: float) -> tuple[list[dict], str, str]:
-    """Apply D-028 expansions in order; preserve all NO-only duplicate rows."""
+def eligible_deals(rows: list[dict], campus: str, housing_type: str, start: str) -> list[dict]:
+    """Share the D-027 campus/type/period filter without deduplicating source rows."""
     kinds = ONEROOM_TYPES if housing_type == "oneroom" else {housing_type}
-    same_group = [
+    return [
         row for row in rows
         if row["대학가"] == campus and row["주택유형"] in kinds
         and row["계약구분"] in {"신규", "미기재"}
-        and ALL_START <= row["계약일"] <= DATA_END
+        and start <= row["계약일"] <= DATA_END
     ]
+
+
+def select_similar(rows: list[dict], campus: str, housing_type: str, area: float) -> tuple[list[dict], str, str]:
+    """Apply D-028 expansions in order; preserve all NO-only duplicate rows."""
+    same_group = eligible_deals(rows, campus, housing_type, ALL_START)
     steps = (("기본", 5, RECENT_START), ("면적 ±10㎡", 10, RECENT_START),
              ("기간 확대", 10, ALL_START))
     exact_area = Fraction(str(area))

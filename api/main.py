@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict
 
 from src import analyze_rentals as audit
-from src.jurent import engine
+from src.jurent import area, engine
 from src.jurent.explanation import ai_explanation, rule_explanation
 
 app = FastAPI(title="JU RENT API")
@@ -32,6 +32,33 @@ class ContractInput(BaseModel):
     monthly: float
     construction_year: int | None = None
     rate_pct: float | None = None
+
+
+class BudgetInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    campus: str
+    deposit: float
+    monthly: float
+    min_area: float | None = None
+    housing: str | None = None
+    priority: str = "cheap"
+    rate_pct: float | None = None
+
+
+def area_input_error(exc: ValueError) -> str:
+    message = str(exc)
+    if "campus" in message or "housing type" in message:
+        return "대학가와 집 종류를 목록에서 다시 선택해 주세요."
+    if "priority" in message:
+        return "정렬 기준을 목록에서 다시 선택해 주세요."
+    if "area" in message:
+        return "최소 면적을 집 종류의 허용 범위 안에서 입력해 주세요."
+    if "budget" in message:
+        return "보증금과 월세 예산은 0 이상으로 입력해 주세요."
+    if "rate" in message or "Rate" in message or "numbers" in message:
+        return "환산율은 2% 이상 10% 이하로 입력해 주세요."
+    return "입력값을 확인하고 다시 시도해 주세요."
 
 
 def input_error(exc: ValueError) -> str:
@@ -101,3 +128,23 @@ def explain(payload: ContractInput) -> dict:
         "source": "rule" if explanation.fallback_reason else "ai",
         "reason": explanation.fallback_reason,
     }
+
+
+@app.post("/api/budget")
+def budget(payload: BudgetInput) -> dict:
+    minimum = (40 if payload.housing == "apartment" else 15) if payload.min_area is None else payload.min_area
+    try:
+        return area.budget_search(
+            payload.campus, payload.deposit, payload.monthly, minimum,
+            payload.housing, payload.priority, payload.rate_pct,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=area_input_error(exc)) from None
+
+
+@app.get("/api/compare")
+def campus_compare(rate_pct: float | None = None) -> dict:
+    try:
+        return area.campus_compare(rate_pct)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=area_input_error(exc)) from None
