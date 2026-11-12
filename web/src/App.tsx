@@ -1,5 +1,7 @@
-import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { BudgetView, CompareView } from './AreaViews'
+import Count from './Count'
 import { comparisonSentence, displayWarning, monthPeriod, negotiationSentence, percentileSentence, rateHint, verdictText } from './copy'
 import { distributionAxis, pinPlacement, positionOnAxis, shouldDrawDistribution } from './distribution'
 import { areaBounds, clampArea, housingName, housingOptions } from './housing'
@@ -31,23 +33,6 @@ const colors: Record<string, string> = {
 
 function format(value: number, digits = 0): string {
   return value.toLocaleString('ko-KR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
-}
-
-function Count({ value, digits = 0 }: { value: number; digits?: number }) {
-  const reduced = useReducedMotion()
-  const progress = useMotionValue(value)
-  const [display, setDisplay] = useState(value)
-  useMotionValueEvent(progress, 'change', setDisplay)
-  useEffect(() => {
-    if (reduced) {
-      progress.set(value)
-      setDisplay(value)
-      return
-    }
-    const control = animate(progress, value, { duration: 0.45, ease: [0.2, 0.8, 0.2, 1] })
-    return () => control.stop()
-  }, [value, progress, reduced])
-  return <span>{format(display, digits)}</span>
 }
 
 function validate(form: FormState, meta: Meta | null): Record<string, string> {
@@ -142,6 +127,7 @@ function Distribution({ result }: { result: Judgment }) {
 
 export default function App() {
   const reducedMotion = useReducedMotion()
+  const [tab, setTab] = useState<'contract' | 'budget' | 'compare'>('contract')
   const [meta, setMeta] = useState<Meta | null>(null)
   const [form, setForm] = useState<FormState>(initialForm)
   const [result, setResult] = useState<Judgment | null>(null)
@@ -196,7 +182,7 @@ export default function App() {
     const observer = new IntersectionObserver(([entry]) => setHeroVisible(entry.isIntersecting))
     observer.observe(element)
     return () => observer.disconnect()
-  }, [result])
+  }, [result, tab])
 
   const update = (change: Partial<FormState>) => {
     explainAbort.current?.abort()
@@ -238,8 +224,30 @@ export default function App() {
     result.input.construction_year === (form.useYear ? Number(form.construction_year) : null) &&
     result.rate_pct === form.rate_pct
 
+  const chooseBudgetCard = (values: ContractInput) => {
+    update({ campus: values.campus, housing_type: values.housing_type, area: values.area,
+      deposit: String(values.deposit), monthly: String(values.monthly),
+      useYear: false, construction_year: '', rate_pct: values.rate_pct })
+    setResult(null)
+    setTab('contract')
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' })
+  }
+
   return <div className="shell">
     <header className="brand reveal"><b>JU RENT</b><span>전주 대학가 월세, 계약 전에 확인하세요</span><em className="note">국토교통부 실거래 자료</em></header>
+    <nav className="top-tabs glass" aria-label="서비스 화면"><div className="seg" role="tablist" aria-label="서비스 화면">
+      <motion.span className="thumb" style={{ width: 'calc((100% - 6px) / 3)' }} aria-hidden="true"
+        animate={{ x: `${(['contract', 'budget', 'compare'].indexOf(tab)) * 100}%` }}
+        transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 260, damping: 26 }} />
+      {([['contract', '계약 판단'], ['budget', '예산으로 찾기'], ['compare', '대학가 비교']] as const).map(([key, name]) =>
+        <button key={key} type="button" role="tab" aria-selected={tab === key} aria-controls={`${key}-view`}
+          disabled={key !== 'contract' && !meta} onClick={() => setTab(key)}>{name}</button>)}
+    </div></nav>
+    <AnimatePresence mode="wait" initial={false}>
+      {tab === 'contract' ? <motion.div key="contract" id="contract-view" className="tab-pane"
+        role="tabpanel" aria-label="계약 판단" initial={{ opacity: 0, y: reducedMotion ? 0 : 7 }}
+        animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reducedMotion ? 0 : -7 }}
+        transition={{ duration: reducedMotion ? 0 : 0.25 }}>
     <div className={`mini glass ${pillVisible ? 'show' : ''}`} aria-hidden={!pillVisible}>
       <b style={{ color: result ? colors[result.label] : undefined }}>{label}</b>
       {converted !== null && <span><Count value={converted} digits={2} />만 원</span>}<a href="#result">결과 보기</a>
@@ -356,5 +364,18 @@ export default function App() {
         <div className="context">{serverError?.message ?? '실거래 자료를 불러오고 있어요…'}</div>
       </section>}
     </main>
+      </motion.div> : tab === 'budget' && meta ? <motion.div key="budget" id="budget-view" className="tab-pane"
+        role="tabpanel" aria-label="예산으로 찾기" initial={{ opacity: 0, y: reducedMotion ? 0 : 7 }}
+        animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reducedMotion ? 0 : -7 }}
+        transition={{ duration: reducedMotion ? 0 : 0.25 }}>
+        <BudgetView meta={meta} rate={form.rate_pct} onRateChange={rate_pct => update({ rate_pct })}
+          onChoose={chooseBudgetCard} />
+      </motion.div> : meta ? <motion.div key="compare" id="compare-view" className="tab-pane compare-pane"
+        role="tabpanel" aria-label="대학가 비교" initial={{ opacity: 0, y: reducedMotion ? 0 : 7 }}
+        animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reducedMotion ? 0 : -7 }}
+        transition={{ duration: reducedMotion ? 0 : 0.25 }}>
+        <CompareView meta={meta} rate={form.rate_pct} onRateChange={rate_pct => update({ rate_pct })} />
+      </motion.div> : null}
+    </AnimatePresence>
   </div>
 }

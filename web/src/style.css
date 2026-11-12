@@ -243,3 +243,88 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
 @media (prefers-reduced-motion: reduce) {
   .ai-btn:active { transform: none; }
 }
+
+/* SPEC-004 views reuse the mockup's glass, segmented controls and color tokens. */
+.top-tabs { grid-column: 1 / -1; border-radius: 18px; padding: 5px; }
+.top-tabs .seg { background: rgba(30,34,69,.06); }
+.top-tabs .seg button { font-size: 15px; font-weight: 600; padding: 11px 8px; }
+.top-tabs .seg button[aria-selected="true"] { color: var(--ink); font-weight: 750; }
+.top-tabs .seg button:disabled { opacity: .5; cursor: wait; }
+.tab-pane { grid-column: 1 / -1; display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 24px; align-items: start; min-width: 0; }
+.tab-pane > .main { min-width: 0; }
+.compare-pane { display: block; }
+.budget-panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.budget-collapse { border: 0; background: none; color: var(--ink-soft); cursor: pointer; font: inherit; font-size: 12px; text-decoration: underline; }
+.budget-summary, .compare-intro { grid-template-columns: 1fr; }
+.budget-summary h1, .compare-intro h1 { font-size: clamp(27px, 3vw, 36px); line-height: 1.18; letter-spacing: -.025em; margin: 8px 0; }
+.budget-summary p, .compare-intro p { color: var(--ink-soft); margin: 8px 0 0; font-size: 14px; }
+.budget-list { display: grid; gap: 14px; }
+.budget-card { display: block; width: 100%; text-align: left; border-radius: 24px; padding: 20px 22px; font: inherit; color: var(--ink); cursor: pointer; }
+.budget-card:hover { background: var(--glass-strong); }
+.budget-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.budget-card-head strong { display: block; font-size: 19px; line-height: 1.2; }
+.budget-card-head small { display: block; color: var(--ink-soft); font-size: 13px; margin-top: 5px; }
+.availability { display: inline-block; flex: none; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.availability.easy { color: var(--cheap); background: rgba(31,157,122,.12); }
+.availability.possible { color: var(--pricey); background: rgba(226,134,43,.13); }
+.budget-terms { display: block; margin-top: 17px; font-size: 19px; font-weight: 750; line-height: 1.35; }
+.budget-typical-note { display: block; font-size: 11.5px; color: var(--ink-faint); margin-top: 3px; }
+.budget-bar-copy { display: block; margin-top: 15px; font-size: 13px; color: var(--ink-soft); }
+.budget-bar-copy em { color: var(--ink-faint); font-style: normal; }
+.budget-bar { display: block; height: 9px; border-radius: 999px; background: rgba(30,34,69,.10); margin-top: 8px; overflow: hidden; }
+.budget-bar span { display: block; height: 100%; border-radius: inherit; background: var(--cheap); }
+.budget-card-action { display: block; margin-top: 12px; font-size: 12px; font-weight: 650; color: var(--normal); }
+.budget-more { justify-self: center; margin: 0; }
+.budget-empty h2 { margin: 0 0 8px; font-size: 20px; }
+.budget-empty p { margin: 0; color: var(--ink-soft); }
+.exclusion-note h3 { margin: 0 0 6px; font-size: 16px; }
+.exclusion-note > p { margin: 0; color: var(--ink-soft); font-size: 13px; }
+.area-source { color: var(--ink-faint); font-size: 12px; line-height: 1.6; }
+.area-message { padding: 20px; border-radius: 22px; }
+.compare-intro { display: grid; grid-template-columns: 1.25fr 1fr; align-items: end; }
+.compare-rate { min-width: 0; }
+.compare-rate input { width: 100%; }
+.compare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.compare-card { min-width: 0; }
+.compare-card h2, .trend-section h2 { margin: 0; font-size: 20px; }
+.compare-card-sub, .trend-section > p { color: var(--ink-soft); font-size: 13px; margin: 4px 0 14px; }
+.compare-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 12.5px; }
+.compare-table th, .compare-table td { padding: 11px 5px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(30,34,69,.08); overflow-wrap: anywhere; }
+.compare-table thead th { color: var(--ink-faint); font-size: 11px; font-weight: 650; }
+.compare-table tbody th { width: 27%; font-weight: 500; }
+.compare-table tbody th strong, .compare-table tbody th small, .compare-table td small { display: block; }
+.compare-table tbody th small, .compare-table td small { color: var(--ink-faint); margin-top: 3px; font-size: 11px; }
+.compare-table td b { font-size: 14px; }
+.sample-pill { display: inline-block; color: var(--pricey); background: rgba(226,134,43,.13); border-radius: 999px; padding: 2px 7px; white-space: nowrap; }
+.trend-section { min-width: 0; }
+.trend-chart svg { display: block; width: 100%; max-width: 900px; margin: auto; overflow: visible; }
+.trend-chart polyline, .trend-chart line { stroke-linecap: round; stroke-linejoin: round; }
+.trend-chart circle { stroke-width: 3px; }
+.trend-year { fill: var(--ink-soft); font: 13px "Pretendard Variable", sans-serif; }
+.trend-legend { display: flex; gap: 20px; justify-content: center; color: var(--ink-soft); font-size: 13px; }
+.trend-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.trend-legend i { width: 13px; height: 4px; border-radius: 999px; }
+.trend-chart > .hint { text-align: center; }
+.trend-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 12px; margin-top: 16px; }
+.trend-values div { display: flex; justify-content: space-between; gap: 8px; padding: 7px 9px; border-radius: 10px; background: rgba(255,255,255,.28); font-size: 12px; }
+.trend-values span { color: var(--ink-soft); }
+.trend-values b { white-space: nowrap; }
+@media (max-width: 900px) {
+  .tab-pane { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .budget-panel { position: static; }
+  .compare-grid, .compare-intro { grid-template-columns: 1fr; }
+  .compare-table thead { display: none; }
+  .compare-table, .compare-table tbody, .compare-table tr, .compare-table td, .compare-table tbody th { display: block; width: 100%; }
+  .compare-table tr { padding: 10px 0; border-bottom: 1px solid rgba(30,34,69,.1); }
+  .compare-table th, .compare-table td { border: 0; padding: 3px 0; }
+  .compare-table td { display: flex; justify-content: space-between; gap: 10px; }
+  .compare-table td::before { content: attr(data-label); color: var(--ink-faint); flex: none; }
+  .trend-values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .top-tabs .seg button { font-size: 13px; padding: 9px 2px; }
+  .budget-card { padding: 17px; }
+  .budget-card-head { flex-wrap: wrap; }
+  .budget-terms { font-size: 17px; }
+  .trend-values { grid-template-columns: 1fr; }
+}

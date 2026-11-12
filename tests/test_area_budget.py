@@ -98,6 +98,18 @@ def test_exclusion_counts_partition_every_combination(monkeypatch):
     assert {card["dong"] for card in result["recommendations"]} == {"추천동", "발품동"}
 
 
+def test_under_30_is_sample_shortage_even_when_one_building_has_half(monkeypatch):
+    rows = [deal("적은동", "5년 미만", "500", "35",
+                 complex_name="한 건물" if index < 20 else "") for index in range(29)]
+    patched_deals(monkeypatch, rows)
+    result = area.budget_search("효자동권", 500, 35, housing="oneroom")
+    assert result["total_combinations"] == 1
+    assert result["recommendations"] == []
+    assert result["excluded_counts"] == {
+        "sample_shortage": 1, "complex_concentration": 0, "under_25_pct": 0,
+    }
+
+
 @pytest.mark.parametrize(
     "priority,order", [
         ("cheap", ["큰동률동", "동률동", "작은동", "신축동"]),
