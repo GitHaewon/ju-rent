@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useState } from 'react'
-import { EMPTY_BUDGET_MESSAGE, availabilityTone, budgetSummary, cardToContract, tenDealSentence, typicalTerms } from './areaCopy'
+import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, cardToContract, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import Count from './Count'
 import { rateHint } from './copy'
 import { housingName } from './housing'
@@ -37,9 +37,10 @@ function BudgetCard({ card, campus, rate, onChoose }: {
     initial={{ opacity: 0, y: reduced ? 0 : 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -8 }}
     transition={{ duration: reduced ? 0 : 0.25, ease: [0.2, 0.8, 0.2, 1] }}
     onClick={() => onChoose(cardToContract(card, campus, rate))}
-    aria-label={`${card.dong} ${housingName(card.housing_type)} ${card.age_band}, 계약 판단에서 보기`}>
-    <span className="budget-card-head"><span><strong>{card.dong}</strong><small>{housingName(card.housing_type)} · {card.age_band}</small></span>
+    aria-label={`${card.dong} ${housingName(card.housing_type)} ${ageBandLabel(card.age_band)}, ${typicalArea(card.area_median_sqm)}, 계약 판단에서 보기`}>
+    <span className="budget-card-head"><span><strong>{card.dong}</strong><small>{housingName(card.housing_type)} · {ageBandLabel(card.age_band)}</small></span>
       <span className={`availability ${availabilityTone(card.availability_label)}`}>{card.availability_label}</span></span>
+    <span className="budget-area">{typicalArea(card.area_median_sqm)}</span>
     <span className="budget-terms">{typicalTerms(card)}</span>
     <span className="budget-typical-note">{card.typical_terms_note}</span>
     <span className="budget-bar-copy">{tenDealSentence(card)} <em>· 거래 <Count value={card.n} />건</em></span>
@@ -176,15 +177,24 @@ function decimal(value: number): string {
 
 function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[] }) {
   const values = rows.map(row => row.converted_median_10k_krw).filter((value): value is number => value !== null)
-  const low = Math.min(...values) - 2
-  const high = Math.max(...values) + 2
-  const y = (value: number) => 196 - (value - low) / (high - low) * 150
-  const x = (index: number) => 44 + index * 125
+  if (!values.length) return <p className="hint">추이를 표시할 거래가 부족해요.</p>
+  const tickStep = Math.max(1, Math.ceil((Math.max(...values) - Math.min(...values) + 2) / 4))
+  const low = Math.floor((Math.min(...values) - 0.8) / tickStep) * tickStep
+  const high = Math.ceil((Math.max(...values) + 0.8) / tickStep) * tickStep
+  const ticks = Array.from({ length: Math.round((high - low) / tickStep) + 1 }, (_, index) => low + index * tickStep)
+  const y = (value: number) => 190 - (value - low) / (high - low) * 136
+  const x = (index: number) => 58 + index * 125
   const years = [...new Set(rows.map(row => row.year))].sort()
   return <div className="trend-chart">
     <div className="trend-legend">{campuses.map((campus, index) => <span key={campus}>
       <i style={{ background: index === 0 ? 'var(--normal)' : 'var(--very)' }} />{campus}</span>)}</div>
-    <svg viewBox="0 0 720 245" role="img" aria-label="두 대학가의 원룸·투룸·빌라 25~35㎡ 연도별 월세 비교">
+    <div className="trend-plot"><svg viewBox="0 0 720 245" role="img" aria-label="두 대학가의 원룸·투룸·빌라 25~35㎡ 연도별 환산 월세 비교">
+      <desc>{rows.map(row => `${row.campus} ${row.year}년 ${row.converted_median_10k_krw === null ? '표본 부족' : `${decimal(row.converted_median_10k_krw)}만 원`}`).join(', ')}</desc>
+      <text x="7" y="28" className="trend-unit">만 원</text>
+      {ticks.map(tick => <g key={tick} className="trend-grid">
+        <line x1="43" y1={y(tick)} x2="698" y2={y(tick)} />
+        <text x="36" y={y(tick) + 4} textAnchor="end">{tick.toLocaleString('ko-KR')}</text>
+      </g>)}
       {years.map((year, index) => <text key={year} x={x(index)} y="228" textAnchor="middle" className="trend-year">
         {year === 2026 ? '2026*' : year}</text>)}
       {campuses.map((campus, index) => {
@@ -194,16 +204,27 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
         return <g key={campus} fill="none" stroke={color} strokeWidth="3">
           <polyline points={points.slice(0, 5).map(point => `${point.x},${point.y}`).join(' ')} />
           <line x1={points[4].x} y1={points[4].y} x2={points[5].x} y2={points[5].y} strokeDasharray="8 6" />
-          {points.map(point => <circle key={point.row.year} cx={point.x} cy={point.y} r="5" fill="white">
-            <title>{campus} {point.row.year}년 {point.row.converted_median_10k_krw === null ? '표본 부족' : `${decimal(point.row.converted_median_10k_krw)}만 원`}</title>
-          </circle>)}
+          {points.map(point => {
+            const other = rows.find(row => row.campus !== campus && row.year === point.row.year)
+            const otherY = other?.converted_median_10k_krw == null ? null : y(other.converted_median_10k_krw)
+            const close = otherY !== null && Math.abs(otherY - point.y) < 20
+            const lower = close && otherY !== null && point.y > otherY + 1
+            const higherOrEqual = index === 1 && close && otherY !== null && point.y <= otherY + 1
+            return <g key={point.row.year}>
+            <circle cx={point.x} cy={point.y} r="5" fill="white">
+              <title>{campus} {point.row.year}년 {point.row.converted_median_10k_krw === null ? '표본 부족' : `${decimal(point.row.converted_median_10k_krw)}만 원`}</title>
+            </circle>
+            {point.row.converted_median_10k_krw !== null && <text
+              x={point.x - (lower ? 18 : 0)} y={point.y - (higherOrEqual ? 28 : 13)}
+              textAnchor="middle" className="trend-point-value" fill={color} stroke="none">
+              {decimal(point.row.converted_median_10k_krw)}</text>}
+          </g>
+          })}
         </g>
       })}
-    </svg>
+    </svg></div>
+    <p className="trend-scroll-hint">그래프를 좌우로 밀어 전체 연도를 볼 수 있어요.</p>
     <p className="hint">* 2026년은 1~10월 계약이며 점선으로 표시했어요.</p>
-    <div className="trend-values">{rows.map(row => <div key={`${row.campus}-${row.year}`}>
-      <span>{row.campus} · {row.year}년{row.partial_year ? ' 1~10월' : ''}</span>
-      <b>{row.converted_median_10k_krw === null ? '표본 부족' : `${decimal(row.converted_median_10k_krw)}만 원`}</b></div>)}</div>
   </div>
 }
 
@@ -238,14 +259,14 @@ export function CompareView({ meta, rate, onRateChange }: SharedProps) {
     {displayed && <>
       <div className="compare-grid">{meta.campuses.map(campus => <section className="card glass compare-card" key={campus}>
         <h2>{campus}</h2><p className="compare-card-sub">집 종류와 면적에 따라 비교해요.</p>
-        <table className="compare-table"><thead><tr><th scope="col">집 종류·면적</th><th scope="col">월세 수준</th>
+        <table className="compare-table"><thead><tr><th scope="col">집 종류·면적</th><th scope="col">환산 월세(중간값)</th>
           <th scope="col">보통 계약 조건</th><th scope="col">거래</th></tr></thead><tbody>
           {displayed.area_bands.filter(row => row.campus === campus).map(row => <tr key={`${row.housing_type}-${row.area_band}`}>
             <th scope="row"><strong>{housingName(row.housing_type)}</strong><small>{row.area_band}</small></th>
-            <td data-label="월세 수준">{row.sample_note ? <span className="sample-pill">표본 부족</span> : <>
-              <b>{decimal(row.quantiles_10k_krw!.p50)}만 원</b><small>25~75%: {decimal(row.quantiles_10k_krw!.p25)}~{decimal(row.quantiles_10k_krw!.p75)}만 원</small></>}</td>
+            <td data-label="환산 월세(중간값)">{row.sample_note ? <span className="sample-pill">표본 부족</span> : <>
+              <b>{decimal(row.quantiles_10k_krw!.p50)}만 원</b><small className="compare-range">{typicalRange(row.quantiles_10k_krw!.p25, row.quantiles_10k_krw!.p75)}</small></>}</td>
             <td data-label="보통 계약 조건">{row.sample_note ? '—' : <span>
-              보증금 {decimal(row.deposit_median_10k_krw!)}만 원<br />월세 {decimal(row.monthly_median_10k_krw!)}만 원</span>}</td>
+              보증금 {integerMoney(row.deposit_median_10k_krw!)}만 원<br />월세 {integerMoney(row.monthly_median_10k_krw!)}만 원</span>}</td>
             <td data-label="거래">{row.n.toLocaleString('ko-KR')}건</td>
           </tr>)}</tbody></table></section>)}</div>
       <section className="card glass trend-section"><h2>원룸·투룸·빌라 월세 흐름</h2>

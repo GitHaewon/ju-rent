@@ -17,7 +17,23 @@ export function typicalTerms(card: Pick<BudgetRecommendation, 'deposit_median_10
 }
 
 export function tenDealSentence(card: Pick<BudgetRecommendation, 'within_budget_pct'>): string {
-  return `비슷한 거래 10건 중 ${Math.round(card.within_budget_pct / 10)}건이 예산 안`
+  return `비슷한 거래 10건 중 ${Math.floor(card.within_budget_pct / 10)}건이 예산 안`
+}
+
+export function typicalArea(areaSqm: number): string {
+  return `보통 ${(areaSqm / 3.305785).toFixed(1)}평(${areaSqm.toLocaleString('ko-KR', { maximumFractionDigits: 1 })}㎡)`
+}
+
+export function ageBandLabel(ageBand: string): string {
+  return ageBand === '미기재' ? '연식 정보 없음' : ageBand
+}
+
+export function integerMoney(value: number): string {
+  return Math.round(value).toLocaleString('ko-KR')
+}
+
+export function typicalRange(p25: number, p75: number): string {
+  return `보통 ${integerMoney(p25)}~${integerMoney(p75)}만 원`
 }
 
 export function cardToContract(card: BudgetRecommendation, campus: string, rate_pct: number): ContractInput {

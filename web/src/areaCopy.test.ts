@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { EMPTY_BUDGET_MESSAGE, availabilityTone, budgetSummary, cardToContract, tenDealSentence, typicalTerms } from './areaCopy'
+import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, cardToContract, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import type { BudgetRecommendation } from './types'
 
 const card: BudgetRecommendation = {
@@ -18,6 +18,22 @@ describe('budget and comparison screen copy', () => {
     expect(availabilityTone(card.availability_label)).toBe('easy')
     expect(availabilityTone('발품 팔면 가능해요')).toBe('possible')
     expect(tenDealSentence(card)).toBe('비슷한 거래 10건 중 5건이 예산 안')
+  })
+
+  it('floors the ten-deal count at the 50% badge boundary', () => {
+    expect(tenDealSentence({ within_budget_pct: 49.9 })).toBe('비슷한 거래 10건 중 4건이 예산 안')
+    expect(tenDealSentence({ within_budget_pct: 50 })).toBe('비슷한 거래 10건 중 5건이 예산 안')
+  })
+
+  it('shows the API area median and explains an unknown building age', () => {
+    expect(typicalArea(card.area_median_sqm)).toBe('보통 8.0평(26.5㎡)')
+    expect(ageBandLabel('미기재')).toBe('연식 정보 없음')
+    expect(ageBandLabel('5~9년')).toBe('5~9년')
+  })
+
+  it('keeps contract terms and the usual range in integer ten-thousand won', () => {
+    expect(integerMoney(1234.5)).toBe('1,235')
+    expect(typicalRange(1234.49, 2345.5)).toBe('보통 1,234~2,346만 원')
   })
 
   it('uses a student-facing empty message without an internal grouping term', () => {

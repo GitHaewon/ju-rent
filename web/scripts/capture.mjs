@@ -121,6 +121,11 @@ async function captureArea(prefix, contextOptions) {
       await expect(areaPage.locator('.compare-card')).toHaveCount(2)
       await expect(areaPage.locator('.compare-table tbody tr')).toHaveCount(18)
       await expect(areaPage.locator('.trend-chart line[stroke-dasharray]')).toHaveCount(2)
+      await expect(areaPage.locator('.trend-grid text')).not.toHaveCount(0)
+      await expect(areaPage.locator('.trend-point-value')).toHaveCount(12)
+      await expect(areaPage.locator('.trend-values')).toHaveCount(0)
+      await expect(areaPage.locator('.compare-table thead').first()).toContainText('환산 월세(중간값)')
+      await expect(areaPage.locator('.compare-range').first()).toContainText('보통')
     } else {
       await areaPage.getByRole('tab', { name: '예산으로 찾기' }).click()
       if (scenario === 'budget-jeonbuk') {
@@ -135,6 +140,7 @@ async function captureArea(prefix, contextOptions) {
       } else {
         await expect(areaPage.locator('.budget-card')).toHaveCount(scenario === 'budget-hyo' ? 6 : 7)
         await expect(areaPage.locator('.budget-terms').first()).toContainText('보증금')
+        await expect(areaPage.locator('.budget-area').first()).toContainText('보통')
       }
       if (prefix === 'iphone14' && scenario === 'budget-hyo') {
         await areaPage.getByRole('button', { name: '조건 접기' }).click()
