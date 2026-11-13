@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     server: { proxy: { '/api': env.JU_RENT_API_TARGET || 'http://127.0.0.1:8000' } },
+    preview: { proxy: { '/api': env.JU_RENT_API_TARGET || 'http://127.0.0.1:8000' } },
     test: { environment: 'node' },
   }
 })

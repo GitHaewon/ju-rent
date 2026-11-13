@@ -1,0 +1,2746 @@
+{
+  "criteria": {
+    "deposit_10k_krw": 500,
+    "monthly_10k_krw": 35,
+    "min_area_sqm": 15,
+    "priority": "cheap",
+    "rate_pct": 5,
+    "scope": "commute"
+  },
+  "results": {
+    "효자동권": {
+      "input": {
+        "campus": "효자동권",
+        "deposit_10k_krw": 500,
+        "monthly_10k_krw": 35,
+        "min_area_sqm": 15,
+        "housing_type": null,
+        "priority": "cheap",
+        "scope": "commute",
+        "school": "전주대학교"
+      },
+      "rate_pct": 5,
+      "data_as_of": "2026-10-31",
+      "total_combinations": 223,
+      "total_deals": 13538,
+      "excluded_counts": {
+        "sample_shortage": 136,
+        "complex_concentration": 22,
+        "under_25_pct": 21
+      },
+      "recommendations": [
+        {
+          "dong": "효자동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 36,
+          "within_budget_count": 29,
+          "within_budget_pct": 80.56,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 21.25,
+            "p50": 25.12,
+            "p75": 32.47
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 23.5,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 11.0,
+            "boarding_stops": 17,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -11.12
+        },
+        {
+          "dong": "덕진동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 57,
+          "within_budget_count": 49,
+          "within_budget_pct": 85.96,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 24.42,
+            "p50": 26.27,
+            "p75": 31.25
+          },
+          "deposit_median_10k_krw": 200.0,
+          "monthly_median_10k_krw": 25.0,
+          "area_median_sqm": 25.32,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 17.0,
+            "boarding_stops": 21,
+            "direct_routes": 11,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -9.98
+        },
+        {
+          "dong": "삼천동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 45,
+          "within_budget_count": 30,
+          "within_budget_pct": 66.67,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 21.83,
+            "p50": 29.25,
+            "p75": 36.17
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 26.0,
+          "area_median_sqm": 35.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 7,
+            "median_stops": 34.0,
+            "boarding_stops": 21,
+            "direct_routes": 4,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -7.0
+        },
+        {
+          "dong": "인후동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 283,
+          "within_budget_count": 232,
+          "within_budget_pct": 81.98,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 26.25,
+            "p50": 30.83,
+            "p75": 32.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 31.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 24.0,
+            "boarding_stops": 31,
+            "direct_routes": 1,
+            "interval_min": 10
+          },
+          "campus_price_difference_10k_krw": -5.42
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 205,
+          "within_budget_count": 155,
+          "within_budget_pct": 75.61,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.25,
+            "p50": 30.83,
+            "p75": 34.17
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 27.47,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 17.0,
+            "boarding_stops": 16,
+            "direct_routes": 11,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.42
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 160,
+          "within_budget_count": 110,
+          "within_budget_pct": 68.75,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.73,
+            "p50": 30.83,
+            "p75": 34.17
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 35.5,
+            "boarding_stops": 20,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.42
+        },
+        {
+          "dong": "서신동",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 181,
+          "within_budget_count": 123,
+          "within_budget_pct": 67.96,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.42,
+            "p50": 30.83,
+            "p75": 35.83
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 12.5,
+            "boarding_stops": 24,
+            "direct_routes": 9,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.42
+        },
+        {
+          "dong": "인후동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 371,
+          "within_budget_count": 252,
+          "within_budget_pct": 67.92,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.17,
+            "p50": 30.83,
+            "p75": 35.21
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 35.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 24.0,
+            "boarding_stops": 31,
+            "direct_routes": 1,
+            "interval_min": 10
+          },
+          "campus_price_difference_10k_krw": -5.42
+        },
+        {
+          "dong": "서신동",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 164,
+          "within_budget_count": 111,
+          "within_budget_pct": 67.68,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.73,
+            "p50": 30.83,
+            "p75": 36.35
+          },
+          "deposit_median_10k_krw": 200.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 12.5,
+            "boarding_stops": 24,
+            "direct_routes": 9,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.42
+        },
+        {
+          "dong": "덕진동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 125,
+          "within_budget_count": 94,
+          "within_budget_pct": 75.2,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.25,
+            "p50": 31.25,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 17.0,
+            "boarding_stops": 21,
+            "direct_routes": 11,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 319,
+          "within_budget_count": 232,
+          "within_budget_pct": 72.73,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.62,
+            "p50": 31.25,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 17.0,
+            "boarding_stops": 16,
+            "direct_routes": 11,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "평화동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 39,
+          "within_budget_count": 28,
+          "within_budget_pct": 71.79,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 31.25,
+            "p75": 35.83
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 15,
+            "median_stops": 17.5,
+            "boarding_stops": 6,
+            "direct_routes": 3,
+            "interval_min": 30
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "미기재",
+          "n": 45,
+          "within_budget_count": 28,
+          "within_budget_pct": 62.22,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 23.83,
+            "p50": 31.25,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.25,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 35.5,
+            "boarding_stops": 20,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "중화산동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 34,
+          "within_budget_count": 21,
+          "within_budget_pct": 61.76,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 31.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 7,
+            "median_stops": 9.0,
+            "boarding_stops": 5,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "삼천동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 30,
+          "within_budget_count": 18,
+          "within_budget_pct": 60.0,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.25,
+            "p50": 31.25,
+            "p75": 35.1
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 7,
+            "median_stops": 34.0,
+            "boarding_stops": 21,
+            "direct_routes": 4,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "송천동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 139,
+          "within_budget_count": 74,
+          "within_budget_pct": 53.24,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 31.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 25.0,
+            "boarding_stops": 7,
+            "direct_routes": 3,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "진북동",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 31,
+          "within_budget_count": 23,
+          "within_budget_pct": 74.19,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.54,
+            "p50": 31.67,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 36.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 9,
+            "median_stops": 20.0,
+            "boarding_stops": 21,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.58
+        },
+        {
+          "dong": "인후동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 46,
+          "within_budget_count": 25,
+          "within_budget_pct": 54.35,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.56,
+            "p50": 31.67,
+            "p75": 38.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.5,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 22.0,
+            "boarding_stops": 11,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.58
+        },
+        {
+          "dong": "인후동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 70,
+          "within_budget_count": 44,
+          "within_budget_pct": 62.86,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 31.88,
+            "p75": 41.98
+          },
+          "deposit_median_10k_krw": 350.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 22.0,
+            "boarding_stops": 11,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.38
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "미기재",
+          "n": 212,
+          "within_budget_count": 143,
+          "within_budget_pct": 67.45,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.08,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 29.88,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 17.0,
+            "boarding_stops": 16,
+            "direct_routes": 11,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.17
+        },
+        {
+          "dong": "평화동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 40,
+          "within_budget_count": 25,
+          "within_budget_pct": 62.5,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.08,
+            "p75": 36.98
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 31.5,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 15,
+            "median_stops": 18.5,
+            "boarding_stops": 10,
+            "direct_routes": 3,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.17
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 296,
+          "within_budget_count": 161,
+          "within_budget_pct": 54.39,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.08,
+            "p75": 40.9
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 35.5,
+            "boarding_stops": 20,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.17
+        },
+        {
+          "dong": "서서학동",
+          "housing_type": "apartment",
+          "age_band": "20년 이상",
+          "n": 53,
+          "within_budget_count": 23,
+          "within_budget_pct": 43.4,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 30.08,
+            "p50": 32.08,
+            "p75": 39.17
+          },
+          "deposit_median_10k_krw": 1000.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 59.05,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 20,
+            "median_stops": 39.0,
+            "boarding_stops": 10,
+            "direct_routes": 1,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -58.27
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "미기재",
+          "n": 86,
+          "within_budget_count": 48,
+          "within_budget_pct": 55.81,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.17,
+            "p75": 45.5
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 26.48,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 5.0,
+            "boarding_stops": 53,
+            "direct_routes": 27,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.08
+        },
+        {
+          "dong": "중화산동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 53,
+          "within_budget_count": 32,
+          "within_budget_pct": 60.38,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 32.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 38.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 7,
+            "median_stops": 9.0,
+            "boarding_stops": 5,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.0
+        },
+        {
+          "dong": "평화동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 84,
+          "within_budget_count": 52,
+          "within_budget_pct": 61.9,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.15,
+            "p50": 32.5,
+            "p75": 40.35
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 15,
+            "median_stops": 17.5,
+            "boarding_stops": 6,
+            "direct_routes": 3,
+            "interval_min": 30
+          },
+          "campus_price_difference_10k_krw": -3.75
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 228,
+          "within_budget_count": 120,
+          "within_budget_pct": 52.63,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 33.0,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 17.0,
+            "boarding_stops": 16,
+            "direct_routes": 11,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -3.25
+        },
+        {
+          "dong": "송천동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 130,
+          "within_budget_count": 83,
+          "within_budget_pct": 63.85,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 33.25,
+            "p75": 38.9
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 25.0,
+            "boarding_stops": 7,
+            "direct_routes": 3,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -3.0
+        },
+        {
+          "dong": "인후동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 110,
+          "within_budget_count": 60,
+          "within_budget_pct": 54.55,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 34.12,
+            "p75": 43.31
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 24.0,
+            "boarding_stops": 31,
+            "direct_routes": 1,
+            "interval_min": 10
+          },
+          "campus_price_difference_10k_krw": -2.12
+        },
+        {
+          "dong": "평화동1가",
+          "housing_type": "apartment",
+          "age_band": "20년 이상",
+          "n": 72,
+          "within_budget_count": 20,
+          "within_budget_pct": 27.78,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.98,
+            "p50": 34.17,
+            "p75": 59.48
+          },
+          "deposit_median_10k_krw": 1500.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 51.64,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 15,
+            "median_stops": 18.5,
+            "boarding_stops": 10,
+            "direct_routes": 3,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -56.19
+        },
+        {
+          "dong": "덕진동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 77,
+          "within_budget_count": 41,
+          "within_budget_pct": 53.25,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 34.25,
+            "p75": 43.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 6,
+            "median_stops": 14.5,
+            "boarding_stops": 10,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -2.0
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 48,
+          "within_budget_count": 27,
+          "within_budget_pct": 56.25,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.94,
+            "p50": 34.33,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 31.5,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 5.0,
+            "boarding_stops": 53,
+            "direct_routes": 27,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -1.92
+        },
+        {
+          "dong": "덕진동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 147,
+          "within_budget_count": 84,
+          "within_budget_pct": 57.14,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.0,
+            "p75": 40.0
+          },
+          "deposit_median_10k_krw": 500.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.83,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 6,
+            "median_stops": 14.5,
+            "boarding_stops": 10,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -1.25
+        },
+        {
+          "dong": "효자동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 446,
+          "within_budget_count": 242,
+          "within_budget_pct": 54.26,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.0,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 4.0,
+            "boarding_stops": 40,
+            "direct_routes": 21,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -1.25
+        },
+        {
+          "dong": "덕진동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 99,
+          "within_budget_count": 48,
+          "within_budget_pct": 48.48,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.0,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 17.0,
+            "boarding_stops": 21,
+            "direct_routes": 11,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -1.25
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 1589,
+          "within_budget_count": 794,
+          "within_budget_pct": 49.97,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.42,
+            "p75": 43.0
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 5.0,
+            "boarding_stops": 53,
+            "direct_routes": 27,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.83
+        },
+        {
+          "dong": "송천동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 106,
+          "within_budget_count": 57,
+          "within_budget_pct": 53.77,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 36.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 35.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 19,
+            "median_stops": 28.0,
+            "boarding_stops": 27,
+            "direct_routes": 2,
+            "interval_min": 35
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "진북동",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 67,
+          "within_budget_count": 35,
+          "within_budget_pct": 52.24,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 36.25,
+            "p75": 43.67
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 35.0,
+          "area_median_sqm": 29.24,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 9,
+            "median_stops": 20.0,
+            "boarding_stops": 21,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 265,
+          "within_budget_count": 129,
+          "within_budget_pct": 48.68,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 36.25,
+            "p75": 46.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 35.5,
+            "boarding_stops": 20,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "효자동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 34,
+          "within_budget_count": 17,
+          "within_budget_pct": 50.0,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.5,
+            "p50": 39.12,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 350.0,
+          "monthly_median_10k_krw": 36.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 11.0,
+            "boarding_stops": 17,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 2.88
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 279,
+          "within_budget_count": 111,
+          "within_budget_pct": 39.78,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 39.25,
+            "p75": 46.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 35.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 5.0,
+            "boarding_stops": 53,
+            "direct_routes": 27,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 3.0
+        },
+        {
+          "dong": "효자동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 54,
+          "within_budget_count": 18,
+          "within_budget_pct": 33.33,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 32.08,
+            "p50": 41.67,
+            "p75": 52.08
+          },
+          "deposit_median_10k_krw": 500.0,
+          "monthly_median_10k_krw": 40.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 4.0,
+            "boarding_stops": 40,
+            "direct_routes": 21,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 5.42
+        },
+        {
+          "dong": "만성동",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 84,
+          "within_budget_count": 21,
+          "within_budget_pct": 25.0,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 35.94,
+            "p50": 42.67,
+            "p75": 52.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 40.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 7,
+            "median_stops": 16.5,
+            "boarding_stops": 20,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 6.42
+        },
+        {
+          "dong": "송천동1가",
+          "housing_type": "oneroom",
+          "age_band": "5년 미만",
+          "n": 35,
+          "within_budget_count": 10,
+          "within_budget_pct": 28.57,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 36.67,
+            "p50": 46.25,
+            "p75": 52.54
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 45.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 16,
+            "median_stops": 25.0,
+            "boarding_stops": 7,
+            "direct_routes": 3,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 10.0
+        }
+      ]
+    },
+    "전북대권": {
+      "input": {
+        "campus": "전북대권",
+        "deposit_10k_krw": 500,
+        "monthly_10k_krw": 35,
+        "min_area_sqm": 15,
+        "housing_type": null,
+        "priority": "cheap",
+        "scope": "commute",
+        "school": "전북대학교"
+      },
+      "rate_pct": 5,
+      "data_as_of": "2026-10-31",
+      "total_combinations": 280,
+      "total_deals": 14939,
+      "excluded_counts": {
+        "sample_shortage": 178,
+        "complex_concentration": 25,
+        "under_25_pct": 25
+      },
+      "recommendations": [
+        {
+          "dong": "효자동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 36,
+          "within_budget_count": 29,
+          "within_budget_pct": 80.56,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 21.25,
+            "p50": 25.12,
+            "p75": 32.47
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 23.5,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 15.0,
+            "boarding_stops": 18,
+            "direct_routes": 20,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -6.12
+        },
+        {
+          "dong": "우아동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 36,
+          "within_budget_count": 29,
+          "within_budget_pct": 80.56,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 21.42,
+            "p50": 26.25,
+            "p75": 30.52
+          },
+          "deposit_median_10k_krw": 200.0,
+          "monthly_median_10k_krw": 23.0,
+          "area_median_sqm": 29.25,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 20.5,
+            "boarding_stops": 8,
+            "direct_routes": 2,
+            "interval_min": 33
+          },
+          "campus_price_difference_10k_krw": -5.0
+        },
+        {
+          "dong": "덕진동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 57,
+          "within_budget_count": 49,
+          "within_budget_pct": 85.96,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 24.42,
+            "p50": 26.27,
+            "p75": 31.25
+          },
+          "deposit_median_10k_krw": 200.0,
+          "monthly_median_10k_krw": 25.0,
+          "area_median_sqm": 25.32,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 2.0,
+            "boarding_stops": 23,
+            "direct_routes": 26,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -4.98
+        },
+        {
+          "dong": "삼천동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 45,
+          "within_budget_count": 30,
+          "within_budget_pct": 66.67,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 21.83,
+            "p50": 29.25,
+            "p75": 36.17
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 26.0,
+          "area_median_sqm": 35.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 19.0,
+            "boarding_stops": 33,
+            "direct_routes": 10,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -2.0
+        },
+        {
+          "dong": "우아동2가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 138,
+          "within_budget_count": 103,
+          "within_budget_pct": 74.64,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 25.42,
+            "p50": 30.42,
+            "p75": 32.5
+          },
+          "deposit_median_10k_krw": 200.0,
+          "monthly_median_10k_krw": 29.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 10.5,
+            "boarding_stops": 6,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.83
+        },
+        {
+          "dong": "인후동1가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 283,
+          "within_budget_count": 232,
+          "within_budget_pct": 81.98,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 26.25,
+            "p50": 30.83,
+            "p75": 32.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 31.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 3,
+            "median_stops": 12.0,
+            "boarding_stops": 29,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.42
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 205,
+          "within_budget_count": 155,
+          "within_budget_pct": 75.61,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.25,
+            "p50": 30.83,
+            "p75": 34.17
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 27.47,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 3.0,
+            "boarding_stops": 33,
+            "direct_routes": 46,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.42
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 160,
+          "within_budget_count": 110,
+          "within_budget_pct": 68.75,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.73,
+            "p50": 30.83,
+            "p75": 34.17
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 12.5,
+            "boarding_stops": 16,
+            "direct_routes": 8,
+            "interval_min": 20
+          },
+          "campus_price_difference_10k_krw": -0.42
+        },
+        {
+          "dong": "우아동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 86,
+          "within_budget_count": 59,
+          "within_budget_pct": 68.6,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.83,
+            "p50": 30.83,
+            "p75": 33.21
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 29.0,
+          "area_median_sqm": 33.77,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 20.5,
+            "boarding_stops": 8,
+            "direct_routes": 2,
+            "interval_min": 33
+          },
+          "campus_price_difference_10k_krw": -0.42
+        },
+        {
+          "dong": "서신동",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 181,
+          "within_budget_count": 123,
+          "within_budget_pct": 67.96,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.42,
+            "p50": 30.83,
+            "p75": 35.83
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 2,
+            "median_stops": 5.0,
+            "boarding_stops": 17,
+            "direct_routes": 10,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.42
+        },
+        {
+          "dong": "인후동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 371,
+          "within_budget_count": 252,
+          "within_budget_pct": 67.92,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.17,
+            "p50": 30.83,
+            "p75": 35.21
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 35.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 3,
+            "median_stops": 12.0,
+            "boarding_stops": 29,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.42
+        },
+        {
+          "dong": "서신동",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 164,
+          "within_budget_count": 111,
+          "within_budget_pct": 67.68,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 27.73,
+            "p50": 30.83,
+            "p75": 36.35
+          },
+          "deposit_median_10k_krw": 200.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 2,
+            "median_stops": 5.0,
+            "boarding_stops": 17,
+            "direct_routes": 10,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.42
+        },
+        {
+          "dong": "우아동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 168,
+          "within_budget_count": 121,
+          "within_budget_pct": 72.02,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 29.79,
+            "p50": 30.96,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 38.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 10.5,
+            "boarding_stops": 6,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -0.29
+        },
+        {
+          "dong": "우아동3가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 58,
+          "within_budget_count": 47,
+          "within_budget_pct": 81.03,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 31.25,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 31.39,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 3,
+            "median_stops": 6.0,
+            "boarding_stops": 13,
+            "direct_routes": 13,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "덕진동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 125,
+          "within_budget_count": 94,
+          "within_budget_pct": 75.2,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.25,
+            "p50": 31.25,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 2.0,
+            "boarding_stops": 23,
+            "direct_routes": 26,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 319,
+          "within_budget_count": 232,
+          "within_budget_pct": 72.73,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.62,
+            "p50": 31.25,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 3.0,
+            "boarding_stops": 33,
+            "direct_routes": 46,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "우아동3가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 54,
+          "within_budget_count": 39,
+          "within_budget_pct": 72.22,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 31.25,
+            "p75": 37.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 32.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 3,
+            "median_stops": 6.0,
+            "boarding_stops": 13,
+            "direct_routes": 13,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "평화동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 39,
+          "within_budget_count": 28,
+          "within_budget_pct": 71.79,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 31.25,
+            "p75": 35.83
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 17,
+            "median_stops": 19.0,
+            "boarding_stops": 8,
+            "direct_routes": 8,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "미기재",
+          "n": 45,
+          "within_budget_count": 28,
+          "within_budget_pct": 62.22,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 23.83,
+            "p50": 31.25,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.25,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 12.5,
+            "boarding_stops": 16,
+            "direct_routes": 8,
+            "interval_min": 20
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "중화산동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 34,
+          "within_budget_count": 21,
+          "within_budget_pct": 61.76,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 31.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 9,
+            "median_stops": 25.5,
+            "boarding_stops": 6,
+            "direct_routes": 6,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "삼천동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 30,
+          "within_budget_count": 18,
+          "within_budget_pct": 60.0,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.25,
+            "p50": 31.25,
+            "p75": 35.1
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 19.0,
+            "boarding_stops": 33,
+            "direct_routes": 10,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "송천동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 139,
+          "within_budget_count": 74,
+          "within_budget_pct": 53.24,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 31.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": true,
+            "min_stops": 1,
+            "median_stops": 3.0,
+            "boarding_stops": 10,
+            "direct_routes": 16,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.0
+        },
+        {
+          "dong": "진북동",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 31,
+          "within_budget_count": 23,
+          "within_budget_pct": 74.19,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.54,
+            "p50": 31.67,
+            "p75": 36.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 36.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 5.0,
+            "boarding_stops": 8,
+            "direct_routes": 34,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.42
+        },
+        {
+          "dong": "인후동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 46,
+          "within_budget_count": 25,
+          "within_budget_pct": 54.35,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.56,
+            "p50": 31.67,
+            "p75": 38.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.5,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": true,
+            "min_stops": 1,
+            "median_stops": 6.0,
+            "boarding_stops": 19,
+            "direct_routes": 15,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.42
+        },
+        {
+          "dong": "인후동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 70,
+          "within_budget_count": 44,
+          "within_budget_pct": 62.86,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 31.88,
+            "p75": 41.98
+          },
+          "deposit_median_10k_krw": 350.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": true,
+            "min_stops": 1,
+            "median_stops": 6.0,
+            "boarding_stops": 19,
+            "direct_routes": 15,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.62
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "미기재",
+          "n": 212,
+          "within_budget_count": 143,
+          "within_budget_pct": 67.45,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.08,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 29.88,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 3.0,
+            "boarding_stops": 33,
+            "direct_routes": 46,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.83
+        },
+        {
+          "dong": "평화동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 40,
+          "within_budget_count": 25,
+          "within_budget_pct": 62.5,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.08,
+            "p75": 36.98
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 31.5,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 14,
+            "median_stops": 16.0,
+            "boarding_stops": 7,
+            "direct_routes": 13,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.83
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 296,
+          "within_budget_count": 161,
+          "within_budget_pct": 54.39,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.08,
+            "p75": 40.9
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 12.5,
+            "boarding_stops": 16,
+            "direct_routes": 8,
+            "interval_min": 20
+          },
+          "campus_price_difference_10k_krw": 0.83
+        },
+        {
+          "dong": "서서학동",
+          "housing_type": "apartment",
+          "age_band": "20년 이상",
+          "n": 53,
+          "within_budget_count": 23,
+          "within_budget_pct": 43.4,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 30.08,
+            "p50": 32.08,
+            "p75": 39.17
+          },
+          "deposit_median_10k_krw": 1000.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 59.05,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 10,
+            "median_stops": 13.0,
+            "boarding_stops": 7,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -24.25
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "미기재",
+          "n": 86,
+          "within_budget_count": 48,
+          "within_budget_pct": 55.81,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.83,
+            "p50": 32.17,
+            "p75": 45.5
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 26.48,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 13.5,
+            "boarding_stops": 40,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 0.92
+        },
+        {
+          "dong": "중화산동1가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 53,
+          "within_budget_count": 32,
+          "within_budget_pct": 60.38,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 32.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 38.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 9,
+            "median_stops": 25.5,
+            "boarding_stops": 6,
+            "direct_routes": 6,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 1.0
+        },
+        {
+          "dong": "평화동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 84,
+          "within_budget_count": 52,
+          "within_budget_pct": 61.9,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.15,
+            "p50": 32.5,
+            "p75": 40.35
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 17,
+            "median_stops": 19.0,
+            "boarding_stops": 8,
+            "direct_routes": 8,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 1.25
+        },
+        {
+          "dong": "금암동",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 228,
+          "within_budget_count": 120,
+          "within_budget_pct": 52.63,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 33.0,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 3.0,
+            "boarding_stops": 33,
+            "direct_routes": 46,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 1.75
+        },
+        {
+          "dong": "송천동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 130,
+          "within_budget_count": 83,
+          "within_budget_pct": 63.85,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 33.25,
+            "p75": 38.9
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": true,
+            "min_stops": 1,
+            "median_stops": 3.0,
+            "boarding_stops": 10,
+            "direct_routes": 16,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 2.0
+        },
+        {
+          "dong": "인후동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 110,
+          "within_budget_count": 60,
+          "within_budget_pct": 54.55,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 34.12,
+            "p75": 43.31
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 3,
+            "median_stops": 12.0,
+            "boarding_stops": 29,
+            "direct_routes": 7,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 2.88
+        },
+        {
+          "dong": "평화동1가",
+          "housing_type": "apartment",
+          "age_band": "20년 이상",
+          "n": 72,
+          "within_budget_count": 20,
+          "within_budget_pct": 27.78,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.98,
+            "p50": 34.17,
+            "p75": 59.48
+          },
+          "deposit_median_10k_krw": 1500.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 51.64,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 14,
+            "median_stops": 16.0,
+            "boarding_stops": 7,
+            "direct_routes": 13,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": -22.17
+        },
+        {
+          "dong": "덕진동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 77,
+          "within_budget_count": 41,
+          "within_budget_pct": 53.25,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 34.25,
+            "p75": 43.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 2.0,
+            "boarding_stops": 9,
+            "direct_routes": 32,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 3.0
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "20년 이상",
+          "n": 48,
+          "within_budget_count": 27,
+          "within_budget_pct": 56.25,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 28.94,
+            "p50": 34.33,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 31.5,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 13.5,
+            "boarding_stops": 40,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 3.08
+        },
+        {
+          "dong": "덕진동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 147,
+          "within_budget_count": 84,
+          "within_budget_pct": 57.14,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.0,
+            "p75": 40.0
+          },
+          "deposit_median_10k_krw": 500.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.83,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 2.0,
+            "boarding_stops": 9,
+            "direct_routes": 32,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 3.75
+        },
+        {
+          "dong": "효자동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 446,
+          "within_budget_count": 242,
+          "within_budget_pct": 54.26,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.0,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 9,
+            "median_stops": 19.0,
+            "boarding_stops": 33,
+            "direct_routes": 15,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 3.75
+        },
+        {
+          "dong": "덕진동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 99,
+          "within_budget_count": 48,
+          "within_budget_pct": 48.48,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.0,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": true,
+            "campus_adjacent": false,
+            "min_stops": 1,
+            "median_stops": 2.0,
+            "boarding_stops": 23,
+            "direct_routes": 26,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 3.75
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 1589,
+          "within_budget_count": 794,
+          "within_budget_pct": 49.97,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 35.42,
+            "p75": 43.0
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 33.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 13.5,
+            "boarding_stops": 40,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 4.17
+        },
+        {
+          "dong": "송천동2가",
+          "housing_type": "oneroom",
+          "age_band": "10~19년",
+          "n": 106,
+          "within_budget_count": 57,
+          "within_budget_pct": 53.77,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 36.25,
+            "p75": 41.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 35.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 3,
+            "median_stops": 9.5,
+            "boarding_stops": 40,
+            "direct_routes": 17,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 5.0
+        },
+        {
+          "dong": "진북동",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 67,
+          "within_budget_count": 35,
+          "within_budget_pct": 52.24,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 36.25,
+            "p75": 43.67
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 35.0,
+          "area_median_sqm": 29.24,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 4,
+            "median_stops": 5.0,
+            "boarding_stops": 8,
+            "direct_routes": 34,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 5.0
+        },
+        {
+          "dong": "중화산동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 265,
+          "within_budget_count": 129,
+          "within_budget_pct": 48.68,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 36.25,
+            "p75": 46.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 30.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 12.5,
+            "boarding_stops": 16,
+            "direct_routes": 8,
+            "interval_min": 20
+          },
+          "campus_price_difference_10k_krw": 5.0
+        },
+        {
+          "dong": "우아동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 36,
+          "within_budget_count": 15,
+          "within_budget_pct": 41.67,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.88,
+            "p50": 38.08,
+            "p75": 42.1
+          },
+          "deposit_median_10k_krw": 500.0,
+          "monthly_median_10k_krw": 36.0,
+          "area_median_sqm": 36.5,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 12,
+            "median_stops": 20.5,
+            "boarding_stops": 8,
+            "direct_routes": 2,
+            "interval_min": 33
+          },
+          "campus_price_difference_10k_krw": 6.83
+        },
+        {
+          "dong": "효자동1가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 34,
+          "within_budget_count": 17,
+          "within_budget_pct": 50.0,
+          "availability_label": "쉽게 구할 수 있어요",
+          "quantiles_10k_krw": {
+            "p25": 30.5,
+            "p50": 39.12,
+            "p75": 42.08
+          },
+          "deposit_median_10k_krw": 350.0,
+          "monthly_median_10k_krw": 36.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 15.0,
+            "boarding_stops": 18,
+            "direct_routes": 20,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 7.88
+        },
+        {
+          "dong": "효자동3가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 279,
+          "within_budget_count": 111,
+          "within_budget_pct": 39.78,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 31.25,
+            "p50": 39.25,
+            "p75": 46.25
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 35.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 5,
+            "median_stops": 13.5,
+            "boarding_stops": 40,
+            "direct_routes": 14,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 8.0
+        },
+        {
+          "dong": "우아동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 37,
+          "within_budget_count": 12,
+          "within_budget_pct": 32.43,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 32.83,
+            "p50": 41.25,
+            "p75": 46.25
+          },
+          "deposit_median_10k_krw": 400.0,
+          "monthly_median_10k_krw": 37.0,
+          "area_median_sqm": 36.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 8,
+            "median_stops": 10.5,
+            "boarding_stops": 6,
+            "direct_routes": 5,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 10.0
+        },
+        {
+          "dong": "효자동2가",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 54,
+          "within_budget_count": 18,
+          "within_budget_pct": 33.33,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 32.08,
+            "p50": 41.67,
+            "p75": 52.08
+          },
+          "deposit_median_10k_krw": 500.0,
+          "monthly_median_10k_krw": 40.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 9,
+            "median_stops": 19.0,
+            "boarding_stops": 33,
+            "direct_routes": 15,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 10.42
+        },
+        {
+          "dong": "만성동",
+          "housing_type": "oneroom",
+          "age_band": "5~9년",
+          "n": 84,
+          "within_budget_count": 21,
+          "within_budget_pct": 25.0,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 35.94,
+            "p50": 42.67,
+            "p75": 52.08
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 40.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": false,
+            "min_stops": 10,
+            "median_stops": 18.0,
+            "boarding_stops": 27,
+            "direct_routes": 4,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 11.42
+        },
+        {
+          "dong": "송천동1가",
+          "housing_type": "oneroom",
+          "age_band": "5년 미만",
+          "n": 35,
+          "within_budget_count": 10,
+          "within_budget_pct": 28.57,
+          "availability_label": "발품 팔면 가능해요",
+          "quantiles_10k_krw": {
+            "p25": 36.67,
+            "p50": 46.25,
+            "p75": 52.54
+          },
+          "deposit_median_10k_krw": 300.0,
+          "monthly_median_10k_krw": 45.0,
+          "area_median_sqm": 30.0,
+          "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
+          "commute": {
+            "campus_area": false,
+            "campus_adjacent": true,
+            "min_stops": 1,
+            "median_stops": 3.0,
+            "boarding_stops": 10,
+            "direct_routes": 16,
+            "interval_min": null
+          },
+          "campus_price_difference_10k_krw": 15.0
+        }
+      ]
+    }
+  }
+}

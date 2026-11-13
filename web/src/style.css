@@ -263,6 +263,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
 .budget-card:hover { background: var(--glass-strong); }
 .budget-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .budget-card-head strong { display: block; font-size: 19px; line-height: 1.2; }
+.commute-badge { display: inline-block; margin: 4px 0 0 8px; padding: 3px 8px; border-radius: 999px; background: rgba(51, 101, 180, .12); color: var(--normal); font-style: normal; font-size: 11px; font-weight: 700; vertical-align: middle; }
+.budget-commute, .budget-price-difference { display: block; margin-top: 7px; color: var(--ink-soft); font-size: 12px; }
+.budget-price-difference { color: var(--normal); }
+.commute-guidance { grid-column: 1 / -1; color: var(--ink-faint); font-size: 12px; line-height: 1.5; margin: 0 4px 20px; }
+.field select { width: 100%; padding: 10px 12px; border: 1px solid rgba(30,34,69,.16); border-radius: 12px; background: white; color: var(--ink); font: inherit; }
 .budget-card-head small { display: block; color: var(--ink-soft); font-size: 13px; margin-top: 5px; }
 .budget-area { display: block; color: var(--ink-soft); font-size: 13px; margin-top: 8px; }
 .availability { display: inline-block; flex: none; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
@@ -284,6 +289,13 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
 .area-message { padding: 20px; border-radius: 22px; }
 .compare-intro { display: grid; grid-template-columns: 1.25fr 1fr; align-items: end; }
 .compare-rate { min-width: 0; }
+.compare-school .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.commute-neighborhoods h2 { margin: 0 0 5px; font-size: 20px; }
+.commute-neighborhoods > p { color: var(--ink-soft); font-size: 13px; }
+.commute-neighborhood-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-height: 500px; overflow-y: auto; }
+.commute-neighborhood-card { border: 1px solid rgba(30,34,69,.1); border-radius: 14px; padding: 12px; min-width: 0; }
+.commute-neighborhood-card h3 { margin: 0 0 6px; font-size: 15px; }
+.commute-neighborhood-card p { margin: 5px 0; color: var(--ink-soft); font-size: 12px; }
 .compare-rate input { width: 100%; }
 .compare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .compare-card { min-width: 0; }
@@ -316,6 +328,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
   .tab-pane { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .budget-panel { position: static; }
   .compare-grid, .compare-intro { grid-template-columns: 1fr; }
+  .commute-neighborhood-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .compare-table thead { display: none; }
   .compare-table, .compare-table tbody, .compare-table tr, .compare-table td, .compare-table tbody th { display: block; width: 100%; }
   .compare-table tr { padding: 10px 0; border-bottom: 1px solid rgba(30,34,69,.1); }
@@ -328,5 +341,6 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
   .budget-card { padding: 17px; }
   .budget-card-head { flex-wrap: wrap; }
   .budget-terms { font-size: 17px; }
+  .commute-neighborhood-grid { grid-template-columns: 1fr; }
   .trend-scroll-hint { display: block; }
 }

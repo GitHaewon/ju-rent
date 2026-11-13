@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, cardToContract, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
+import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, cardToContract, commuteDetail, commuteLabel, commuteRange, integerMoney, priceDifference, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import type { BudgetRecommendation } from './types'
 
 const card: BudgetRecommendation = {
@@ -53,5 +53,25 @@ describe('budget and comparison screen copy', () => {
       campus: '효자동권', housing_type: 'oneroom', area: 26.48,
       deposit: 501, monthly: 36, construction_year: null, rate_pct: 5,
     })
+  })
+
+  it('shows the reviewed minimum to rounded median stop range and missing interval', () => {
+    expect(commuteRange(6, 14.5)).toBe('버스 정류장 6~15개')
+    expect(commuteRange(5, 5.2)).toBe('버스 정류장 5개')
+    const bus = { campus_area: false, campus_adjacent: false, min_stops: 6,
+      median_stops: 14.5, boarding_stops: 10, direct_routes: 3, interval_min: null }
+    expect(commuteLabel(bus)).toBe('버스 정류장 6~15개')
+    expect(commuteDetail(bus)).toBe('직행 3개 노선, 배차 정보 없음')
+    expect(commuteLabel({ ...bus, campus_adjacent: true })).toBe('캠퍼스 바로 옆')
+    expect(commuteLabel({ ...bus, campus_area: true })).toBe('캠퍼스 주변')
+  })
+
+  it('hands off the selected commute dong and school and displays price direction', () => {
+    const commute = { campus_area: false, campus_adjacent: false, min_stops: 2,
+      median_stops: 5, boarding_stops: 17, direct_routes: 4, interval_min: 16 }
+    expect(cardToContract({ ...card, dong: '서신동', commute }, '효자동권', 5, '전주대학교'))
+      .toMatchObject({ dong: '서신동', school: '전주대학교' })
+    expect(priceDifference(-4.2)).toContain('4만 원 낮아요')
+    expect(priceDifference(4.2)).toContain('4만 원 높아요')
   })
 })

@@ -32,6 +32,12 @@ def response_items(raw):
     return items
 
 
+def missing_nodeord(items):
+    """Report sequence-number gaps without changing route stop ordering."""
+    numbers = {int(item.findtext("nodeord")) for item in items}
+    return [number for number in range(1, max(numbers, default=0) + 1) if number not in numbers]
+
+
 def write_json(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -115,10 +121,32 @@ def collect_route_info():
     return data
 
 
+def audit_nodeord():
+    """Inspect cached route-stop bytes only; preserve historical API call counts."""
+    route_ids = json.loads(DISCOVERY.read_text(encoding="utf-8"))["route_ids"]
+    audit = json.loads(ROUTE_STOPS_AUDIT.read_text(encoding="utf-8"))
+    missing = {}
+    for route_id in route_ids:
+        path = ROOT / "data/raw/bus/tago" / f"route_stops_{route_id}.xml"
+        gaps = missing_nodeord(response_items(path.read_bytes()))
+        if gaps:
+            missing[route_id] = gaps
+    audit["nodeord_checked_route_count"] = len(route_ids)
+    audit["missing_nodeord_by_route"] = missing
+    audit["nodeord_gap_note"] = "nodeord 순으로 정렬한 뒤 배열 위치 차이로 정류장 수를 계산하므로 결과 영향 없음"
+    write_json(ROUTE_STOPS_AUDIT, audit)
+    return audit
+
+
 def main():
-    actions = {"stop_routes": collect_stop_routes, "route_stops": collect_route_stops, "route_info": collect_route_info}
+    actions = {
+        "stop_routes": collect_stop_routes,
+        "route_stops": collect_route_stops,
+        "route_info": collect_route_info,
+        "audit_nodeord": audit_nodeord,
+    }
     if len(sys.argv) != 2 or sys.argv[1] not in actions:
-        raise SystemExit("Usage: collect_tago_routes.py stop_routes|route_stops|route_info")
+        raise SystemExit("Usage: collect_tago_routes.py stop_routes|route_stops|route_info|audit_nodeord")
     result = actions[sys.argv[1]]()
     print(json.dumps({key: value for key, value in result.items() if not isinstance(value, list)}, ensure_ascii=True))
 

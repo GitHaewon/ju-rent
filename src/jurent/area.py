@@ -11,7 +11,7 @@ from pathlib import Path
 from statistics import median
 
 from src import analyze_rentals as audit
-from src.jurent import compare, engine
+from src.jurent import commute, compare, engine
 from src.jurent.data import (
     AGE_BANDS,
     APARTMENT_MAX_AREA_SQM,
@@ -22,7 +22,7 @@ from src.jurent.data import (
 )
 
 HOUSING_TYPES = ("oneroom", "officetel", "apartment")
-PRIORITIES = ("cheap", "new", "large")
+PRIORITIES = ("cheap", "new", "large", "commute")
 OUT = Path(__file__).resolve().parents[2] / "outputs" / "compare"
 AGE_ORDER = {name: index for index, name in enumerate(AGE_BANDS)}
 
@@ -58,6 +58,23 @@ def recent_deals(campus: str, housing: str, min_area: float) -> list[dict]:
     return _eligible_rows(campus, housing, min_area, engine.RECENT_START)
 
 
+def commute_deals(campus: str, school: str, housing: str, min_area: float) -> list[dict]:
+    """Use the D-027 filter in the campus and school-specific commute dongs."""
+    _validate_scope(campus, housing, min_area)
+    dongs = set(audit.CAMPUS_AREAS[campus]["dongs"])
+    dongs.update(row["dong"] for row in commute.commute_rows(campus, school))
+    source = APARTMENT_PROCESSED if housing == "apartment" else PROCESSED
+    kinds = engine.ONEROOM_TYPES if housing == "oneroom" else {housing}
+    minimum = Fraction(str(min_area))
+    return [
+        row for row in load_processed(source)
+        if row["법정동"] in dongs and row["주택유형"] in kinds
+        and row["계약구분"] in {"신규", "미기재"}
+        and engine.RECENT_START <= row["계약일"] <= engine.DATA_END
+        and Fraction(str(row["면적"])) >= minimum
+    ]
+
+
 def _median(rows: list[dict], field: str) -> Fraction:
     return median(Fraction(str(row[field])) for row in rows)
 
@@ -79,12 +96,16 @@ def _price_summary(rows: list[dict], rate: float) -> dict:
 def budget_search(
     campus: str, deposit: float, monthly: float, min_area: float = 15,
     housing: str | None = None, priority: str = "cheap", rate_pct: float | None = None,
+    scope: str = "commute", school: str | None = None,
 ) -> dict:
     """Recommend sufficiently sampled legal-dong/type/age groups within a budget."""
     if campus not in audit.CAMPUS_AREAS or (housing is not None and housing not in HOUSING_TYPES):
         raise ValueError("Unknown campus area or housing type")
     if priority not in PRIORITIES:
         raise ValueError("Unknown priority")
+    if scope not in {"campus", "commute"} or (scope == "campus" and priority == "commute"):
+        raise ValueError("Unknown budget scope or priority")
+    selected_school = commute.choose_school(campus, school) if scope == "commute" else None
     if not math.isfinite(deposit) or deposit < 0:
         raise ValueError("Deposit budget must be nonnegative")
     if not math.isfinite(monthly) or monthly < 0:
@@ -94,12 +115,22 @@ def budget_search(
     if housing is not None:
         _validate_scope(campus, housing, min_area)
     rate = _rate(rate_pct)
+    commute_info = commute.commute_by_dong(campus, selected_school) if selected_school else {}
     groups: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
+    campus_medians = {}
     for kind in (housing,) if housing else HOUSING_TYPES:
         if kind != "apartment" and min_area > audit.MAX_AREA_SQM:
             continue
         kind_min_area = max(min_area, APARTMENT_MIN_AREA_SQM) if kind == "apartment" else min_area
-        for row in recent_deals(campus, kind, kind_min_area):
+        campus_rows = recent_deals(campus, kind, kind_min_area)
+        if scope == "commute" and campus_rows:
+            campus_medians[kind] = median(
+                engine.converted_monthly(row["보증금"], row["월세"], rate) for row in campus_rows
+            )
+        source_rows = campus_rows if scope == "campus" else commute_deals(
+            campus, selected_school, kind, kind_min_area
+        )
+        for row in source_rows:
             groups[row["법정동"], kind, row["경과연수구간"]].append(row)
 
     budget_deposit = Fraction(str(deposit))
@@ -135,13 +166,39 @@ def budget_search(
             **typical, "area_median_sqm": _rounded(area_median),
             "typical_terms_note": "보증금과 월세 각각의 중간값이며 한 거래의 조건은 아니에요.",
         }
-        primary = {"cheap": converted_median, "new": AGE_ORDER[age], "large": -area_median}[priority]
+        if scope == "commute":
+            bus = commute_info.get(dong)
+            campus_area = dong in audit.CAMPUS_AREAS[campus]["dongs"]
+            result["commute"] = {
+                "campus_area": campus_area,
+                "campus_adjacent": bus["campus_adjacent"] if bus else False,
+                "min_stops": bus["min_stops"] if bus else None,
+                "median_stops": bus["median_stops"] if bus else None,
+                "boarding_stops": bus["boarding_stops"] if bus else None,
+                "direct_routes": bus["direct_routes"] if bus else None,
+                "interval_min": bus["interval_min"] if bus else None,
+            }
+            baseline = campus_medians.get(kind)
+            result["campus_price_difference_10k_krw"] = (
+                round(float(converted_median - baseline), 2) if baseline is not None else None
+            )
+        if priority == "commute":
+            primary = (
+                0 if result["commute"]["campus_area"] else 1,
+                result["commute"]["min_stops"] or 0,
+                result["commute"]["median_stops"] or 0,
+            )
+        else:
+            primary = {"cheap": converted_median, "new": AGE_ORDER[age], "large": -area_median}[priority]
         ranked.append(((primary, -share, -n, dong, kind, AGE_ORDER[age]), result))
     ranked.sort(key=lambda pair: pair[0])
+    input_values = {"campus": campus, "deposit_10k_krw": deposit,
+                    "monthly_10k_krw": monthly, "min_area_sqm": min_area,
+                    "housing_type": housing, "priority": priority}
+    if scope == "commute":
+        input_values.update(scope=scope, school=selected_school)
     return {
-        "input": {"campus": campus, "deposit_10k_krw": deposit,
-                  "monthly_10k_krw": monthly, "min_area_sqm": min_area,
-                  "housing_type": housing, "priority": priority},
+        "input": input_values,
         "rate_pct": rate, "data_as_of": engine.DATA_END,
         "total_combinations": len(groups), "total_deals": sum(map(len, groups.values())),
         "excluded_counts": excluded,
@@ -149,7 +206,27 @@ def budget_search(
     }
 
 
-def campus_compare(rate_pct: float | None = None) -> dict:
+def commute_neighborhoods(campus: str, school: str, rate: float) -> list[dict]:
+    """Show D-036 one-room typical terms for each school-specific commute dong."""
+    bus_rows = commute.commute_rows(campus, school)
+    deals = commute_deals(campus, school, "oneroom", 15)
+    grouped = defaultdict(list)
+    for row in deals:
+        grouped[row["법정동"]].append(row)
+    result = []
+    for bus in bus_rows:
+        rows = grouped[bus["dong"]]
+        typical = _price_summary(rows, rate) if len(rows) >= engine.MIN_SAMPLE else None
+        result.append({
+            **bus, "n": len(rows), "sample_note": "표본 부족" if len(rows) < engine.MIN_SAMPLE else "",
+            "quantiles_10k_krw": typical["quantiles_10k_krw"] if typical else None,
+            "deposit_median_10k_krw": typical["deposit_median_10k_krw"] if typical else None,
+            "monthly_median_10k_krw": typical["monthly_median_10k_krw"] if typical else None,
+        })
+    return result
+
+
+def campus_compare(rate_pct: float | None = None, school: str | None = None) -> dict:
     """Return D-043 recent area bands and annual one-room price trend."""
     rate = _rate(rate_pct)
     area_bands = []
@@ -182,8 +259,16 @@ def campus_compare(rate_pct: float | None = None) -> dict:
                 "converted_median_10k_krw": engine.quantiles(values)["p50"] if values else None,
                 "sample_note": "표본 부족" if len(chosen) < engine.MIN_SAMPLE else "",
             })
-    return {"rate_pct": rate, "data_as_of": engine.DATA_END,
-            "area_bands": area_bands, "yearly_trend": trend}
+    selected_school = commute.choose_school("효자동권", school)
+    return {
+        "rate_pct": rate, "data_as_of": engine.DATA_END,
+        "area_bands": area_bands, "yearly_trend": trend,
+        "commute_neighborhoods": {
+            "효자동권": commute_neighborhoods("효자동권", selected_school, rate),
+            "전북대권": commute_neighborhoods("전북대권", "전북대학교", rate),
+        },
+        "commute_school": selected_school,
+    }
 
 
 def write_reference_outputs() -> tuple[Path, Path, Path]:
@@ -215,7 +300,8 @@ def write_reference_outputs() -> tuple[Path, Path, Path]:
     example = {
         "criteria": {"deposit_10k_krw": 500, "monthly_10k_krw": 35,
                      "min_area_sqm": 15, "priority": "cheap", "rate_pct": 5},
-        "results": {campus: budget_search(campus, 500, 35, 15, priority="cheap", rate_pct=5)
+        "results": {campus: budget_search(campus, 500, 35, 15, priority="cheap", rate_pct=5,
+                                           scope="campus")
                     for campus in audit.CAMPUS_AREAS},
     }
     example_path = OUT / "budget_example.json"
@@ -223,5 +309,24 @@ def write_reference_outputs() -> tuple[Path, Path, Path]:
     return bands_path, trend_path, example_path
 
 
+def write_commute_reference_output() -> Path:
+    """Persist the fixed-rate N-038 school-specific commute example."""
+    OUT.mkdir(parents=True, exist_ok=True)
+    example = {
+        "criteria": {"deposit_10k_krw": 500, "monthly_10k_krw": 35,
+                     "min_area_sqm": 15, "priority": "cheap", "rate_pct": 5,
+                     "scope": "commute"},
+        "results": {
+            campus: budget_search(campus, 500, 35, 15, priority="cheap", rate_pct=5,
+                                  scope="commute")
+            for campus in audit.CAMPUS_AREAS
+        },
+    }
+    path = OUT / "budget_commute_example.json"
+    path.write_text(json.dumps(example, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return path
+
+
 if __name__ == "__main__":
     write_reference_outputs()
+    write_commute_reference_output()

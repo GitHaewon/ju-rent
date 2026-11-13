@@ -1,4 +1,4 @@
-"""Add official bus and legal-dong raw file hashes to data/audit/manifest.json."""
+"""Track official bus and legal-dong raw hashes separately from rental CSVs."""
 
 import hashlib
 import json
@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data/raw"
-MANIFEST = ROOT / "data/audit/manifest.json"
+BUS_MANIFEST = ROOT / "data/audit/bus_manifest.json"
 SOURCES = {
     "bus_tago": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
     "bus_gw": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
@@ -37,12 +37,10 @@ def new_entries(raw_root=RAW):
     return entries
 
 
-def build_manifest(manifest=MANIFEST, raw_root=RAW):
-    existing = json.loads(manifest.read_text(encoding="utf-8"))
-    preserved = [entry for entry in existing if entry.get("type") not in SOURCES]
+def build_manifest(manifest=BUS_MANIFEST, raw_root=RAW):
     bus_entries = new_entries(raw_root)
-    manifest.write_text(json.dumps([*preserved, *bus_entries], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return {"existing_non_bus_entries": len(preserved), "new_bus_and_boundary_entries": len(bus_entries)}
+    manifest.write_text(json.dumps(bus_entries, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return {"bus_and_boundary_entries": len(bus_entries)}
 
 
 if __name__ == "__main__":

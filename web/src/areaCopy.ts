@@ -36,11 +36,39 @@ export function typicalRange(p25: number, p75: number): string {
   return `보통 ${integerMoney(p25)}~${integerMoney(p75)}만 원`
 }
 
-export function cardToContract(card: BudgetRecommendation, campus: string, rate_pct: number): ContractInput {
-  return {
+export function commuteRange(minimum: number, median: number): string {
+  const rounded = Math.round(median)
+  return `버스 정류장 ${minimum === rounded ? minimum : `${minimum}~${rounded}`}개`
+}
+
+export function commuteLabel(commute: NonNullable<BudgetRecommendation['commute']>): string {
+  if (commute.campus_area) return '캠퍼스 주변'
+  if (commute.campus_adjacent) return '캠퍼스 바로 옆'
+  return commuteRange(commute.min_stops!, commute.median_stops!)
+}
+
+export function commuteDetail(commute: NonNullable<BudgetRecommendation['commute']>): string {
+  if (commute.campus_area) return '학교 주변 법정동이에요'
+  return `직행 ${commute.direct_routes}개 노선, ${commute.interval_min === null ? '배차 정보 없음' : `가장 자주 오는 버스 ${commute.interval_min}분마다`}`
+}
+
+export function priceDifference(value: number | null | undefined): string {
+  if (value === null || value === undefined) return '캠퍼스 주변 가격 비교 정보 없음'
+  const amount = Math.round(Math.abs(value))
+  if (amount === 0) return '캠퍼스 주변과 보통 환산 월세가 비슷해요'
+  return `캠퍼스 주변보다 보통 환산 월세 ${amount}만 원 ${value < 0 ? '낮아요' : '높아요'}`
+}
+
+export function cardToContract(card: BudgetRecommendation, campus: string, rate_pct: number, school?: string): ContractInput {
+  const values: ContractInput = {
     campus, housing_type: card.housing_type, area: card.area_median_sqm,
     deposit: Math.round(card.deposit_median_10k_krw),
     monthly: Math.round(card.monthly_median_10k_krw),
     construction_year: null, rate_pct,
   }
+  if (card.commute && school) {
+    values.school = school
+    values.dong = card.commute.campus_area ? null : card.dong
+  }
+  return values
 }
