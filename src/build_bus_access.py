@@ -4,6 +4,7 @@ import csv
 import hashlib
 import json
 import math
+import statistics
 import sys
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
@@ -336,6 +337,57 @@ def calculate_direct_options(mapped_stops, route_paths, route_numbers, campus_st
     return sorted(options, key=lambda row: (row["campus"], row["emd_cd"], row["stop_count"], row["route_id"]))
 
 
+def boarding_options_for_route(route_id, route_no, stop_ids, dong_by_stop, campus_stop_ids):
+    """Find each boarding stop's shortest school-bound segment on one route variant."""
+    best_by_stop = {}
+    for campus, targets in campus_stop_ids.items():
+        for target_index, target_id in enumerate(stop_ids):
+            if target_id not in targets:
+                continue
+            for origin_index in range(target_index):
+                origin_id = stop_ids[origin_index]
+                dong = dong_by_stop.get(origin_id)
+                if not dong or origin_id == target_id:
+                    continue
+                count = target_index - origin_index
+                key = (campus, dong, origin_id)
+                current = best_by_stop.get(key)
+                if current is None or (count, target_id) < (current["stop_count"], current["campus_stop_id"]):
+                    best_by_stop[key] = {
+                        "campus": campus,
+                        "emd_cd": dong,
+                        "origin_stop_id": origin_id,
+                        "stop_count": count,
+                        "route_no": route_no,
+                        "route_id": route_id,
+                        "campus_stop_id": target_id,
+                    }
+    return list(best_by_stop.values())
+
+
+def calculate_boarding_stops(mapped_stops, route_paths, route_numbers, campus_stop_ids=CONFIRMED_CAMPUS_STOP_IDS):
+    """Keep one minimum per physical boarding stop across all direct routes."""
+    dong_by_stop = {row["stop_id"]: row["emd_cd"] for row in mapped_stops if row["emd_cd"]}
+    best_by_stop = {}
+    for route_id, path in route_paths.items():
+        route_no = route_numbers.get(route_id)
+        if not route_no:
+            raise ValueError(f"Route ID missing from TAGO route list: {route_id}")
+        for option in boarding_options_for_route(
+            route_id, route_no, read_route_stops(path), dong_by_stop, campus_stop_ids
+        ):
+            key = (option["campus"], option["emd_cd"], option["origin_stop_id"])
+            current = best_by_stop.get(key)
+            rank = (option["stop_count"], option["route_no"], option["route_id"], option["campus_stop_id"])
+            if current is None or rank < (
+                current["stop_count"], current["route_no"], current["route_id"], current["campus_stop_id"]
+            ):
+                best_by_stop[key] = option
+    return sorted(best_by_stop.values(), key=lambda row: (
+        row["campus"], row["emd_cd"], row["stop_count"], row["origin_stop_id"]
+    ))
+
+
 def build_t4_preliminary():
     mapped = list(csv.DictReader((OUTPUT_DIR / "stops_by_dong.csv").open(encoding="utf-8", newline="")))
     reviewed = list(csv.DictReader((OUTPUT_DIR / "campus_stops_candidates.csv").open(encoding="utf-8", newline="")))
@@ -345,9 +397,17 @@ def build_t4_preliminary():
             raise ValueError(f"Confirmed stop CSV differs from fixed IDs: {campus}")
     route_ids = json.loads((AUDIT_DIR / "bus_route_discovery.json").read_text(encoding="utf-8"))["route_ids"]
     route_paths = {route_id: TAGO_RAW / f"route_stops_{route_id}.xml" for route_id in route_ids}
-    options = calculate_direct_options(mapped, route_paths, load_route_numbers(TAGO_RAW / "routes_city_35010.xml"))
+    route_numbers = load_route_numbers(TAGO_RAW / "routes_city_35010.xml")
+    options = calculate_direct_options(mapped, route_paths, route_numbers)
+    boarding_stops = calculate_boarding_stops(mapped, route_paths, route_numbers)
+    AUDIT_DIR.mkdir(parents=True, exist_ok=True)
+    fields = ["campus", "emd_cd", "origin_stop_id", "stop_count", "route_no", "route_id", "campus_stop_id"]
+    with (AUDIT_DIR / "bus_boarding_stops.csv").open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(boarding_stops)
     route_ids = sorted({row["route_id"] for row in options})
-    audit = {"max_stop_count_inclusive": 20, "campus_stop_ids_status": "확정", "confirmed_stop_count_by_campus": {campus: len(ids) for campus, ids in CONFIRMED_CAMPUS_STOP_IDS.items()}, "direct_route_ids": route_ids, "direct_route_variant_count": len(route_ids), "dong_campus_pairs": len({(row["campus"], row["emd_cd"]) for row in options}), "options": options}
+    audit = {"max_stop_count_inclusive": 20, "boarding_median_scope": "동 안의 학교 방향 직행 정류소 전체(20정류소 초과도 포함), 정류소별 최솟값", "boarding_stop_count": len(boarding_stops), "campus_stop_ids_status": "확정", "confirmed_stop_count_by_campus": {campus: len(ids) for campus, ids in CONFIRMED_CAMPUS_STOP_IDS.items()}, "direct_route_ids": route_ids, "direct_route_variant_count": len(route_ids), "dong_campus_pairs": len({(row["campus"], row["emd_cd"]) for row in options}), "options": options}
     (AUDIT_DIR / "bus_direct_options_preliminary.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in audit.items() if not isinstance(value, list)}, ensure_ascii=True))
 
@@ -366,15 +426,24 @@ def read_route_interval(path):
     return int(interval) if interval > 0 and interval.is_integer() else None
 
 
-def aggregate_commute(options, intervals, dong_details):
+def aggregate_commute(options, intervals, dong_details, boarding_stops):
     """Group direction-safe route variants by campus and legal-dong code."""
     grouped = {}
     for option in options:
         grouped.setdefault((option["campus"], option["emd_cd"]), []).append(option)
+    boarding_by_pair = {}
+    for stop in boarding_stops:
+        boarding_by_pair.setdefault((stop["campus"], stop["emd_cd"]), []).append(int(stop["stop_count"]))
     rows = []
     for (campus, code), variants in grouped.items():
         variants.sort(key=lambda row: (row["stop_count"], row["route_no"], row["route_id"]))
         best = variants[0]
+        stop_counts = boarding_by_pair.get((campus, code), [])
+        if not stop_counts or min(stop_counts) != best["stop_count"]:
+            raise ValueError(f"Boarding stop minimum disagrees with direct route minimum: {campus} {code}")
+        median_stops = statistics.median(stop_counts)
+        if isinstance(median_stops, float) and median_stops.is_integer():
+            median_stops = int(median_stops)
         known = [intervals[row["route_id"]] for row in variants if intervals[row["route_id"]] is not None]
         missing = sorted({row["route_id"] for row in variants if intervals[row["route_id"]] is None})
         details = dong_details[code]
@@ -386,6 +455,8 @@ def aggregate_commute(options, intervals, dong_details):
                 "gu": details["gu"],
                 "campus_area": "캠퍼스 주변" if code in CAMPUS_AREA_CODES[campus] else "통학권 후보",
                 "min_stop_count": best["stop_count"],
+                "median_stops": median_stops,
+                "boarding_stops": len(stop_counts),
                 "direct_route_count": len({row["route_no"] for row in variants}),
                 "direct_route_numbers": ",".join(sorted({row["route_no"] for row in variants})),
                 "direct_route_variant_count": len(variants),
@@ -410,6 +481,7 @@ def write_commute_dong_list(rows, docs_dir=DOCS_DIR):
         "",
         "`outputs/bus/commute_access.csv`를 최소 정류장 수 순으로 정리했다. **사람이 확정한 캠퍼스 정류소 ID만** 사용했다. 동→캠퍼스 직행 수치는 N-037 미검증이다.",
         "배차 값이 없는 직행 노선이 하나라도 있으면 최단 평일 배차 간격은 `배차 정보 없음`으로 표시한다. 캠퍼스 주변 동(D-017)은 아래 통학권 동 목록에서 제외했다.",
+        "통학권 판정은 기존처럼 최솟값 20정류장 이하이다. 범위의 중앙값은 그 동의 학교 방향 직행 탑승 정류소마다 가능한 노선 중 최솟값을 구한 뒤 계산한다. 중앙값에는 20정류장을 넘는 탑승 정류소도 포함한다.",
         "",
     ]
     for campus in CAMPUS_PATTERNS:
@@ -418,18 +490,76 @@ def write_commute_dong_list(rows, docs_dir=DOCS_DIR):
             [
                 f"## {campus} · 통학권 동 후보 {len(selected)}곳",
                 "",
-                "| 법정동 코드 | 동 | 최소 정류장 수 | 직행 노선 수 | 최단 평일 배차 간격(분) | 상태 |",
-                "|---|---|---:|---:|---:|---|",
+                "| 법정동 코드 | 동 | 최소 정류장 수 | 최소~중앙값 범위(정류장) | 직행 노선 수 | 최단 평일 배차 간격(분) | 상태 |",
+                "|---|---|---:|---:|---:|---:|---|",
             ]
         )
         for row in selected:
             interval = row["weekday_interval_min"]
             lines.append(
-                f"| {row['emd_cd']} | {row['emd_nm']} | {row['min_stop_count']} | {row['direct_route_count']} | {interval} | 후보·미검증 |"
+                f"| {row['emd_cd']} | {row['emd_nm']} | {row['min_stop_count']} | {row['min_stop_count']}~{row['median_stops']} | {row['direct_route_count']} | {interval} | 후보·미검증 |"
             )
         lines.append("")
     lines.extend(["원자료와 판정 방법: `data/raw/bus/tago/`, `outputs/bus/stops_by_dong.csv`, `outputs/bus/commute_access.csv`.", ""])
     (docs_dir / "commute_dongs.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def route_stop_name_sequence(option):
+    """Read the exact cached route segment that produced a minimum."""
+    path = TAGO_RAW / f"route_stops_{option['route_id']}.xml"
+    root = ET.fromstring(path.read_bytes())
+    if root.findtext(".//resultCode") != "00":
+        raise ValueError(f"TAGO route stops are not successful: {path.name}")
+    items = sorted(root.findall(".//item"), key=lambda item: int(item.findtext("nodeord")))
+    for index, item in enumerate(items):
+        target_index = index + option["stop_count"]
+        if (
+            item.findtext("nodeid") == option["origin_stop_id"]
+            and target_index < len(items)
+            and items[target_index].findtext("nodeid") == option["campus_stop_id"]
+        ):
+            names = [stop.findtext("nodenm") for stop in items[index:target_index + 1]]
+            if not all(names):
+                raise ValueError(f"TAGO route has missing stop names: {path.name}")
+            return names
+    raise ValueError(f"Route segment not found in cached TAGO response: {path.name}")
+
+
+def write_commute_examples(options, rows):
+    """Save traceable route sequences for the three requested comparisons."""
+    examples = []
+    for campus, dong in (
+        ("전북대학교", "효자동3가"),
+        ("전북대학교", "서신동"),
+        ("전주대학교", "덕진동2가"),
+    ):
+        matching_rows = [row for row in rows if row["campus"] == campus and row["emd_nm"] == dong]
+        if len(matching_rows) != 1:
+            raise ValueError(f"Expected one commute result for {campus} {dong}")
+        row = matching_rows[0]
+        matching_options = [option for option in options if option["campus"] == campus and option["emd_cd"] == row["emd_cd"]]
+        best = min(matching_options, key=lambda option: (
+            option["stop_count"], option["route_no"], option["route_id"], option["origin_stop_id"]
+        ))
+        if best["stop_count"] != row["min_stop_count"]:
+            raise ValueError(f"Route example minimum differs from commute output: {campus} {dong}")
+        examples.append({
+            "campus": campus,
+            "emd_cd": row["emd_cd"],
+            "emd_nm": dong,
+            "min_stop_count": row["min_stop_count"],
+            "median_stops": row["median_stops"],
+            "boarding_stops": row["boarding_stops"],
+            "route_no": best["route_no"],
+            "route_id": best["route_id"],
+            "origin_stop_id": best["origin_stop_id"],
+            "campus_stop_id": best["campus_stop_id"],
+            "ordered_stop_names": route_stop_name_sequence(best),
+            "route_source": source_file(TAGO_RAW / f"route_stops_{best['route_id']}.xml"),
+        })
+    (AUDIT_DIR / "bus_commute_examples.json").write_text(
+        json.dumps(examples, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def build_t4():
@@ -439,23 +569,27 @@ def build_t4():
     intervals = {route_id: read_route_interval(TAGO_RAW / f"route_info_{route_id}.xml") for route_id in route_ids}
     mapped = list(csv.DictReader((OUTPUT_DIR / "stops_by_dong.csv").open(encoding="utf-8", newline="")))
     dong_details = {row["emd_cd"]: {"emd_nm": row["emd_nm"], "gu": row["gu"]} for row in mapped if row["emd_cd"]}
-    rows = aggregate_commute(options, intervals, dong_details)
+    with (AUDIT_DIR / "bus_boarding_stops.csv").open(encoding="utf-8", newline="") as handle:
+        boarding_stops = list(csv.DictReader(handle))
+    rows = aggregate_commute(options, intervals, dong_details, boarding_stops)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    fields = ["campus", "emd_cd", "emd_nm", "gu", "campus_area", "min_stop_count", "direct_route_count", "direct_route_numbers", "direct_route_variant_count", "weekday_interval_min", "known_min_interval_min", "interval_status", "routes_missing_interval", "origin_stop_id", "campus_stop_id", "basis_date", "campus_stops_status"]
+    fields = ["campus", "emd_cd", "emd_nm", "gu", "campus_area", "min_stop_count", "median_stops", "boarding_stops", "direct_route_count", "direct_route_numbers", "direct_route_variant_count", "weekday_interval_min", "known_min_interval_min", "interval_status", "routes_missing_interval", "origin_stop_id", "campus_stop_id", "basis_date", "campus_stops_status"]
     with (OUTPUT_DIR / "commute_access.csv").open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         writer.writerows(rows)
     write_commute_dong_list(rows)
+    write_commute_examples(options, rows)
     audit = {
         "basis_date": "2026-11-13",
         "campus_stop_ids_status": "확정",
         "confirmed_stop_count_by_campus": {campus: len(ids) for campus, ids in CONFIRMED_CAMPUS_STOP_IDS.items()},
         "max_stop_count_inclusive": 20,
+        "boarding_median_scope": "동 안의 학교 방향 직행 정류소 전체(20정류소 초과도 포함), 정류소별 최솟값",
         "pair_count": len(rows),
         "by_campus": {campus: {"pairs": sum(row["campus"] == campus for row in rows), "commute_dongs_excluding_campus_area": len({row["emd_cd"] for row in rows if row["campus"] == campus and row["campus_area"] != "캠퍼스 주변"})} for campus in CAMPUS_PATTERNS},
         "pairs_with_incomplete_interval": sum(row["interval_status"] != "완전" for row in rows),
-        "source": {"stop_mapping": source_file(OUTPUT_DIR / "stops_by_dong.csv"), "campus_candidates": source_file(OUTPUT_DIR / "campus_stops_candidates.csv"), "direct_options": source_file(AUDIT_DIR / "bus_direct_options_preliminary.json")},
+        "source": {"stop_mapping": source_file(OUTPUT_DIR / "stops_by_dong.csv"), "campus_candidates": source_file(OUTPUT_DIR / "campus_stops_candidates.csv"), "direct_options": source_file(AUDIT_DIR / "bus_direct_options_preliminary.json"), "boarding_stops": source_file(AUDIT_DIR / "bus_boarding_stops.csv")},
     }
     (OUTPUT_DIR / "commute_access_audit.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(audit, ensure_ascii=True))

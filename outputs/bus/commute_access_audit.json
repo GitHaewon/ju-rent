@@ -7,6 +7,7 @@
     "전북대학교": 17
   },
   "max_stop_count_inclusive": 20,
+  "boarding_median_scope": "동 안의 학교 방향 직행 정류소 전체(20정류소 초과도 포함), 정류소별 최솟값",
   "pair_count": 134,
   "by_campus": {
     "전주대학교": {
@@ -30,11 +31,15 @@
     },
     "campus_candidates": {
       "path": "outputs/bus/campus_stops_candidates.csv",
-      "sha256": "f9854690500f4c4b18ed9219dd594dd3da301cb36b8d4249b5d6e3a5013d7e5d"
+      "sha256": "ad6b37661ed838beadcea6e768e7a67ce0e303c090b88669e3c42ab571b92e89"
     },
     "direct_options": {
       "path": "data/audit/bus_direct_options_preliminary.json",
-      "sha256": "aee7327911c05af77332819fba5853b01854d0058dd1a3a76201f152979174d3"
+      "sha256": "240db4a5e7e7b4ce3d9f0224c5dcdd15c94f2051339394f9913fa50cc6d91fbb"
+    },
+    "boarding_stops": {
+      "path": "data/audit/bus_boarding_stops.csv",
+      "sha256": "ede438fd73f0adf72fe94fb0cde93e93b79aa48e1e79f7a7a149db7049244f68"
     }
   }
 }

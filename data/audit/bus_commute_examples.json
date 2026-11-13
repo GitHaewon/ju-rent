@@ -1,0 +1,72 @@
+[
+  {
+    "campus": "전북대학교",
+    "emd_cd": "52111142",
+    "emd_nm": "효자동3가",
+    "min_stop_count": 5,
+    "median_stops": 13.5,
+    "boarding_stops": 40,
+    "route_no": "5001",
+    "route_id": "JUB305001574",
+    "origin_stop_id": "JUB305100809",
+    "campus_stop_id": "JUB306101044",
+    "ordered_stop_names": [
+      "서부신시가지아이파크",
+      "서신이편한세상",
+      "가련산로하가영무예다음",
+      "가련산로.원대한방병원",
+      "기린대로덕진공원",
+      "전북대학교.농협앞"
+    ],
+    "route_source": {
+      "path": "data/raw/bus/tago/route_stops_JUB305001574.xml",
+      "sha256": "1e0bd84ecaa50b73aaa873ce658233aeae53fb880467db8bcd237c1bd9c11c7f"
+    }
+  },
+  {
+    "campus": "전북대학교",
+    "emd_cd": "52111129",
+    "emd_nm": "서신동",
+    "min_stop_count": 2,
+    "median_stops": 5,
+    "boarding_stops": 17,
+    "route_no": "104",
+    "route_id": "JUB305001094",
+    "origin_stop_id": "JUB305100877",
+    "campus_stop_id": "JUB306101035",
+    "ordered_stop_names": [
+      "이마트",
+      "종합경기장",
+      "전북대학교.소나무한의원앞"
+    ],
+    "route_source": {
+      "path": "data/raw/bus/tago/route_stops_JUB305001094.xml",
+      "sha256": "060f2829486f5d461743db13af2d521d576ee9732f236379f13432ce2e74ab32"
+    }
+  },
+  {
+    "campus": "전주대학교",
+    "emd_cd": "52113106",
+    "emd_nm": "덕진동2가",
+    "min_stop_count": 6,
+    "median_stops": 14.5,
+    "boarding_stops": 10,
+    "route_no": "5002",
+    "route_id": "JUB305001575",
+    "origin_stop_id": "JUB306101042",
+    "campus_stop_id": "JUB305100609",
+    "ordered_stop_names": [
+      "가련산로하가영무예다음",
+      "서신이편한세상",
+      "서부신시가지아이파크",
+      "경찰청",
+      "대진빌딩",
+      "농소전원마을",
+      "영생고 전주대사대부고"
+    ],
+    "route_source": {
+      "path": "data/raw/bus/tago/route_stops_JUB305001575.xml",
+      "sha256": "710e60bbe62c46a13de5a23dcf9b1eb4060b3d83644e168e047386d9b413b563"
+    }
+  }
+]

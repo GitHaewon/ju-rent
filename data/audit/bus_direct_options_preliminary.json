@@ -1,5 +1,7 @@
 {
   "max_stop_count_inclusive": 20,
+  "boarding_median_scope": "동 안의 학교 방향 직행 정류소 전체(20정류소 초과도 포함), 정류소별 최솟값",
+  "boarding_stop_count": 1554,
   "campus_stop_ids_status": "확정",
   "confirmed_stop_count_by_campus": {
     "전주대학교": 12,
