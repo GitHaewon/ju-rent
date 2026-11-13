@@ -44,6 +44,7 @@
 | N-034 | 두 대학가·집 종류·면적 구간의 최근 24개월 갱신 제외 환산 월세 사분위·보통 보증금·월세·건수(r 5%) | `campus_compare.csv` 18행의 `n`·중앙값·p25·p75·보증금·월세 열 참조 (표본 부족 4행) | outputs/compare/campus_compare.csv | src/jurent/area.py | 2026-11-12 | 검증됨 (reviews/2026-11-12-예산추천-대학가비교.md) |
 | N-035 | 두 대학가의 원룸·투룸·빌라 25~35㎡ 연도별 환산 월세 중앙값 추이(r 5%) | `campus_price_trend.csv` 12행의 `n`·중앙값 열 참조 (2026은 1~10월) | outputs/compare/campus_price_trend.csv | src/jurent/area.py | 2026-11-12 | 검증됨 (reviews/2026-11-12-예산추천-대학가비교.md) |
 | N-036 | 예시 예산 500/35만 원·최소 15㎡·저렴함 순의 대학가별 추천·제외 조합 | 효자동권 전체 21·추천 6·제외 5/4/6, 전북대권 전체 21·추천 7·제외 11/1/2 (표본 부족/쏠림/예산 안 25% 미만) | outputs/compare/budget_example.json | src/jurent/area.py | 2026-11-12 | 검증됨 (reviews/2026-11-12-예산추천-대학가비교.md) |
+| N-037 | 법정동 경계 정류소 판정·캠퍼스 후보 기반 동→캠퍼스 직행(20정류소 이하) | 정류소 2,585개 중 완산·덕진 매핑 1,379개·경계 밖 1,206개; 캠퍼스 후보 전주대/전주비전대/전북대 16/9/29개; 통학권 후보 동(캠퍼스 주변 제외) 44/30/59개; 139개 캠퍼스·동 조합 중 배차 일부 결측 108개 | outputs/bus/stops_by_dong_audit.json; outputs/bus/campus_stops_candidates.csv; outputs/bus/commute_access.csv; outputs/bus/commute_access_audit.json | src/build_bus_access.py | 2026-11-13 | 미검증 (캠퍼스 정류소 사람 지도 확인 전, TAGO 배차 간격 일부 결측) |
 
 > N-001~N-007은 Codex 심층 검증 결과에서 옮긴 값이다. 저장소 이전 후 Claude Code가 스크립트를 재실행해 검증 상태를 갱신한다. 출처 파일·스크립트 경로는 저장소 정리 후 실제 경로로 수정한다.
 

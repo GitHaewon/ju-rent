@@ -1,0 +1,35 @@
+{
+  "basis_date": "2026-11-13",
+  "campus_stop_candidates_unconfirmed": true,
+  "max_stop_count_inclusive": 20,
+  "pair_count": 139,
+  "by_campus": {
+    "전주대학교": {
+      "pairs": 46,
+      "commute_dongs_excluding_campus_area": 44
+    },
+    "전주비전대학교": {
+      "pairs": 32,
+      "commute_dongs_excluding_campus_area": 30
+    },
+    "전북대학교": {
+      "pairs": 61,
+      "commute_dongs_excluding_campus_area": 59
+    }
+  },
+  "pairs_with_incomplete_interval": 108,
+  "source": {
+    "stop_mapping": {
+      "path": "outputs/bus/stops_by_dong.csv",
+      "sha256": "2df40a1828eac9dfc13fe42c2dbd9fae96223b73d113696a2de6e3473ddbbcd9"
+    },
+    "campus_candidates": {
+      "path": "outputs/bus/campus_stops_candidates.csv",
+      "sha256": "51bd89b875241912e289ab2e9c2c84616dcc5add384881d6b0c1c02e25e071b0"
+    },
+    "direct_options": {
+      "path": "data/audit/bus_direct_options_preliminary.json",
+      "sha256": "b69b305fc692708a7d87b7e35038377260095232a614508ef20a07e4a7ef6e23"
+    }
+  }
+}
