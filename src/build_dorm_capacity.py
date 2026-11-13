@@ -47,7 +47,8 @@ def read_rows(path: Path) -> list[dict[str, str]]:
     return [{header[column]: value for column, value in row.items()} for row in data[1:]]
 
 
-def main() -> None:
+def main(output_dir: Path | None = None) -> None:
+    destination = OUT if output_dir is None else output_dir
     paths = sorted(RAW.glob("14-마-1. 기숙사 수용 현황_*.xlsx"))
     if len(paths) != 2:
         raise RuntimeError("Expected the university and junior-college dormitory files")
@@ -79,12 +80,12 @@ def main() -> None:
     if len(selected) != 18 or len({(r["공시연도"], r["학교명"]) for r in selected}) != 18:
         raise RuntimeError("Expected one home-campus disclosure per school and year")
     selected.sort(key=lambda row: (int(row["공시연도"]), row["학교명"]))
-    OUT.mkdir(parents=True, exist_ok=True)
-    with (OUT / "dorm_capacity.csv").open("w", encoding="utf-8-sig", newline="") as fh:
+    destination.mkdir(parents=True, exist_ok=True)
+    with (destination / "dorm_capacity.csv").open("w", encoding="utf-8-sig", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=columns)
         writer.writeheader()
         writer.writerows(selected)
-    (OUT / "dorm_capacity_sources.json").write_text(json.dumps({
+    (destination / "dorm_capacity_sources.json").write_text(json.dumps({
         "source": "대학알리미 14-마-1. 기숙사 수용 현황",
         "source_url": "https://www.academyinfo.go.kr/main/main0830/main0830.do",
         "downloaded_on": "확인 불가",

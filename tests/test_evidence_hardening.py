@@ -25,8 +25,17 @@ def csv_rows(path):
 @pytest.fixture(scope="module")
 def counts():
     rentals.main()
-    dorm.main()
     return json.loads((ROOT / "data" / "audit" / "counts.json").read_text(encoding="utf-8"))
+
+
+@pytest.fixture(scope="module")
+def dorm_output(tmp_path_factory):
+    source_path = OUT / "dorm_capacity_sources.json"
+    original = source_path.read_bytes()
+    destination = tmp_path_factory.mktemp("dorm_capacity")
+    dorm.main(destination)
+    assert source_path.read_bytes() == original
+    return destination
 
 
 def test_n015_field_coverage_fixed():
@@ -122,9 +131,9 @@ def test_t18_half_year_sums_to_verified_sample(counts):
             assert totals[scope, entry["year"]] == entry["count"]
 
 
-def test_t12_dorm_source_and_difference(counts):
-    rows = csv_rows(OUT / "dorm_capacity.csv")
-    sources = json.loads((OUT / "dorm_capacity_sources.json").read_text(encoding="utf-8"))
+def test_t12_dorm_source_and_difference(counts, dorm_output):
+    rows = csv_rows(dorm_output / "dorm_capacity.csv")
+    sources = json.loads((dorm_output / "dorm_capacity_sources.json").read_text(encoding="utf-8"))
     assert len(rows) == 18
     assert {r["학교명"] for r in rows} == dorm.SCHOOLS
     assert {int(r["공시연도"]) for r in rows} == set(range(2021, 2027))

@@ -108,4 +108,73 @@ await expect(page.locator('#year')).toBeVisible()
 const outline = await page.locator('.switch-track').evaluate(element => getComputedStyle(element).outlineStyle)
 if (outline === 'none') throw new Error('Keyboard focus indicator is missing from the year switch')
 await context.close()
+
+async function captureArea(prefix, contextOptions) {
+  const areaContext = await browser.newContext(contextOptions)
+  for (const scenario of ['budget-hyo', 'budget-jeonbuk', 'budget-empty', 'compare']) {
+    const areaPage = await areaContext.newPage()
+    const errors = []
+    areaPage.on('pageerror', error => errors.push(error.message))
+    await areaPage.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' })
+    if (scenario === 'compare') {
+      await areaPage.getByRole('tab', { name: '대학가 비교' }).click()
+      await expect(areaPage.locator('.compare-card')).toHaveCount(2)
+      await expect(areaPage.locator('.compare-table tbody tr')).toHaveCount(18)
+      await expect(areaPage.locator('.trend-chart line[stroke-dasharray]')).toHaveCount(2)
+      await expect(areaPage.locator('.trend-grid text')).not.toHaveCount(0)
+      await expect(areaPage.locator('.trend-point-value')).toHaveCount(12)
+      await expect(areaPage.locator('.trend-values')).toHaveCount(0)
+      await expect(areaPage.locator('.compare-table thead').first()).toContainText('환산 월세(중간값)')
+      await expect(areaPage.locator('.compare-range').first()).toContainText('보통')
+    } else {
+      await areaPage.getByRole('tab', { name: '예산으로 찾기' }).click()
+      if (scenario === 'budget-jeonbuk') {
+        await areaPage.getByRole('group', { name: '예산 대학가' }).getByRole('button', { name: '전북대권' }).click()
+      } else if (scenario === 'budget-empty') {
+        await areaPage.locator('#budget-deposit').fill('0')
+        await areaPage.locator('#budget-monthly').fill('0')
+        await areaPage.locator('#budget-monthly').evaluate(element => element.blur())
+      }
+      if (scenario === 'budget-empty') {
+        await expect(areaPage.locator('.budget-empty')).toBeVisible()
+      } else {
+        await expect(areaPage.locator('.budget-card')).toHaveCount(scenario === 'budget-hyo' ? 6 : 7)
+        await expect(areaPage.locator('.budget-terms').first()).toContainText('보증금')
+        await expect(areaPage.locator('.budget-area').first()).toContainText('보통')
+      }
+      if (prefix === 'iphone14' && scenario === 'budget-hyo') {
+        await areaPage.getByRole('button', { name: '조건 접기' }).click()
+        await expect(areaPage.locator('#budget-fields')).toHaveCount(0)
+        await areaPage.getByRole('button', { name: '조건 펼치기' }).click()
+        await expect(areaPage.locator('#budget-area')).toBeVisible()
+      }
+    }
+    await areaPage.waitForTimeout(600)
+    await areaPage.screenshot({ path: resolve(out, `${prefix}-${scenario}.png`), fullPage: true, animations: 'disabled' })
+    if (errors.length) throw new Error(`${prefix}-${scenario}: ${errors.join('; ')}`)
+    await areaPage.close()
+  }
+  await areaContext.close()
+}
+
+await captureArea('desktop', { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 })
+await captureArea('iphone14', { ...devices['iPhone 14'], defaultBrowserType: undefined })
+
+const handoffContext = await browser.newContext({ viewport: { width: 1440, height: 900 } })
+const handoffPage = await handoffContext.newPage()
+await handoffPage.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' })
+const firstCardResponse = handoffPage.waitForResponse(response => response.url().endsWith('/api/budget') && response.ok())
+await handoffPage.getByRole('tab', { name: '예산으로 찾기' }).click()
+const firstCard = await firstCardResponse
+const selected = (await firstCard.json()).recommendations[0]
+const judgeRequest = handoffPage.waitForRequest(request => request.url().endsWith('/api/judge') &&
+  request.postDataJSON()?.area === selected.area_median_sqm)
+await handoffPage.locator('.budget-card').first().click()
+const passed = (await judgeRequest).postDataJSON()
+await expect(handoffPage.getByRole('tab', { name: '계약 판단' })).toHaveAttribute('aria-selected', 'true')
+if (passed.housing_type !== selected.housing_type || passed.deposit !== Math.round(selected.deposit_median_10k_krw) ||
+  passed.monthly !== Math.round(selected.monthly_median_10k_krw)) {
+  throw new Error('Budget card values were not passed to contract judgment')
+}
+await handoffContext.close()
 await browser.close()
