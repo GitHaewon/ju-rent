@@ -1,5 +1,9 @@
 """Check direction, 20-stop inclusion, minimum, and route aggregation."""
 
+import csv
+import json
+import xml.etree.ElementTree as ET
+
 from src import build_bus_access as bus
 
 
@@ -37,7 +41,43 @@ def test_missing_interval_is_not_presented_as_shortest():
     row = bus.aggregate_commute(options, {"a": 15, "b": None, "c": 25}, details)[0]
     assert row["min_stop_count"] == 2
     assert row["direct_route_count"] == 2
-    assert row["weekday_interval_min"] == ""
+    assert row["weekday_interval_min"] == "배차 정보 없음"
     assert row["known_min_interval_min"] == 15
     assert row["interval_status"] == "일부 노선 미기재"
     assert row["routes_missing_interval"] == "b"
+
+
+def test_excluded_campus_stop_is_not_used_as_destination(tmp_path):
+    excluded = "JUB305032613"
+    confirmed = "JUB305032181"
+    mapped = [{"stop_id": "origin", "emd_cd": "52111137"}]
+
+    def route_file(name, nodes):
+        root = ET.Element("response")
+        ET.SubElement(root, "resultCode").text = "00"
+        for order, node in enumerate(nodes, 1):
+            item = ET.SubElement(root, "item")
+            ET.SubElement(item, "nodeord").text = str(order)
+            ET.SubElement(item, "nodeid").text = node
+        path = tmp_path / f"{name}.xml"
+        path.write_bytes(ET.tostring(root, encoding="utf-8"))
+        return path
+
+    paths = {
+        "excluded_only": route_file("excluded_only", ["origin", excluded]),
+        "with_confirmed": route_file("with_confirmed", ["origin", excluded, confirmed]),
+    }
+    options = bus.calculate_direct_options(mapped, paths, {"excluded_only": "1", "with_confirmed": "2"})
+    assert [(row["route_id"], row["campus_stop_id"], row["stop_count"]) for row in options] == [
+        ("with_confirmed", confirmed, 2)
+    ]
+
+
+def test_saved_commute_results_use_only_confirmed_destination_ids():
+    preliminary = json.loads(
+        (bus.AUDIT_DIR / "bus_direct_options_preliminary.json").read_text(encoding="utf-8")
+    )
+    with (bus.OUTPUT_DIR / "commute_access.csv").open(encoding="utf-8", newline="") as handle:
+        final_rows = list(csv.DictReader(handle))
+    for row in [*preliminary["options"], *final_rows]:
+        assert row["campus_stop_id"] in bus.CONFIRMED_CAMPUS_STOP_IDS[row["campus"]]

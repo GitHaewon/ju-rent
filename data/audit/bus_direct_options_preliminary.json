@@ -1,11 +1,15 @@
 {
   "max_stop_count_inclusive": 20,
-  "provisional_candidate_stops": true,
+  "campus_stop_ids_status": "확정",
+  "confirmed_stop_count_by_campus": {
+    "전주대학교": 12,
+    "전주비전대학교": 9,
+    "전북대학교": 17
+  },
   "direct_route_ids": [
     "JUB305000392",
     "JUB305000393",
     "JUB305000409",
-    "JUB305000957",
     "JUB305000959",
     "JUB305000960",
     "JUB305000962",
@@ -41,7 +45,6 @@
     "JUB305001167",
     "JUB305001168",
     "JUB305001170",
-    "JUB305001172",
     "JUB305001173",
     "JUB305001174",
     "JUB305001175",
@@ -66,7 +69,6 @@
     "JUB305001280",
     "JUB305001303",
     "JUB305001304",
-    "JUB305001332",
     "JUB305001377",
     "JUB305001409",
     "JUB305001423",
@@ -75,9 +77,6 @@
     "JUB305001432",
     "JUB305001433",
     "JUB305001434",
-    "JUB305001477",
-    "JUB305001480",
-    "JUB305001481",
     "JUB305001492",
     "JUB305001493",
     "JUB305001519",
@@ -154,7 +153,6 @@
     "JUB305001765",
     "JUB305001767",
     "JUB305001768",
-    "JUB305001769",
     "JUB305001773",
     "JUB305001778",
     "JUB305001823",
@@ -181,8 +179,8 @@
     "JUB305300262",
     "JUB305300263"
   ],
-  "direct_route_variant_count": 178,
-  "dong_campus_pairs": 139,
+  "direct_route_variant_count": 171,
+  "dong_campus_pairs": 134,
   "options": [
     {
       "campus": "전북대학교",
@@ -412,20 +410,20 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111105",
-      "route_id": "JUB305001660",
-      "route_no": "999",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100643",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111105",
       "route_id": "JUB305200940",
       "route_no": "1994",
       "stop_count": 8,
       "origin_stop_id": "JUB305100643",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111105",
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 9,
+      "origin_stop_id": "JUB305100643",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -513,18 +511,18 @@
       "emd_cd": "52111105",
       "route_id": "JUB305200601",
       "route_no": "79",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB305100643",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111105",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 16,
+      "stop_count": 17,
       "origin_stop_id": "JUB305100657",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -601,24 +599,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111107",
-      "route_id": "JUB305001162",
-      "route_no": "550",
-      "stop_count": 6,
-      "origin_stop_id": "JUB305100683",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111107",
-      "route_id": "JUB305001163",
-      "route_no": "550",
-      "stop_count": 6,
-      "origin_stop_id": "JUB305100683",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111107",
       "route_id": "JUB305001183",
       "route_no": "559",
       "stop_count": 6,
@@ -799,6 +779,24 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111107",
+      "route_id": "JUB305001162",
+      "route_no": "550",
+      "stop_count": 7,
+      "origin_stop_id": "JUB305100683",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111107",
+      "route_id": "JUB305001163",
+      "route_no": "550",
+      "stop_count": 7,
+      "origin_stop_id": "JUB305100683",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111107",
       "route_id": "JUB305001575",
       "route_no": "5002",
       "stop_count": 7,
@@ -817,15 +815,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111107",
-      "route_id": "JUB305001660",
-      "route_no": "999",
-      "stop_count": 7,
-      "origin_stop_id": "JUB305100683",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111107",
       "route_id": "JUB305200940",
       "route_no": "1994",
       "stop_count": 7,
@@ -835,20 +824,20 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111107",
-      "route_id": "JUB305200601",
-      "route_no": "79",
-      "stop_count": 10,
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 8,
       "origin_stop_id": "JUB305100683",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111107",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 15,
+      "route_id": "JUB305200601",
+      "route_no": "79",
+      "stop_count": 11,
       "origin_stop_id": "JUB305100683",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -936,36 +925,9 @@
       "emd_cd": "52111108",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 15,
+      "stop_count": 16,
       "origin_stop_id": "JUB305100677",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111108",
-      "route_id": "JUB305001619",
-      "route_no": "119",
-      "stop_count": 20,
-      "origin_stop_id": "JUB305100677",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111108",
-      "route_id": "JUB305001625",
-      "route_no": "119",
-      "stop_count": 20,
-      "origin_stop_id": "JUB305100677",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111108",
-      "route_id": "JUB305001626",
-      "route_no": "119",
-      "stop_count": 20,
-      "origin_stop_id": "JUB305100677",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -984,24 +946,6 @@
       "stop_count": 9,
       "origin_stop_id": "JUB305100634",
       "campus_stop_id": "JUB306101035"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111111",
-      "route_id": "JUB305001162",
-      "route_no": "550",
-      "stop_count": 7,
-      "origin_stop_id": "JUB305100602",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111111",
-      "route_id": "JUB305001163",
-      "route_no": "550",
-      "stop_count": 7,
-      "origin_stop_id": "JUB305100602",
-      "campus_stop_id": "JUB306101017"
     },
     {
       "campus": "전북대학교",
@@ -1056,6 +1000,24 @@
       "stop_count": 8,
       "origin_stop_id": "JUB305100602",
       "campus_stop_id": "JUB306101035"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111111",
+      "route_id": "JUB305001162",
+      "route_no": "550",
+      "stop_count": 8,
+      "origin_stop_id": "JUB305100602",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111111",
+      "route_id": "JUB305001163",
+      "route_no": "550",
+      "stop_count": 8,
+      "origin_stop_id": "JUB305100602",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -1132,20 +1094,20 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111111",
-      "route_id": "JUB305001660",
-      "route_no": "999",
-      "stop_count": 9,
-      "origin_stop_id": "JUB305100602",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111111",
       "route_id": "JUB305200940",
       "route_no": "1994",
       "stop_count": 9,
       "origin_stop_id": "JUB305100602",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111111",
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 10,
+      "origin_stop_id": "JUB305100602",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -1215,9 +1177,9 @@
       "emd_cd": "52111111",
       "route_id": "JUB305200601",
       "route_no": "79",
-      "stop_count": 12,
+      "stop_count": 13,
       "origin_stop_id": "JUB305100602",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -1227,33 +1189,6 @@
       "stop_count": 15,
       "origin_stop_id": "JUB305100573",
       "campus_stop_id": "JUB306101051"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111114",
-      "route_id": "JUB305001618",
-      "route_no": "119",
-      "stop_count": 9,
-      "origin_stop_id": "JUB305100600",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111114",
-      "route_id": "JUB305001620",
-      "route_no": "119",
-      "stop_count": 9,
-      "origin_stop_id": "JUB305100600",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111114",
-      "route_id": "JUB305001621",
-      "route_no": "119",
-      "stop_count": 9,
-      "origin_stop_id": "JUB305100600",
-      "campus_stop_id": "JUB306101050"
     },
     {
       "campus": "전북대학교",
@@ -1272,6 +1207,33 @@
       "stop_count": 9,
       "origin_stop_id": "JUB305100600",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111114",
+      "route_id": "JUB305001618",
+      "route_no": "119",
+      "stop_count": 10,
+      "origin_stop_id": "JUB305100600",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111114",
+      "route_id": "JUB305001620",
+      "route_no": "119",
+      "stop_count": 10,
+      "origin_stop_id": "JUB305100600",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111114",
+      "route_id": "JUB305001621",
+      "route_no": "119",
+      "stop_count": 10,
+      "origin_stop_id": "JUB305100600",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -1321,33 +1283,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111115",
-      "route_id": "JUB305001618",
-      "route_no": "119",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100646",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111115",
-      "route_id": "JUB305001620",
-      "route_no": "119",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100646",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111115",
-      "route_id": "JUB305001621",
-      "route_no": "119",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100646",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111115",
       "route_id": "JUB305001647",
       "route_no": "554",
       "stop_count": 8,
@@ -1393,6 +1328,33 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111115",
+      "route_id": "JUB305001618",
+      "route_no": "119",
+      "stop_count": 9,
+      "origin_stop_id": "JUB305100646",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111115",
+      "route_id": "JUB305001620",
+      "route_no": "119",
+      "stop_count": 9,
+      "origin_stop_id": "JUB305100646",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111115",
+      "route_id": "JUB305001621",
+      "route_no": "119",
+      "stop_count": 9,
+      "origin_stop_id": "JUB305100646",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111115",
       "route_id": "JUB305001765",
       "route_no": "6002",
       "stop_count": 12,
@@ -1404,36 +1366,36 @@
       "emd_cd": "52111116",
       "route_id": "JUB305001618",
       "route_no": "119",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB305100691",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111116",
       "route_id": "JUB305001620",
       "route_no": "119",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB305100691",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111116",
       "route_id": "JUB305001621",
       "route_no": "119",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB305100691",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111117",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 17,
+      "stop_count": 18,
       "origin_stop_id": "JUB305100694",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -1467,27 +1429,27 @@
       "emd_cd": "52111119",
       "route_id": "JUB305001618",
       "route_no": "119",
-      "stop_count": 6,
+      "stop_count": 7,
       "origin_stop_id": "JUB305100758",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111119",
       "route_id": "JUB305001620",
       "route_no": "119",
-      "stop_count": 6,
+      "stop_count": 7,
       "origin_stop_id": "JUB305100758",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111119",
       "route_id": "JUB305001621",
       "route_no": "119",
-      "stop_count": 6,
+      "stop_count": 7,
       "origin_stop_id": "JUB305100758",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -1602,18 +1564,9 @@
       "emd_cd": "52111120",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 12,
+      "stop_count": 13,
       "origin_stop_id": "JUB305100735",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111120",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 17,
-      "origin_stop_id": "JUB305100748",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -1647,27 +1600,27 @@
       "emd_cd": "52111120",
       "route_id": "JUB305001619",
       "route_no": "119",
-      "stop_count": 19,
+      "stop_count": 20,
       "origin_stop_id": "JUB305100704",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111120",
       "route_id": "JUB305001625",
       "route_no": "119",
-      "stop_count": 19,
+      "stop_count": 20,
       "origin_stop_id": "JUB305100704",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111120",
       "route_id": "JUB305001626",
       "route_no": "119",
-      "stop_count": 19,
+      "stop_count": 20,
       "origin_stop_id": "JUB305100704",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -1737,36 +1690,9 @@
       "emd_cd": "52111122",
       "route_id": "JUB305200601",
       "route_no": "79",
-      "stop_count": 14,
+      "stop_count": 15,
       "origin_stop_id": "JUB305100559",
-      "campus_stop_id": "JUB306101046"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111123",
-      "route_id": "JUB305001618",
-      "route_no": "119",
-      "stop_count": 10,
-      "origin_stop_id": "JUB305100567",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111123",
-      "route_id": "JUB305001620",
-      "route_no": "119",
-      "stop_count": 10,
-      "origin_stop_id": "JUB305100567",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111123",
-      "route_id": "JUB305001621",
-      "route_no": "119",
-      "stop_count": 10,
-      "origin_stop_id": "JUB305100567",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -1852,6 +1778,33 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111123",
+      "route_id": "JUB305001618",
+      "route_no": "119",
+      "stop_count": 11,
+      "origin_stop_id": "JUB305100567",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111123",
+      "route_id": "JUB305001620",
+      "route_no": "119",
+      "stop_count": 11,
+      "origin_stop_id": "JUB305100567",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111123",
+      "route_id": "JUB305001621",
+      "route_no": "119",
+      "stop_count": 11,
+      "origin_stop_id": "JUB305100567",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111123",
       "route_id": "JUB305200826",
       "route_no": "89",
       "stop_count": 11,
@@ -1863,9 +1816,9 @@
       "emd_cd": "52111123",
       "route_id": "JUB305200601",
       "route_no": "79",
-      "stop_count": 15,
+      "stop_count": 16,
       "origin_stop_id": "JUB305100567",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -1915,29 +1868,29 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111126",
+      "route_id": "JUB305001140",
+      "route_no": "165",
+      "stop_count": 10,
+      "origin_stop_id": "JUB305032532",
+      "campus_stop_id": "JUB306101035"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111126",
       "route_id": "JUB305001162",
       "route_no": "550",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB305032532",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111126",
       "route_id": "JUB305001163",
       "route_no": "550",
-      "stop_count": 9,
-      "origin_stop_id": "JUB305032532",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111126",
-      "route_id": "JUB305001140",
-      "route_no": "165",
       "stop_count": 10,
       "origin_stop_id": "JUB305032532",
-      "campus_stop_id": "JUB306101035"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -1996,20 +1949,20 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111126",
-      "route_id": "JUB305001660",
-      "route_no": "999",
-      "stop_count": 11,
-      "origin_stop_id": "JUB305032532",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111126",
       "route_id": "JUB305200940",
       "route_no": "1994",
       "stop_count": 11,
       "origin_stop_id": "JUB305032532",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111126",
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 12,
+      "origin_stop_id": "JUB305032532",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2178,9 +2131,9 @@
       "emd_cd": "52111128",
       "route_id": "JUB305001153",
       "route_no": "2",
-      "stop_count": 4,
+      "stop_count": 5,
       "origin_stop_id": "JUB305100697",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2196,18 +2149,18 @@
       "emd_cd": "52111128",
       "route_id": "JUB305001760",
       "route_no": "2001",
-      "stop_count": 8,
+      "stop_count": 9,
       "origin_stop_id": "JUB305100697",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111128",
       "route_id": "JUB305001762",
       "route_no": "2002",
-      "stop_count": 8,
+      "stop_count": 9,
       "origin_stop_id": "JUB305100697",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2268,108 +2221,54 @@
       "emd_cd": "52111129",
       "route_id": "JUB305001153",
       "route_no": "2",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB305032698",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111129",
       "route_id": "JUB305001760",
       "route_no": "2001",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB305100877",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111129",
       "route_id": "JUB305001762",
       "route_no": "2002",
-      "stop_count": 2,
-      "origin_stop_id": "JUB305100877",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111129",
-      "route_id": "JUB305000957",
-      "route_no": "3001",
       "stop_count": 3,
-      "origin_stop_id": "JUB305101003",
-      "campus_stop_id": "JUB306101113"
+      "origin_stop_id": "JUB305100877",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111129",
       "route_id": "JUB305001271",
       "route_no": "3-1",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB305100877",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111129",
       "route_id": "JUB305001434",
       "route_no": "75",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB305100912",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111129",
       "route_id": "JUB305001492",
       "route_no": "75",
-      "stop_count": 3,
-      "origin_stop_id": "JUB305100912",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111129",
-      "route_id": "JUB305001608",
-      "route_no": "74",
-      "stop_count": 3,
-      "origin_stop_id": "JUB305100912",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111129",
-      "route_id": "JUB305001764",
-      "route_no": "6001",
-      "stop_count": 3,
-      "origin_stop_id": "JUB305100912",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111129",
-      "route_id": "JUB305200003",
-      "route_no": "3-1",
-      "stop_count": 3,
-      "origin_stop_id": "JUB305100877",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111129",
-      "route_id": "JUB305300263",
-      "route_no": "3002",
-      "stop_count": 3,
-      "origin_stop_id": "JUB305101003",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111129",
-      "route_id": "JUB305001332",
-      "route_no": "102",
       "stop_count": 4,
-      "origin_stop_id": "JUB306132111",
-      "campus_stop_id": "JUB306101113"
+      "origin_stop_id": "JUB305100912",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -2383,38 +2282,47 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111129",
+      "route_id": "JUB305001608",
+      "route_no": "74",
+      "stop_count": 4,
+      "origin_stop_id": "JUB305100912",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111129",
+      "route_id": "JUB305001764",
+      "route_no": "6001",
+      "stop_count": 4,
+      "origin_stop_id": "JUB305100912",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111129",
+      "route_id": "JUB305200003",
+      "route_no": "3-1",
+      "stop_count": 4,
+      "origin_stop_id": "JUB305100877",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111129",
       "route_id": "JUB305001270",
       "route_no": "200",
-      "stop_count": 6,
+      "stop_count": 7,
       "origin_stop_id": "JUB305100877",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111129",
       "route_id": "JUB305001424",
       "route_no": "200",
-      "stop_count": 6,
+      "stop_count": 7,
       "origin_stop_id": "JUB305100877",
-      "campus_stop_id": "JUB306101046"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111132",
-      "route_id": "JUB305001162",
-      "route_no": "550",
-      "stop_count": 13,
-      "origin_stop_id": "JUB305100427",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111132",
-      "route_id": "JUB305001163",
-      "route_no": "550",
-      "stop_count": 13,
-      "origin_stop_id": "JUB305100427",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -2424,6 +2332,24 @@
       "stop_count": 14,
       "origin_stop_id": "JUB305100427",
       "campus_stop_id": "JUB306101035"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111132",
+      "route_id": "JUB305001162",
+      "route_no": "550",
+      "stop_count": 14,
+      "origin_stop_id": "JUB305100427",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111132",
+      "route_id": "JUB305001163",
+      "route_no": "550",
+      "stop_count": 14,
+      "origin_stop_id": "JUB305100427",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2484,27 +2410,18 @@
       "emd_cd": "52111132",
       "route_id": "JUB305001760",
       "route_no": "2001",
-      "stop_count": 14,
+      "stop_count": 15,
       "origin_stop_id": "JUB305100396",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111132",
       "route_id": "JUB305001762",
       "route_no": "2002",
-      "stop_count": 14,
-      "origin_stop_id": "JUB305100396",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111132",
-      "route_id": "JUB305001660",
-      "route_no": "999",
       "stop_count": 15,
-      "origin_stop_id": "JUB305100427",
-      "campus_stop_id": "JUB306101017"
+      "origin_stop_id": "JUB305100396",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2514,6 +2431,15 @@
       "stop_count": 15,
       "origin_stop_id": "JUB305100427",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111132",
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 16,
+      "origin_stop_id": "JUB305100427",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2565,45 +2491,18 @@
       "emd_cd": "52111133",
       "route_id": "JUB305001760",
       "route_no": "2001",
-      "stop_count": 16,
+      "stop_count": 17,
       "origin_stop_id": "JUB305100335",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111133",
       "route_id": "JUB305001762",
       "route_no": "2002",
-      "stop_count": 16,
+      "stop_count": 17,
       "origin_stop_id": "JUB305100335",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111133",
-      "route_id": "JUB305001153",
-      "route_no": "2",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100335",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111133",
-      "route_id": "JUB305001162",
-      "route_no": "550",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100335",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111133",
-      "route_id": "JUB305001163",
-      "route_no": "550",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100335",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2613,6 +2512,33 @@
       "stop_count": 18,
       "origin_stop_id": "JUB305100333",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111133",
+      "route_id": "JUB305001153",
+      "route_no": "2",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100335",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111133",
+      "route_id": "JUB305001162",
+      "route_no": "550",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100335",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111133",
+      "route_id": "JUB305001163",
+      "route_no": "550",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100335",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2652,48 +2578,30 @@
     },
     {
       "campus": "전북대학교",
-      "emd_cd": "52111134",
-      "route_id": "JUB305001760",
-      "route_no": "2001",
-      "stop_count": 20,
-      "origin_stop_id": "JUB305100279",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111134",
-      "route_id": "JUB305001762",
-      "route_no": "2002",
-      "stop_count": 20,
-      "origin_stop_id": "JUB305100279",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
       "emd_cd": "52111137",
       "route_id": "JUB305001153",
       "route_no": "2",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB305100426",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111137",
       "route_id": "JUB305001760",
       "route_no": "2001",
-      "stop_count": 13,
+      "stop_count": 14,
       "origin_stop_id": "JUB305100459",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111137",
       "route_id": "JUB305001762",
       "route_no": "2002",
-      "stop_count": 13,
+      "stop_count": 14,
       "origin_stop_id": "JUB305100459",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2761,15 +2669,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111137",
-      "route_id": "JUB305001660",
-      "route_no": "999",
-      "stop_count": 19,
-      "origin_stop_id": "JUB305100392",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111137",
       "route_id": "JUB305001765",
       "route_no": "6002",
       "stop_count": 19,
@@ -2778,39 +2677,21 @@
     },
     {
       "campus": "전북대학교",
-      "emd_cd": "52111138",
-      "route_id": "JUB305000957",
-      "route_no": "3001",
-      "stop_count": 19,
-      "origin_stop_id": "JUB305032496",
-      "campus_stop_id": "JUB306101113"
+      "emd_cd": "52111137",
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 20,
+      "origin_stop_id": "JUB305100392",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111140",
       "route_id": "JUB305001153",
       "route_no": "2",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB305100533",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111140",
-      "route_id": "JUB305001760",
-      "route_no": "2001",
-      "stop_count": 11,
-      "origin_stop_id": "JUB305100533",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111140",
-      "route_id": "JUB305001762",
-      "route_no": "2002",
-      "stop_count": 11,
-      "origin_stop_id": "JUB305100533",
-      "campus_stop_id": "JUB306101017"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -2829,33 +2710,6 @@
       "stop_count": 12,
       "origin_stop_id": "JUB305100521",
       "campus_stop_id": "JUB306101035"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111140",
-      "route_id": "JUB305001618",
-      "route_no": "119",
-      "stop_count": 12,
-      "origin_stop_id": "JUB305100521",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111140",
-      "route_id": "JUB305001620",
-      "route_no": "119",
-      "stop_count": 12,
-      "origin_stop_id": "JUB305100521",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111140",
-      "route_id": "JUB305001621",
-      "route_no": "119",
-      "stop_count": 12,
-      "origin_stop_id": "JUB305100521",
-      "campus_stop_id": "JUB306101050"
     },
     {
       "campus": "전북대학교",
@@ -2932,6 +2786,24 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111140",
+      "route_id": "JUB305001760",
+      "route_no": "2001",
+      "stop_count": 12,
+      "origin_stop_id": "JUB305100533",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111140",
+      "route_id": "JUB305001762",
+      "route_no": "2002",
+      "stop_count": 12,
+      "origin_stop_id": "JUB305100533",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111140",
       "route_id": "JUB305200112",
       "route_no": "385",
       "stop_count": 12,
@@ -2955,6 +2827,33 @@
       "stop_count": 13,
       "origin_stop_id": "JUB305100521",
       "campus_stop_id": "JUB306101035"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111140",
+      "route_id": "JUB305001618",
+      "route_no": "119",
+      "stop_count": 13,
+      "origin_stop_id": "JUB305100521",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111140",
+      "route_id": "JUB305001620",
+      "route_no": "119",
+      "stop_count": 13,
+      "origin_stop_id": "JUB305100521",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111140",
+      "route_id": "JUB305001621",
+      "route_no": "119",
+      "stop_count": 13,
+      "origin_stop_id": "JUB305100521",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -3015,9 +2914,9 @@
       "emd_cd": "52111140",
       "route_id": "JUB305200601",
       "route_no": "79",
-      "stop_count": 17,
+      "stop_count": 18,
       "origin_stop_id": "JUB305100521",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -3036,24 +2935,6 @@
       "stop_count": 11,
       "origin_stop_id": "JUB305100659",
       "campus_stop_id": "JUB306101035"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
-      "route_id": "JUB305000957",
-      "route_no": "3001",
-      "stop_count": 13,
-      "origin_stop_id": "JUB305100637",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
-      "route_id": "JUB305300263",
-      "route_no": "3002",
-      "stop_count": 13,
-      "origin_stop_id": "JUB305100637",
-      "campus_stop_id": "JUB306101113"
     },
     {
       "campus": "전북대학교",
@@ -3139,65 +3020,20 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111141",
-      "route_id": "JUB305001764",
-      "route_no": "6001",
-      "stop_count": 17,
-      "origin_stop_id": "JUB305100554",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
-      "route_id": "JUB305001270",
-      "route_no": "200",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100659",
-      "campus_stop_id": "JUB306101046"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
-      "route_id": "JUB305001424",
-      "route_no": "200",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100659",
-      "campus_stop_id": "JUB306101046"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
-      "route_id": "JUB305001618",
-      "route_no": "119",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100582",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
-      "route_id": "JUB305001620",
-      "route_no": "119",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100582",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
-      "route_id": "JUB305001621",
-      "route_no": "119",
-      "stop_count": 18,
-      "origin_stop_id": "JUB305100582",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111141",
       "route_id": "JUB305001758",
       "route_no": "386",
       "stop_count": 18,
       "origin_stop_id": "JUB305100582",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111141",
+      "route_id": "JUB305001764",
+      "route_no": "6001",
+      "stop_count": 18,
+      "origin_stop_id": "JUB305100554",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -3220,11 +3056,56 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111141",
+      "route_id": "JUB305001270",
+      "route_no": "200",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100659",
+      "campus_stop_id": "JUB306101056"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111141",
+      "route_id": "JUB305001424",
+      "route_no": "200",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100659",
+      "campus_stop_id": "JUB306101056"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111141",
       "route_id": "JUB305001575",
       "route_no": "5002",
       "stop_count": 19,
       "origin_stop_id": "JUB305100582",
       "campus_stop_id": "JUB306101035"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111141",
+      "route_id": "JUB305001618",
+      "route_no": "119",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100582",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111141",
+      "route_id": "JUB305001620",
+      "route_no": "119",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100582",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111141",
+      "route_id": "JUB305001621",
+      "route_no": "119",
+      "stop_count": 19,
+      "origin_stop_id": "JUB305100582",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -3238,42 +3119,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111142",
-      "route_id": "JUB305001434",
-      "route_no": "75",
-      "stop_count": 6,
-      "origin_stop_id": "JUB305100988",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
-      "route_id": "JUB305001492",
-      "route_no": "75",
-      "stop_count": 6,
-      "origin_stop_id": "JUB305100988",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
-      "route_id": "JUB305001608",
-      "route_no": "74",
-      "stop_count": 6,
-      "origin_stop_id": "JUB305100988",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
-      "route_id": "JUB305001764",
-      "route_no": "6001",
-      "stop_count": 6,
-      "origin_stop_id": "JUB305100988",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
       "route_id": "JUB305001142",
       "route_no": "430",
       "stop_count": 7,
@@ -3283,38 +3128,56 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111142",
+      "route_id": "JUB305001434",
+      "route_no": "75",
+      "stop_count": 7,
+      "origin_stop_id": "JUB305100988",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111142",
+      "route_id": "JUB305001492",
+      "route_no": "75",
+      "stop_count": 7,
+      "origin_stop_id": "JUB305100988",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111142",
+      "route_id": "JUB305001608",
+      "route_no": "74",
+      "stop_count": 7,
+      "origin_stop_id": "JUB305100988",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111142",
+      "route_id": "JUB305001764",
+      "route_no": "6001",
+      "stop_count": 7,
+      "origin_stop_id": "JUB305100988",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111142",
       "route_id": "JUB305001271",
       "route_no": "3-1",
-      "stop_count": 8,
+      "stop_count": 9,
       "origin_stop_id": "JUB305100769",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111142",
       "route_id": "JUB305200003",
       "route_no": "3-1",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100769",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
-      "route_id": "JUB305000957",
-      "route_no": "3001",
       "stop_count": 9,
       "origin_stop_id": "JUB305100769",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
-      "route_id": "JUB305300263",
-      "route_no": "3002",
-      "stop_count": 9,
-      "origin_stop_id": "JUB305100769",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -3330,18 +3193,18 @@
       "emd_cd": "52111142",
       "route_id": "JUB305001270",
       "route_no": "200",
-      "stop_count": 10,
+      "stop_count": 11,
       "origin_stop_id": "JUB305100988",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111142",
       "route_id": "JUB305001424",
       "route_no": "200",
-      "stop_count": 10,
+      "stop_count": 11,
       "origin_stop_id": "JUB305100988",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -3373,33 +3236,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111142",
-      "route_id": "JUB305001618",
-      "route_no": "119",
-      "stop_count": 17,
-      "origin_stop_id": "JUB305100580",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
-      "route_id": "JUB305001620",
-      "route_no": "119",
-      "stop_count": 17,
-      "origin_stop_id": "JUB305100580",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
-      "route_id": "JUB305001621",
-      "route_no": "119",
-      "stop_count": 17,
-      "origin_stop_id": "JUB305100580",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111142",
       "route_id": "JUB305001758",
       "route_no": "386",
       "stop_count": 17,
@@ -3423,6 +3259,33 @@
       "stop_count": 18,
       "origin_stop_id": "JUB305100580",
       "campus_stop_id": "JUB306101035"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111142",
+      "route_id": "JUB305001618",
+      "route_no": "119",
+      "stop_count": 18,
+      "origin_stop_id": "JUB305100580",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111142",
+      "route_id": "JUB305001620",
+      "route_no": "119",
+      "stop_count": 18,
+      "origin_stop_id": "JUB305100580",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111142",
+      "route_id": "JUB305001621",
+      "route_no": "119",
+      "stop_count": 18,
+      "origin_stop_id": "JUB305100580",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -3526,24 +3389,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
-      "route_id": "JUB305001162",
-      "route_no": "550",
-      "stop_count": 5,
-      "origin_stop_id": "JUB306100785",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111147",
-      "route_id": "JUB305001163",
-      "route_no": "550",
-      "stop_count": 5,
-      "origin_stop_id": "JUB306100785",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111147",
       "route_id": "JUB305001183",
       "route_no": "559",
       "stop_count": 5,
@@ -3724,6 +3569,24 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
+      "route_id": "JUB305001162",
+      "route_no": "550",
+      "stop_count": 6,
+      "origin_stop_id": "JUB306100785",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111147",
+      "route_id": "JUB305001163",
+      "route_no": "550",
+      "stop_count": 6,
+      "origin_stop_id": "JUB306100785",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52111147",
       "route_id": "JUB305001173",
       "route_no": "752",
       "stop_count": 6,
@@ -3805,15 +3668,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
-      "route_id": "JUB305001660",
-      "route_no": "999",
-      "stop_count": 6,
-      "origin_stop_id": "JUB306100785",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52111147",
       "route_id": "JUB305001753",
       "route_no": "110",
       "stop_count": 6,
@@ -3859,56 +3713,56 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
-      "route_id": "JUB305200601",
-      "route_no": "79",
-      "stop_count": 9,
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 7,
       "origin_stop_id": "JUB306100785",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 14,
-      "origin_stop_id": "JUB306100752",
-      "campus_stop_id": "JUB306101113"
+      "route_id": "JUB305200601",
+      "route_no": "79",
+      "stop_count": 10,
+      "origin_stop_id": "JUB306100785",
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
       "route_id": "JUB305001619",
       "route_no": "119",
-      "stop_count": 17,
+      "stop_count": 18,
       "origin_stop_id": "JUB306100792",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
       "route_id": "JUB305001625",
       "route_no": "119",
-      "stop_count": 17,
+      "stop_count": 18,
       "origin_stop_id": "JUB306100792",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
       "route_id": "JUB305001626",
       "route_no": "119",
-      "stop_count": 17,
+      "stop_count": 18,
       "origin_stop_id": "JUB306100792",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52111147",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 18,
+      "stop_count": 19,
       "origin_stop_id": "JUB306100743",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -3985,24 +3839,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
-      "route_id": "JUB305001162",
-      "route_no": "550",
-      "stop_count": 4,
-      "origin_stop_id": "JUB306100861",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113102",
-      "route_id": "JUB305001163",
-      "route_no": "550",
-      "stop_count": 4,
-      "origin_stop_id": "JUB306100861",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113102",
       "route_id": "JUB305001173",
       "route_no": "752",
       "stop_count": 4,
@@ -4156,33 +3992,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
-      "route_id": "JUB305001618",
-      "route_no": "119",
-      "stop_count": 4,
-      "origin_stop_id": "JUB306100907",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113102",
-      "route_id": "JUB305001620",
-      "route_no": "119",
-      "stop_count": 4,
-      "origin_stop_id": "JUB306100907",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113102",
-      "route_id": "JUB305001621",
-      "route_no": "119",
-      "stop_count": 4,
-      "origin_stop_id": "JUB306100907",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113102",
       "route_id": "JUB305001645",
       "route_no": "420",
       "stop_count": 4,
@@ -4327,6 +4136,24 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
+      "route_id": "JUB305001162",
+      "route_no": "550",
+      "stop_count": 5,
+      "origin_stop_id": "JUB306100861",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113102",
+      "route_id": "JUB305001163",
+      "route_no": "550",
+      "stop_count": 5,
+      "origin_stop_id": "JUB306100861",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113102",
       "route_id": "JUB305001575",
       "route_no": "5002",
       "stop_count": 5,
@@ -4345,11 +4172,29 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
-      "route_id": "JUB305001660",
-      "route_no": "999",
+      "route_id": "JUB305001618",
+      "route_no": "119",
       "stop_count": 5,
-      "origin_stop_id": "JUB306100861",
-      "campus_stop_id": "JUB306101017"
+      "origin_stop_id": "JUB306100907",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113102",
+      "route_id": "JUB305001620",
+      "route_no": "119",
+      "stop_count": 5,
+      "origin_stop_id": "JUB306100907",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113102",
+      "route_id": "JUB305001621",
+      "route_no": "119",
+      "stop_count": 5,
+      "origin_stop_id": "JUB306100907",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -4363,65 +4208,65 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
-      "route_id": "JUB305200601",
-      "route_no": "79",
-      "stop_count": 8,
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 6,
       "origin_stop_id": "JUB306100861",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 13,
+      "route_id": "JUB305200601",
+      "route_no": "79",
+      "stop_count": 9,
       "origin_stop_id": "JUB306100861",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
       "route_id": "JUB305001619",
       "route_no": "119",
-      "stop_count": 15,
+      "stop_count": 16,
       "origin_stop_id": "JUB306100864",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
       "route_id": "JUB305001625",
       "route_no": "119",
-      "stop_count": 15,
+      "stop_count": 16,
       "origin_stop_id": "JUB306100864",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
       "route_id": "JUB305001626",
       "route_no": "119",
-      "stop_count": 15,
+      "stop_count": 16,
       "origin_stop_id": "JUB306100864",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113102",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 19,
+      "stop_count": 20,
       "origin_stop_id": "JUB306100851",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113103",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB306101021",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -4444,15 +4289,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113103",
-      "route_id": "JUB305001824",
-      "route_no": "82",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305032766",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113103",
       "route_id": "JUB305300238",
       "route_no": "3-2",
       "stop_count": 8,
@@ -4462,38 +4298,47 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113103",
+      "route_id": "JUB305001824",
+      "route_no": "82",
+      "stop_count": 9,
+      "origin_stop_id": "JUB305032766",
+      "campus_stop_id": "JUB306101070"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113103",
       "route_id": "JUB305001619",
       "route_no": "119",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101021",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113103",
       "route_id": "JUB305001625",
       "route_no": "119",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101021",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113103",
       "route_id": "JUB305001626",
       "route_no": "119",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101021",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113103",
       "route_id": "JUB305001635",
       "route_no": "337",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101052",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -4509,18 +4354,9 @@
       "emd_cd": "52113103",
       "route_id": "JUB305001423",
       "route_no": "200",
-      "stop_count": 13,
+      "stop_count": 14,
       "origin_stop_id": "JUB306100847",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113103",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 20,
-      "origin_stop_id": "JUB306100846",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -4743,9 +4579,9 @@
       "emd_cd": "52113104",
       "route_id": "JUB305001826",
       "route_no": "59",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB306100898",
-      "campus_stop_id": "JUB305032582"
+      "campus_stop_id": "JUB306101079"
     },
     {
       "campus": "전북대학교",
@@ -4764,42 +4600,6 @@
       "stop_count": 1,
       "origin_stop_id": "JUB306101044",
       "campus_stop_id": "JUB305032080"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305000409",
-      "route_no": "554",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305000959",
-      "route_no": "354",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305000963",
-      "route_no": "559",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001012",
-      "route_no": "3-2",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101035",
-      "campus_stop_id": "JUB306101053"
     },
     {
       "campus": "전북대학교",
@@ -4849,146 +4649,11 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113105",
-      "route_id": "JUB305001140",
-      "route_no": "165",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001149",
-      "route_no": "354",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001151",
-      "route_no": "355",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001153",
-      "route_no": "2",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306100961",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001173",
-      "route_no": "752",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001175",
-      "route_no": "337",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101044",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001176",
-      "route_no": "9-1",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101044",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001177",
-      "route_no": "350",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001178",
-      "route_no": "355",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001183",
-      "route_no": "559",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001224",
-      "route_no": "752",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001258",
-      "route_no": "970",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
       "route_id": "JUB305001271",
       "route_no": "3-1",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001272",
-      "route_no": "3-2",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101035",
-      "campus_stop_id": "JUB306101053"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001280",
-      "route_no": "970",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001303",
-      "route_no": "354",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
+      "origin_stop_id": "JUB306101050",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -4996,8 +4661,8 @@
       "route_id": "JUB305001434",
       "route_no": "75",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB305032080"
     },
     {
       "campus": "전북대학교",
@@ -5005,8 +4670,8 @@
       "route_id": "JUB305001492",
       "route_no": "75",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB305032080"
     },
     {
       "campus": "전북대학교",
@@ -5016,15 +4681,6 @@
       "stop_count": 1,
       "origin_stop_id": "JUB305032481",
       "campus_stop_id": "JUB306032082"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001520",
-      "route_no": "165",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
     },
     {
       "campus": "전북대학교",
@@ -5047,20 +4703,11 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113105",
-      "route_id": "JUB305001605",
-      "route_no": "6002",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101035",
-      "campus_stop_id": "JUB306101053"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
       "route_id": "JUB305001608",
       "route_no": "74",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB305032080"
     },
     {
       "campus": "전북대학교",
@@ -5074,29 +4721,11 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113105",
-      "route_id": "JUB305001611",
-      "route_no": "87",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
       "route_id": "JUB305001618",
       "route_no": "119",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001619",
-      "route_no": "119",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101035",
-      "campus_stop_id": "JUB306101053"
+      "origin_stop_id": "JUB306101050",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -5104,8 +4733,8 @@
       "route_id": "JUB305001620",
       "route_no": "119",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
+      "origin_stop_id": "JUB306101050",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -5113,71 +4742,8 @@
       "route_id": "JUB305001621",
       "route_no": "119",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001623",
-      "route_no": "119",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101044",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001624",
-      "route_no": "119",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101035",
-      "campus_stop_id": "JUB306101053"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001625",
-      "route_no": "119",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101035",
-      "campus_stop_id": "JUB306101053"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001636",
-      "route_no": "337",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101044",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001647",
-      "route_no": "554",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001649",
-      "route_no": "559",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001660",
-      "route_no": "999",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306100961",
-      "campus_stop_id": "JUB306101017"
+      "origin_stop_id": "JUB306101050",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -5191,38 +4757,11 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113105",
-      "route_id": "JUB305001760",
-      "route_no": "2001",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306100961",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001762",
-      "route_no": "2002",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306100961",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
       "route_id": "JUB305001764",
       "route_no": "6001",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001765",
-      "route_no": "6002",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101035",
-      "campus_stop_id": "JUB306101053"
+      "origin_stop_id": "JUB306101050",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -5257,8 +4796,8 @@
       "route_id": "JUB305001827",
       "route_no": "94",
       "stop_count": 1,
-      "origin_stop_id": "JUB305032817",
-      "campus_stop_id": "JUB305032816"
+      "origin_stop_id": "JUB306101147",
+      "campus_stop_id": "JUB306101079"
     },
     {
       "campus": "전북대학교",
@@ -5284,44 +4823,8 @@
       "route_id": "JUB305200003",
       "route_no": "3-1",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101018",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305200566",
-      "route_no": "9",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101044",
-      "campus_stop_id": "JUB306101017"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305200567",
-      "route_no": "9",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305200617",
-      "route_no": "350",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305200826",
-      "route_no": "89",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101084",
-      "campus_stop_id": "JUB306101113"
+      "origin_stop_id": "JUB306101050",
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -5331,6 +4834,105 @@
       "stop_count": 1,
       "origin_stop_id": "JUB306100961",
       "campus_stop_id": "JUB306101051"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001140",
+      "route_no": "165",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306101084",
+      "campus_stop_id": "JUB306132039"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001153",
+      "route_no": "2",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306100961",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001175",
+      "route_no": "337",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001176",
+      "route_no": "9-1",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001520",
+      "route_no": "165",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306101084",
+      "campus_stop_id": "JUB306132039"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001623",
+      "route_no": "119",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001636",
+      "route_no": "337",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001660",
+      "route_no": "999",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306100961",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001760",
+      "route_no": "2001",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306100961",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305001762",
+      "route_no": "2002",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306100961",
+      "campus_stop_id": "JUB306101020"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113105",
+      "route_id": "JUB305200566",
+      "route_no": "9",
+      "stop_count": 2,
+      "origin_stop_id": "JUB306101044",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -5355,45 +4957,36 @@
       "emd_cd": "52113105",
       "route_id": "JUB305001270",
       "route_no": "200",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306100936",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113105",
       "route_id": "JUB305001424",
       "route_no": "200",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306100936",
-      "campus_stop_id": "JUB306101046"
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113105",
       "route_id": "JUB305001659",
       "route_no": "999",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB305032302",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113105",
       "route_id": "JUB305200038",
       "route_no": "79",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB305032302",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113105",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 10,
-      "origin_stop_id": "JUB306100946",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -5403,15 +4996,6 @@
       "stop_count": 1,
       "origin_stop_id": "JUB306101086",
       "campus_stop_id": "JUB306101044"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113106",
-      "route_id": "JUB305000957",
-      "route_no": "3001",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101078",
-      "campus_stop_id": "JUB306101113"
     },
     {
       "campus": "전북대학교",
@@ -5437,8 +5021,8 @@
       "route_id": "JUB305001019",
       "route_no": "8490",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101090",
-      "campus_stop_id": "JUB306101113"
+      "origin_stop_id": "JUB306101113",
+      "campus_stop_id": "JUB306132039"
     },
     {
       "campus": "전북대학교",
@@ -5619,15 +5203,6 @@
       "stop_count": 1,
       "origin_stop_id": "JUB306101086",
       "campus_stop_id": "JUB306101044"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113106",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101107",
-      "campus_stop_id": "JUB306101113"
     },
     {
       "campus": "전북대학교",
@@ -5830,15 +5405,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113106",
-      "route_id": "JUB305001769",
-      "route_no": "103-1",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101107",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113106",
       "route_id": "JUB305001778",
       "route_no": "101",
       "stop_count": 1,
@@ -5880,15 +5446,6 @@
       "stop_count": 1,
       "origin_stop_id": "JUB306101086",
       "campus_stop_id": "JUB306101044"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113106",
-      "route_id": "JUB305300263",
-      "route_no": "3002",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101078",
-      "campus_stop_id": "JUB306101113"
     },
     {
       "campus": "전북대학교",
@@ -6049,8 +5606,8 @@
       "route_id": "JUB305001162",
       "route_no": "550",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101004",
-      "campus_stop_id": "JUB306101017"
+      "origin_stop_id": "JUB306101017",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -6058,8 +5615,8 @@
       "route_id": "JUB305001163",
       "route_no": "550",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101004",
-      "campus_stop_id": "JUB306101017"
+      "origin_stop_id": "JUB306101017",
+      "campus_stop_id": "JUB306101020"
     },
     {
       "campus": "전북대학교",
@@ -6166,8 +5723,8 @@
       "route_id": "JUB305001270",
       "route_no": "200",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101011",
-      "campus_stop_id": "JUB306101046"
+      "origin_stop_id": "JUB306101046",
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -6202,8 +5759,8 @@
       "route_id": "JUB305001424",
       "route_no": "200",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101011",
-      "campus_stop_id": "JUB306101046"
+      "origin_stop_id": "JUB306101046",
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -6595,24 +6152,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113107",
-      "route_id": "JUB305001823",
-      "route_no": "82",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101079",
-      "campus_stop_id": "JUB306101069"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113107",
-      "route_id": "JUB305001825",
-      "route_no": "59",
-      "stop_count": 1,
-      "origin_stop_id": "JUB306101079",
-      "campus_stop_id": "JUB305032581"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113107",
       "route_id": "JUB305001826",
       "route_no": "59",
       "stop_count": 1,
@@ -6661,8 +6200,8 @@
       "route_id": "JUB305200601",
       "route_no": "79",
       "stop_count": 1,
-      "origin_stop_id": "JUB306101011",
-      "campus_stop_id": "JUB306101046"
+      "origin_stop_id": "JUB306101046",
+      "campus_stop_id": "JUB306101056"
     },
     {
       "campus": "전북대학교",
@@ -6720,15 +6259,6 @@
     },
     {
       "campus": "전북대학교",
-      "emd_cd": "52113107",
-      "route_id": "JUB305001332",
-      "route_no": "102",
-      "stop_count": 11,
-      "origin_stop_id": "JUB306100925",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
       "emd_cd": "52113108",
       "route_id": "JUB305001651",
       "route_no": "644",
@@ -6762,15 +6292,6 @@
       "stop_count": 6,
       "origin_stop_id": "JUB306101228",
       "campus_stop_id": "JUB306101049"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113109",
-      "route_id": "JUB305001769",
-      "route_no": "103-1",
-      "stop_count": 2,
-      "origin_stop_id": "JUB306101140",
-      "campus_stop_id": "JUB306101113"
     },
     {
       "campus": "전북대학교",
@@ -7018,37 +6539,37 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113110",
+      "route_id": "JUB305001101",
+      "route_no": "110",
+      "stop_count": 8,
+      "origin_stop_id": "JUB306101180",
+      "campus_stop_id": "JUB306101044"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113110",
       "route_id": "JUB305001434",
       "route_no": "75",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB306101037",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113110",
       "route_id": "JUB305001492",
       "route_no": "75",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB306101037",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113110",
       "route_id": "JUB305001608",
       "route_no": "74",
-      "stop_count": 7,
-      "origin_stop_id": "JUB306101037",
-      "campus_stop_id": "JUB306101050"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113110",
-      "route_id": "JUB305001101",
-      "route_no": "110",
       "stop_count": 8,
-      "origin_stop_id": "JUB306101180",
+      "origin_stop_id": "JUB306101037",
       "campus_stop_id": "JUB306101044"
     },
     {
@@ -7065,54 +6586,45 @@
       "emd_cd": "52113111",
       "route_id": "JUB305001423",
       "route_no": "200",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101043",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113113",
       "route_id": "JUB305001423",
       "route_no": "200",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB306100820",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113113",
       "route_id": "JUB305001824",
       "route_no": "82",
-      "stop_count": 18,
+      "stop_count": 19,
       "origin_stop_id": "JUB306100638",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113113",
-      "route_id": "JUB305001635",
-      "route_no": "337",
-      "stop_count": 20,
-      "origin_stop_id": "JUB305032318",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113114",
       "route_id": "JUB305001099",
       "route_no": "8-2",
-      "stop_count": 7,
+      "stop_count": 8,
       "origin_stop_id": "JUB306100926",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113114",
       "route_id": "JUB305001423",
       "route_no": "200",
-      "stop_count": 10,
+      "stop_count": 11,
       "origin_stop_id": "JUB306100854",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -7135,15 +6647,6 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113114",
-      "route_id": "JUB305001824",
-      "route_no": "82",
-      "stop_count": 13,
-      "origin_stop_id": "JUB306100926",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113114",
       "route_id": "JUB305300238",
       "route_no": "3-2",
       "stop_count": 13,
@@ -7153,182 +6656,191 @@
     {
       "campus": "전북대학교",
       "emd_cd": "52113114",
+      "route_id": "JUB305001824",
+      "route_no": "82",
+      "stop_count": 14,
+      "origin_stop_id": "JUB306100926",
+      "campus_stop_id": "JUB306101070"
+    },
+    {
+      "campus": "전북대학교",
+      "emd_cd": "52113114",
       "route_id": "JUB305001635",
       "route_no": "337",
-      "stop_count": 15,
+      "stop_count": 16,
       "origin_stop_id": "JUB306100926",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001164",
       "route_no": "550",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB306101092",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001165",
       "route_no": "550",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB306101092",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001659",
       "route_no": "999",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB306101092",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001761",
       "route_no": "2001",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB306101092",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001763",
       "route_no": "2002",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB306101092",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305200038",
       "route_no": "79",
-      "stop_count": 2,
+      "stop_count": 3,
       "origin_stop_id": "JUB306101092",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001153",
       "route_no": "2",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001154",
       "route_no": "2",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001174",
       "route_no": "337",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001176",
       "route_no": "9-1",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001269",
       "route_no": "200",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001423",
       "route_no": "200",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001619",
       "route_no": "119",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001624",
       "route_no": "119",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001625",
       "route_no": "119",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001626",
       "route_no": "119",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305001635",
       "route_no": "337",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305200566",
       "route_no": "9",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113115",
       "route_id": "JUB305200567",
       "route_no": "9",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101167",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -7344,9 +6856,9 @@
       "emd_cd": "52113115",
       "route_id": "JUB305001826",
       "route_no": "59",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB306101110",
-      "campus_stop_id": "JUB305032582"
+      "campus_stop_id": "JUB306101079"
     },
     {
       "campus": "전북대학교",
@@ -7362,117 +6874,117 @@
       "emd_cd": "52113116",
       "route_id": "JUB305001164",
       "route_no": "550",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305001165",
       "route_no": "550",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305001659",
       "route_no": "999",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305001761",
       "route_no": "2001",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305001763",
       "route_no": "2002",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305200038",
       "route_no": "79",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305200566",
       "route_no": "9",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305200567",
       "route_no": "9",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113116",
       "route_id": "JUB305001826",
       "route_no": "59",
-      "stop_count": 13,
+      "stop_count": 14,
       "origin_stop_id": "JUB306101245",
-      "campus_stop_id": "JUB305032582"
+      "campus_stop_id": "JUB306101079"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113117",
       "route_id": "JUB305001164",
       "route_no": "550",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101347",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113117",
       "route_id": "JUB305001165",
       "route_no": "550",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101347",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113117",
       "route_id": "JUB305001761",
       "route_no": "2001",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101347",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113117",
       "route_id": "JUB305001763",
       "route_no": "2002",
-      "stop_count": 9,
+      "stop_count": 10,
       "origin_stop_id": "JUB306101347",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
@@ -7488,9 +7000,9 @@
       "emd_cd": "52113117",
       "route_id": "JUB305001826",
       "route_no": "59",
-      "stop_count": 17,
+      "stop_count": 18,
       "origin_stop_id": "JUB306101347",
-      "campus_stop_id": "JUB305032582"
+      "campus_stop_id": "JUB306101079"
     },
     {
       "campus": "전북대학교",
@@ -7992,45 +7504,27 @@
       "emd_cd": "52113122",
       "route_id": "JUB305001761",
       "route_no": "2001",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB306101380",
-      "campus_stop_id": "JUB305032375"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113122",
       "route_id": "JUB305001763",
       "route_no": "2002",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB306101380",
-      "campus_stop_id": "JUB305032375"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113122",
-      "route_id": "JUB305001769",
-      "route_no": "103-1",
-      "stop_count": 13,
-      "origin_stop_id": "JUB306032306",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101070"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113122",
       "route_id": "JUB305001826",
       "route_no": "59",
-      "stop_count": 19,
+      "stop_count": 20,
       "origin_stop_id": "JUB306101380",
-      "campus_stop_id": "JUB305032582"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113123",
-      "route_id": "JUB305001769",
-      "route_no": "103-1",
-      "stop_count": 10,
-      "origin_stop_id": "JUB306101411",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306101079"
     },
     {
       "campus": "전북대학교",
@@ -8190,9 +7684,9 @@
       "emd_cd": "52113124",
       "route_id": "JUB305001019",
       "route_no": "8490",
-      "stop_count": 5,
+      "stop_count": 6,
       "origin_stop_id": "JUB305032373",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306132039"
     },
     {
       "campus": "전북대학교",
@@ -8253,27 +7747,9 @@
       "emd_cd": "52113129",
       "route_id": "JUB305001019",
       "route_no": "8490",
-      "stop_count": 3,
+      "stop_count": 4,
       "origin_stop_id": "JUB306101527",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113129",
-      "route_id": "JUB305001769",
-      "route_no": "103-1",
-      "stop_count": 12,
-      "origin_stop_id": "JUB305032319",
-      "campus_stop_id": "JUB306101113"
-    },
-    {
-      "campus": "전북대학교",
-      "emd_cd": "52113130",
-      "route_id": "JUB305001769",
-      "route_no": "103-1",
-      "stop_count": 8,
-      "origin_stop_id": "JUB306101326",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306132039"
     },
     {
       "campus": "전북대학교",
@@ -8460,27 +7936,27 @@
       "emd_cd": "52113131",
       "route_id": "JUB305001434",
       "route_no": "75",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB306101141",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113131",
       "route_id": "JUB305001492",
       "route_no": "75",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB306101141",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113131",
       "route_id": "JUB305001608",
       "route_no": "74",
-      "stop_count": 11,
+      "stop_count": 12,
       "origin_stop_id": "JUB306101141",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
@@ -8667,9 +8143,9 @@
       "emd_cd": "52113135",
       "route_id": "JUB305001019",
       "route_no": "8490",
-      "stop_count": 8,
+      "stop_count": 9,
       "origin_stop_id": "JUB306101578",
-      "campus_stop_id": "JUB306101113"
+      "campus_stop_id": "JUB306132039"
     },
     {
       "campus": "전북대학교",
@@ -8694,27 +8170,27 @@
       "emd_cd": "52113138",
       "route_id": "JUB305001434",
       "route_no": "75",
-      "stop_count": 18,
+      "stop_count": 19,
       "origin_stop_id": "JUB305032360",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113138",
       "route_id": "JUB305001492",
       "route_no": "75",
-      "stop_count": 18,
+      "stop_count": 19,
       "origin_stop_id": "JUB305032360",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전북대학교",
       "emd_cd": "52113138",
       "route_id": "JUB305001608",
       "route_no": "74",
-      "stop_count": 19,
+      "stop_count": 20,
       "origin_stop_id": "JUB305032360",
-      "campus_stop_id": "JUB306101050"
+      "campus_stop_id": "JUB306101044"
     },
     {
       "campus": "전주대학교",
@@ -8935,24 +8411,6 @@
     {
       "campus": "전주대학교",
       "emd_cd": "52111105",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 10,
-      "origin_stop_id": "JUB305100645",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111105",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 10,
-      "origin_stop_id": "JUB305100645",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111105",
       "route_id": "JUB305001181",
       "route_no": "530",
       "stop_count": 14,
@@ -9021,24 +8479,6 @@
       "stop_count": 19,
       "origin_stop_id": "JUB305100645",
       "campus_stop_id": "JUB305100651"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111107",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 11,
-      "origin_stop_id": "JUB305100681",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111107",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 11,
-      "origin_stop_id": "JUB305100681",
-      "campus_stop_id": "JUB305100425"
     },
     {
       "campus": "전주대학교",
@@ -9237,51 +8677,6 @@
       "stop_count": 20,
       "origin_stop_id": "JUB305100681",
       "campus_stop_id": "JUB305100651"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111111",
-      "route_id": "JUB305001477",
-      "route_no": "12",
-      "stop_count": 2,
-      "origin_stop_id": "JUB305100573",
-      "campus_stop_id": "JUB305032613"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111111",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100573",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111111",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100573",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111111",
-      "route_id": "JUB305001480",
-      "route_no": "12",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100573",
-      "campus_stop_id": "JUB305032613"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111111",
-      "route_id": "JUB305001481",
-      "route_no": "12",
-      "stop_count": 8,
-      "origin_stop_id": "JUB305100573",
-      "campus_stop_id": "JUB305032613"
     },
     {
       "campus": "전주대학교",
@@ -9822,69 +9217,6 @@
       "stop_count": 14,
       "origin_stop_id": "JUB305100538",
       "campus_stop_id": "JUB305100651"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111125",
-      "route_id": "JUB305001477",
-      "route_no": "12",
-      "stop_count": 1,
-      "origin_stop_id": "JUB305100546",
-      "campus_stop_id": "JUB305032613"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111125",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 3,
-      "origin_stop_id": "JUB305100506",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111125",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 3,
-      "origin_stop_id": "JUB305100506",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111125",
-      "route_id": "JUB305001480",
-      "route_no": "12",
-      "stop_count": 7,
-      "origin_stop_id": "JUB305100546",
-      "campus_stop_id": "JUB305032613"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111125",
-      "route_id": "JUB305001481",
-      "route_no": "12",
-      "stop_count": 7,
-      "origin_stop_id": "JUB305100546",
-      "campus_stop_id": "JUB305032613"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111126",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 7,
-      "origin_stop_id": "JUB305032372",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111126",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 7,
-      "origin_stop_id": "JUB305032372",
-      "campus_stop_id": "JUB305100425"
     },
     {
       "campus": "전주대학교",
@@ -11562,60 +10894,6 @@
     },
     {
       "campus": "전주대학교",
-      "emd_cd": "52111143",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 1,
-      "origin_stop_id": "JUB305100445",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111143",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 1,
-      "origin_stop_id": "JUB305100445",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111143",
-      "route_id": "JUB305001477",
-      "route_no": "12",
-      "stop_count": 1,
-      "origin_stop_id": "JUB305032615",
-      "campus_stop_id": "JUB305032614"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111143",
-      "route_id": "JUB305001480",
-      "route_no": "12",
-      "stop_count": 1,
-      "origin_stop_id": "JUB305032615",
-      "campus_stop_id": "JUB305032614"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111143",
-      "route_id": "JUB305001481",
-      "route_no": "12",
-      "stop_count": 1,
-      "origin_stop_id": "JUB305032614",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111144",
-      "route_id": "JUB305001224",
-      "route_no": "752",
-      "stop_count": 1,
-      "origin_stop_id": "JUB305100402",
-      "campus_stop_id": "JUB305100428"
-    },
-    {
-      "campus": "전주대학교",
       "emd_cd": "52111145",
       "route_id": "JUB305001102",
       "route_no": "110",
@@ -11730,24 +11008,6 @@
       "stop_count": 13,
       "origin_stop_id": "JUB306100743",
       "campus_stop_id": "JUB305032181"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111147",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 13,
-      "origin_stop_id": "JUB306100731",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52111147",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 13,
-      "origin_stop_id": "JUB306100731",
-      "campus_stop_id": "JUB305100425"
     },
     {
       "campus": "전주대학교",
@@ -12009,24 +11269,6 @@
       "stop_count": 14,
       "origin_stop_id": "JUB306100757",
       "campus_stop_id": "JUB305100630"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52113102",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 16,
-      "origin_stop_id": "JUB306100867",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52113102",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 16,
-      "origin_stop_id": "JUB306100867",
-      "campus_stop_id": "JUB305100425"
     },
     {
       "campus": "전주대학교",
@@ -12418,15 +11660,6 @@
     {
       "campus": "전주대학교",
       "emd_cd": "52113105",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 19,
-      "origin_stop_id": "JUB306101049",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52113105",
       "route_id": "JUB305001759",
       "route_no": "386",
       "stop_count": 19,
@@ -12531,15 +11764,6 @@
       "stop_count": 18,
       "origin_stop_id": "JUB306101086",
       "campus_stop_id": "JUB305032181"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52113106",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 20,
-      "origin_stop_id": "JUB306101086",
-      "campus_stop_id": "JUB305100425"
     },
     {
       "campus": "전주대학교",
@@ -12675,24 +11899,6 @@
       "stop_count": 16,
       "origin_stop_id": "JUB306101004",
       "campus_stop_id": "JUB305100609"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52113107",
-      "route_id": "JUB305001172",
-      "route_no": "752",
-      "stop_count": 17,
-      "origin_stop_id": "JUB306100905",
-      "campus_stop_id": "JUB305100425"
-    },
-    {
-      "campus": "전주대학교",
-      "emd_cd": "52113107",
-      "route_id": "JUB305001223",
-      "route_no": "752",
-      "stop_count": 17,
-      "origin_stop_id": "JUB306100905",
-      "campus_stop_id": "JUB305100425"
     },
     {
       "campus": "전주대학교",

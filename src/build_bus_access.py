@@ -29,6 +29,39 @@ CAMPUS_PATTERNS = {
     "전주비전대학교": ("전주비전대", "비전대"),
     "전북대학교": ("전북대",),
 }
+CONFIRMED_CAMPUS_STOP_IDS = {
+    "전주대학교": frozenset({
+        "JUB305032181", "JUB305032182", "JUB305032694", "JUB305032695",
+        "JUB305032696", "JUB305032697", "JUB305100609", "JUB305100630",
+        "JUB305100650", "JUB305100651", "JUB305032180", "JUB305032179",
+    }),
+    "전주비전대학교": frozenset({
+        "JUB305032463", "JUB305100516", "JUB305100526", "JUB305100527",
+        "JUB305100517", "JUB305100501", "JUB305100532", "JUB305100536",
+        "JUB305100494",
+    }),
+    "전북대학교": frozenset({
+        "JUB305032080", "JUB305032481", "JUB305032817", "JUB305032818",
+        "JUB306101027", "JUB306101035", "JUB306101044", "JUB306101049",
+        "JUB306101051", "JUB306101056", "JUB306101070", "JUB306101079",
+        "JUB306132039", "JUB316032081", "JUB306101020", "JUB306032082",
+        "JUB312302214",
+    }),
+}
+EXCLUDED_CAMPUS_STOP_REASONS = {
+    "전주대학교": {
+        "JUB305032613": "대성동 소재 전주 대성초교로 이름만 겹침, 약 8km",
+        "JUB305032614": "대성동 소재 전주 대성초교로 이름만 겹침, 약 8km",
+        "JUB305100425": "전주 대성초교 주변 아파트 정류소, 약 8km",
+        "JUB305100428": "전주 대성초교 주변 아파트 정류소, 약 8km",
+    },
+    "전주비전대학교": {},
+    "전북대학교": dict.fromkeys((
+        "JUB306101069", "JUB305032375", "JUB306101057", "JUB306101046",
+        "JUB305032582", "JUB305032581", "JUB306101050", "JUB306101053",
+        "JUB306101017", "JUB305032816", "JUB305032815", "JUB306101113",
+    ), "캠퍼스 밖, 반경 규칙으로만 포함"),
+}
 CAMPUS_AREA_CODES = {
     "전주대학교": {"52111141", "52111142"},
     "전주비전대학교": {"52111141", "52111142"},
@@ -182,8 +215,29 @@ def campus_candidates(stops, patterns=CAMPUS_PATTERNS, radius_m=300.0):
     return sorted(candidates, key=lambda row: (row["campus"], row["distance_m"], row["stop_id"]))
 
 
+def review_campus_candidates(rows):
+    """Apply the human-confirmed ID list and reject unreviewed candidates."""
+    reviewed = []
+    for row in rows:
+        campus, stop_id = row["campus"], row["stop_id"]
+        confirmed = CONFIRMED_CAMPUS_STOP_IDS[campus]
+        excluded = EXCLUDED_CAMPUS_STOP_REASONS[campus]
+        if stop_id in confirmed:
+            status = "확정"
+        elif stop_id in excluded:
+            status = f"제외({excluded[stop_id]})"
+        else:
+            raise ValueError(f"Unreviewed campus stop: {campus} {stop_id}")
+        reviewed.append({**row, "status": status})
+    for campus, confirmed in CONFIRMED_CAMPUS_STOP_IDS.items():
+        observed = {row["stop_id"] for row in reviewed if row["campus"] == campus}
+        if observed != confirmed | set(EXCLUDED_CAMPUS_STOP_REASONS[campus]):
+            raise ValueError(f"Campus review IDs do not match cached candidates: {campus}")
+    return reviewed
+
+
 def write_campus_candidates(rows, output_dir=OUTPUT_DIR, docs_dir=DOCS_DIR):
-    """Write machine-readable candidates and a human-review Markdown table."""
+    """Write machine-readable candidates and the human-reviewed Markdown table."""
     output_dir.mkdir(parents=True, exist_ok=True)
     docs_dir.mkdir(parents=True, exist_ok=True)
     fields = ["campus", "stop_id", "stop_name", "longitude", "latitude", "seed_stop_id", "seed_stop_name", "distance_m", "selection", "status"]
@@ -192,17 +246,17 @@ def write_campus_candidates(rows, output_dir=OUTPUT_DIR, docs_dir=DOCS_DIR):
         writer.writeheader()
         writer.writerows(rows)
     lines = [
-        "# SPEC-005 D-044 · 캠퍼스 정류장 후보",
+        "# SPEC-005 D-044 · 캠퍼스 정류장 확인 결과",
         "",
-        "TAGO 전주시 정류소 목록(2026-11-13 확인)에서 학교명 포함 정류소와 각 정류소 반경 300m 이내 정류소를 뽑았다. **사람이 지도로 확인하기 전까지 전부 후보**이며 T4 결과에도 같은 후보 범위를 사용한다.",
-        "전주비전대학교는 TAGO에 `전주비전대` 표기가 없어 `비전대`를 이름 별칭으로 사용했다. 전주대학교의 `전주대성초교`, `전주대사대부고`처럼 학교와 무관할 수 있는 이름 일치도 원 규칙대로 남겼으므로 특히 확인이 필요하다.",
+        "TAGO 전주시 정류소 목록(2026-11-13 확인)에서 학교명 포함 정류소와 각 정류소 반경 300m 이내 정류소를 후보로 뽑았다. 사용자가 지도로 확인한 정류소 ID를 `src/build_bus_access.py`의 확정 목록에 고정했다. **T4에는 확정 ID만 사용한다.**",
+        "전주비전대학교는 TAGO에 `전주비전대` 표기가 없어 후보 추출 때 `비전대`를 별칭으로 사용했다. 전주대성초교는 대성동의 전주 대성초교로 이름만 겹치며 캠퍼스에서 약 8km 떨어져 제외했다. 반경 규칙으로 들어온 캠퍼스 밖 정류소도 제외했다.",
         "",
     ]
     for campus in CAMPUS_PATTERNS:
         selected = [row for row in rows if row["campus"] == campus]
         lines.extend(
             [
-                f"## {campus} · 후보 {len(selected)}곳",
+                f"## {campus} · 확정 {sum(row['status'] == '확정' for row in selected)}곳 / 제외 {sum(row['status'].startswith('제외') for row in selected)}곳",
                 "",
                 "| 정류소 ID | 이름 | 경도 | 위도 | 기준 정류소 ID·이름 | 거리(m) | 근거 | 상태 |",
                 "|---|---|---:|---:|---|---:|---|---|",
@@ -210,7 +264,7 @@ def write_campus_candidates(rows, output_dir=OUTPUT_DIR, docs_dir=DOCS_DIR):
         )
         for row in selected:
             lines.append(
-                f"| {row['stop_id']} | {row['stop_name']} | {row['longitude']:.7f} | {row['latitude']:.7f} | {row['seed_stop_id']} {row['seed_stop_name']} | {row['distance_m']:.1f} | {row['selection']} | 후보 |"
+                f"| {row['stop_id']} | {row['stop_name']} | {row['longitude']:.7f} | {row['latitude']:.7f} | {row['seed_stop_id']} {row['seed_stop_name']} | {row['distance_m']:.1f} | {row['selection']} | {row['status']} |"
             )
         if not selected:
             lines.append("| - | 후보 없음 | - | - | - | - | - | 후보 |")
@@ -220,9 +274,9 @@ def write_campus_candidates(rows, output_dir=OUTPUT_DIR, docs_dir=DOCS_DIR):
 
 
 def build_t3():
-    rows = campus_candidates(read_stops(STOPS_XML))
+    rows = review_campus_candidates(campus_candidates(read_stops(STOPS_XML)))
     write_campus_candidates(rows)
-    print(json.dumps({campus: sum(row["campus"] == campus for row in rows) for campus in CAMPUS_PATTERNS}, ensure_ascii=True))
+    print(json.dumps({campus: {"confirmed": sum(row["campus"] == campus and row["status"] == "확정" for row in rows), "excluded": sum(row["campus"] == campus and row["status"].startswith("제외") for row in rows)} for campus in CAMPUS_PATTERNS}, ensure_ascii=True))
 
 
 def load_route_numbers(path):
@@ -271,12 +325,8 @@ def direct_options(route_id, route_no, stop_ids, dong_by_stop, campus_stop_ids, 
     return list(options.values())
 
 
-def calculate_direct_options(mapped_stops, campus_candidates_rows, route_paths, route_numbers):
+def calculate_direct_options(mapped_stops, route_paths, route_numbers, campus_stop_ids=CONFIRMED_CAMPUS_STOP_IDS):
     dong_by_stop = {row["stop_id"]: row["emd_cd"] for row in mapped_stops if row["emd_cd"]}
-    campus_stop_ids = {
-        campus: {row["stop_id"] for row in campus_candidates_rows if row["campus"] == campus}
-        for campus in CAMPUS_PATTERNS
-    }
     options = []
     for route_id, path in route_paths.items():
         route_no = route_numbers.get(route_id)
@@ -288,12 +338,16 @@ def calculate_direct_options(mapped_stops, campus_candidates_rows, route_paths, 
 
 def build_t4_preliminary():
     mapped = list(csv.DictReader((OUTPUT_DIR / "stops_by_dong.csv").open(encoding="utf-8", newline="")))
-    candidates = list(csv.DictReader((OUTPUT_DIR / "campus_stops_candidates.csv").open(encoding="utf-8", newline="")))
+    reviewed = list(csv.DictReader((OUTPUT_DIR / "campus_stops_candidates.csv").open(encoding="utf-8", newline="")))
+    for campus, confirmed in CONFIRMED_CAMPUS_STOP_IDS.items():
+        in_csv = {row["stop_id"] for row in reviewed if row["campus"] == campus and row["status"] == "확정"}
+        if in_csv != confirmed:
+            raise ValueError(f"Confirmed stop CSV differs from fixed IDs: {campus}")
     route_ids = json.loads((AUDIT_DIR / "bus_route_discovery.json").read_text(encoding="utf-8"))["route_ids"]
     route_paths = {route_id: TAGO_RAW / f"route_stops_{route_id}.xml" for route_id in route_ids}
-    options = calculate_direct_options(mapped, candidates, route_paths, load_route_numbers(TAGO_RAW / "routes_city_35010.xml"))
+    options = calculate_direct_options(mapped, route_paths, load_route_numbers(TAGO_RAW / "routes_city_35010.xml"))
     route_ids = sorted({row["route_id"] for row in options})
-    audit = {"max_stop_count_inclusive": 20, "provisional_candidate_stops": True, "direct_route_ids": route_ids, "direct_route_variant_count": len(route_ids), "dong_campus_pairs": len({(row["campus"], row["emd_cd"]) for row in options}), "options": options}
+    audit = {"max_stop_count_inclusive": 20, "campus_stop_ids_status": "확정", "confirmed_stop_count_by_campus": {campus: len(ids) for campus, ids in CONFIRMED_CAMPUS_STOP_IDS.items()}, "direct_route_ids": route_ids, "direct_route_variant_count": len(route_ids), "dong_campus_pairs": len({(row["campus"], row["emd_cd"]) for row in options}), "options": options}
     (AUDIT_DIR / "bus_direct_options_preliminary.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: value for key, value in audit.items() if not isinstance(value, list)}, ensure_ascii=True))
 
@@ -335,27 +389,27 @@ def aggregate_commute(options, intervals, dong_details):
                 "direct_route_count": len({row["route_no"] for row in variants}),
                 "direct_route_numbers": ",".join(sorted({row["route_no"] for row in variants})),
                 "direct_route_variant_count": len(variants),
-                "weekday_interval_min": min(known) if known and not missing else "",
+                "weekday_interval_min": min(known) if known and not missing else "배차 정보 없음",
                 "known_min_interval_min": min(known) if known else "",
                 "interval_status": "완전" if not missing else "일부 노선 미기재",
                 "routes_missing_interval": ",".join(missing),
                 "origin_stop_id": best["origin_stop_id"],
                 "campus_stop_id": best["campus_stop_id"],
                 "basis_date": "2026-11-13",
-                "campus_stops_status": "후보",
+                "campus_stops_status": "확정",
             }
         )
     return sorted(rows, key=lambda row: (row["campus"], row["min_stop_count"], row["emd_cd"]))
 
 
 def write_commute_dong_list(rows, docs_dir=DOCS_DIR):
-    """Publish the provisional legal-dong list ordered by stop count."""
+    """Publish the confirmed-stop legal-dong list ordered by stop count."""
     docs_dir.mkdir(parents=True, exist_ok=True)
     lines = [
         "# SPEC-005 D-045 · 캠퍼스별 통학권 동 후보",
         "",
-        "`outputs/bus/commute_access.csv`를 최소 정류장 수 순으로 정리했다. **캠퍼스 정류장 후보를 사람이 지도로 확인하기 전의 미검증 결과**다. 특히 전주대성초교처럼 이름 일부가 일치하는 정류소가 전주대학교 후보에 들어 있어 해당 동의 정류장 수는 확인 후 달라질 수 있다.",
-        "배차 값이 없는 직행 노선이 하나라도 있으면 최단 평일 배차 간격은 `확인 불가`로 표시한다. 캠퍼스 주변 동(D-017)은 아래 통학권 동 목록에서 제외했다.",
+        "`outputs/bus/commute_access.csv`를 최소 정류장 수 순으로 정리했다. **사람이 확정한 캠퍼스 정류소 ID만** 사용했다. 동→캠퍼스 직행 수치는 N-037 미검증이다.",
+        "배차 값이 없는 직행 노선이 하나라도 있으면 최단 평일 배차 간격은 `배차 정보 없음`으로 표시한다. 캠퍼스 주변 동(D-017)은 아래 통학권 동 목록에서 제외했다.",
         "",
     ]
     for campus in CAMPUS_PATTERNS:
@@ -369,7 +423,7 @@ def write_commute_dong_list(rows, docs_dir=DOCS_DIR):
             ]
         )
         for row in selected:
-            interval = row["weekday_interval_min"] if row["weekday_interval_min"] != "" else "확인 불가"
+            interval = row["weekday_interval_min"]
             lines.append(
                 f"| {row['emd_cd']} | {row['emd_nm']} | {row['min_stop_count']} | {row['direct_route_count']} | {interval} | 후보·미검증 |"
             )
@@ -395,7 +449,8 @@ def build_t4():
     write_commute_dong_list(rows)
     audit = {
         "basis_date": "2026-11-13",
-        "campus_stop_candidates_unconfirmed": True,
+        "campus_stop_ids_status": "확정",
+        "confirmed_stop_count_by_campus": {campus: len(ids) for campus, ids in CONFIRMED_CAMPUS_STOP_IDS.items()},
         "max_stop_count_inclusive": 20,
         "pair_count": len(rows),
         "by_campus": {campus: {"pairs": sum(row["campus"] == campus for row in rows), "commute_dongs_excluding_campus_area": len({row["emd_cd"] for row in rows if row["campus"] == campus and row["campus_area"] != "캠퍼스 주변"})} for campus in CAMPUS_PATTERNS},
