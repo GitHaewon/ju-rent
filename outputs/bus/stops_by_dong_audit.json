@@ -1,0 +1,25 @@
+{
+  "source": {
+    "boundary": {
+      "path": "data/raw/boundary/LSMD_ADM_SECT_UMD_전북특별자치도.zip",
+      "sha256": "2ab22ba1ac558dc07e1308441122b2cc9d182c7bedd664fb9df7986b2d48e448"
+    },
+    "stops": {
+      "path": "data/raw/bus/tago/stops_city_35010.xml",
+      "sha256": "3b334c1512fc728ecdda7def6d36727f2731e378c56daa4be46ea46d230fc24c"
+    },
+    "boundary_crs": "Korea 2000 / Central Belt 2010",
+    "boundary_geometries_repaired": 1,
+    "selected_boundary_count": 83
+  },
+  "stop_count": 2585,
+  "method_counts": {
+    "point_in_legal_dong_boundary": 1379,
+    "outside_jeonju_boundary": 1206,
+    "ambiguous_boundary_overlap": 0
+  },
+  "scope_emd_cd_prefixes": [
+    "52111",
+    "52113"
+  ]
+}
