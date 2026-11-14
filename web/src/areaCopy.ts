@@ -48,15 +48,18 @@ export function commuteLabel(commute: NonNullable<BudgetRecommendation['commute'
 }
 
 export function commuteDetail(commute: NonNullable<BudgetRecommendation['commute']>): string {
-  if (commute.campus_area) return '학교 주변 법정동이에요'
-  return `직행 ${commute.direct_routes}개 노선, ${commute.interval_min === null ? '배차 정보 없음' : `가장 자주 오는 버스 ${commute.interval_min}분마다`}`
+  if (commute.campus_area) return ''
+  const route = `직행 ${commute.direct_routes}개 노선`
+  if (commute.interval_min !== null) return `${route}, 가장 자주 오는 버스 ${commute.interval_min}분마다`
+  if (commute.planned_interval_min !== null) return `${route}, 운행계획상 평균 약 ${commute.planned_interval_min}분`
+  return route
 }
 
 export function priceDifference(value: number | null | undefined): string {
-  if (value === null || value === undefined) return '캠퍼스 주변 가격 비교 정보 없음'
+  if (value === null || value === undefined) return ''
   const amount = Math.round(Math.abs(value))
-  if (amount === 0) return '캠퍼스 주변과 보통 환산 월세가 비슷해요'
-  return `캠퍼스 주변보다 보통 환산 월세 ${amount}만 원 ${value < 0 ? '낮아요' : '높아요'}`
+  if (amount === 0) return '같은 연식 캠퍼스 주변과 환산 월세가 비슷해요'
+  return `같은 연식 캠퍼스 주변보다 환산 월세 ${amount}만 원 ${value < 0 ? '낮아요' : '높아요'}`
 }
 
 export function cardToContract(card: BudgetRecommendation, campus: string, rate_pct: number, school?: string): ContractInput {

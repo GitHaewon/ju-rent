@@ -292,7 +292,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--normal); ou
 .compare-school .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .commute-neighborhoods h2 { margin: 0 0 5px; font-size: 20px; }
 .commute-neighborhoods > p { color: var(--ink-soft); font-size: 13px; }
-.commute-neighborhood-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-height: 500px; overflow-y: auto; }
+.commute-neighborhood-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .commute-neighborhood-card { border: 1px solid rgba(30,34,69,.1); border-radius: 14px; padding: 12px; min-width: 0; }
 .commute-neighborhood-card h3 { margin: 0 0 6px; font-size: 15px; }
 .commute-neighborhood-card p { margin: 5px 0; color: var(--ink-soft); font-size: 12px; }

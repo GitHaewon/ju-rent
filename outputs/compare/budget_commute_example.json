@@ -53,9 +53,10 @@
             "median_stops": 11.0,
             "boarding_stops": 17,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -11.12
+          "campus_price_difference_10k_krw": -9.08
         },
         {
           "dong": "덕진동1가",
@@ -81,9 +82,10 @@
             "median_stops": 17.0,
             "boarding_stops": 21,
             "direct_routes": 11,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -9.98
+          "campus_price_difference_10k_krw": -7.94
         },
         {
           "dong": "삼천동1가",
@@ -109,9 +111,10 @@
             "median_stops": 34.0,
             "boarding_stops": 21,
             "direct_routes": 4,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -7.0
+          "campus_price_difference_10k_krw": -4.96
         },
         {
           "dong": "인후동1가",
@@ -137,9 +140,10 @@
             "median_stops": 24.0,
             "boarding_stops": 31,
             "direct_routes": 1,
-            "interval_min": 10
+            "interval_min": 10,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.42
+          "campus_price_difference_10k_krw": -3.38
         },
         {
           "dong": "금암동",
@@ -165,9 +169,10 @@
             "median_stops": 17.0,
             "boarding_stops": 16,
             "direct_routes": 11,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.42
+          "campus_price_difference_10k_krw": -3.38
         },
         {
           "dong": "중화산동2가",
@@ -193,9 +198,10 @@
             "median_stops": 35.5,
             "boarding_stops": 20,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.42
+          "campus_price_difference_10k_krw": -3.38
         },
         {
           "dong": "서신동",
@@ -221,9 +227,10 @@
             "median_stops": 12.5,
             "boarding_stops": 24,
             "direct_routes": 9,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.42
+          "campus_price_difference_10k_krw": -4.42
         },
         {
           "dong": "인후동1가",
@@ -249,9 +256,10 @@
             "median_stops": 24.0,
             "boarding_stops": 31,
             "direct_routes": 1,
-            "interval_min": 10
+            "interval_min": 10,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.42
+          "campus_price_difference_10k_krw": -4.42
         },
         {
           "dong": "서신동",
@@ -277,9 +285,10 @@
             "median_stops": 12.5,
             "boarding_stops": 24,
             "direct_routes": 9,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.42
+          "campus_price_difference_10k_krw": -3.38
         },
         {
           "dong": "덕진동1가",
@@ -305,9 +314,10 @@
             "median_stops": 17.0,
             "boarding_stops": 21,
             "direct_routes": 11,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -4.0
         },
         {
           "dong": "금암동",
@@ -333,9 +343,10 @@
             "median_stops": 17.0,
             "boarding_stops": 16,
             "direct_routes": 11,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -4.0
         },
         {
           "dong": "평화동2가",
@@ -361,9 +372,10 @@
             "median_stops": 17.5,
             "boarding_stops": 6,
             "direct_routes": 3,
-            "interval_min": 30
+            "interval_min": 30,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -8.0
         },
         {
           "dong": "중화산동2가",
@@ -389,9 +401,10 @@
             "median_stops": 35.5,
             "boarding_stops": 20,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -2.29
         },
         {
           "dong": "중화산동1가",
@@ -417,9 +430,10 @@
             "median_stops": 9.0,
             "boarding_stops": 5,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -8.0
         },
         {
           "dong": "삼천동1가",
@@ -445,9 +459,10 @@
             "median_stops": 34.0,
             "boarding_stops": 21,
             "direct_routes": 4,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -4.0
         },
         {
           "dong": "송천동1가",
@@ -473,9 +488,10 @@
             "median_stops": 25.0,
             "boarding_stops": 7,
             "direct_routes": 3,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -4.0
         },
         {
           "dong": "진북동",
@@ -501,9 +517,10 @@
             "median_stops": 20.0,
             "boarding_stops": 21,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.58
+          "campus_price_difference_10k_krw": -3.58
         },
         {
           "dong": "인후동2가",
@@ -529,9 +546,10 @@
             "median_stops": 22.0,
             "boarding_stops": 11,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.58
+          "campus_price_difference_10k_krw": -3.58
         },
         {
           "dong": "인후동2가",
@@ -557,9 +575,10 @@
             "median_stops": 22.0,
             "boarding_stops": 11,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.38
+          "campus_price_difference_10k_krw": -7.38
         },
         {
           "dong": "금암동",
@@ -585,9 +604,10 @@
             "median_stops": 17.0,
             "boarding_stops": 16,
             "direct_routes": 11,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.17
+          "campus_price_difference_10k_krw": -1.46
         },
         {
           "dong": "평화동1가",
@@ -613,9 +633,10 @@
             "median_stops": 18.5,
             "boarding_stops": 10,
             "direct_routes": 3,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.17
+          "campus_price_difference_10k_krw": -3.17
         },
         {
           "dong": "중화산동2가",
@@ -641,9 +662,10 @@
             "median_stops": 35.5,
             "boarding_stops": 20,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.17
+          "campus_price_difference_10k_krw": -3.17
         },
         {
           "dong": "서서학동",
@@ -669,9 +691,10 @@
             "median_stops": 39.0,
             "boarding_stops": 10,
             "direct_routes": 1,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -58.27
+          "campus_price_difference_10k_krw": -32.08
         },
         {
           "dong": "효자동3가",
@@ -697,9 +720,10 @@
             "median_stops": 5.0,
             "boarding_stops": 53,
             "direct_routes": 27,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.08
+          "campus_price_difference_10k_krw": -1.38
         },
         {
           "dong": "중화산동1가",
@@ -725,9 +749,10 @@
             "median_stops": 9.0,
             "boarding_stops": 5,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.0
+          "campus_price_difference_10k_krw": -3.0
         },
         {
           "dong": "평화동2가",
@@ -753,9 +778,10 @@
             "median_stops": 17.5,
             "boarding_stops": 6,
             "direct_routes": 3,
-            "interval_min": 30
+            "interval_min": 30,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -3.75
+          "campus_price_difference_10k_krw": -2.75
         },
         {
           "dong": "금암동",
@@ -781,9 +807,10 @@
             "median_stops": 17.0,
             "boarding_stops": 16,
             "direct_routes": 11,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -3.25
+          "campus_price_difference_10k_krw": -6.25
         },
         {
           "dong": "송천동1가",
@@ -809,9 +836,10 @@
             "median_stops": 25.0,
             "boarding_stops": 7,
             "direct_routes": 3,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -3.0
+          "campus_price_difference_10k_krw": -6.0
         },
         {
           "dong": "인후동1가",
@@ -837,9 +865,10 @@
             "median_stops": 24.0,
             "boarding_stops": 31,
             "direct_routes": 1,
-            "interval_min": 10
+            "interval_min": 10,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -2.12
+          "campus_price_difference_10k_krw": -5.12
         },
         {
           "dong": "평화동1가",
@@ -865,9 +894,10 @@
             "median_stops": 18.5,
             "boarding_stops": 10,
             "direct_routes": 3,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -56.19
+          "campus_price_difference_10k_krw": -30.0
         },
         {
           "dong": "덕진동2가",
@@ -893,9 +923,10 @@
             "median_stops": 14.5,
             "boarding_stops": 10,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -2.0
+          "campus_price_difference_10k_krw": -5.0
         },
         {
           "dong": "효자동3가",
@@ -921,9 +952,10 @@
             "median_stops": 5.0,
             "boarding_stops": 53,
             "direct_routes": 27,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -1.92
+          "campus_price_difference_10k_krw": 0.12
         },
         {
           "dong": "덕진동2가",
@@ -949,9 +981,10 @@
             "median_stops": 14.5,
             "boarding_stops": 10,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -1.25
+          "campus_price_difference_10k_krw": -0.25
         },
         {
           "dong": "효자동2가",
@@ -977,9 +1010,10 @@
             "median_stops": 4.0,
             "boarding_stops": 40,
             "direct_routes": 21,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -1.25
+          "campus_price_difference_10k_krw": -0.25
         },
         {
           "dong": "덕진동1가",
@@ -1005,9 +1039,10 @@
             "median_stops": 17.0,
             "boarding_stops": 21,
             "direct_routes": 11,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -1.25
+          "campus_price_difference_10k_krw": -4.25
         },
         {
           "dong": "효자동3가",
@@ -1033,9 +1068,10 @@
             "median_stops": 5.0,
             "boarding_stops": 53,
             "direct_routes": 27,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -0.83
+          "campus_price_difference_10k_krw": 0.17
         },
         {
           "dong": "송천동2가",
@@ -1061,9 +1097,10 @@
             "median_stops": 28.0,
             "boarding_stops": 27,
             "direct_routes": 2,
-            "interval_min": 35
+            "interval_min": 35,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.0
+          "campus_price_difference_10k_krw": 1.0
         },
         {
           "dong": "진북동",
@@ -1089,9 +1126,10 @@
             "median_stops": 20.0,
             "boarding_stops": 21,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.0
+          "campus_price_difference_10k_krw": -3.0
         },
         {
           "dong": "중화산동2가",
@@ -1117,9 +1155,10 @@
             "median_stops": 35.5,
             "boarding_stops": 20,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.0
+          "campus_price_difference_10k_krw": -3.0
         },
         {
           "dong": "효자동1가",
@@ -1145,9 +1184,10 @@
             "median_stops": 11.0,
             "boarding_stops": 17,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 2.88
+          "campus_price_difference_10k_krw": -0.12
         },
         {
           "dong": "효자동3가",
@@ -1173,9 +1213,10 @@
             "median_stops": 5.0,
             "boarding_stops": 53,
             "direct_routes": 27,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 3.0
+          "campus_price_difference_10k_krw": 0.0
         },
         {
           "dong": "효자동2가",
@@ -1201,9 +1242,10 @@
             "median_stops": 4.0,
             "boarding_stops": 40,
             "direct_routes": 21,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 5.42
+          "campus_price_difference_10k_krw": 2.42
         },
         {
           "dong": "만성동",
@@ -1229,9 +1271,10 @@
             "median_stops": 16.5,
             "boarding_stops": 20,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 6.42
+          "campus_price_difference_10k_krw": 3.42
         },
         {
           "dong": "송천동1가",
@@ -1257,9 +1300,10 @@
             "median_stops": 25.0,
             "boarding_stops": 7,
             "direct_routes": 3,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 10.0
+          "campus_price_difference_10k_krw": -3.92
         }
       ]
     },
@@ -1308,9 +1352,10 @@
             "median_stops": 15.0,
             "boarding_stops": 18,
             "direct_routes": 20,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -6.12
+          "campus_price_difference_10k_krw": -5.29
         },
         {
           "dong": "우아동1가",
@@ -1336,9 +1381,10 @@
             "median_stops": 20.5,
             "boarding_stops": 8,
             "direct_routes": 2,
-            "interval_min": 33
+            "interval_min": 33,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -5.0
+          "campus_price_difference_10k_krw": -4.17
         },
         {
           "dong": "덕진동1가",
@@ -1364,9 +1410,10 @@
             "median_stops": 2.0,
             "boarding_stops": 23,
             "direct_routes": 26,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -4.98
+          "campus_price_difference_10k_krw": -4.15
         },
         {
           "dong": "삼천동1가",
@@ -1392,9 +1439,10 @@
             "median_stops": 19.0,
             "boarding_stops": 33,
             "direct_routes": 10,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -2.0
+          "campus_price_difference_10k_krw": -1.17
         },
         {
           "dong": "우아동2가",
@@ -1420,9 +1468,10 @@
             "median_stops": 10.5,
             "boarding_stops": 6,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -0.83
+          "campus_price_difference_10k_krw": 0.0
         },
         {
           "dong": "인후동1가",
@@ -1448,9 +1497,10 @@
             "median_stops": 12.0,
             "boarding_stops": 29,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -0.42
+          "campus_price_difference_10k_krw": 0.42
         },
         {
           "dong": "금암동",
@@ -1476,9 +1526,10 @@
             "median_stops": 3.0,
             "boarding_stops": 33,
             "direct_routes": 46,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -0.42
+          "campus_price_difference_10k_krw": 0.42
         },
         {
           "dong": "중화산동2가",
@@ -1504,9 +1555,10 @@
             "median_stops": 12.5,
             "boarding_stops": 16,
             "direct_routes": 8,
-            "interval_min": 20
+            "interval_min": 20,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -0.42
+          "campus_price_difference_10k_krw": 0.42
         },
         {
           "dong": "우아동1가",
@@ -1532,7 +1584,8 @@
             "median_stops": 20.5,
             "boarding_stops": 8,
             "direct_routes": 2,
-            "interval_min": 33
+            "interval_min": 33,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": -0.42
         },
@@ -1560,7 +1613,8 @@
             "median_stops": 5.0,
             "boarding_stops": 17,
             "direct_routes": 10,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": -0.42
         },
@@ -1588,7 +1642,8 @@
             "median_stops": 12.0,
             "boarding_stops": 29,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": -0.42
         },
@@ -1616,9 +1671,10 @@
             "median_stops": 5.0,
             "boarding_stops": 17,
             "direct_routes": 10,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -0.42
+          "campus_price_difference_10k_krw": 0.42
         },
         {
           "dong": "우아동2가",
@@ -1644,7 +1700,8 @@
             "median_stops": 10.5,
             "boarding_stops": 6,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": -0.29
         },
@@ -1672,7 +1729,8 @@
             "median_stops": 6.0,
             "boarding_stops": 13,
             "direct_routes": 13,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.0
         },
@@ -1700,7 +1758,8 @@
             "median_stops": 2.0,
             "boarding_stops": 23,
             "direct_routes": 26,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.0
         },
@@ -1728,7 +1787,8 @@
             "median_stops": 3.0,
             "boarding_stops": 33,
             "direct_routes": 46,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.0
         },
@@ -1756,9 +1816,10 @@
             "median_stops": 6.0,
             "boarding_stops": 13,
             "direct_routes": 13,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.0
+          "campus_price_difference_10k_krw": -2.58
         },
         {
           "dong": "평화동2가",
@@ -1784,9 +1845,10 @@
             "median_stops": 19.0,
             "boarding_stops": 8,
             "direct_routes": 8,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.0
+          "campus_price_difference_10k_krw": -2.58
         },
         {
           "dong": "중화산동2가",
@@ -1812,9 +1874,10 @@
             "median_stops": 12.5,
             "boarding_stops": 16,
             "direct_routes": 8,
-            "interval_min": 20
+            "interval_min": 20,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.0
+          "campus_price_difference_10k_krw": -0.83
         },
         {
           "dong": "중화산동1가",
@@ -1840,9 +1903,10 @@
             "median_stops": 25.5,
             "boarding_stops": 6,
             "direct_routes": 6,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.0
+          "campus_price_difference_10k_krw": -2.58
         },
         {
           "dong": "삼천동1가",
@@ -1868,7 +1932,8 @@
             "median_stops": 19.0,
             "boarding_stops": 33,
             "direct_routes": 10,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.0
         },
@@ -1896,7 +1961,8 @@
             "median_stops": 3.0,
             "boarding_stops": 10,
             "direct_routes": 16,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.0
         },
@@ -1924,7 +1990,8 @@
             "median_stops": 5.0,
             "boarding_stops": 8,
             "direct_routes": 34,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.42
         },
@@ -1952,7 +2019,8 @@
             "median_stops": 6.0,
             "boarding_stops": 19,
             "direct_routes": 15,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.42
         },
@@ -1980,9 +2048,10 @@
             "median_stops": 6.0,
             "boarding_stops": 19,
             "direct_routes": 15,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.62
+          "campus_price_difference_10k_krw": -1.96
         },
         {
           "dong": "금암동",
@@ -2008,9 +2077,10 @@
             "median_stops": 3.0,
             "boarding_stops": 33,
             "direct_routes": 46,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.83
+          "campus_price_difference_10k_krw": 0.0
         },
         {
           "dong": "평화동1가",
@@ -2036,7 +2106,8 @@
             "median_stops": 16.0,
             "boarding_stops": 7,
             "direct_routes": 13,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.83
         },
@@ -2064,7 +2135,8 @@
             "median_stops": 12.5,
             "boarding_stops": 16,
             "direct_routes": 8,
-            "interval_min": 20
+            "interval_min": 20,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 0.83
         },
@@ -2092,9 +2164,10 @@
             "median_stops": 13.0,
             "boarding_stops": 7,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -24.25
+          "campus_price_difference_10k_krw": -20.0
         },
         {
           "dong": "효자동3가",
@@ -2120,9 +2193,10 @@
             "median_stops": 13.5,
             "boarding_stops": 40,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 0.92
+          "campus_price_difference_10k_krw": 0.08
         },
         {
           "dong": "중화산동1가",
@@ -2148,7 +2222,8 @@
             "median_stops": 25.5,
             "boarding_stops": 6,
             "direct_routes": 6,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 1.0
         },
@@ -2176,7 +2251,8 @@
             "median_stops": 19.0,
             "boarding_stops": 8,
             "direct_routes": 8,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 1.25
         },
@@ -2204,9 +2280,10 @@
             "median_stops": 3.0,
             "boarding_stops": 33,
             "direct_routes": 46,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 1.75
+          "campus_price_difference_10k_krw": -0.83
         },
         {
           "dong": "송천동1가",
@@ -2232,9 +2309,10 @@
             "median_stops": 3.0,
             "boarding_stops": 10,
             "direct_routes": 16,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 2.0
+          "campus_price_difference_10k_krw": -0.58
         },
         {
           "dong": "인후동1가",
@@ -2260,9 +2338,10 @@
             "median_stops": 12.0,
             "boarding_stops": 29,
             "direct_routes": 7,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 2.88
+          "campus_price_difference_10k_krw": 0.29
         },
         {
           "dong": "평화동1가",
@@ -2288,9 +2367,10 @@
             "median_stops": 16.0,
             "boarding_stops": 7,
             "direct_routes": 13,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": -22.17
+          "campus_price_difference_10k_krw": -17.92
         },
         {
           "dong": "덕진동2가",
@@ -2316,9 +2396,10 @@
             "median_stops": 2.0,
             "boarding_stops": 9,
             "direct_routes": 32,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 3.0
+          "campus_price_difference_10k_krw": 0.42
         },
         {
           "dong": "효자동3가",
@@ -2344,9 +2425,10 @@
             "median_stops": 13.5,
             "boarding_stops": 40,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 3.08
+          "campus_price_difference_10k_krw": 3.92
         },
         {
           "dong": "덕진동2가",
@@ -2372,7 +2454,8 @@
             "median_stops": 2.0,
             "boarding_stops": 9,
             "direct_routes": 32,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 3.75
         },
@@ -2400,7 +2483,8 @@
             "median_stops": 19.0,
             "boarding_stops": 33,
             "direct_routes": 15,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 3.75
         },
@@ -2428,9 +2512,10 @@
             "median_stops": 2.0,
             "boarding_stops": 23,
             "direct_routes": 26,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 3.75
+          "campus_price_difference_10k_krw": 1.17
         },
         {
           "dong": "효자동3가",
@@ -2456,7 +2541,8 @@
             "median_stops": 13.5,
             "boarding_stops": 40,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 4.17
         },
@@ -2484,7 +2570,8 @@
             "median_stops": 9.5,
             "boarding_stops": 40,
             "direct_routes": 17,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
           "campus_price_difference_10k_krw": 5.0
         },
@@ -2512,9 +2599,10 @@
             "median_stops": 5.0,
             "boarding_stops": 8,
             "direct_routes": 34,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 5.0
+          "campus_price_difference_10k_krw": 2.42
         },
         {
           "dong": "중화산동2가",
@@ -2540,9 +2628,10 @@
             "median_stops": 12.5,
             "boarding_stops": 16,
             "direct_routes": 8,
-            "interval_min": 20
+            "interval_min": 20,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 5.0
+          "campus_price_difference_10k_krw": 2.42
         },
         {
           "dong": "우아동1가",
@@ -2568,9 +2657,10 @@
             "median_stops": 20.5,
             "boarding_stops": 8,
             "direct_routes": 2,
-            "interval_min": 33
+            "interval_min": 33,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 6.83
+          "campus_price_difference_10k_krw": 4.25
         },
         {
           "dong": "효자동1가",
@@ -2596,9 +2686,10 @@
             "median_stops": 15.0,
             "boarding_stops": 18,
             "direct_routes": 20,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 7.88
+          "campus_price_difference_10k_krw": 5.29
         },
         {
           "dong": "효자동3가",
@@ -2624,9 +2715,10 @@
             "median_stops": 13.5,
             "boarding_stops": 40,
             "direct_routes": 14,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 8.0
+          "campus_price_difference_10k_krw": 5.42
         },
         {
           "dong": "우아동2가",
@@ -2652,9 +2744,10 @@
             "median_stops": 10.5,
             "boarding_stops": 6,
             "direct_routes": 5,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 10.0
+          "campus_price_difference_10k_krw": 7.42
         },
         {
           "dong": "효자동2가",
@@ -2680,9 +2773,10 @@
             "median_stops": 19.0,
             "boarding_stops": 33,
             "direct_routes": 15,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 10.42
+          "campus_price_difference_10k_krw": 7.83
         },
         {
           "dong": "만성동",
@@ -2708,9 +2802,10 @@
             "median_stops": 18.0,
             "boarding_stops": 27,
             "direct_routes": 4,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 11.42
+          "campus_price_difference_10k_krw": 8.83
         },
         {
           "dong": "송천동1가",
@@ -2736,9 +2831,10 @@
             "median_stops": 3.0,
             "boarding_stops": 10,
             "direct_routes": 16,
-            "interval_min": null
+            "interval_min": null,
+            "planned_interval_min": null
           },
-          "campus_price_difference_10k_krw": 15.0
+          "campus_price_difference_10k_krw": null
         }
       ]
     }

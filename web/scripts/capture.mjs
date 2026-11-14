@@ -126,6 +126,20 @@ async function captureArea(prefix, contextOptions) {
       await expect(areaPage.locator('.trend-values')).toHaveCount(0)
       await expect(areaPage.locator('.compare-table thead').first()).toContainText('환산 월세(중간값)')
       await expect(areaPage.locator('.compare-range').first()).toContainText('보통')
+      await expect(areaPage.locator('.commute-neighborhood-grid').first().locator('.commute-neighborhood-card')).toHaveCount(9)
+      await areaPage.locator('.commute-neighborhoods').first().getByRole('button', { name: '더 보기' }).click()
+      if (await areaPage.locator('.commute-neighborhood-grid').first().locator('.commute-neighborhood-card').count() <= 9)
+        throw new Error('Commute neighborhood list did not expand')
+      await areaPage.reload({ waitUntil: 'networkidle' })
+      await areaPage.getByRole('tab', { name: '대학가 비교' }).click()
+      await expect(areaPage.locator('.commute-neighborhood-grid').first().locator('.commute-neighborhood-card')).toHaveCount(9)
+      const labelBoxes = await areaPage.locator('.trend-point-value').evaluateAll(nodes =>
+        nodes.map(node => { const r = node.getBoundingClientRect(); return { x: r.x, y: r.y, right: r.right, bottom: r.bottom } }))
+      for (let i = 0; i < labelBoxes.length; i++) for (let j = i + 1; j < labelBoxes.length; j++) {
+        const a = labelBoxes[i], b = labelBoxes[j]
+        if (a.x < b.right && b.x < a.right && a.y < b.bottom && b.y < a.bottom)
+          throw new Error('Trend value labels overlap: ' + JSON.stringify({ i, j, a, b }))
+      }
     } else {
       await areaPage.getByRole('tab', { name: '예산으로 찾기' }).click()
       if (scenario === 'budget-jeonbuk') {
@@ -138,7 +152,7 @@ async function captureArea(prefix, contextOptions) {
       if (scenario === 'budget-empty') {
         await expect(areaPage.locator('.budget-empty')).toBeVisible()
       } else {
-        await expect(areaPage.locator('.budget-card')).toHaveCount(scenario === 'budget-hyo' ? 6 : 7)
+        await expect(areaPage.locator('.budget-card')).toHaveCount(8)
         await expect(areaPage.locator('.budget-terms').first()).toContainText('보증금')
         await expect(areaPage.locator('.budget-area').first()).toContainText('보통')
       }
@@ -177,4 +191,35 @@ if (passed.housing_type !== selected.housing_type || passed.deposit !== Math.rou
   throw new Error('Budget card values were not passed to contract judgment')
 }
 await handoffContext.close()
+async function captureCommute(prefix, contextOptions) {
+  const commuteContext = await browser.newContext(contextOptions)
+  for (const scenario of ['commute-budget-hyo', 'commute-budget-jeonbuk', 'commute-judge']) {
+    const commutePage = await commuteContext.newPage()
+    const errors = []
+    commutePage.on('pageerror', error => errors.push(error.message))
+    await commutePage.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' })
+    if (scenario === 'commute-judge') {
+      await commutePage.locator('#judge-dong').selectOption('서신동')
+      await expect(commutePage.getByText('서신동 거래끼리 비교했어요')).toBeVisible()
+      await expect(commutePage.getByText('대학가는 캠퍼스 주변 법정동 기준이라 실제 도보 거리와 다를 수 있어요.')).toHaveCount(0)
+    } else {
+      await commutePage.getByRole('tab', { name: '예산으로 찾기' }).click()
+      if (scenario === 'commute-budget-jeonbuk')
+        await commutePage.getByRole('group', { name: '예산 대학가' }).getByRole('button', { name: '전북대권' }).click()
+      await commutePage.getByRole('group', { name: '우선순위' }).getByRole('button', { name: '통학 가깝게' }).click()
+      await expect(commutePage.locator('.budget-card')).toHaveCount(8)
+      await expect(commutePage.locator('.budget-summary')).toContainText('보증금과 월세는 각각의 중간값')
+      await expect(commutePage.locator('.budget-typical-note')).toHaveCount(0)
+      await expect(commutePage.locator('.budget-card').first().locator('.budget-price-difference')).toHaveCount(0)
+      await expect(commutePage.getByText('배차 정보 없음')).toHaveCount(0)
+    }
+    await commutePage.waitForTimeout(600)
+    await commutePage.screenshot({ path: resolve(out, `${prefix}-${scenario}.png`), fullPage: true, animations: 'disabled' })
+    if (errors.length) throw new Error(`${prefix}-${scenario}: ${errors.join('; ')}`)
+    await commutePage.close()
+  }
+  await commuteContext.close()
+}
+await captureCommute('desktop', { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 })
+await captureCommute('iphone14', { ...devices['iPhone 14'], defaultBrowserType: undefined })
 await browser.close()

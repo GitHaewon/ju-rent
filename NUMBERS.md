@@ -46,6 +46,7 @@
 | N-036 | 예시 예산 500/35만 원·최소 15㎡·저렴함 순의 대학가별 추천·제외 조합 | 효자동권 전체 21·추천 6·제외 5/4/6, 전북대권 전체 21·추천 7·제외 11/1/2 (표본 부족/쏠림/예산 안 25% 미만) | outputs/compare/budget_example.json | src/jurent/area.py | 2026-11-12 | 검증됨 (reviews/2026-11-12-예산추천-대학가비교.md) |
 | N-037 | 법정동 경계 정류소 판정·확정 캠퍼스 정류소 기반 동→캠퍼스 직행(20정류소 이하) | 정류소 2,585개 중 완산·덕진 매핑 1,379개·경계 밖 1,206개; 캠퍼스 확정 전주대/전주비전대/전북대 12/9/17개(제외 4/0/12개); 통학권 동(캠퍼스 주변 제외) 41/30/57개; 134개 캠퍼스·동 조합 중 배차 일부 결측 106개. 직행 탑승 정류소별 최솟값의 중앙값·정류소 수 추가: 효자동3가→전북대 최소 5·중앙값 13.5·40곳, 서신동→전북대 2·5·17곳, 덕진동2가→전주대 6·14.5·10곳 | outputs/bus/stops_by_dong_audit.json; outputs/bus/campus_stops_candidates.csv; outputs/bus/commute_access.csv; outputs/bus/commute_access_audit.json; data/audit/bus_boarding_stops.csv; data/audit/bus_commute_examples.json | src/build_bus_access.py | 2026-11-13 | 검증됨 (reviews/2026-11-13-통학권-버스데이터.md; TAGO 배차 일부 결측 106조합은 자료 한계) |
 | N-038 | 예시 예산 500/35만 원·최소 15㎡·저렴함 순, 통학권 포함·학교별 기본 선택 | 효자동권(전주대학교) 전체 223·추천 44·제외 136/22/21, 전북대권(전북대학교) 전체 280·추천 52·제외 178/25/25 (표본 부족/쏠림/예산 안 25% 미만) | outputs/compare/budget_commute_example.json | src/jurent/area.py | 2026-11-13 | 검증됨 (reviews/2026-11-13-통학권-예산추천-계약판단.md) |
+| N-039 | 통학권 예산 카드의 같은 집 종류·같은 경과연수구간 캠퍼스 주변 환산 월세 중간값 대비 차이(r 5%, 기준 거래 30건 이상만 표시) | 추천 카드별 `campus_price_difference_10k_krw` 참조; 기준 거래 30건 미만은 `null` | outputs/compare/budget_commute_example.json | src/jurent/area.py | 2026-11-14 | 미검증 |
 
 > N-001~N-007은 Codex 심층 검증 결과에서 옮긴 값이다. 저장소 이전 후 Claude Code가 스크립트를 재실행해 검증 상태를 갱신한다. 출처 파일·스크립트 경로는 저장소 정리 후 실제 경로로 수정한다.
 

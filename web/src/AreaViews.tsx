@@ -43,9 +43,11 @@ function BudgetCard({ card, campus, school, rate, onChoose }: {
       <span className={`availability ${availabilityTone(card.availability_label)}`}>{card.availability_label}</span></span>
     <span className="budget-area">{typicalArea(card.area_median_sqm)}</span>
     <span className="budget-terms">{typicalTerms(card)}</span>
-    <span className="budget-typical-note">{card.typical_terms_note}</span>
-    {card.commute && <><span className="budget-commute">{commuteDetail(card.commute)}</span>
-      <span className="budget-price-difference">{priceDifference(card.campus_price_difference_10k_krw)}</span></>}
+    {card.commute && !card.commute.campus_area && <>
+      <span className="budget-commute">{commuteDetail(card.commute)}</span>
+      {card.campus_price_difference_10k_krw !== null && card.campus_price_difference_10k_krw !== undefined &&
+        <span className="budget-price-difference">{priceDifference(card.campus_price_difference_10k_krw)}</span>}
+    </>}
     <span className="budget-bar-copy">{tenDealSentence(card)} <em>· 거래 <Count value={card.n} />건</em></span>
     <span className="budget-bar" role="img" aria-label={`예산 안 비율 ${card.within_budget_pct.toFixed(1)}%`}>
       <motion.span initial={false} animate={{ width: `${card.within_budget_pct}%` }}
@@ -164,7 +166,7 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
         <section className="hero glass budget-summary" aria-live="polite"><div>
           <div className="context">{campus} · {school} 통학권 · 최근 24개월 계약</div>
           <h1 aria-label={budgetSummary(recommendations.length)}>조건에 맞는 선택지 <Count value={recommendations.length} />개를 찾았어요</h1>
-          <p>예산에 맞았던 과거 거래를 바탕으로 살펴볼 만한 집 조건이에요.</p></div></section>
+          <p>예산에 맞았던 과거 거래를 바탕으로 살펴볼 만한 집 조건이에요. 보증금과 월세는 각각의 중간값이라 한 거래의 조건은 아니에요. 캠퍼스 주변은 학교 주변 법정동이에요.</p></div></section>
         {recommendations.length ? <div className="budget-list" aria-label="예산 추천 목록">
           <AnimatePresence mode="popLayout">{(showAll ? recommendations : recommendations.slice(0, 8)).map(card =>
             <BudgetCard key={`${card.dong}-${card.housing_type}-${card.age_band}`} card={card} campus={displayed.input.campus}
@@ -217,15 +219,18 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
           {points.map(point => {
             const other = rows.find(row => row.campus !== campus && row.year === point.row.year)
             const otherY = other?.converted_median_10k_krw == null ? null : y(other.converted_median_10k_krw)
-            const close = otherY !== null && Math.abs(otherY - point.y) < 20
-            const lower = close && otherY !== null && point.y > otherY + 1
-            const higherOrEqual = index === 1 && close && otherY !== null && point.y <= otherY + 1
+            const close = otherY !== null && Math.abs(otherY - point.y) < 50
+            const top = otherY === null ? point.y : Math.min(point.y, otherY)
+            const bottom = otherY === null ? point.y : Math.max(point.y, otherY)
+            const labelY = close
+              ? top < 80 ? bottom + (index === 0 ? 18 : 42) : top - (index === 0 ? 14 : 38)
+              : point.y - 14
             return <g key={point.row.year}>
             <circle cx={point.x} cy={point.y} r="5" fill="white">
               <title>{campus} {point.row.year}년 {point.row.converted_median_10k_krw === null ? '표본 부족' : `${decimal(point.row.converted_median_10k_krw)}만 원`}</title>
             </circle>
             {point.row.converted_median_10k_krw !== null && <text
-              x={point.x - (lower ? 18 : 0)} y={point.y - (higherOrEqual ? 28 : 13)}
+              x={point.x} y={labelY}
               textAnchor="middle" className="trend-point-value" fill={color} stroke="none">
               {decimal(point.row.converted_median_10k_krw)}</text>}
           </g>
@@ -240,6 +245,7 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
 
 export function CompareView({ meta, rate, onRateChange }: SharedProps) {
   const [school, setSchool] = useState(meta.schools_by_campus[meta.campuses[0]][0])
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({})
   const [result, setResult] = useState<CampusComparison | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -286,12 +292,15 @@ export function CompareView({ meta, rate, onRateChange }: SharedProps) {
       {Object.entries(displayed.commute_neighborhoods).map(([campusName, rows]) =>
         <section className="card glass commute-neighborhoods" key={campusName}><h2>통학권 동네 · {campusName === meta.campuses[0] ? school : '전북대학교'}</h2>
         <p>학교 방향 직행 버스가 서는 동네의 원룸·투룸·빌라 보통 계약 조건이에요.</p>
-        <div className="commute-neighborhood-grid">{rows.map(row =>
+        <div className="commute-neighborhood-grid">{(expanded[campusName] ? rows : rows.slice(0, 9)).map(row =>
           <article className="commute-neighborhood-card" key={row.emd_cd}>
             <h3>{row.dong} <em className="commute-badge">{commuteLabel(row)}</em></h3>
-            <p>{commuteDetail(row)}</p>
+            {commuteDetail(row) && <p>{commuteDetail(row)}</p>}
             {row.sample_note ? <span className="sample-pill">표본 부족</span> : <p>보증금 {integerMoney(row.deposit_median_10k_krw!)}만 원 · 월세 {integerMoney(row.monthly_median_10k_krw!)}만 원 안팎</p>}
-          </article>)}</div></section>)}
+          </article>)}</div>
+        {!expanded[campusName] && rows.length > 9 && <button type="button" className="ai-btn budget-more"
+          onClick={() => setExpanded(current => ({ ...current, [campusName]: true }))}>더 보기</button>}
+        </section>)}
       <section className="card glass trend-section"><h2>원룸·투룸·빌라 월세 흐름</h2>
         <p>25~35㎡의 연도별 한가운데 가격이에요. 보증금을 월세로 바꿔 더했어요.</p>
         <TrendChart rows={displayed.yearly_trend} campuses={meta.campuses} /></section>

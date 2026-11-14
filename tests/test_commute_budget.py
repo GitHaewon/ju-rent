@@ -46,15 +46,35 @@ def test_commute_priority_school_scope_and_price_baseline():
         baseline = {}
         for kind in area.HOUSING_TYPES:
             rows = area.recent_deals(campus, kind, 40 if kind == "apartment" else 15)
-            if rows:
-                baseline[kind] = median(engine.converted_monthly(row["보증금"], row["월세"], 5)
-                                        for row in rows)
+            for age in {row["경과연수구간"] for row in rows}:
+                same_age = [row for row in rows if row["경과연수구간"] == age]
+                if len(same_age) >= engine.MIN_SAMPLE:
+                    baseline[kind, age] = median(
+                        engine.converted_monthly(row["보증금"], row["월세"], 5) for row in same_age
+                    )
         for card in result["recommendations"]:
             assert card["dong"] in analyze_rentals.CAMPUS_AREAS[campus]["dongs"] or card["dong"] in {
                 row["dong"] for row in commute.commute_rows(campus, school)
             }
-            expected = round(card["quantiles_10k_krw"]["p50"] - float(baseline[card["housing_type"]]), 2)
-            assert abs(card["campus_price_difference_10k_krw"] - expected) < 0.011
+            reference = baseline.get((card["housing_type"], card["age_band"]))
+            if reference is None:
+                assert card["campus_price_difference_10k_krw"] is None
+            else:
+                expected = round(card["quantiles_10k_krw"]["p50"] - float(reference), 2)
+                assert abs(card["campus_price_difference_10k_krw"] - expected) < 0.011
+
+
+def test_campus_age_baseline_requires_30_and_never_mix_ages():
+    def row(age, monthly):
+        return {"경과연수구간": age, "보증금": "500", "월세": str(monthly)}
+
+    rows = [row("20년 이상", 20) for _ in range(29)]
+    rows += [row("10~19년", 50) for _ in range(30)]
+    baselines = area._campus_age_medians(rows, 5)
+    assert "20년 이상" not in baselines
+    assert baselines["10~19년"] == engine.converted_monthly("500", "50", 5)
+    rows.append(row("20년 이상", 20))
+    assert area._campus_age_medians(rows, 5)["20년 이상"] == engine.converted_monthly("500", "20", 5)
 
 
 def test_dong_judgment_filters_only_selected_dong_and_keeps_shortage_and_concentration():
@@ -92,6 +112,15 @@ def test_meta_adjacent_interval_and_reference_output():
     assert {"인후동2가", "송천동1가"} <= {
         row["dong"] for row in meta["commute_by_school"]["전북대학교"] if row["campus_adjacent"]
     }
+    counts = meta["commute_deal_counts_by_school"]
+    for campus, schools in commute.SCHOOLS_BY_CAMPUS.items():
+        for school in schools:
+            for kind in area.HOUSING_TYPES:
+                expected = {}
+                for row in area.commute_deals(campus, school, kind, 40 if kind == "apartment" else 15):
+                    expected[row["법정동"]] = expected.get(row["법정동"], 0) + 1
+                for bus in commute.commute_rows(campus, school):
+                    assert counts[school][kind].get(bus["dong"], 0) == expected.get(bus["dong"], 0)
     path = area.write_commute_reference_output()
     before = path.read_bytes()
     area.write_commute_reference_output()
@@ -101,6 +130,34 @@ def test_meta_adjacent_interval_and_reference_output():
             len(example["results"]["효자동권"]["recommendations"])) == (223, 44)
     assert (example["results"]["전북대권"]["total_combinations"],
             len(example["results"]["전북대권"]["recommendations"])) == (280, 52)
+
+
+def test_saved_bus_schedule_average_requires_valid_trip_count(tmp_path, monkeypatch):
+    assert commute.planned_average_interval("0550", "2250", "46") == round(1020 / 45)
+    for values in (("0550", "2250", ""), ("0550", "2250", "1"),
+                   ("2500", "2250", "46"), ("2250", "0550", "46")):
+        assert commute.planned_average_interval(*values) is None
+    route_id = "JUB305001153"
+    tago_dir = tmp_path / "tago"
+    tago_dir.mkdir()
+    (tago_dir / f"route_info_{route_id}.xml").write_text(
+        f"<response><item><routeid>{route_id}</routeid><startvehicletime>0550</startvehicletime>"
+        "<endvehicletime>2250</endvehicletime></item></response>", encoding="utf-8",
+    )
+    gw = tmp_path / "route_info.xml"
+    monkeypatch.setattr(commute, "GW_ROUTE_INFO", gw)
+    monkeypatch.setattr(commute, "TAGO_RAW", tago_dir)
+    try:
+        for trips, expected in (("0", {}), ("46", {route_id: round(1020 / 45)})):
+            gw.write_text(
+                f"<response><list><brtStdid>305001153</brtStdid><brtFirstTime>550</brtFirstTime>"
+                f"<brtLastTime>2250</brtLastTime><TCount>46</TCount><BCount>{trips}</BCount>"
+                "</list></response>", encoding="utf-8",
+            )
+            commute.planned_intervals_by_route.cache_clear()
+            assert commute.planned_intervals_by_route() == expected
+    finally:
+        commute.planned_intervals_by_route.cache_clear()
 
 
 def test_split_manifests_survive_rental_analysis():

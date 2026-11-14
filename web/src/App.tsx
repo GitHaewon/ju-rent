@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BudgetView, CompareView } from './AreaViews'
 import Count from './Count'
+import { visibleCommuteDongs } from './commuteChoices'
 import { comparisonSentence, displayWarning, monthPeriod, negotiationSentence, percentileSentence, rateHint, verdictText } from './copy'
 import { distributionAxis, pinPlacement, positionOnAxis, shouldDrawDistribution } from './distribution'
 import { areaBounds, clampArea, housingName, housingOptions } from './housing'
@@ -280,14 +281,16 @@ export default function App() {
         <div className="field"><label htmlFor="judge-dong">동네</label><select id="judge-dong" value={form.dong ?? ''}
           onChange={event => update({ dong: event.target.value || null })}>
           <option value="">캠퍼스 주변</option>
-          {(meta.commute_by_school[form.school] ?? []).filter(row => !row.campus_area).map(row =>
-            <option key={row.emd_cd} value={row.dong}>{row.dong} · {row.campus_adjacent ? '캠퍼스 바로 옆' : `버스 정류장 ${row.min_stops}~${Math.round(row.median_stops)}개`}</option>)}</select></div></>}
+          {visibleCommuteDongs(meta, form.school, form.housing_type).map(({ row, label }) =>
+            <option key={row.emd_cd} value={row.dong}>{label} · {row.campus_adjacent ? '캠퍼스 바로 옆' : `버스 정류장 ${row.min_stops}~${Math.round(row.median_stops)}개`}</option>)}</select></div></>}
       <div className="field">
         <div className="lab">집 종류</div>
         <div className="chips" role="group" aria-label="집 종류">
           {meta && housingOptions(meta).map(kind => <button key={kind.code} type="button"
             aria-pressed={form.housing_type === kind.code}
-            onClick={() => update({ housing_type: kind.code, area: clampArea(form.area, kind.code) })}>{kind.name}</button>)}
+            onClick={() => update({ housing_type: kind.code, area: clampArea(form.area, kind.code),
+              dong: form.dong && visibleCommuteDongs(meta, form.school, kind.code).some(choice => choice.row.dong === form.dong)
+                ? form.dong : null })}>{kind.name}</button>)}
         </div>
         <div className="hint">건물 이름에 '오피스텔'이 있으면 오피스텔, 아파트라면 아파트, 나머지는 원룸·투룸·빌라를 고르세요.</div>
       </div>
@@ -370,7 +373,10 @@ export default function App() {
               {explainLoading ? '설명 준비 중…' : 'AI 설명 듣기'}</button>
           </div>
           <div className="card glass reveal d4"><h3>알아두세요</h3>
-            <ul className="notes">{result.warnings.map(warning => <li key={warning}>{displayWarning(warning)}</li>)}</ul>
+            <ul className="notes">{result.warnings.map(warning => <li key={warning}>{
+              result.input.dong && warning === '대학가 법정동 범위는 캠퍼스 도보권의 대리범위입니다.'
+                ? `${result.input.dong} 거래끼리 비교했어요` : displayWarning(warning)
+            }</li>)}</ul>
             <div className="source">자료: 국토교통부 실거래가 공개시스템 · 기준일 <span className="source-date">{result.data_as_of}</span></div>
           </div>
         </section>

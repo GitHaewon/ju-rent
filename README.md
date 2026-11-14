@@ -53,7 +53,7 @@ jeonju-rent/
 
 저장소 루트에서 `pip install -r requirements.txt`를 실행한다. 저장된 정제본은 `data/processed/valid_small_monthly.csv`와 `data/processed/valid_apartment_monthly.csv`다. 원본 CSV가 `data/raw/`에 있으면 `python -m src.jurent.data`로 두 정제본을 재생성하고, `python -m src.jurent.compare`로 N-030·N-031 근거 파일을 만든다. 첫 번째 터미널에서 `uvicorn api.main:app --reload --port 8000`으로 Python API를 실행한다.
 
-두 번째 터미널에서 `cd web`, `npm install`, `npm run dev`를 순서대로 실행한다. Vite가 `/api` 요청을 로컬 API로 전달한다. `OPENAI_API_KEY`와 `OPENAI_MODEL`은 선택형 AI 설명에만 필요하며 `.env`에만 저장한다. UI 회귀 검사는 `npm test`, 빌드 검사는 `npm run build`다. 두 서버가 실행 중일 때 `npm run screenshots`로 `docs/design/screens/`의 화면을 갱신할 수 있다.
+두 번째 터미널에서 `cd web`, `npm install`, `npm run dev`를 순서대로 실행한다. Vite가 `/api` 요청을 로컬 API로 전달한다. `POST /api/budget`은 범위를 생략하면 `scope="commute"`로 대학가 동과 선택 학교의 통학권 동을 함께 추천하며, 대학가 동만 보려면 `scope="campus"`를 지정한다. 자세한 요청 예시는 `docs/api.md`를 참고한다. `OPENAI_API_KEY`와 `OPENAI_MODEL`은 선택형 AI 설명에만 필요하며 `.env`에만 저장한다. UI 회귀 검사는 `npm test`, 빌드 검사는 `npm run build`다. 두 서버가 실행 중일 때 `npm run screenshots`로 `docs/design/screens/`의 화면을 갱신할 수 있다.
 
 ### 계약 판단 화면 실행
 

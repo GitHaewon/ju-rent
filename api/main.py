@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException
 from fastapi.exceptions import RequestValidationError as FastAPIValidationError
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from src import analyze_rentals as audit
 from src.jurent import area, commute, engine
@@ -46,7 +46,7 @@ class BudgetInput(BaseModel):
     housing: str | None = None
     priority: str = "cheap"
     rate_pct: float | None = None
-    scope: str = "commute"
+    scope: str = Field(default="commute", description="기본 통학권: 대학가 동과 선택 학교의 직행 통학권 동. campus를 주면 대학가 동만 비교합니다.")
     school: str | None = None
 
 
@@ -100,6 +100,7 @@ def meta() -> dict:
     return {
         "campuses": list(audit.CAMPUS_AREAS),
         "schools_by_campus": {campus: list(schools) for campus, schools in commute.SCHOOLS_BY_CAMPUS.items()},
+        "commute_deal_counts_by_school": area.commute_dong_deal_counts(),
         "commute_by_school": {
             school: commute.commute_rows(campus, school)
             for campus, schools in commute.SCHOOLS_BY_CAMPUS.items()

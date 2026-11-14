@@ -5,8 +5,9 @@ from __future__ import annotations
 import csv
 import json
 import math
-from collections import defaultdict
+from collections import Counter, defaultdict
 from fractions import Fraction
+from functools import lru_cache
 from pathlib import Path
 from statistics import median
 
@@ -75,6 +76,33 @@ def commute_deals(campus: str, school: str, housing: str, min_area: float) -> li
     ]
 
 
+@lru_cache(maxsize=1)
+def commute_dong_deal_counts() -> dict[str, dict[str, dict[str, int]]]:
+    """Count recent eligible deals for every school, housing type, and commute dong."""
+    counts = {}
+    for campus, schools in commute.SCHOOLS_BY_CAMPUS.items():
+        for school in schools:
+            allowed = {row["dong"] for row in commute.commute_rows(campus, school)}
+            counts[school] = {}
+            for kind in HOUSING_TYPES:
+                minimum = APARTMENT_MIN_AREA_SQM if kind == "apartment" else audit.MIN_AREA_SQM
+                rows = commute_deals(campus, school, kind, minimum)
+                by_dong = Counter(row["법정동"] for row in rows if row["법정동"] in allowed)
+                counts[school][kind] = dict(by_dong)
+    return counts
+
+
+def _campus_age_medians(rows: list[dict], rate: float) -> dict[str, Fraction]:
+    """Compare only with the same age band when the campus has enough deals."""
+    by_age = defaultdict(list)
+    for row in rows:
+        by_age[row["경과연수구간"]].append(row)
+    return {
+        age: median(engine.converted_monthly(row["보증금"], row["월세"], rate) for row in selected)
+        for age, selected in by_age.items() if len(selected) >= engine.MIN_SAMPLE
+    }
+
+
 def _median(rows: list[dict], field: str) -> Fraction:
     return median(Fraction(str(row[field])) for row in rows)
 
@@ -123,10 +151,10 @@ def budget_search(
             continue
         kind_min_area = max(min_area, APARTMENT_MIN_AREA_SQM) if kind == "apartment" else min_area
         campus_rows = recent_deals(campus, kind, kind_min_area)
-        if scope == "commute" and campus_rows:
-            campus_medians[kind] = median(
-                engine.converted_monthly(row["보증금"], row["월세"], rate) for row in campus_rows
-            )
+        if scope == "commute":
+            campus_medians.update({
+                (kind, age): value for age, value in _campus_age_medians(campus_rows, rate).items()
+            })
         source_rows = campus_rows if scope == "campus" else commute_deals(
             campus, selected_school, kind, kind_min_area
         )
@@ -177,8 +205,9 @@ def budget_search(
                 "boarding_stops": bus["boarding_stops"] if bus else None,
                 "direct_routes": bus["direct_routes"] if bus else None,
                 "interval_min": bus["interval_min"] if bus else None,
+                "planned_interval_min": bus["planned_interval_min"] if bus else None,
             }
-            baseline = campus_medians.get(kind)
+            baseline = campus_medians.get((kind, age))
             result["campus_price_difference_10k_krw"] = (
                 round(float(converted_median - baseline), 2) if baseline is not None else None
             )

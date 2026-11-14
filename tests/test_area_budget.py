@@ -209,5 +209,3 @@ def test_old_judge_and_n033_keep_fixed_results():
     evidence = json.loads(path.read_text(encoding="utf-8"))
     assert (evidence["갱신 포함"]["rows"], evidence["갱신 포함"]["top_complex_rows"],
             evidence["갱신 포함"]["humancia_rows"]) == (245, 98, 104)
-
-\n

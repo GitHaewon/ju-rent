@@ -20,12 +20,14 @@ export type CommuteAccess = {
   boarding_stops: number
   direct_routes: number
   interval_min: number | null
+  planned_interval_min: number | null
 }
 
 export type Meta = {
   campuses: string[]
   schools_by_campus: Record<string, string[]>
   commute_by_school: Record<string, CommuteAccess[]>
+  commute_deal_counts_by_school: Record<string, Record<string, Record<string, number>>>
   housing_types: { code: string; name: string; description: string }[]
   rate: {
     default_pct: number
