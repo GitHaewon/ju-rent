@@ -88,9 +88,14 @@ def test_converter_matches_csv_columns_amounts_blank_contract_and_d011_area():
                                      "detached_multiunit", "wansan", "202501", 1)["계약면적(㎡)"] == "43.92"
     assert rtms_to_rows.convert_item({**item, "totalFloorAr": "33.185"},
                                      "detached_multiunit", "wansan", "202501", 1)["계약면적(㎡)"] == "33.19"
+    assert rtms_to_rows.convert_item({**item, "contractTerm": ""},
+                                     "detached_multiunit", "wansan", "202501", 1)["계약기간"] == "-"
     apartment = {**item, "excluUseAr": "45", "aptNm": "테스트단지", "monthlyRent": "0"}
     converted = rtms_to_rows.convert_item(apartment, "apartment", "wansan", "202501", 1)
     assert rentals.area_with_basis("apartment", converted) == (45.0, "전용")
+    assert converted["전용면적(㎡)"] == "45.0000"
+    assert rtms_to_rows.convert_item({**apartment, "excluUseAr": "109.036"},
+                                     "apartment", "wansan", "202501", 1)["전용면적(㎡)"] == "109.0360"
     assert converted["전월세구분"] == "전세"
     assert converted["단지명"] == "테스트단지"
 
@@ -178,6 +183,73 @@ def test_csv_only_row_fails_even_when_api_count_matches(monkeypatch):
     assert result["status"] == "불일치"
 
 
+def test_same_core_different_complexes_pair_within_each_complex():
+    base = {"계약년월": "202602", "계약일": "5", "시군구": "전북특별자치도 전주시 완산구 평화동1가",
+            "전용면적(㎡)": "38.6400", "보증금(만원)": "500", "월세금(만원)": "25",
+            "전월세구분": "월세", "계약구분": "신규", "계약기간": "202602~202802"}
+    stable = {**base, "번지": "445-1", "단지명": "전주평화근로복지", "층": "12", "건축년도": "1992"}
+    revised = {**base, "번지": "445-6", "단지명": "평화주공1,2", "층": "13", "건축년도": "1992"}
+    csv_rows = [stable, revised]
+    api_rows = [{**revised, "건축년도": "1991"}, stable]
+    changes, csv_only, api_only = compare_rtms_csv.pair_records(csv_rows, api_rows, "apartment")
+    assert len(changes) == 1
+    assert changes[0]["csv_complex"]["번지"] == "445-6"
+    assert changes[0]["api_complex"]["번지"] == "445-6"
+    assert changes[0]["complex_matches"] is True
+    assert not csv_only and not api_only
+    diff = compare_rtms_csv.differences(csv_rows, api_rows, "apartment")
+    assert diff["transaction_csv_only_rows"] == diff["transaction_api_only_rows"] == 0
+
+
+def test_floor_and_term_preferred_within_complex():
+    base = {"계약년월": "202602", "계약일": "5", "시군구": "전북특별자치도 전주시 완산구 평화동1가",
+            "전용면적(㎡)": "38.6400", "보증금(만원)": "500", "월세금(만원)": "25",
+            "전월세구분": "월세", "계약구분": "신규", "번지": "445-6",
+            "단지명": "평화주공1,2", "건축년도": "1992"}
+    stable = {**base, "층": "12", "계약기간": "202602~202802"}
+    revised = {**base, "층": "13", "계약기간": "202603~202803"}
+    api_rows = [stable, {**revised, "건축년도": "1991"}]
+    changes, csv_only, api_only = compare_rtms_csv.pair_records(
+        [revised, stable], api_rows, "apartment")
+    assert len(changes) == 1
+    assert not csv_only and not api_only
+    assert changes[0]["csv_build_year"] == "1992"
+    assert changes[0]["api_build_year"] == "1991"
+    assert changes[0]["csv_floor"] == changes[0]["api_floor"] == "13"
+    assert changes[0]["csv_contract_term"] == changes[0]["api_contract_term"] == "202603~202803"
+
+
+def test_floor_and_term_take_priority_over_equal_year():
+    base = {"계약년월": "202602", "계약일": "5", "시군구": "전북특별자치도 전주시 완산구 평화동1가",
+            "전용면적(㎡)": "38.6400", "보증금(만원)": "500", "월세금(만원)": "25",
+            "전월세구분": "월세", "계약구분": "신규", "번지": "445-6", "단지명": "평화주공1,2"}
+    lower = {**base, "층": "1", "계약기간": "202602~202802", "건축년도": "1992"}
+    higher = {**base, "층": "13", "계약기간": "202603~202803", "건축년도": "1991"}
+    api_rows = [{**lower, "건축년도": "1991"}, {**higher, "건축년도": "1992"}]
+    changes, csv_only, api_only = compare_rtms_csv.pair_records(
+        [lower, higher], api_rows, "apartment")
+    assert not csv_only and not api_only
+    assert len(changes) == 2
+    assert {change["csv_floor"] for change in changes} == {"1", "13"}
+    assert all(change["csv_floor"] == change["api_floor"]
+               and change["csv_contract_term"] == change["api_contract_term"] for change in changes)
+
+
+def test_changed_complex_is_csv_only_and_api_only():
+    base = {"계약년월": "202602", "계약일": "5", "시군구": "전북특별자치도 전주시 완산구 평화동1가",
+            "전용면적(㎡)": "38.6400", "보증금(만원)": "500", "월세금(만원)": "25",
+            "전월세구분": "월세", "계약구분": "신규", "건축년도": "1992",
+            "번지": "445-1", "단지명": "전주평화근로복지"}
+    changed = {**base, "번지": "445-6", "단지명": "평화주공1,2"}
+    changes, csv_only, api_only = compare_rtms_csv.pair_records([base], [changed], "apartment")
+    assert not changes
+    assert csv_only == [base]
+    assert api_only == [changed]
+    diff = compare_rtms_csv.differences([base], [changed], "apartment")
+    assert diff["transaction_csv_only_rows"] == diff["transaction_api_only_rows"] == 1
+    assert {item["field"] for item in diff["differing_fields"]} == {"번지", "단지명"}
+
+
 def test_api_only_half_percent_boundary_and_full_transaction_list(monkeypatch):
     monkeypatch.setattr(fetch_rtms, "SERVICES", {"apartment": "test"})
     monkeypatch.setattr(fetch_rtms, "DISTRICTS", {"wansan": "52111"})
@@ -203,6 +275,24 @@ def test_api_only_half_percent_boundary_and_full_transaction_list(monkeypatch):
         assert len(result["api_only_transactions"]) == extras
         assert result["api_only_transactions"][0]["fields"]["보증금"] == "200"
         assert result["valid_scope_totals"]["campus:test"]["difference"] == extras
+
+
+def test_n040_verified_offline_gate_and_complex_attribution(tmp_path):
+    result = compare_rtms_csv.compare(out=tmp_path / "audit.json")
+    summary = result["summary"]
+    assert result["status"] == "통과"
+    assert summary["checked_groups"] == 160
+    assert (summary["csv_rows"], summary["api_rows"]) == (31621, 31635)
+    assert (summary["transaction_csv_only_rows"], summary["transaction_api_only_rows"]) == (0, 14)
+    assert summary["transaction_api_only_pct"] == 0.044274
+    assert summary["build_year_changed_rows"] == 144
+    assert summary["build_year_changed_pct"] == 0.455394
+    assert result["calls_this_run"] == 0
+    changed = {row["번지"]: row["changed_rows"] for row in result["build_year_by_complex"]
+               if row["housing_type"] == "apartment" and row["gu"] == "wansan"
+               and row["법정동"] == "평화동1가" and row["번지"] in ("445-1", "445-6")}
+    assert changed.get("445-6", 0) == 74
+    assert changed.get("445-1", 0) == 0
 
 
 def test_chunked_fetch_log_accumulates_call_counts(tmp_path, monkeypatch):

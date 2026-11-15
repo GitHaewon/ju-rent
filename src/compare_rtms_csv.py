@@ -12,7 +12,8 @@ from src import fetch_rtms, rtms_to_rows
 from src.jurent import commute
 
 OUT = audit.ROOT / "outputs/audit/rtms_api_vs_csv.json"
-FIELDS = ("계약일", "법정동", "면적", "보증금", "월세", "전월세구분", "계약구분", "건축년도")
+FIELDS = ("계약일", "법정동", "면적", "보증금", "월세", "전월세구분", "계약구분",
+          "번지", "단지명", "건축년도")
 TRANSACTION_FIELDS = FIELDS[:-1]
 MAX_BUILD_YEAR_DIFFERENCE_PCT = 1
 MAX_API_ONLY_PCT = Decimal("0.5")
@@ -26,14 +27,19 @@ def _decimal(value: str) -> str:
 
 
 def core(row: dict[str, str], kind: str) -> tuple[str, ...]:
-    """Keep repeats: D-023 forbids de-duplicating identical contracts."""
+    """Use comparable complex fields and keep repeats (D-023)."""
     ym, day = row["계약년월"].strip(), row["계약일"].strip()
     signed = f"{ym[:4]}-{ym[4:]}-{int(day):02d}"
     area = audit.AREA_COLUMNS[kind][0]
+    # Detached API responses have no lot or building name. The masked CSV lot
+    # remains in the audit record but cannot be used as a cross-source key.
+    _, lot, name = _complex(row, kind)
+    if kind == "detached_multiunit":
+        lot, name = "", ""
     return (signed, row["시군구"].split()[-1], _decimal(row[area]),
             _decimal(row["보증금(만원)"]), _decimal(row["월세금(만원)"]),
             row["전월세구분"].strip(), audit.contract_label(row["계약구분"]),
-            row.get("건축년도", "").strip())
+            lot, name, row.get("건축년도", "").strip())
 
 
 def differences(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]], kind: str) -> dict:
@@ -91,9 +97,30 @@ def unmatched_transaction(row: dict[str, str], kind: str) -> dict:
             "건축년도": row.get("건축년도", "").strip(), "법정동": dong, "번지": lot, "단지명": name}
 
 
+def _pair_candidates(left_rows: list[dict[str, str]], right_rows: list[dict[str, str]],
+                     unused_left: set[int], unused_right: set[int]) -> list[tuple[int, int]]:
+    candidates = []
+    for left_index, left in enumerate(left_rows):
+        for right_index, right in enumerate(right_rows):
+            years_match = left.get("건축년도", "").strip() == right.get("건축년도", "").strip()
+            floor = (bool(left.get("층", "").strip())
+                     and left.get("층", "").strip() == right.get("층", "").strip())
+            term = (left.get("계약기간", "").strip() not in ("", "-")
+                    and left.get("계약기간", "").strip() == right.get("계약기간", "").strip())
+            candidates.append((-int(floor and term), -int(floor), -int(term), -int(years_match),
+                               left_index, right_index))
+    pairs = []
+    for _, _, _, _, left_index, right_index in sorted(candidates):
+        if left_index in unused_left and right_index in unused_right:
+            unused_left.remove(left_index)
+            unused_right.remove(right_index)
+            pairs.append((left_index, right_index))
+    return pairs
+
+
 def pair_records(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]], kind: str
                  ) -> tuple[list[dict], list[dict[str, str]], list[dict[str, str]]]:
-    """Cancel exact rows, pair year-only revisions, then retain true one-sided rows."""
+    """Pair within the same transaction and complex, preferring floor and term."""
     groups: dict[tuple[str, ...], dict[str, list[dict[str, str]]]] = defaultdict(
         lambda: {"csv": [], "api": []}
     )
@@ -104,36 +131,37 @@ def pair_records(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]],
     csv_only = []
     api_only = []
     for transaction, group in sorted(groups.items()):
-        csv_years = Counter(row.get("건축년도", "").strip() for row in group["csv"])
-        api_years = Counter(row.get("건축년도", "").strip() for row in group["api"])
-        csv_excess, api_excess = csv_years - api_years, api_years - csv_years
-
-        def remaining(rows: list[dict[str, str]], excess: Counter) -> list[dict[str, str]]:
-            found = []
-            for row in sorted(rows, key=lambda value: (_complex(value, kind),
-                                                        value.get("건축년도", ""))):
-                year = row.get("건축년도", "").strip()
-                if excess[year]:
-                    found.append(row)
-                    excess[year] -= 1
-            return found
-
-        unmatched_csv = remaining(group["csv"], csv_excess)
-        unmatched_api = remaining(group["api"], api_excess)
-        paired = min(len(unmatched_csv), len(unmatched_api))
-        for left, right in zip(unmatched_csv[:paired], unmatched_api[:paired]):
+        left_rows = sorted(group["csv"], key=lambda row: (_complex(row, kind),
+                                                            row.get("층", ""),
+                                                            row.get("계약기간", ""),
+                                                            row.get("건축년도", "")))
+        right_rows = sorted(group["api"], key=lambda row: (_complex(row, kind),
+                                                             row.get("층", ""),
+                                                             row.get("계약기간", ""),
+                                                             row.get("건축년도", "")))
+        unused_left = set(range(len(left_rows)))
+        unused_right = set(range(len(right_rows)))
+        for left_index, right_index in _pair_candidates(
+                left_rows, right_rows, unused_left, unused_right):
+            left, right = left_rows[left_index], right_rows[right_index]
+            if left.get("건축년도", "").strip() == right.get("건축년도", "").strip():
+                continue
             csv_complex = _complex(left, kind)
             api_complex = _complex(right, kind)
             changes.append({
                 "transaction": dict(zip(TRANSACTION_FIELDS, transaction, strict=True)),
                 "csv_build_year": left.get("건축년도", "").strip(),
                 "api_build_year": right.get("건축년도", "").strip(),
+                "csv_floor": left.get("층", "").strip(),
+                "api_floor": right.get("층", "").strip(),
+                "csv_contract_term": left.get("계약기간", "").strip(),
+                "api_contract_term": right.get("계약기간", "").strip(),
                 "csv_complex": dict(zip(("법정동", "번지", "단지명"), csv_complex, strict=True)),
                 "api_complex": dict(zip(("법정동", "번지", "단지명"), api_complex, strict=True)),
                 "complex_matches": csv_complex == api_complex,
             })
-        csv_only.extend(unmatched_csv[paired:])
-        api_only.extend(unmatched_api[paired:])
+        csv_only.extend(left_rows[index] for index in sorted(unused_left))
+        api_only.extend(right_rows[index] for index in sorted(unused_right))
     return changes, csv_only, api_only
 
 

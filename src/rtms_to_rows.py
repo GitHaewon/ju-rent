@@ -47,15 +47,15 @@ def _amount(value: str) -> Decimal | None:
 
 def _term(value: str) -> str:
     match = TERM.fullmatch(value.strip())
-    return "" if not match else f"20{match[1]}{match[2]}~20{match[3]}{match[4]}"
+    return "-" if not match else f"20{match[1]}{match[2]}~20{match[3]}{match[4]}"
 
 
 def _area(value: str, kind: str) -> str:
     cleaned = value.strip()
-    if kind != "detached_multiunit":
-        return cleaned
+    places = "0.01" if kind == "detached_multiunit" else "0.0001"
     try:
-        return f"{Decimal(cleaned).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP):.2f}"
+        area = Decimal(cleaned).quantize(Decimal(places), rounding=ROUND_HALF_UP)
+        return f"{area:.2f}" if kind == "detached_multiunit" else f"{area:.4f}"
     except InvalidOperation:
         return cleaned
 
