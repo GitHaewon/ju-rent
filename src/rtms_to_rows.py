@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import re
-from decimal import Decimal, InvalidOperation
+from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 from functools import lru_cache
 from pathlib import Path
 
@@ -50,6 +50,16 @@ def _term(value: str) -> str:
     return "" if not match else f"20{match[1]}{match[2]}~20{match[3]}{match[4]}"
 
 
+def _area(value: str, kind: str) -> str:
+    cleaned = value.strip()
+    if kind != "detached_multiunit":
+        return cleaned
+    try:
+        return f"{Decimal(cleaned).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP):.2f}"
+    except InvalidOperation:
+        return cleaned
+
+
 def convert_item(item: dict[str, str], kind: str, gu: str, month: str, sequence: int) -> dict[str, str]:
     """Build one export-shaped row, keeping API values in their original ten-thousand-won unit."""
     if kind not in TYPE_LABEL or gu not in GU_LABEL:
@@ -74,7 +84,7 @@ def convert_item(item: dict[str, str], kind: str, gu: str, month: str, sequence:
         "단지명": item.get(NAME_FIELD.get(kind, ""), "").strip(),
         "건물명": item.get("mhouseNm", "").strip(),
         "전월세구분": "월세" if monthly is not None and monthly > 0 else "전세" if monthly == 0 else "",
-        audit.AREA_COLUMNS[kind][0]: item.get(AREA_FIELD[kind], "").strip(),
+        audit.AREA_COLUMNS[kind][0]: _area(item.get(AREA_FIELD[kind], ""), kind),
         "계약년월": month,
         "계약일": str(int(day)),
         "보증금(만원)": item.get("deposit", "").strip(),

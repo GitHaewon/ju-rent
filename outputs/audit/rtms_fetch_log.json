@@ -1,19 +1,1347 @@
 {
-  "months": [
-    "202501",
-    "202501"
-  ],
-  "calls": 1,
-  "pages": [
+  "baseline_saved_pages": 4,
+  "runs": [
     {
-      "kind": "multifamily",
-      "gu": "wansan",
-      "month": "202501",
-      "page": 1,
-      "cached": false,
-      "rows": 9
+      "months": [
+        "202501",
+        "202505"
+      ],
+      "calls": 37,
+      "pages": [
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202501",
+          "page": 1,
+          "cached": true,
+          "rows": 272
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202501",
+          "page": 1,
+          "cached": false,
+          "rows": 435
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202501",
+          "page": 1,
+          "cached": true,
+          "rows": 9
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202501",
+          "page": 1,
+          "cached": false,
+          "rows": 44
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202501",
+          "page": 1,
+          "cached": true,
+          "rows": 414
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202501",
+          "page": 1,
+          "cached": false,
+          "rows": 365
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202501",
+          "page": 1,
+          "cached": true,
+          "rows": 43
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202501",
+          "page": 1,
+          "cached": false,
+          "rows": 64
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 489
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 1000
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202502",
+          "page": 2,
+          "cached": false,
+          "rows": 352
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 29
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 50
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 548
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 476
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 33
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202502",
+          "page": 1,
+          "cached": false,
+          "rows": 72
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 330
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 344
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 16
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 22
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 419
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 272
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 28
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202503",
+          "page": 1,
+          "cached": false,
+          "rows": 46
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 339
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 315
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 19
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 12
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 365
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 235
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 22
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202504",
+          "page": 1,
+          "cached": false,
+          "rows": 38
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 291
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 323
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 6
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 14
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 295
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 232
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 33
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202505",
+          "page": 1,
+          "cached": false,
+          "rows": 42
+        }
+      ],
+      "failures": [],
+      "status": "complete"
+    },
+    {
+      "months": [
+        "202506",
+        "202510"
+      ],
+      "calls": 40,
+      "pages": [
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 269
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 309
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 20
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 20
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 401
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 282
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 23
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202506",
+          "page": 1,
+          "cached": false,
+          "rows": 77
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 263
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 321
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 27
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 32
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 378
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 325
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 31
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202507",
+          "page": 1,
+          "cached": false,
+          "rows": 61
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 261
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 336
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 10
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 17
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 348
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 289
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 23
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202508",
+          "page": 1,
+          "cached": false,
+          "rows": 49
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 283
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 387
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 16
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 14
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 344
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 247
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 30
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202509",
+          "page": 1,
+          "cached": false,
+          "rows": 45
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 233
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 325
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 13
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 17
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 303
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 219
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 15
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202510",
+          "page": 1,
+          "cached": false,
+          "rows": 32
+        }
+      ],
+      "failures": [],
+      "status": "complete"
+    },
+    {
+      "months": [
+        "202511",
+        "202603"
+      ],
+      "calls": 40,
+      "pages": [
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 314
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 331
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 8
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 26
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 383
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 260
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 33
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202511",
+          "page": 1,
+          "cached": false,
+          "rows": 52
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 279
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 426
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 14
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 35
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 447
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 386
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 27
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202512",
+          "page": 1,
+          "cached": false,
+          "rows": 81
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 461
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 331
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 12
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 59
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 551
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 549
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 52
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202601",
+          "page": 1,
+          "cached": false,
+          "rows": 72
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 357
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 328
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 24
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 51
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 578
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 486
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 32
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202602",
+          "page": 1,
+          "cached": false,
+          "rows": 56
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 288
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 341
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 33
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 30
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 450
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 301
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 41
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202603",
+          "page": 1,
+          "cached": false,
+          "rows": 46
+        }
+      ],
+      "failures": [],
+      "status": "complete"
+    },
+    {
+      "months": [
+        "202604",
+        "202608"
+      ],
+      "calls": 41,
+      "pages": [
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 271
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 1000
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202604",
+          "page": 2,
+          "cached": false,
+          "rows": 780
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 19
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 19
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 339
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 262
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 37
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202604",
+          "page": 1,
+          "cached": false,
+          "rows": 40
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 279
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 244
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 13
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 20
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 297
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 273
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 20
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202605",
+          "page": 1,
+          "cached": false,
+          "rows": 43
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 283
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 301
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 21
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 23
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 381
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 281
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 24
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202606",
+          "page": 1,
+          "cached": false,
+          "rows": 56
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 303
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 220
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 12
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 21
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 310
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 233
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 16
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202607",
+          "page": 1,
+          "cached": false,
+          "rows": 50
+        },
+        {
+          "kind": "apartment",
+          "gu": "wansan",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 178
+        },
+        {
+          "kind": "apartment",
+          "gu": "deokjin",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 200
+        },
+        {
+          "kind": "multifamily",
+          "gu": "wansan",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 13
+        },
+        {
+          "kind": "multifamily",
+          "gu": "deokjin",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 17
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "wansan",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 346
+        },
+        {
+          "kind": "detached_multiunit",
+          "gu": "deokjin",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 269
+        },
+        {
+          "kind": "officetel",
+          "gu": "wansan",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 9
+        },
+        {
+          "kind": "officetel",
+          "gu": "deokjin",
+          "month": "202608",
+          "page": 1,
+          "cached": false,
+          "rows": 33
+        }
+      ],
+      "failures": [],
+      "status": "complete"
     }
   ],
-  "failures": [],
-  "status": "complete"
+  "total_calls": 162,
+  "total_failures": 0
 }

@@ -84,6 +84,10 @@ def test_converter_matches_csv_columns_amounts_blank_contract_and_d011_area():
         assert rentals.valid_small_monthly({"area": area, "deposit": rentals.number(row["보증금(만원)"]),
                                              "monthly": rentals.number(row["월세금(만원)"]),
                                              "tenure": row["전월세구분"]}) is expected
+    assert rtms_to_rows.convert_item({**item, "totalFloorAr": "43.915"},
+                                     "detached_multiunit", "wansan", "202501", 1)["계약면적(㎡)"] == "43.92"
+    assert rtms_to_rows.convert_item({**item, "totalFloorAr": "33.185"},
+                                     "detached_multiunit", "wansan", "202501", 1)["계약면적(㎡)"] == "33.19"
     apartment = {**item, "excluUseAr": "45", "aptNm": "테스트단지", "monthlyRent": "0"}
     converted = rtms_to_rows.convert_item(apartment, "apartment", "wansan", "202501", 1)
     assert rentals.area_with_basis("apartment", converted) == (45.0, "전용")
@@ -91,12 +95,14 @@ def test_converter_matches_csv_columns_amounts_blank_contract_and_d011_area():
     assert converted["단지명"] == "테스트단지"
 
 
-def test_mismatch_gate_stops_at_first_month_and_names_fields(tmp_path, monkeypatch):
-    old = {"계약년월": "202501", "계약일": "1", "시군구": "전북특별자치도 전주시 완산구 효자동2가",
-           "전용면적(㎡)": "15", "보증금(만원)": "500", "월세금(만원)": "29",
-           "전월세구분": "월세", "계약구분": "-", "건축년도": "2020"}
-    new = {**old, "월세금(만원)": "30"}
-    monkeypatch.setattr(compare_rtms_csv.audit, "read_csv", lambda path: ("", [], [old]))
+def test_full_gate_records_other_field_mismatch_after_all_months(tmp_path, monkeypatch):
+    old = {month: {"계약년월": month, "계약일": "1", "시군구": "전북특별자치도 전주시 완산구 효자동2가",
+                   "전용면적(㎡)": "15", "보증금(만원)": "500", "월세금(만원)": "29",
+                   "전월세구분": "월세", "계약구분": "-", "건축년도": "2020"}
+           for month in ("202501", "202502")}
+    monkeypatch.setattr(compare_rtms_csv.audit, "read_csv", lambda path: ("", [], list(old.values())))
+    monkeypatch.setattr(fetch_rtms, "SERVICES", {"apartment": "test"})
+    monkeypatch.setattr(fetch_rtms, "DISTRICTS", {"wansan": "52111"})
     calls = []
 
     def fetch(kind, gu, month, log, **kwargs):
@@ -104,15 +110,62 @@ def test_mismatch_gate_stops_at_first_month_and_names_fields(tmp_path, monkeypat
         return [{}]
 
     monkeypatch.setattr(compare_rtms_csv.fetch_rtms, "fetch_group", fetch)
-    monkeypatch.setattr(compare_rtms_csv.rtms_to_rows, "convert_item", lambda *args: new)
+    monkeypatch.setattr(compare_rtms_csv.rtms_to_rows, "convert_item", lambda item, kind, gu, month, number:
+                        {**old[month], "월세금(만원)": "30"} if month == "202501" else old[month])
     monkeypatch.setattr(compare_rtms_csv, "scope_counts", lambda *args: {})
     out = tmp_path / "result.json"
     result = compare_rtms_csv.compare(first="202501", last="202502", raw_root=tmp_path, out=out)
     assert result["status"] == "불일치"
-    assert calls == [("apartment", "wansan", "202501")]
-    assert result["first_mismatch"]["month"] == "202501"
-    assert [row["field"] for row in result["first_mismatch"]["differing_fields"]] == ["월세"]
+    assert calls == [("apartment", "wansan", "202501"), ("apartment", "wansan", "202502")]
+    assert len(result["checked"]) == 2
+    assert result["other_field_failures"][0]["month"] == "202501"
+    assert [row["field"] for row in result["other_field_failures"][0]["differing_fields"]] == ["월세"]
     assert json.loads(out.read_text(encoding="utf-8"))["checked"][0]["csv_only_rows"] == 1
+
+
+def test_build_year_one_percent_boundary_and_complex_grouping(monkeypatch):
+    monkeypatch.setattr(fetch_rtms, "SERVICES", {"apartment": "test"})
+    monkeypatch.setattr(fetch_rtms, "DISTRICTS", {"wansan": "52111"})
+
+    def row(index, year):
+        return {"계약년월": "202501", "계약일": "1", "시군구": "전북특별자치도 전주시 완산구 평화동1가",
+                "전용면적(㎡)": "38.64", "보증금(만원)": str(index), "월세금(만원)": "30",
+                "전월세구분": "월세", "계약구분": "신규", "건축년도": year,
+                "번지": "123", "단지명": "한단지"}
+
+    csv_rows = [row(index, "1992") for index in range(100)]
+    for changed in (1, 2):
+        api_rows = [row(index, "1991" if index < changed else "1992") for index in range(100)]
+        diff = compare_rtms_csv.differences(csv_rows, api_rows, "apartment")
+        changes = compare_rtms_csv.build_year_changes(csv_rows, api_rows, "apartment")
+        result = {"period": ["202501", "202501"], "checked": [
+            {"month": "202501", "housing_type": "apartment", "gu": "wansan", **diff,
+             "valid_scope_counts": {}}
+        ]}
+        compare_rtms_csv.summarize(result, [
+            {"month": "202501", "housing_type": "apartment", "gu": "wansan", **change}
+            for change in changes
+        ])
+        assert diff["transaction_csv_only_rows"] == diff["transaction_api_only_rows"] == 0
+        assert result["summary"]["build_year_changed_rows"] == changed
+        assert result["status"] == ("통과" if changed == 1 else "불일치")
+        assert result["build_year_by_complex"][0]["단지명"] == "한단지"
+        assert result["build_year_by_complex"][0]["changed_rows"] == changed
+
+
+def test_chunked_fetch_log_accumulates_call_counts(tmp_path, monkeypatch):
+    def fetch(kind, gu, month, log, **kwargs):
+        log["calls"] += 1
+        return []
+
+    monkeypatch.setattr(fetch_rtms, "fetch_group", fetch)
+    path = tmp_path / "log.json"
+    fetch_rtms.run("202501", "202501", ["apartment"], ["wansan"], root=tmp_path, log=path)
+    fetch_rtms.run("202502", "202502", ["apartment"], ["wansan"], root=tmp_path, log=path)
+    logged = json.loads(path.read_text(encoding="utf-8"))
+    assert logged["baseline_saved_pages"] == 0
+    assert logged["total_calls"] == 2
+    assert [run["calls"] for run in logged["runs"]] == [1, 1]
 
 
 def test_month_range_and_missing_offline_page(tmp_path):

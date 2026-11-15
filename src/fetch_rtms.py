@@ -145,6 +145,13 @@ def run(first: str = FIRST_MONTH, last: str = LAST_MONTH, kinds: list[str] | Non
         gus: list[str] | None = None, *, refresh: bool = False, root: Path = RAW,
         log: Path = FETCH_LOG) -> dict:
     audit: dict = {"months": [first, last], "calls": 0, "pages": [], "failures": [], "status": "running"}
+    if log.exists():
+        previous = json.loads(log.read_text(encoding="utf-8"))
+        history = previous if "runs" in previous else {
+            "baseline_saved_pages": len(list(root.glob("*/*.xml"))), "runs": []
+        }
+    else:
+        history = {"baseline_saved_pages": len(list(root.glob("*/*.xml"))), "runs": []}
     try:
         for month in month_range(first, last):
             for kind in kinds or SERVICES:
@@ -157,7 +164,10 @@ def run(first: str = FIRST_MONTH, last: str = LAST_MONTH, kinds: list[str] | Non
         audit["status"] = "complete"
     finally:
         log.parent.mkdir(parents=True, exist_ok=True)
-        log.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        history["runs"].append(audit)
+        history["total_calls"] = history["baseline_saved_pages"] + sum(run["calls"] for run in history["runs"])
+        history["total_failures"] = sum(len(run["failures"]) for run in history["runs"])
+        log.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return audit
 
 
