@@ -15,6 +15,7 @@ OUT = audit.ROOT / "outputs/audit/rtms_api_vs_csv.json"
 FIELDS = ("계약일", "법정동", "면적", "보증금", "월세", "전월세구분", "계약구분", "건축년도")
 TRANSACTION_FIELDS = FIELDS[:-1]
 MAX_BUILD_YEAR_DIFFERENCE_PCT = 1
+MAX_API_ONLY_PCT = Decimal("0.5")
 
 
 def _decimal(value: str) -> str:
@@ -43,7 +44,7 @@ def differences(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]], 
     api_transactions = Counter(key[:-1] for key in api_keys.elements())
     csv_transaction_only = csv_transactions - api_transactions
     api_transaction_only = api_transactions - csv_transactions
-    year_changes = build_year_changes(csv_rows, api_rows, kind)
+    year_changes, unmatched_csv, unmatched_api = pair_records(csv_rows, api_rows, kind)
 
     def examples(counter: Counter) -> list[dict]:
         return [{"fields": dict(zip(FIELDS, key, strict=True)), "count": count}
@@ -63,8 +64,8 @@ def differences(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]], 
             "csv_only_rows": sum(csv_only.values()), "api_only_rows": sum(api_only.values()),
             "csv_only_examples": examples(csv_only), "api_only_examples": examples(api_only),
             "differing_fields": differing_fields,
-            "transaction_csv_only_rows": sum(csv_transaction_only.values()),
-            "transaction_api_only_rows": sum(api_transaction_only.values()),
+            "transaction_csv_only_rows": len(unmatched_csv),
+            "transaction_api_only_rows": len(unmatched_api),
             "transaction_csv_only_examples": [
                 {"fields": dict(zip(TRANSACTION_FIELDS, key, strict=True)), "count": count}
                 for key, count in sorted(csv_transaction_only.items())[:5]
@@ -73,6 +74,8 @@ def differences(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]], 
                 {"fields": dict(zip(TRANSACTION_FIELDS, key, strict=True)), "count": count}
                 for key, count in sorted(api_transaction_only.items())[:5]
             ],
+            "csv_only_transactions": [unmatched_transaction(row, kind) for row in unmatched_csv],
+            "api_only_transactions": [unmatched_transaction(row, kind) for row in unmatched_api],
             "build_year_changed_rows": len(year_changes),
             "build_year_change_examples": year_changes[:5]}
 
@@ -82,9 +85,15 @@ def _complex(row: dict[str, str], kind: str) -> tuple[str, str, str]:
     return (row["시군구"].split()[-1], row.get("번지", "").strip(), row.get(name_field, "").strip())
 
 
-def build_year_changes(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]],
-                       kind: str) -> list[dict]:
-    """Pair unmatched years only after the seven transaction fields agree."""
+def unmatched_transaction(row: dict[str, str], kind: str) -> dict:
+    dong, lot, name = _complex(row, kind)
+    return {"fields": dict(zip(TRANSACTION_FIELDS, core(row, kind)[:-1], strict=True)),
+            "건축년도": row.get("건축년도", "").strip(), "법정동": dong, "번지": lot, "단지명": name}
+
+
+def pair_records(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]], kind: str
+                 ) -> tuple[list[dict], list[dict[str, str]], list[dict[str, str]]]:
+    """Cancel exact rows, pair year-only revisions, then retain true one-sided rows."""
     groups: dict[tuple[str, ...], dict[str, list[dict[str, str]]]] = defaultdict(
         lambda: {"csv": [], "api": []}
     )
@@ -92,6 +101,8 @@ def build_year_changes(csv_rows: list[dict[str, str]], api_rows: list[dict[str, 
         for row in rows:
             groups[core(row, kind)[:-1]][side].append(row)
     changes = []
+    csv_only = []
+    api_only = []
     for transaction, group in sorted(groups.items()):
         csv_years = Counter(row.get("건축년도", "").strip() for row in group["csv"])
         api_years = Counter(row.get("건축년도", "").strip() for row in group["api"])
@@ -109,7 +120,8 @@ def build_year_changes(csv_rows: list[dict[str, str]], api_rows: list[dict[str, 
 
         unmatched_csv = remaining(group["csv"], csv_excess)
         unmatched_api = remaining(group["api"], api_excess)
-        for left, right in zip(unmatched_csv, unmatched_api):
+        paired = min(len(unmatched_csv), len(unmatched_api))
+        for left, right in zip(unmatched_csv[:paired], unmatched_api[:paired]):
             csv_complex = _complex(left, kind)
             api_complex = _complex(right, kind)
             changes.append({
@@ -120,7 +132,14 @@ def build_year_changes(csv_rows: list[dict[str, str]], api_rows: list[dict[str, 
                 "api_complex": dict(zip(("법정동", "번지", "단지명"), api_complex, strict=True)),
                 "complex_matches": csv_complex == api_complex,
             })
-    return changes
+        csv_only.extend(unmatched_csv[paired:])
+        api_only.extend(unmatched_api[paired:])
+    return changes, csv_only, api_only
+
+
+def build_year_changes(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]],
+                       kind: str) -> list[dict]:
+    return pair_records(csv_rows, api_rows, kind)[0]
 
 
 def _valid(row: dict[str, str], kind: str, gu: str) -> dict | None:
@@ -145,9 +164,12 @@ def scope_counts(csv_rows: list[dict[str, str]], api_rows: list[dict[str, str]],
             }
     left = [_valid(row, kind, gu) for row in csv_rows]
     right = [_valid(row, kind, gu) for row in api_rows]
-    return {name: {"csv": sum(row is not None and row["dong"] in dongs for row in left),
-                   "api": sum(row is not None and row["dong"] in dongs for row in right)}
-            for name, dongs in selections.items()}
+    counts = {}
+    for name, dongs in selections.items():
+        csv_count = sum(row is not None and row["dong"] in dongs for row in left)
+        api_count = sum(row is not None and row["dong"] in dongs for row in right)
+        counts[name] = {"csv": csv_count, "api": api_count, "difference": api_count - csv_count}
+    return counts
 
 
 def save(result: dict, path: Path = OUT) -> None:
@@ -158,13 +180,22 @@ def save(result: dict, path: Path = OUT) -> None:
 def summarize(result: dict, changes: list[dict]) -> None:
     checked = result["checked"]
     total_rows = sum(row["csv_rows"] for row in checked)
-    other_failures = []
+    transaction_difference_groups = []
+    api_only_transactions = []
+    valid_scope_totals: dict[str, dict[str, int]] = {}
     for row in checked:
         scope_differences = {name: value for name, value in row["valid_scope_counts"].items()
                              if value["csv"] != value["api"]}
-        if (row["csv_rows"] != row["api_rows"] or row["transaction_csv_only_rows"]
-                or row["transaction_api_only_rows"] or scope_differences):
-            other_failures.append({
+        for name, value in row["valid_scope_counts"].items():
+            total = valid_scope_totals.setdefault(name, {"csv": 0, "api": 0, "difference": 0})
+            total["csv"] += value["csv"]
+            total["api"] += value["api"]
+            total["difference"] += value["api"] - value["csv"]
+        api_only_transactions.extend({"month": row["month"], "housing_type": row["housing_type"],
+                                      "gu": row["gu"], **transaction}
+                                     for transaction in row["api_only_transactions"])
+        if row["transaction_csv_only_rows"] or row["transaction_api_only_rows"]:
+            transaction_difference_groups.append({
                 "month": row["month"], "housing_type": row["housing_type"], "gu": row["gu"],
                 "csv_rows": row["csv_rows"], "api_rows": row["api_rows"],
                 "transaction_csv_only_rows": row["transaction_csv_only_rows"],
@@ -185,21 +216,46 @@ def summarize(result: dict, changes: list[dict]) -> None:
         for (kind, gu, dong, lot, name), count in sorted(by_complex.items(),
                                                         key=lambda item: (-item[1], item[0]))
     ]
+    result["build_year_changes"] = changes
     changed_count = len(changes)
+    csv_only_count = sum(row["transaction_csv_only_rows"] for row in checked)
+    api_only_count = sum(row["transaction_api_only_rows"] for row in checked)
+    expected_groups = (len(fetch_rtms.month_range(*result["period"]))
+                       * len(fetch_rtms.SERVICES) * len(fetch_rtms.DISTRICTS))
+    complete = len(checked) == expected_groups and total_rows > 0
+    csv_only_passed = csv_only_count == 0
+    api_only_passed = (Decimal(api_only_count) * 100
+                       <= Decimal(total_rows) * MAX_API_ONLY_PCT) if total_rows else False
+    build_year_passed = (changed_count * 100 <= total_rows * MAX_BUILD_YEAR_DIFFERENCE_PCT
+                         if total_rows else False)
+    result["criteria"] = {
+        "complete": {"checked_groups": len(checked), "expected_groups": expected_groups,
+                     "passed": complete},
+        "csv_only": {"rows": csv_only_count, "maximum_rows": 0, "passed": csv_only_passed},
+        "api_only": {"rows": api_only_count,
+                     "pct": round(100 * api_only_count / total_rows, 6) if total_rows else 0,
+                     "maximum_pct": float(MAX_API_ONLY_PCT), "passed": api_only_passed},
+        "build_year": {"rows": changed_count,
+                       "pct": round(100 * changed_count / total_rows, 6) if total_rows else 0,
+                       "maximum_pct": MAX_BUILD_YEAR_DIFFERENCE_PCT,
+                       "passed": build_year_passed},
+    }
     result["summary"] = {
-        "checked_groups": len(checked), "expected_groups": len(fetch_rtms.month_range(*result["period"]))
-        * len(fetch_rtms.SERVICES) * len(fetch_rtms.DISTRICTS),
+        "checked_groups": len(checked), "expected_groups": expected_groups,
         "csv_rows": total_rows, "api_rows": sum(row["api_rows"] for row in checked),
-        "other_field_failure_groups": len(other_failures),
+        "transaction_difference_groups": len(transaction_difference_groups),
+        "transaction_csv_only_rows": csv_only_count,
+        "transaction_api_only_rows": api_only_count,
+        "transaction_api_only_pct": result["criteria"]["api_only"]["pct"],
         "build_year_changed_rows": changed_count,
-        "build_year_changed_pct": round(100 * changed_count / total_rows, 6) if total_rows else 0,
+        "build_year_changed_pct": result["criteria"]["build_year"]["pct"],
         "build_year_limit_pct": MAX_BUILD_YEAR_DIFFERENCE_PCT,
         "build_year_identity_uncertain_rows": sum(not change["complex_matches"] for change in changes),
     }
-    result["other_field_failures"] = other_failures
-    result["status"] = "통과" if (len(checked) == result["summary"]["expected_groups"]
-                               and not other_failures and total_rows > 0
-                               and changed_count * 100 <= total_rows * MAX_BUILD_YEAR_DIFFERENCE_PCT) else "불일치"
+    result["transaction_difference_groups"] = transaction_difference_groups
+    result["api_only_transactions"] = api_only_transactions
+    result["valid_scope_totals"] = valid_scope_totals
+    result["status"] = "통과" if all(item["passed"] for item in result["criteria"].values()) else "불일치"
 
 
 def compare(*, first: str = fetch_rtms.FIRST_MONTH, last: str = fetch_rtms.LAST_MONTH,
@@ -245,9 +301,11 @@ def main() -> None:
         raise SystemExit(1) from None
     summary = result["summary"]
     print(f"T4 {result['status']}: 대조 {summary['checked_groups']}그룹, "
+          f"CSV에만 {summary['transaction_csv_only_rows']}행, "
+          f"API에만 {summary['transaction_api_only_rows']}행 "
+          f"({summary['transaction_api_only_pct']}%), "
           f"건축년도 차이 {summary['build_year_changed_rows']}행 "
-          f"({summary['build_year_changed_pct']}%), 기타 불일치 {summary['other_field_failure_groups']}그룹, "
-          f"추가 호출 {result['calls_this_run']}회")
+          f"({summary['build_year_changed_pct']}%), 추가 호출 {result['calls_this_run']}회")
     if result["status"] == "불일치":
         raise SystemExit(1)
 

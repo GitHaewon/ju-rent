@@ -118,8 +118,9 @@ def test_full_gate_records_other_field_mismatch_after_all_months(tmp_path, monke
     assert result["status"] == "불일치"
     assert calls == [("apartment", "wansan", "202501"), ("apartment", "wansan", "202502")]
     assert len(result["checked"]) == 2
-    assert result["other_field_failures"][0]["month"] == "202501"
-    assert [row["field"] for row in result["other_field_failures"][0]["differing_fields"]] == ["월세"]
+    assert result["transaction_difference_groups"][0]["month"] == "202501"
+    assert [row["field"] for row in result["transaction_difference_groups"][0]["differing_fields"]] == ["월세"]
+    assert result["criteria"]["csv_only"] == {"rows": 1, "maximum_rows": 0, "passed": False}
     assert json.loads(out.read_text(encoding="utf-8"))["checked"][0]["csv_only_rows"] == 1
 
 
@@ -138,6 +139,10 @@ def test_build_year_one_percent_boundary_and_complex_grouping(monkeypatch):
         api_rows = [row(index, "1991" if index < changed else "1992") for index in range(100)]
         diff = compare_rtms_csv.differences(csv_rows, api_rows, "apartment")
         changes = compare_rtms_csv.build_year_changes(csv_rows, api_rows, "apartment")
+        paired, unmatched_csv, unmatched_api = compare_rtms_csv.pair_records(
+            csv_rows, api_rows, "apartment")
+        assert paired == changes
+        assert not unmatched_csv and not unmatched_api
         result = {"period": ["202501", "202501"], "checked": [
             {"month": "202501", "housing_type": "apartment", "gu": "wansan", **diff,
              "valid_scope_counts": {}}
@@ -151,6 +156,53 @@ def test_build_year_one_percent_boundary_and_complex_grouping(monkeypatch):
         assert result["status"] == ("통과" if changed == 1 else "불일치")
         assert result["build_year_by_complex"][0]["단지명"] == "한단지"
         assert result["build_year_by_complex"][0]["changed_rows"] == changed
+
+
+def test_csv_only_row_fails_even_when_api_count_matches(monkeypatch):
+    monkeypatch.setattr(fetch_rtms, "SERVICES", {"apartment": "test"})
+    monkeypatch.setattr(fetch_rtms, "DISTRICTS", {"wansan": "52111"})
+    base = {"계약년월": "202501", "계약일": "1", "시군구": "전라북도 전주시 완산구 평화동1가",
+            "전용면적(㎡)": "40", "보증금(만원)": "500", "월세금(만원)": "29",
+            "전월세구분": "월세", "계약구분": "신규", "건축년도": "2020"}
+    csv_rows = [base, {**base, "보증금(만원)": "600"}]
+    api_rows = [base, {**base, "보증금(만원)": "700"}]
+    diff = compare_rtms_csv.differences(csv_rows, api_rows, "apartment")
+    result = {"period": ["202501", "202501"], "checked": [
+        {"month": "202501", "housing_type": "apartment", "gu": "wansan",
+         **diff, "valid_scope_counts": {}}
+    ]}
+    compare_rtms_csv.summarize(result, [])
+    assert diff["transaction_csv_only_rows"] == 1
+    assert diff["transaction_api_only_rows"] == 1
+    assert result["criteria"]["csv_only"]["passed"] is False
+    assert result["status"] == "불일치"
+
+
+def test_api_only_half_percent_boundary_and_full_transaction_list(monkeypatch):
+    monkeypatch.setattr(fetch_rtms, "SERVICES", {"apartment": "test"})
+    monkeypatch.setattr(fetch_rtms, "DISTRICTS", {"wansan": "52111"})
+
+    def row(index):
+        return {"계약년월": "202501", "계약일": "1", "시군구": "전라북도 전주시 완산구 평화동1가",
+                "전용면적(㎡)": "40", "보증금(만원)": str(index), "월세금(만원)": "29",
+                "전월세구분": "월세", "계약구분": "신규", "건축년도": "2020",
+                "번지": str(index), "단지명": "테스트"}
+
+    csv_rows = [row(index) for index in range(200)]
+    for extras in (1, 2):
+        api_rows = csv_rows + [row(200 + index) for index in range(extras)]
+        diff = compare_rtms_csv.differences(csv_rows, api_rows, "apartment")
+        result = {"period": ["202501", "202501"], "checked": [
+            {"month": "202501", "housing_type": "apartment", "gu": "wansan",
+             **diff, "valid_scope_counts": {"campus:test": {"csv": 200, "api": 200 + extras}}}
+        ]}
+        compare_rtms_csv.summarize(result, [])
+        assert result["criteria"]["api_only"]["pct"] == extras / 2
+        assert result["criteria"]["api_only"]["passed"] is (extras == 1)
+        assert result["status"] == ("통과" if extras == 1 else "불일치")
+        assert len(result["api_only_transactions"]) == extras
+        assert result["api_only_transactions"][0]["fields"]["보증금"] == "200"
+        assert result["valid_scope_totals"]["campus:test"]["difference"] == extras
 
 
 def test_chunked_fetch_log_accumulates_call_counts(tmp_path, monkeypatch):
