@@ -1,0 +1,19 @@
+{
+  "months": [
+    "202501",
+    "202501"
+  ],
+  "calls": 1,
+  "pages": [
+    {
+      "kind": "multifamily",
+      "gu": "wansan",
+      "month": "202501",
+      "page": 1,
+      "cached": false,
+      "rows": 9
+    }
+  ],
+  "failures": [],
+  "status": "complete"
+}
