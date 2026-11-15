@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, cardToContract, commuteDetail, commuteLabel, commuteRange, integerMoney, priceDifference, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
+import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, budgetPriceDifference, cardToContract, commuteDetail, commuteLabel, commuteRange, integerMoney, priceDifference, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import type { BudgetRecommendation, Meta } from './types'
 import { visibleCommuteDongs } from './commuteChoices'
 
@@ -78,6 +78,12 @@ describe('budget and comparison screen copy', () => {
     expect(priceDifference(4.2)).toBe('같은 연식 캠퍼스 주변보다 환산 월세 4만 원 높아요')
     expect(priceDifference(null)).toBe('')
   })
+  it('hides the same-age comparison for cards without building age', () => {
+    expect(budgetPriceDifference({ age_band: '미기재', campus_price_difference_10k_krw: 4.2 })).toBe('')
+    expect(budgetPriceDifference({ age_band: '20년 이상', campus_price_difference_10k_krw: 4.2 }))
+      .toBe('같은 연식 캠퍼스 주변보다 환산 월세 4만 원 높아요')
+    expect(budgetPriceDifference({ age_band: '20년 이상', campus_price_difference_10k_krw: null })).toBe('')
+  })
   it('hides zero-deal dongs and marks fewer than 30 deals for the chosen housing', () => {
     const base = { campus_area: false, campus_adjacent: false, min_stops: 5,
       median_stops: 8, boarding_stops: 1, direct_routes: 1,
@@ -91,8 +97,8 @@ describe('budget and comparison screen copy', () => {
       commute_deal_counts_by_school: { school: { oneroom: { 적은동: 29, 충분한동: 30 }, apartment: { 충분한동: 1 } } },
     } as unknown as Meta
     expect(visibleCommuteDongs(fake, 'school', 'oneroom').map(choice => choice.label))
-      .toEqual(['적은동 (거래 적음)', '충분한동'])
+      .toEqual(['적은동 (최근 거래 적음)', '충분한동'])
     expect(visibleCommuteDongs(fake, 'school', 'apartment').map(choice => choice.label))
-      .toEqual(['충분한동 (거래 적음)'])
+      .toEqual(['충분한동 (최근 거래 적음)'])
   })
 })

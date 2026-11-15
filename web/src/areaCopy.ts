@@ -62,6 +62,10 @@ export function priceDifference(value: number | null | undefined): string {
   return `같은 연식 캠퍼스 주변보다 환산 월세 ${amount}만 원 ${value < 0 ? '낮아요' : '높아요'}`
 }
 
+export function budgetPriceDifference(card: Pick<BudgetRecommendation, 'age_band' | 'campus_price_difference_10k_krw'>): string {
+  return card.age_band === '미기재' ? '' : priceDifference(card.campus_price_difference_10k_krw)
+}
+
 export function cardToContract(card: BudgetRecommendation, campus: string, rate_pct: number, school?: string): ContractInput {
   const values: ContractInput = {
     campus, housing_type: card.housing_type, area: card.area_median_sqm,

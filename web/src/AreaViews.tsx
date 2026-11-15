@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useState } from 'react'
-import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, cardToContract, commuteDetail, commuteLabel, integerMoney, priceDifference, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
+import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, budgetPriceDifference, cardToContract, commuteDetail, commuteLabel, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import Count from './Count'
 import { rateHint } from './copy'
 import { housingName } from './housing'
@@ -34,6 +34,7 @@ function BudgetCard({ card, campus, school, rate, onChoose }: {
   card: BudgetRecommendation; campus: string; school: string; rate: number; onChoose: BudgetProps['onChoose']
 }) {
   const reduced = useReducedMotion()
+  const comparison = budgetPriceDifference(card)
   return <motion.button layout type="button" className="budget-card glass"
     initial={{ opacity: 0, y: reduced ? 0 : 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -8 }}
     transition={{ duration: reduced ? 0 : 0.25, ease: [0.2, 0.8, 0.2, 1] }}
@@ -45,8 +46,7 @@ function BudgetCard({ card, campus, school, rate, onChoose }: {
     <span className="budget-terms">{typicalTerms(card)}</span>
     {card.commute && !card.commute.campus_area && <>
       <span className="budget-commute">{commuteDetail(card.commute)}</span>
-      {card.campus_price_difference_10k_krw !== null && card.campus_price_difference_10k_krw !== undefined &&
-        <span className="budget-price-difference">{priceDifference(card.campus_price_difference_10k_krw)}</span>}
+      {comparison && <span className="budget-price-difference">{comparison}</span>}
     </>}
     <span className="budget-bar-copy">{tenDealSentence(card)} <em>· 거래 <Count value={card.n} />건</em></span>
     <span className="budget-bar" role="img" aria-label={`예산 안 비율 ${card.within_budget_pct.toFixed(1)}%`}>
