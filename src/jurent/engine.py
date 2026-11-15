@@ -13,6 +13,7 @@ from statistics import median
 import numpy as np
 
 from src import analyze_rentals as audit
+from src.jurent import commute
 from src.jurent.data import (
     APARTMENT_MAX_AREA_SQM,
     APARTMENT_MIN_AREA_SQM,
@@ -85,20 +86,25 @@ def label_for_percentile(percentile: Fraction | float) -> str:
     return "많이 비싼 편"
 
 
-def eligible_deals(rows: list[dict], campus: str, housing_type: str, start: str) -> list[dict]:
+def eligible_deals(
+    rows: list[dict], campus: str, housing_type: str, start: str, dong: str | None = None,
+) -> list[dict]:
     """Share the D-027 campus/type/period filter without deduplicating source rows."""
     kinds = ONEROOM_TYPES if housing_type == "oneroom" else {housing_type}
     return [
         row for row in rows
-        if row["대학가"] == campus and row["주택유형"] in kinds
+        if (row["대학가"] == campus if dong is None else row["법정동"] == dong)
+        and row["주택유형"] in kinds
         and row["계약구분"] in {"신규", "미기재"}
         and start <= row["계약일"] <= DATA_END
     ]
 
 
-def select_similar(rows: list[dict], campus: str, housing_type: str, area: float) -> tuple[list[dict], str, str]:
+def select_similar(
+    rows: list[dict], campus: str, housing_type: str, area: float, dong: str | None = None,
+) -> tuple[list[dict], str, str]:
     """Apply D-028 expansions in order; preserve all NO-only duplicate rows."""
-    same_group = eligible_deals(rows, campus, housing_type, ALL_START)
+    same_group = eligible_deals(rows, campus, housing_type, ALL_START, dong)
     steps = (("기본", 5, RECENT_START), ("면적 ±10㎡", 10, RECENT_START),
              ("기간 확대", 10, ALL_START))
     exact_area = Fraction(str(area))
@@ -156,11 +162,17 @@ def judge(
     construction_year: int | None = None,
     rate_pct: float | None = None,
     data_path: Path | None = None,
+    dong: str | None = None,
+    school: str | None = None,
 ) -> dict:
     """Return the complete UI-ready contract judgment without any LLM input."""
     config = settings()
     if campus not in audit.CAMPUS_AREAS or housing_type not in (*audit.TYPES.values(), "oneroom"):
         raise ValueError("Unknown campus area or housing type")
+    if dong is not None and dong not in {
+        row["dong"] for row in commute.commute_rows(campus, school)
+    }:
+        raise ValueError("Unknown commute dong for selected school")
     if not math.isfinite(area):
         raise ValueError("Area is outside the supported sample range")
     if housing_type == "apartment":
@@ -178,12 +190,16 @@ def judge(
     applied_rate = default_rate_pct(config) if rate_pct is None else rate_pct
     if not math.isfinite(applied_rate) or not config["user_min_pct"] <= applied_rate <= config["user_max_pct"]:
         raise ValueError("Conversion rate outside allowed range")
-    common = {
-        "input": {
+    input_values = {
             "campus": campus, "housing_type": housing_type, "area_sqm": area,
             "deposit_10k_krw": deposit, "monthly_10k_krw": monthly,
             "construction_year": construction_year,
-        },
+    }
+    if dong is not None:
+        input_values["dong"] = dong
+        input_values["school"] = commute.choose_school(campus, school)
+    common = {
+        "input": input_values,
         "rate_pct": applied_rate,
         "rate_basis": {"base_rate_pct": config["base_rate_pct"],
                        "base_rate_date": config["base_rate_date"],
@@ -202,7 +218,7 @@ def judge(
         }
     amount = converted_monthly(deposit, monthly, applied_rate)
     source = data_path or (APARTMENT_PROCESSED if housing_type == "apartment" else PROCESSED)
-    selected, step, start = select_similar(load_processed(source), campus, housing_type, area)
+    selected, step, start = select_similar(load_processed(source), campus, housing_type, area, dong)
     values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in selected]
     sufficient = len(values) >= MIN_SAMPLE
     rank = percentile_rank(amount, values) if sufficient else None

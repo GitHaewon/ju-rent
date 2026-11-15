@@ -1,0 +1,2963 @@
+[
+  {
+    "type": "legal_dong_boundary",
+    "filename": "boundary/LSMD_ADM_SECT_UMD_전북특별자치도.zip",
+    "sha256": "2ab22ba1ac558dc07e1308441122b2cc9d182c7bedd664fb9df7986b2d48e448",
+    "source_url": "https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=MK&dsId=30603",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_gw",
+    "filename": "bus/route_119.xml",
+    "sha256": "ca2ff4167e6b441745aa3b10fa399ca4ba82ecbaae2cd644307e7e358877fc60",
+    "source_url": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_gw",
+    "filename": "bus/route_2.xml",
+    "sha256": "1de130686a3e442561cf923e0dc477e642b928ca9f99283850bd31959235af04",
+    "source_url": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_gw",
+    "filename": "bus/route_2_info.xml",
+    "sha256": "a10d0be3c424cf0af6827afce6e1a49f672f1dfdfbf84656bb635bf906b4fc0d",
+    "source_url": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_gw",
+    "filename": "bus/route_2_stops.xml",
+    "sha256": "f80e5fe11f2d875a30782585d08899733d23b28e93d164762fc8da9f182bc641",
+    "source_url": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_gw",
+    "filename": "bus/routes_all.xml",
+    "sha256": "5538793c757e62453bbd66ba0b7d835cb318eb381cc1025810ac0b0188ded28f",
+    "source_url": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_gw",
+    "filename": "bus/stops_all.xml",
+    "sha256": "a5349583db4e6fe4f9c97dcc6e553ac538661be3751046714db45f904c261b71",
+    "source_url": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/city_codes.xml",
+    "sha256": "2a7385c0df4aa28a02e27d7a5699fc48e549545a8708db15e27d1e3b2dd4539e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_gw",
+    "filename": "bus/tago/gw_stops_encoding_check.xml",
+    "sha256": "a5349583db4e6fe4f9c97dcc6e553ac538661be3751046714db45f904c261b71",
+    "source_url": "https://www.data.go.kr/data/15158979/openapi.do ; https://www.data.go.kr/data/15159001/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000392.xml",
+    "sha256": "842326c18b80be6302e6cf084810362c915b08e60b9cdd3d712cdeb35de1025f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000393.xml",
+    "sha256": "04750db73032bf4b4e51c896d42bb22819561ee12a99d749984eccbfc2c44a68",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000409.xml",
+    "sha256": "e56bc6c4b89fbc66f4c62e4eb2788731f0cf745abcb56a4b5a3cdcb0e26e2b0e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000957.xml",
+    "sha256": "301a7f7f1dd3bd41fd3f4076573f329e8b62c8a04fb47121de365258a7f286ee",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000959.xml",
+    "sha256": "484d92b47942017ff7e641a18314381faafce7c900e5a1e2f7cec3cb99ec6e47",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000960.xml",
+    "sha256": "e38d5a37832e892029ee04bbadbaa92e2f10e40952fa1d3a64a2d65b6e3db1f9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000962.xml",
+    "sha256": "451fe8d61ef03e30d23b786faedc9c11cd3d30592610e158e0b271971bcd9ac6",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305000963.xml",
+    "sha256": "141604c1ad5323ceb43226a59f73fad58c3d16042efb1f00b48507b6d8cc30da",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001010.xml",
+    "sha256": "e9e51171979ee4b5f8a1c379986fc5579c9154817646d4e5077d3d7b2dda60c9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001012.xml",
+    "sha256": "81ed8db57a1624ceda97950b0212e5557a94f8a083391c279beb959728cf285a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001019.xml",
+    "sha256": "aceec7ec1a8d82449b17823f30902de0f44a9ad9c74e18287c47a0c63a86cbed",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001088.xml",
+    "sha256": "a651b327cba507dedb6b1bf61d4ab53fd690d0d5a45b2e24ca3163cf02377ee3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001089.xml",
+    "sha256": "6237be49033bfc4dd6d0da526237ccf0f468bf3204f36e0a61b514a26cc0b7ab",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001094.xml",
+    "sha256": "6d06353fe06e2eaed500bca818d55ae0576eb3a1374c37e28377ed0e7765bd29",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001095.xml",
+    "sha256": "58683674cf3e9783387aecfc95f5cdb317dd3bda7c861ae3d9ad72fcb288f01b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001098.xml",
+    "sha256": "4420a40dcdbea935ee8179d1f88903a992be3e6519eccbe7ff0bb2bd67d65f73",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001099.xml",
+    "sha256": "d938756ffd1c46a668bfda58baba706fffec7b7703321ddf23e601a042fad041",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001100.xml",
+    "sha256": "c3100301311a98d8bfa081b31a8010cf728bf370919f32053cd8d1b5ee5221b5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001101.xml",
+    "sha256": "acd3120511433816a1d250a3358a0ec005839cd6bcf0b4860faac088fd08286c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001102.xml",
+    "sha256": "ae87cf2320ed52e0eb97840fa535ec0372a9aeb5b1475241c4d9f8597afcafdc",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001119.xml",
+    "sha256": "0f5eb976e47d1518c21fce7c7294b87c03d6161346666d1b8f3ecf148b141512",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001120.xml",
+    "sha256": "aef5db3134ed48fb6320378efb3028d90ddae297503336ab90d7cbd9f4909c11",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001131.xml",
+    "sha256": "c077c00caa305a93edeb017bd9eb6464754430da75062d4e9c999e8694b51a80",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001140.xml",
+    "sha256": "04019b8a49ddf8d47da3cbdee46af55bb2e4a4e88b5a7fd780eacf4f55b63630",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001141.xml",
+    "sha256": "88156daec4284e3f2c77dc4df77745599aefc248da408255b30dbcc27a063e3d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001142.xml",
+    "sha256": "cff85cb75c8d9748d86a8f9fa41e7c7d9f0a277d4803675839650dd6cb0889d2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001149.xml",
+    "sha256": "17f8b55146d507ac47941f899ac900113be096d9d5d45a6d445c8dfaccbd53b4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001150.xml",
+    "sha256": "2619b68016dbc5a01bb8100dcbd6831800df60f5ded9074de066043d2dbeec5a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001151.xml",
+    "sha256": "93defc628eea7f84038a0d1a3b3aeb24051572dbb2162df0640b71c5d519fd7d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001152.xml",
+    "sha256": "7d6ca5872bde32becc3ed85de79c6f0aa4d4e64dfd4d52720ac245e0e68c5c4a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001153.xml",
+    "sha256": "e7d6a547ba10deed9637481962ae9dbb3185137bd7a7a054e6cabcf654b56e52",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001154.xml",
+    "sha256": "a51a45079e1340c6de440fed5d55bfda706c27e60de9fe802d9dd4ef64e46fe6",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001162.xml",
+    "sha256": "84d6c7b0308a953b003afbdd2a8873a71d117c6c9ad79503b3605eabf8236c4c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001163.xml",
+    "sha256": "304d252e81a61a288da29315b38afe30dbcaeae381a6c74d9b5886b2ab079584",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001164.xml",
+    "sha256": "7d2ac84c4f19b41c9f987a0646ab299ac9fd5f7ede7f602e5e2d4b725e4823dd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001165.xml",
+    "sha256": "d0f56ef83a06da24ef2970c31e228f777a0a0f1f432708227ff7ef1df6f09ee8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001167.xml",
+    "sha256": "3bb708f6913a14eb47940ad6ce337261cff5b07cecfdf3edbc8e5a40ecfbc34a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001168.xml",
+    "sha256": "5151d48eb4aea56fdf92df8ee11b0c692542b8d7e7110ecdb2ff9d096224e7de",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001170.xml",
+    "sha256": "348b3c4f65220b0b60852f4a5dee7ad3ebc3ee92687f89571426adfdf4ed8438",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001172.xml",
+    "sha256": "f9c2646ce81a92d852c65e6f0066b54acb2a590a72d2109cd96073c572fedae5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001173.xml",
+    "sha256": "4ed8d422f1ad08b42a107acc636a3c4b3792df37953c18c6bd3d02a937ceacc1",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001174.xml",
+    "sha256": "9ad0e8e769ae0e1af92ad4f06208681d47426d409ea0f3102fb8eb2f6e56199b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001175.xml",
+    "sha256": "fe833b1a6983653676a17002c156718cd5cefcef538a163d048d583932e33c63",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001176.xml",
+    "sha256": "0c695be2fd0c76f6bdeed3be514338091e011ed8f856ab6847c1f58d62acc63b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001177.xml",
+    "sha256": "f3cb3209c992e1910003adb877d1953b3b1c1c0c8f2ca99658af9cc8e8856bce",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001178.xml",
+    "sha256": "fbc219c9bff48cf9ccec2d723b2afc8678b5adbc56775de4fe8c2bae98764cfa",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001179.xml",
+    "sha256": "06c3c34ae93f142e3f04ca8913600700ae52255fb149b818cc46a9c102321afa",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001180.xml",
+    "sha256": "fc1d15a421887a237ce69eb0751514751bd110b1601e52ae50270eadf266af9a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001181.xml",
+    "sha256": "2c39f2772485747a91b5820b6e7eb0608525668cf5670089bfef86db36bb20e3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001182.xml",
+    "sha256": "5fc2b85c312a579e14796923675d87a5b6c433e39842e378e3b801299e6619ca",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001183.xml",
+    "sha256": "3707304d74c1bdf95b47255325cc0ba09b1911dabaa1e706da60e08e6fe5c842",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001199.xml",
+    "sha256": "18c06f72d3c71336f74f378444f061ab17f6bdf352a64936e60bfc7a8e37a5cd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001200.xml",
+    "sha256": "9cde85c8d48326c997d400c0675f7e8393453ae91e9dcecd74884ed32af73120",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001223.xml",
+    "sha256": "8b2d5876ca0b57d05fb42b8a6d42feb3200df541c163a119a934d0b04ea89144",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001224.xml",
+    "sha256": "2ac34b9d6c3c78f90d05a15a0f7261ab19a5206b8cc3ee0a5f204ed24edf17bb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001257.xml",
+    "sha256": "9ba1d2484ec1ee1a3787abb757cb4cffe24df5fe608611fd25f97fd4c76065ae",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001258.xml",
+    "sha256": "15808b20f6ea6036f01edcd834f3e3f92d6a7bebadaa22252107e16cc55477e3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001269.xml",
+    "sha256": "ebebcc321d63c178a7a28bb332d417126e457c34c08465a3787641fded1de196",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001270.xml",
+    "sha256": "e687a0b7c39bdaa130b28e84f5d3ca8522d4b5f2a67696a6c1eb27e3e0a8a96d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001271.xml",
+    "sha256": "74eaf97e354765ccde95a1674f2a38b9c35f26f3dc2cc02279c08ec1066b4ac4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001272.xml",
+    "sha256": "2e3702c272cab39927f8f159068c27411293296c81dab5963d58991575c5c87f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001280.xml",
+    "sha256": "965b0866d8ad6ab128166a95ec5e0e3f191d423a349b7123a5f7355bd88009ec",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001303.xml",
+    "sha256": "4e92930c48cff6a85ccde41c04c9001838bc7f02e69f33adf6b66b54247484c8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001304.xml",
+    "sha256": "231ff90ba4aafaf9fa73a9e8ec2a022789db33eb82c5629916dcb5cb43d8dc9b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001332.xml",
+    "sha256": "72bead1a58177e70d2c6366863e68fd13dc17dbbc957a75c3c67a00e6ad105e3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001377.xml",
+    "sha256": "44be6bdba1f30682857cf79476348384272848775b6fb78a2a760e0e3eaee678",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001409.xml",
+    "sha256": "a97b17fb831c980eac0c9ec2e0f71710508685bd39ca8d13053a4404cd9f410a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001423.xml",
+    "sha256": "a8121a2c68b9fa86fb94116d23cb9c1031404ba5b4254bfe1bc819a79e607eac",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001424.xml",
+    "sha256": "9652ab1938e11d67110b7e666ee58d985a58052177fe881be4e9265be5862e5e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001425.xml",
+    "sha256": "67db029229197678ddb6b7c0860a0cf7370f0b6175c280df464722cbf241662b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001432.xml",
+    "sha256": "f56e5ea25e46513fc3639573ca27f1cb20599669eb4bc4b4079bd8ec9bacdc9d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001433.xml",
+    "sha256": "c3124dcbe5b13bdbe207674b1cfc15b33020d1c86233f66df7f2b7639c184ca5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001434.xml",
+    "sha256": "a8bb55057ea80e143c7ae745c943f80d697f686f18c86f61476d0503323480d6",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001477.xml",
+    "sha256": "e984d9ae961d3a6d1c91d3474f07d50642b8d66454656b9f752937960845cc43",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001480.xml",
+    "sha256": "55e9900cb39b87e807a6f032cfc10fca763cccbf0eaaea2e89f603b351df6518",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001481.xml",
+    "sha256": "a4c9b5ac8f1e391516a6dd75068ce6dd832a3c099ced40244bba8ba8c57bc18f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001492.xml",
+    "sha256": "a7706414ccb4cc871963a4533826f4a6b0310df3ab38bcbfc0be82fa0928f8cb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001493.xml",
+    "sha256": "c3f6f01011ac9fd76d14546e0a60d1e7340a2ad1a805b35d24759542ab9b2d07",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001519.xml",
+    "sha256": "3e839f8744a98261fd58f14f1193f349fd4e9061c6f7c146d0ba2f3fa5b0c518",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001520.xml",
+    "sha256": "2aa10c1bc215e1ea280571d217bf1830f578c56856fb4b60637e4c08bcdd8c58",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001521.xml",
+    "sha256": "7d36e01b4aae41e4b5f061ce8ddcbd64f947e0663f0033ef3160688262872310",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001522.xml",
+    "sha256": "1f43f514c1c7240497bd8c768da292eb3c48a6e76296fe1afc719beeb87a0c2d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001563.xml",
+    "sha256": "a7e27dea97ce1de5bdba3ce006f5066f863baedfa183f6e7f46f1d1e5048886c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001564.xml",
+    "sha256": "f857348210bb00347e6a27528222809d6704c5eb13c5e1d527e084de00b4c949",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001565.xml",
+    "sha256": "f09e912c00429eba92af309ba47eae671c8c5495c8a3cf02fcf5ecbc96dd0bf5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001566.xml",
+    "sha256": "be3709f7cad4d7718207e52c870d3a779682e890853b65cb32e15079ec990af8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001573.xml",
+    "sha256": "2a0778646f2ae74f47551b44be2141095d1ecd8a6b5bdfef98e70a925af740bd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001574.xml",
+    "sha256": "51c88a3e305e45b53aa9f8ec00d36cc33263ae997c91076fea3c4aab3e71dc9d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001575.xml",
+    "sha256": "6c7eeb5b637389d5143311e071f91b10c0c4c130c494cec0080f636fc209efbe",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001583.xml",
+    "sha256": "997daea1c00cf35e17876538dab0d6d63224098b9387b602f5b61c8b4763ef85",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001584.xml",
+    "sha256": "17f68b0a727c83ea3210633433edbab987f3458d97896099d46cd374e9d82a1a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001585.xml",
+    "sha256": "2e8df048660477b7c4b7a53aea0ca2b0277caf463d042317b79b9414360d2132",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001586.xml",
+    "sha256": "e32da3949843917cada6c336dfac7ea087be8048a1594a86b7f5b6dd97e4780d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001587.xml",
+    "sha256": "f83bbc35797d8510720759ac04bb0b3602dab06fbd5602bef3fa864f08870ce0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001588.xml",
+    "sha256": "9d999c69cdb15b1a22d793a5322f4e3d29791f81f12472db69dd2c0ac067824a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001590.xml",
+    "sha256": "4aa22562a81dc60dd271ab7e129f75a51d1a111d23eebec309e372a1158bc0ab",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001597.xml",
+    "sha256": "0cfb3472005deb5fbc525089dac31d276bbc75ebdb2779a37abe8f9384e7dcee",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001598.xml",
+    "sha256": "6e4e9ccbafe693faad576065cb9b24378cdc2b27629b626e8154c52f1e5ca1d8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001599.xml",
+    "sha256": "99e45d420c362340189359a56f15d3f8f0bf284d5ad6fc192e15ae8e9d3eb41b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001600.xml",
+    "sha256": "85e558462d8995142ba837dc19c2bc3f621b0568e8f7d0a97dd99c9bec5d7dd4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001601.xml",
+    "sha256": "1041a76aa61b519622a3663304a8e691765b67785e6a9ef427fc30038cbc871c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001602.xml",
+    "sha256": "783563af574c2c57466f767ed98353d045f3e16cc6396f3a5334b5d76b5b7bf7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001603.xml",
+    "sha256": "00164a870a76b603d5437df7caf21b34af68d8401ea7afa6e7a0471f0a933381",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001605.xml",
+    "sha256": "f061e2f92a91b4e93562c28d0b308e7d018e5cf3151595c6ea5ab1148fdef9d3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001607.xml",
+    "sha256": "a0fe6e3de624ba22b47286b810f35fa77e20352a4896289b6e3dad22855a9920",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001608.xml",
+    "sha256": "d1c5331c44bff22db220432d0074c549b073cfb4332975324778473274943b7f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001609.xml",
+    "sha256": "2a2c6ef4feabc5aa31cf2b58cd44cf282e95caf831ebcc180d7c1a3f8c6c3090",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001610.xml",
+    "sha256": "019f60b78b68fdbbb8cd6a074928c0a7b0d3b4dbbcd3c8d391536234090f2e1d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001611.xml",
+    "sha256": "21603dbe48eb28f25f4933e43af59ef11a60248d683316d8a0e7e9052be937ba",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001616.xml",
+    "sha256": "95ca9905f1ef51ccb9a88244d1ec647a80e3f838cb6752229c858acf3bdf3380",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001617.xml",
+    "sha256": "1556247e0fac514b4417d576928c47216641c0240c98c41b19385954cc9eec37",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001618.xml",
+    "sha256": "7d7b9d6f13232995987cb7915f1456082f9b6d6ea65dcb61b77bd523520cfbed",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001619.xml",
+    "sha256": "d5587febb33df5c7729364cea1430fc67ecfcd17bedd06793621a83166386e28",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001620.xml",
+    "sha256": "44fee68aec9e0f4af4bc8d5323135d814e921884fb810b8f7f248d3018a8c173",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001621.xml",
+    "sha256": "dd1c8efb6b6d0a9fe532284aa18c3013c90e0b610e82a7f55999ac3f31b7e3ba",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001623.xml",
+    "sha256": "cab2e2b5e349ca2014acf8e490941894e7df01f44f5e661688857a3527f21d76",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001624.xml",
+    "sha256": "201ec94f452a3781cd2681d11f3e13c57565fc3f83e751233522fc42b14c6803",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001625.xml",
+    "sha256": "87b9c13ae8cd578300449581d40726bb7d765eee980ffcb104ad391e8707d413",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001626.xml",
+    "sha256": "48e3ffce3f1b9d38cecbf040ddaebd87f6e6b9b374b74340c298e29f973db30d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001635.xml",
+    "sha256": "d60b7249d7c9d2e8da6cd461772bc5edf8373fca9885bf5f91f0e7d4f3c03e9a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001636.xml",
+    "sha256": "ada75382a2a2dd0dc0a6a8ee6101ab8c9707986067407a62cbcaf4e87efe7fef",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001645.xml",
+    "sha256": "d6b7349362de71353e0b78050c6ee66404958d0d23e8a536dae029791ef2bae6",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001646.xml",
+    "sha256": "c703c1b9e864163317b78d44a35e3c04325bd1173bbc40bfaf93b098a1108413",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001647.xml",
+    "sha256": "a79ccf41f8f49c69624ef5341b625af74b4cc9e3c409feaa2c1991d10405f2f4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001648.xml",
+    "sha256": "dd501f538349719dca4e9a077900bd2a691dc1f45aa5fada91067959ec1287ca",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001649.xml",
+    "sha256": "8961fde423b16322f901c8ac3e5838e87e4355e20acb6c541751c6f6cce69648",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001650.xml",
+    "sha256": "9f504ad74206b79b9030fee14e69a87484dce3f4950eee92df8630715c928a4e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001651.xml",
+    "sha256": "6d5f8dd6ddfaba215f79af8e48930f5dcde41064dd0d36b829fdee40706466cc",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001652.xml",
+    "sha256": "764265f8b277163dc15bb8a757d32a2f8a7664cc02cd395e3730da0043459070",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001653.xml",
+    "sha256": "2c8781e0c60393620b468bd5fd94821ffb3e872a096edbf36756657f3471c496",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001654.xml",
+    "sha256": "5e607ceadbc3454d46187c5129e2d3659f0faa49e090e0891b5b1559c6a709c3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001655.xml",
+    "sha256": "698287b608a2f2bc17ecd3dacd101e7971e5bcfc79bddf9925be0514ce6df48a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001656.xml",
+    "sha256": "d364c692d8767fc15195d9bf57f032ed30e9171b3a7e7b0133f80c54d78297cd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001657.xml",
+    "sha256": "6f477e6ffaae9774a9600c788e88c99900558c4c9595f3d5f76e4c99eb86e533",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001658.xml",
+    "sha256": "cf83989b3d24ecf9405cb0e2e60533f25610e2ca87a3e10aac8edb1ea6ecd8f7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001659.xml",
+    "sha256": "b16b73b52ceae5fc63a0106e16f48b731296fac318f3d8ec30d106030aeec39c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001660.xml",
+    "sha256": "3e7331718c462bb41d3f23df377b82bcd25b57710df4cfe0953f84c830c0dbbe",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001749.xml",
+    "sha256": "40063c974e4aa127607e00965a1ffbee6914fefc6cb3899f1f375eb9ef926870",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001752.xml",
+    "sha256": "cf0d9d145b20563dc2b5c1b7f105b6b56115eca8ef771bd9c86e4b19bd5d215d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001753.xml",
+    "sha256": "e1556c62d7bf76cc61690273f5a6c1d95e489467826b0f5aa704a95af49eb08f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001756.xml",
+    "sha256": "0330cf83c7a59f0a9c8b56b54b534ab74e06aca6c0b48c89cb2e7d146afd97df",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001757.xml",
+    "sha256": "2cbd13d65d79073c6040c2729c8783908065abd05f36785c7542e5deefb7415e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001758.xml",
+    "sha256": "96c7cbb671df404d25041198f22ff819864f6f1052612f24b05c052633949758",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001759.xml",
+    "sha256": "adb8246a4527224ce0ec555247dd63088fc7b5595295a915f18e083434f19237",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001760.xml",
+    "sha256": "66180d8f6661ea5fd53c9683ef0cc081845b0bf532387332c9c5ee2b7fc01e04",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001761.xml",
+    "sha256": "01e98e944b011957fcc1e9626a080d5516d112be2b97691ea969f9e6ef552159",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001762.xml",
+    "sha256": "8cc274167bca50c800c8b48476c2de14470d50a69e1b2f4abeb5514a7c5b720f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001763.xml",
+    "sha256": "29e529adf9265d3b1831b05db58f993633344c4792b4002f3ec98791c5412ccd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001764.xml",
+    "sha256": "103836f6d47a49d90f5fef617a4589f957d3baf2bcbc6a9dcdc5cc3b029ffc60",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001765.xml",
+    "sha256": "e21752b2a968da0dd262cc47aa11a8bf8030878a43ace312bcbbffa079a5e35f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001767.xml",
+    "sha256": "8474df7d0c0c3b85aacd310811ad392828662395eac04ead83ac8c68446f77d0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001768.xml",
+    "sha256": "e6cab3e02aa441b1bd4e02241e222bd420712dd22e48d119aa49cf895439aada",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001769.xml",
+    "sha256": "0d7c317e5cdb85f01abe32865f7210f2bde85c05728aca2f2003b9a168bdeef0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001773.xml",
+    "sha256": "b766d8fd2dcc536e629fd52460df0110dcc56cc66367db463d5a38f371c6f027",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001778.xml",
+    "sha256": "fffd746c5a3fee8ff2ab003ffa4ef869ad33946d6df723a28dc0209a153eb3df",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001823.xml",
+    "sha256": "9457d478d4ffc0655f6adea9dbd1f4a73f8f0ba977495222e6e3fa0acf9b2429",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001824.xml",
+    "sha256": "5733bfe500123d83c3306bca987f3fcc261f8dae755631c974ac3134bcc8855e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001825.xml",
+    "sha256": "55ed3925eee94cc7f065c5f6b417454bcbc18dd19b5536fd5c4642c51ba4e8f3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001826.xml",
+    "sha256": "983390943486913e7da415ba4ed890d9351db2dbe5d1651df61abafea83e98ec",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001827.xml",
+    "sha256": "a8c7adca4b15205e1a9543518d8322d8c96194a88f963fccd9f1ff182397f5e7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001829.xml",
+    "sha256": "7b6252a08d47dfeefad3ce812bde195d207ab446867e342ea545aea24ab76df7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001832.xml",
+    "sha256": "4e003357fd9b2e9a503230dc954a26e6fe728de476990499e6029f53ced131d9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305001892.xml",
+    "sha256": "a8b2766ba11ce84ac7fbb483db44d96c62b71e9584273eb4a472e033f6728f06",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200003.xml",
+    "sha256": "8586f8d339df1bcef25dcf7513f2dc9803161daf832cd76fdb162902cefb554a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200038.xml",
+    "sha256": "2589aa94d865033ebd11062c6836b1bf24e5d8295469c9114286b9fa7ea0765b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200112.xml",
+    "sha256": "912947f4481c6030939259cc94e1b4932949a43f38aa575070cc4c7ccaa48d9d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200113.xml",
+    "sha256": "9a82e26be2f96b40671372f0c879c2f5d2942b9ee5645c1c2823ec257f6222e4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200566.xml",
+    "sha256": "b375fba9c35632daa0c386c85272ef30de8016d9d5626fc1d24ed8c075b48ffb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200567.xml",
+    "sha256": "176df17c98040633df3406234ffb129c0919ec2aa3666b625303bf990c2e4569",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200601.xml",
+    "sha256": "eb4fd7911d2d5f4aad945b406937cd40c48bcd4f4f181e9e63f82c15d58944b0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200617.xml",
+    "sha256": "3a25daeb9d142054bd87ba84fdeeab2b410d5460ed066363996951ddf1aef00b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200618.xml",
+    "sha256": "9f3d39805704c6864c41c4d8c5212bd2c5469d6ebd1bee71c4a3133db041625b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200622.xml",
+    "sha256": "dd9e2d664fb2d8c92123c94b7ad8e98dbea4dafdd871d379400334b2ba9f205d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200826.xml",
+    "sha256": "58bd90f7a1a9a2a02f0b5a88874b3576ff4a934a9ca8db55d64f3783c240919c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305200940.xml",
+    "sha256": "ba613fb80e4acd55ae7ea47d293b58b1ab9a7c23a421c6234fa386ef7e558fa9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305300238.xml",
+    "sha256": "5f09835da0f3d8d8dac27bceb650035c1e107d2771c8519f8c000e2a5ec17c46",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305300262.xml",
+    "sha256": "6b634deec0aed1f720f7b3f27a2a762d13058e6087befba355ce613bd1980a22",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_info_JUB305300263.xml",
+    "sha256": "1595eebb4cf17c5db6d1ef76653a51f986739451eedf5dfa1d829870db1e4a38",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000392.xml",
+    "sha256": "09f610f5bc056decb4336b45c226605b9e14b9382dd7f2037af4d41555e283be",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000393.xml",
+    "sha256": "b495fc7aa909345b694f1d46c4bd7e59f6ff6a88359051df7275b4022f6ff0c5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000409.xml",
+    "sha256": "ee72ffc534a83e85e3299a69b432e5283af72ce56f830736f85ee8baf057fbaf",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000957.xml",
+    "sha256": "1f7125474a8d72ed7d931fc15bc8b3218be04f0e64e08f2fbbdcb4172359a64b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000959.xml",
+    "sha256": "5588be699eeb0ac7258a18ed056afb7e60780ef154afa4de5b224aafe1310585",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000960.xml",
+    "sha256": "f07ad5dc3ec9d51a238a3db4b1d53f597346fa2ef3b92dc99bab48cf4107834a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000962.xml",
+    "sha256": "eab97e8f03d8e5b1cd434a45411f8181249dc9422e9874061f52e1ff42487a51",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305000963.xml",
+    "sha256": "31abcbde7857baca9e38c188eef282c725166538505501a7ae5baa4d2782c1df",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001010.xml",
+    "sha256": "8789b4bd035b2b2e8a7313800c07470abd38e54cbc24ba5887ae6685ef08c80a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001012.xml",
+    "sha256": "4283b1c921505ef86cefdb1208e98baf8f6369b4070aa3f7c181137680e25137",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001019.xml",
+    "sha256": "595e6623ce755caf82910f56b1eff3a5bc7f1e91e12439180b2b1fbc66e81693",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001088.xml",
+    "sha256": "c7b24558fb242846810f846eaa6c60ee9198e94b46ef7bd15e02b975a90a2a8a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001089.xml",
+    "sha256": "cacbc8c12d20326f1e3314624706528f6aaa8f8533f072782b52f7bdafc4d4b4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001094.xml",
+    "sha256": "060f2829486f5d461743db13af2d521d576ee9732f236379f13432ce2e74ab32",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001095.xml",
+    "sha256": "a3e5749c69f7c87b0d93029fa71011fe3c7db20945a1ae801868670705d8180f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001098.xml",
+    "sha256": "906c9174580d9a0f31399f46be0e276c4e3dfd33c11e1d652822265274474507",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001099.xml",
+    "sha256": "6000fafc1f228e1840557d3fbf0b2a2918854f80c2e67233276a9dbb0a92d6d8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001100.xml",
+    "sha256": "ac576b1a12121ba810155f91dbe8920756b42cc23d0d18d57802b7d43bef83c9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001101.xml",
+    "sha256": "744c4485b2cb0e23efbd6b08837ecff00a7bffe96b9f58a243749de04c52fbcb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001102.xml",
+    "sha256": "7a9765e9eba3f7aa99d6723544cbfe88ceb6deca6827cd2e191123861a930910",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001119.xml",
+    "sha256": "1835a4a41a902a9be2deac3dd1b4257b8100c57a8a88dd22985da8b5a54da35d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001120.xml",
+    "sha256": "51330ec14e9e6bdf5bf1b141104e2ae97f2982540a8162ff576ccec329c1adc2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001131.xml",
+    "sha256": "21c661645f97cd1512f5a6eb09f825f533be8138ba8b7b0319ed220d6d54d3af",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001140.xml",
+    "sha256": "b6487e7c8d138101c9e92531f84fe4ae13464788d84f5bcae73d692090a64389",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001141.xml",
+    "sha256": "e44f868e2cd034310946805a7bc116b36a7ae691046d646b3670a8bec2db3c15",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001142.xml",
+    "sha256": "f434223e9c9def64517459dc6915dedfd81ed5056c0235bdf4ba3cdcc93e83f3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001149.xml",
+    "sha256": "ad487db0fe42afd9e2deeccbdd73d942050b42bf0ba796aa12156a60aee4c756",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001150.xml",
+    "sha256": "b8fd82635deccfb864c381e3b6aaa94aaacc84e5a9e9849c8e7ae0f45cbc3671",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001151.xml",
+    "sha256": "6b6af567c7a512be083899c220f651aa998144e3cdb0916f08057755177c3362",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001152.xml",
+    "sha256": "268575b0794ffaa7d9e4b67828bdec372b49a1e9bcbbe2e822716d7490951e3c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001153.xml",
+    "sha256": "16158559cc37f96a21d9cbe30dd68af8914933380e442afc0e75710e490a1557",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001154.xml",
+    "sha256": "9bf20d46268e40b0ea893d6bdf8b6bb98d0de91326614fa9ffb13a7c8f85cf23",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001162.xml",
+    "sha256": "799eb30177e1e4e27eea9b996fa2bb2558776df11aee8284327a9797250de716",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001163.xml",
+    "sha256": "996cd7059da3a94188f145bca1646c876d4e75e33d65c7f0bb59bdbd18c2df27",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001164.xml",
+    "sha256": "36d9ff47d3f087782c7b44f6ffe1014c3e73b52fcc144a04265dde6f4bf97852",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001165.xml",
+    "sha256": "3133f2af272b839260f6311338d64b9765f7af6ba970dd5890a9dbf7dd2d783a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001167.xml",
+    "sha256": "0385330af84c9b93fcef699cb96721f1f8f8579b90651ea5f8f9df966774be97",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001168.xml",
+    "sha256": "fcd9a697ce8a8115d805b62e0bb1047bf56efefa1517067fbaf9708e62daf4f3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001170.xml",
+    "sha256": "742f79c722a47c6aff17d803887b037d1201b02810a38f97f20d9aa319f0bce9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001172.xml",
+    "sha256": "c6813211959fa6ab7ac838a90b563c15f6eb160e238ee23d9b72b760eaf8a261",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001173.xml",
+    "sha256": "7703f20ef727325e91a567f3b926bf417732bbe7006eeee97cea380b68c5c034",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001174.xml",
+    "sha256": "05e299a72c0f125785100b9c9d16cd09ac03bdd24dfe40827afd5193f8226b6b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001175.xml",
+    "sha256": "4939133b056898b34086a68755d774784872f9c2d489982607b86109d4d18ae4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001176.xml",
+    "sha256": "97a3cf8f6a46866b1fa5589507ea6faf09972a01ba83694771c55625d011094a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001177.xml",
+    "sha256": "2f630ae4e4699d6a5bd396406bd50a69c66b3f8d7c630463775e09b6950aff2e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001178.xml",
+    "sha256": "817e4b83c64e33fbd3268b02f4eb04400e323ec7b662d4849790127f9786325a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001179.xml",
+    "sha256": "34650ada99160af8a8877e2d21a9905ca2a63c53432976a218fe24816e981a1f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001180.xml",
+    "sha256": "c312108fae5d1d98aed47d3d818c40474c1fa2e41180beb3cd2afe8609cc33af",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001181.xml",
+    "sha256": "fe13dbd81065b35b58312fbdb807ed9fc4f21b000eb8bf63b0c510a72a9e46ad",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001182.xml",
+    "sha256": "acbb5214bbea97968b00dbf8f9a4c55d2e34190dcd5c367e710be252862899dc",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001183.xml",
+    "sha256": "597031aed001d1ceb1ff35678ded251cf4620a2357b729a3848dcc1a35569fbf",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001199.xml",
+    "sha256": "c33ec79d74d3a2773b15466e7eee7221c05481942c87ba9d4da2a6376343928f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001200.xml",
+    "sha256": "a4a6e80b8def06e575ae61dcfb0c37149383f78b02e6ae5bd4e3a419ab19466f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001223.xml",
+    "sha256": "b8e758237b364eab27ff387bda868164535f8fe9c1823b0edac1f7c6abfba4a9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001224.xml",
+    "sha256": "8891a5fa262b475ba8afbe123f40d58f6e92e9cc142d1f8eef57410bcc997384",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001257.xml",
+    "sha256": "ca040e7ae652b3b4d0d4714109c7c7d25f986918d2508f36c7c2e043210cc58f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001258.xml",
+    "sha256": "9af12c9e7f3fb67cf2b1ef46487519cdacbbe30d61a550a55fb93f784bab3485",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001269.xml",
+    "sha256": "44899353d655fdb426afdee1e96b1b8e0ceba7e982a081cb8ff02de57b92aea7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001270.xml",
+    "sha256": "c202250376aa9efe8047943e172f43132d64f8f48f2fe3c80710df0ca67ffa6f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001271.xml",
+    "sha256": "058e15a38a6fb1314bf39d1f9c0a34f0aa78a999277bb8b742c890dba6691a6c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001272.xml",
+    "sha256": "df7a0f94af33cb293f9c2c3d1b873b7b28156f8f713aac4205c2ee4b3b533623",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001280.xml",
+    "sha256": "8362f74f23d0eaa98427c1f3c9b70db594b8e902e657d46b312c2a06b1536bef",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001303.xml",
+    "sha256": "aefe10b5c0a8e54da64c0da02d0ad102f2d50154ff7d694062d40150520f40e5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001304.xml",
+    "sha256": "1186e9709e293c0edfd2c781d876080cd306fa9c50be3d684aaa87a80c739592",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001332.xml",
+    "sha256": "4a67963dbc5c5e6468be5b04b001a44e9c20fc640eeebc2d998e7d2876f2f235",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001377.xml",
+    "sha256": "143d95844a25bdec86848ca510334a06b6cc603c71d467bed444c212d6a0115c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001409.xml",
+    "sha256": "149e0f6c74ad2b72597594ceb4d61e50c7533da7f4055daa0c6e8581d3ff5e0e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001423.xml",
+    "sha256": "fd855f7c21a1f918412251a13461a11ccf6c3223b5c99e663e2840ce635f922c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001424.xml",
+    "sha256": "77fce38f33f590bd3cc8cb28b7201e25568ddbcf9f1a738bedfb5c783a6a52e5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001425.xml",
+    "sha256": "be6ddd9f9edffb39d433a9e1a1ced0de79834d1fea2aae8fee92d47dd557725e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001432.xml",
+    "sha256": "3b0ce1b2086126754ac1df5499d5240428efe8a2be01253b79ecaad76241731c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001433.xml",
+    "sha256": "acbd9719060423b7e404ae21dc08f36576a4c988261fe7f70ed97ecd4dbdef8f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001434.xml",
+    "sha256": "7020d6e4c64922c220afad834b0cea217e4d7107bc22e7c269de350b313a380b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001477.xml",
+    "sha256": "39e63a8361606545109c5eabcbca076025b78aee7c98dde26360512efe3ef6d4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001480.xml",
+    "sha256": "52ca555ea389605a93be814eabc60860991d1aa2907e9b08db1ceef89dcd8e1d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001481.xml",
+    "sha256": "3186905777536eebfb9ace793de5654ffca6c6f4e966624bc99e8c1d3d895b45",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001492.xml",
+    "sha256": "af5c0719f03ebd7e5958276f90f3dce020fc40ed24fee071c3c95df87a09c8bf",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001493.xml",
+    "sha256": "8edef4c8db9b9ddd2bef552dc3725f1a63afcd13f9d157284f71025b5098243d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001519.xml",
+    "sha256": "8392ff2a4dbd8cf45004240908986928f674f0ebfe9fe8ea34c35c785ec62b3d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001520.xml",
+    "sha256": "60e63710a49555531b1bcb1a98a55f224e188d6de036af287aa479f13ed26b9f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001521.xml",
+    "sha256": "6bc26cab15a5901defb04779fa998ee0c1247d15e22611adc56e5be68d266d0b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001522.xml",
+    "sha256": "048073255fb2f6b26cbae761b65672f60c886a198fa922200d125287294273a9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001563.xml",
+    "sha256": "bcb67465c995a23823d785819ff0cc696d0d7e9b80ef4e7d9069c48f9bc592f5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001564.xml",
+    "sha256": "9d62f6ddcbca1d6a23a68b5327e69c1b2dba81e2bc78b829e3e8a5a6b24bab18",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001565.xml",
+    "sha256": "cba4900f7f2634241ab4927f127618e076a76fe486b3aac1968696d85af64675",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001566.xml",
+    "sha256": "c26b194188c0b9d2ded934c780d40c4c77533c778f35201f10c8be3a3c75648e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001573.xml",
+    "sha256": "13d9624527d2c68f7a7097f809c823a2af2d6443f5919a14cb5aafe16cfa7cc0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001574.xml",
+    "sha256": "1e0bd84ecaa50b73aaa873ce658233aeae53fb880467db8bcd237c1bd9c11c7f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001575.xml",
+    "sha256": "710e60bbe62c46a13de5a23dcf9b1eb4060b3d83644e168e047386d9b413b563",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001583.xml",
+    "sha256": "f8e1e579a215edc8294392afe8777bd4a5020b2fbc01106260e8f9124a186966",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001584.xml",
+    "sha256": "ea43074ceaf53f2f15e70e7fa43cfbd9c8a6b37c8d9106e68a017f9fc4d42ee5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001585.xml",
+    "sha256": "e4cd2243fe4edd314423e9b20fef6d2a4011b75b90f139ede4a610ecd27cd986",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001586.xml",
+    "sha256": "640297479c5f9df310ecd42198fee051930fe16b0649c70953d967dc3e315916",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001587.xml",
+    "sha256": "cb54be0ee8417eae9c893405ecf550b8bf54c41f97b88ef4907dce0adcf90e19",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001588.xml",
+    "sha256": "1af8b4a552551ad16e6f4242d8f889539a0acec201443431d8539bff205614cb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001590.xml",
+    "sha256": "0ca474792b022fe114a3ade3f11d54856368d08ddc5e543fd78b5ff3d24f6683",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001597.xml",
+    "sha256": "d52741dacc238f7a01111d20c0811db814b9121de56af601c538bb50f74a897b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001598.xml",
+    "sha256": "c4a88068863596fc9da182ac21a5a9d19b3e14e6fc8f9dc4ba0b8d660583e615",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001599.xml",
+    "sha256": "8e554e5589cadc562a3dd56a4703bd59ba85dffa78eace133a98e8ed2b25a17a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001600.xml",
+    "sha256": "63e8ea723cea0f37f74ee2879eb8b4c5bd2945556b6e8b7fd6cf452f38ab50e5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001601.xml",
+    "sha256": "16bdfa55f6d141c1dc984305eb170dd913ba20aac94c5e7256ef9da4b7e8fa99",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001602.xml",
+    "sha256": "1274f1e04b1b52c5f5f7ffd2d397bd481cecbd686c4eca216dde606a001c2758",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001603.xml",
+    "sha256": "ccfa7730442a33f15f9ed901a91d298511e90a5e3df855ebd50f42a99efb15f1",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001605.xml",
+    "sha256": "657bee8648eeb25c1110d83480f1c749ffbe67a001d9aa813a4abb6fb43dd73e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001607.xml",
+    "sha256": "a8e900f6323db501b2d3bf7f71f75a339f4b9fe5a19f708e5feba7927d7cf4f3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001608.xml",
+    "sha256": "31548c57de662e97b0b3c46053844be93ae511a8302ec142d8e23a76e07b7be4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001609.xml",
+    "sha256": "37c4b3a1b2033d6b51033b4abaa8d7961b00d72e38ff6b3752a42783f2cdf855",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001610.xml",
+    "sha256": "16961f471c601655841778213a6c05ff52fd6e9fa59b883d819607f420ab2cee",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001611.xml",
+    "sha256": "dac978006e419df15cbfd74b5a7afd81518b4668a7fe6811cb70d007c21c1b91",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001616.xml",
+    "sha256": "1f8c4abff460a8148650bc81d2d8b58acb7910ee8a0719db334419224d717bd7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001617.xml",
+    "sha256": "8009b62c0f959fa9c19b4a9bebff19944a88cad9c8de55c653670527ab29ba1d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001618.xml",
+    "sha256": "a53176a8346c7efe3f76c3a9edb3920fb3421273e5a46156474638af52b26ae5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001619.xml",
+    "sha256": "753618facdb480c1e284013c0ac9fd984b1d2e02c7babef425d886f1c8767c14",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001620.xml",
+    "sha256": "d15832342ee3cbbdb2ae2bac0e93a6bb87210f458f4d71effa157e8aabbf83dd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001621.xml",
+    "sha256": "d7e1a4c1f8d1083ebf0e1eb6046455ee9c7d9bd413d7162f369e6e7347774c5b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001623.xml",
+    "sha256": "d03153c68d6a97d7f980030cdfb325f58e059c62ba83ac676609428b8d04f22e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001624.xml",
+    "sha256": "5f8d3756ab78d6dd0389b10e2a121193f9ef575735b0f37522a4c018fcedbaab",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001625.xml",
+    "sha256": "0a7671829a6da28409b6a4a1dece04aa1961008fedcd10a134347f0f1a218ddd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001626.xml",
+    "sha256": "d89eabf437f8c9b2282291dbfa0230401bd3fb2ae3bdcc000c87e3ac82c6bb4e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001635.xml",
+    "sha256": "1f54805ea3be56442257f886becbaaf36fbf261362549247c6e282f9de57b437",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001636.xml",
+    "sha256": "2a898ef8759de7526316d2b4962a50732ce2699330d93aefb3a73a809fb2588a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001645.xml",
+    "sha256": "41747497fec56398b437e545c17616c6cdca75bb949e69fbae8453f62be6d6e5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001646.xml",
+    "sha256": "060749ba90f55e41208a5fa21a1e0e209026e1240b6c17f34213e748a6afee63",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001647.xml",
+    "sha256": "682992d66d0aa3f9b50237cbbfa4e9e601003463904fe687e9215208b8627605",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001648.xml",
+    "sha256": "5d2b75ec852b908032825dda2c489e09386cd6170373a5e3960d34f4130e57e7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001649.xml",
+    "sha256": "18f9d76f8be0371540460d51f27445144f6aa5213761fd5079c1b704a9048078",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001650.xml",
+    "sha256": "bfdad9bbd8529c1f975fbe3a05d40bf58494991d9e246479ccdd09bd9d7b1f15",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001651.xml",
+    "sha256": "ebac141871c964c0225b267e119026898ac69aea3c06b0a0b2660e8ca37d009a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001652.xml",
+    "sha256": "0abdac13805fdb76fe6cc2e6daaaec1be397576dce3077108bf87985a7f2fd5b",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001653.xml",
+    "sha256": "f972fc6b784b73863e5e8aa578b396a51b482c3952c05a21b559026a24672dac",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001654.xml",
+    "sha256": "ab133fc10e45c469da23f83d39e5f9fbc113b2d1cad43bbd6115e539d9d467f4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001655.xml",
+    "sha256": "495dc0a61ea02cef794ba2168388fc2dae11b1d942ca222c293cc4fd211d3553",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001656.xml",
+    "sha256": "903d3dd24c9733027c7b6143edeff6b8b115f330f9112d5babd9f3a0b69f9ac8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001657.xml",
+    "sha256": "a60080064e5d684185a10cb8d5d52e2847e88712ae6ea43949518520e2aeb61f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001658.xml",
+    "sha256": "9cc9b26187af24ae6949e3a95f06a61fa7efdc0d90822865fe4d267466e15867",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001659.xml",
+    "sha256": "23629346cda51b468cfbd4927b1ea4fb289bf807d7b2539c366331d6b205dae7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001660.xml",
+    "sha256": "f78457e83b94e75ad394af70cb3ced458553ac66f5da32aa121bb1b870aba02d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001749.xml",
+    "sha256": "9cd062da095d8179681783761d63640149b2a648d3e0fb459490d2d158e1177c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001752.xml",
+    "sha256": "34f5b5da5b82cb3e586876a3e952c3e8bf3aa99fa68c2df1e1f981acd1be974d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001753.xml",
+    "sha256": "8d4223396d1ffb78228cc22c4cce63d756f06506e611611a8911b20608677016",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001756.xml",
+    "sha256": "d978897f462f0ab66efec4841dddd23ac7f8af79c99c284affda99777df332b7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001757.xml",
+    "sha256": "8cf884c4b7d146dfa26d01580cc0f8e6ad4580ad815a4115da937a113b904e84",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001758.xml",
+    "sha256": "71f54ba34516f208a085836d6e90177a4c704d124ac22047cd38413bc4342a09",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001759.xml",
+    "sha256": "35e6e4bf6464f7770d72dd9be623512e85cd086fdf1b7c52dbd9c6850c9c3bce",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001760.xml",
+    "sha256": "04c45f92cdf14f772165d4c00b9bcb5277a3edfeaae941bd85423194df3275e9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001761.xml",
+    "sha256": "57e0ae22b59b3b18fa4729206ce72ec6de892ebed12abea777ef186ada2306a8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001762.xml",
+    "sha256": "6072a506bc93ad4312ab26f451bee239cc7d045a97782877815754827c1b774e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001763.xml",
+    "sha256": "9fee2173c7163d45ce79068703bf123f5e41f2a2fffaf0b42ae9b6b35effa140",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001764.xml",
+    "sha256": "2d6fb085c8aef0e0fa549b0627615eaa6d30c5337ec60b8aebead2534139e353",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001765.xml",
+    "sha256": "38b275534a1618862a5411a6af9e3d53b7b81e705b20827ac2c35be5ee9bf6ba",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001767.xml",
+    "sha256": "918609919d65dc9e1b08f79813f9c97cb5a24dacd322f72d60937dc8096abfe2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001768.xml",
+    "sha256": "e3473fbd58f84dc7b975dfe06b8cfa8a801a8c8d1791be10488b54fb7f29c593",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001769.xml",
+    "sha256": "940b624ece59629c80af110ffdab8282703c2b9c972aad52c0be51730c3017b8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001773.xml",
+    "sha256": "6889e159bec8c9f20ce2f60817b9f03f90fdc5813001d54d50cf17fc43eecc0e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001778.xml",
+    "sha256": "7d39b5107f3289c1700a79ef9f936a6ac69eda09244a655f06b5404de58337b4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001823.xml",
+    "sha256": "1bba100930b7f4fedc822a219109ef8efa42a242e2587de2592ee545d84fa87f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001824.xml",
+    "sha256": "461d72d0a033b2012a1bf7b817519476a0b50e5dad10ee14742cf1e7403838d9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001825.xml",
+    "sha256": "aae51706281e502642c53d27fa720ad93cf291cec42dfde1143a229efd28aac7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001826.xml",
+    "sha256": "88684335343d3cdd7a1bb2509042326d8be74c73b7bcd8fe3867d061e3a01c62",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001827.xml",
+    "sha256": "7949fe88cee6c42199e9c240c738561f2b1450d38eccc4871b9cee23dfbd28eb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001829.xml",
+    "sha256": "7894f6f4473b51d7b12d203eaecb57ecc2e2a170cbd16f6e758f1f88a4e71cc0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001831.xml",
+    "sha256": "5ea53fa6f1fa592ae5faeb1de3cbbb3a3db2150689cff5b4cfda099f1bb0433e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001832.xml",
+    "sha256": "36a575c82c76b11a3311e5e954ba65eb156b0b70b0dc7ec8c347e5388b4ee1be",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305001892.xml",
+    "sha256": "22a7664adf830534c5998d3b4ec9f6a84d736925cbff8c58f4578f4ba68850b8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200003.xml",
+    "sha256": "7533777c339889ace8be45d18a40e53b66c834802e958d746c4c97d2cebcb952",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200038.xml",
+    "sha256": "4f200a04757b1f86e09b43b06772151fa0ba5ce98c5e97dbc0a0014f1cf76707",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200112.xml",
+    "sha256": "c3a70252d851e46dfe0bd8d5ca5d81877b59ba76966d91a310b05e20b3bcb0a5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200113.xml",
+    "sha256": "7ed9977396e462a9d5ed1a50c449434dda9f0c1fa237ea9ba4307495a34f7282",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200174.xml",
+    "sha256": "560f6f7c6df86108a7cfd031b558b77dd0582c00be69bb55f1943734feafeb6e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200566.xml",
+    "sha256": "21f2788e1481389f5963d3cf6726d171db8e03aabdacebc1305a7b2595e9be34",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200567.xml",
+    "sha256": "fdb4b0beb4fca08062c456f88eee3f7fab86ea0174a0565babddde918a7e93d7",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200601.xml",
+    "sha256": "6ccf45e54aae00c46132ad168e1527cae9d2287398c32ba65a8ae752c9a753ab",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200617.xml",
+    "sha256": "48bf30ffe7c9dc1ec6ba189f6d21a1226363667e760d5c4ec196fa89777adaf9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200618.xml",
+    "sha256": "bd025221402c16a276218ea316bc03224a1d31c35076db4901e56c3f1ea22d91",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200622.xml",
+    "sha256": "a5d72bed54898acda33cf31d388c2e4a71a5da5835c9a7759d977ed0378b7322",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200826.xml",
+    "sha256": "c8d1efe699fb7384022038e0fd7083614c7d046b8a46ee3d259872269f477dc0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305200940.xml",
+    "sha256": "4d0d347eec20b3aeff9b0c7c3208cb1962687f1e8a06cdeb81cb2454d7057364",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305300238.xml",
+    "sha256": "a567c05f9ee44debfb677ca48e23c63c04af59717bc610a746873daacf668f08",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305300262.xml",
+    "sha256": "79ff35f8729754b262bcd3c98e29cf9c34d1fac8753a5d5d3e7ddcb9f6d829bd",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/route_stops_JUB305300263.xml",
+    "sha256": "fb5f82e53846b17bcad8080fca19bd4af7d52352b267225f26676f1d3c891350",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/routes_city_35010.xml",
+    "sha256": "fa3ec8594c1adf147fc4c7761f91509a7ab8678929e6b69027e8ae1b9b924936",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032080.xml",
+    "sha256": "75c5df2bd7eb945dd2929bc51bfe370665a30b9164544b8c607e209d4b3493c5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032179.xml",
+    "sha256": "bfb865e293397c07c76b79bbaf545d511b6db3410c55ca9f97f3a4bae96aefdb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032180.xml",
+    "sha256": "af1ba75c113b92d6fc0f09f17cd710d543f0d16375319e04caf04910520c15bb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032181.xml",
+    "sha256": "bfb865e293397c07c76b79bbaf545d511b6db3410c55ca9f97f3a4bae96aefdb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032182.xml",
+    "sha256": "af1ba75c113b92d6fc0f09f17cd710d543f0d16375319e04caf04910520c15bb",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032375.xml",
+    "sha256": "9992fbe3794ceff23a121e0be281bf96f844011487ca3f718d788d71cb081dad",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032463.xml",
+    "sha256": "1a6e513bdb5d71ee83967c01338b4b2b61858dfa6503abdfe21ce60312e6ada2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032481.xml",
+    "sha256": "89eb6cf3d477517e4bba3a5351b94cf58b857012221f5d6bdf318c0102b6f128",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032581.xml",
+    "sha256": "4cb92b1ab8fbc0bc87f40f05d2083abcccbb102894a936fa1ee0701787d72a5e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032582.xml",
+    "sha256": "f0f50a92304262e3f2e0c7506216b26d4db25515a320e940c915b176212a6e99",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032613.xml",
+    "sha256": "cda3e8796974086cab3ff02dbce3d5058a4da636bd497845f180e78723d2c6d9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032614.xml",
+    "sha256": "cda3e8796974086cab3ff02dbce3d5058a4da636bd497845f180e78723d2c6d9",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032694.xml",
+    "sha256": "98f627d20e53e6b1e4075f0a1abdd5557d60cbcd037ae32fe4d56d3de5f5325d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032695.xml",
+    "sha256": "af92839a5b29da4a6e10b02b5fdb95287d0f7c037c77c0040d94744b3dfc84e3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032696.xml",
+    "sha256": "af92839a5b29da4a6e10b02b5fdb95287d0f7c037c77c0040d94744b3dfc84e3",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032697.xml",
+    "sha256": "98f627d20e53e6b1e4075f0a1abdd5557d60cbcd037ae32fe4d56d3de5f5325d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032815.xml",
+    "sha256": "c856c8062f18a68b4e3d2b140de5b7e9b7f6244f9e476b815aafcc5e019d0c56",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032816.xml",
+    "sha256": "cf3840676dc872b7d45ad3369e1c107c1c2543831d8956286757f18fc47778a2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032817.xml",
+    "sha256": "cf3840676dc872b7d45ad3369e1c107c1c2543831d8956286757f18fc47778a2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305032818.xml",
+    "sha256": "c856c8062f18a68b4e3d2b140de5b7e9b7f6244f9e476b815aafcc5e019d0c56",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100425.xml",
+    "sha256": "a2f454b8bb38aeb2c6823e183617be8ef590432a51280c0c1c4d9809278c9cb0",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100428.xml",
+    "sha256": "b5c2961dd51edcceef5ed63c796f4a3008e1c9c9b12c3db20447413dd7b15ac2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100494.xml",
+    "sha256": "7948a813aac20742f0f42b6c074d5b9d539024a0b62079b4958b7dd9c70c2ad1",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100501.xml",
+    "sha256": "2d6c09bb60e4efc3cdc8cad9fdd7ef4584c3a4a22fc943f9f02811fa71e5253e",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100516.xml",
+    "sha256": "e5a5c2334b367c46cd17877c0173f2fe0185f16f1f30d8931be2ecab61623c00",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100517.xml",
+    "sha256": "47a29a3ddf3aad383f088b0783295e4c06acb180c6dc3a7614374b6a17eff938",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100526.xml",
+    "sha256": "0977a8330b86a0939006e1dbf988faa08af8d827764be661137bbbc67c3432c2",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100527.xml",
+    "sha256": "70b80050d5b3be58a1370c8956c46f2ae821ddeb1a0f7e888ae31f7a283aa1d5",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100532.xml",
+    "sha256": "7f034b72c00e323e37809c51eac9560649553321937687555afed460c7d5e76f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100536.xml",
+    "sha256": "2ef12984a3a14b8d8f66c82cd94f379797f35afd4f178880a50a147072dae956",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100609.xml",
+    "sha256": "86396e9d7ded850da95c04503698fcf64ab6b3f9de260c8490b14749c57823ca",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100630.xml",
+    "sha256": "01657fcfae5b904023365450c47b699d71a8471c1e7830a2d9d128878ba66462",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100650.xml",
+    "sha256": "ff1ca2046c999d4e9ca1bacfeed2f8e5694642e60800490922334a0e947a9463",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB305100651.xml",
+    "sha256": "b08885e2a514afbe0182963b740d1772a25dfe5b912f71d5c645223ede1b7919",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306032082.xml",
+    "sha256": "4ea8637caa930ee572b237baa153ff487fcf284c68e722c07ab3e47d25a22089",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101017.xml",
+    "sha256": "18f88e90b68b5dcee957c981be17b5860599a79e7cbac9cbc4c9f025d5818755",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101020.xml",
+    "sha256": "668e0e722070236915c7072a60dcd11ea5734c99c10ff18b9cbbd4700a4db584",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101027.xml",
+    "sha256": "623e3a9f390cc47eb0bcd9066824a545e7b1baad66da56bb4e933bc061ff4125",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101035.xml",
+    "sha256": "7410329df0131612018ecc067763a66502b3db034b4035caa8e891455ca07bca",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101044.xml",
+    "sha256": "c03f4cdf49188dfdf32fd41e82cd70b3dc66158b15d40b1760aeb9b05d3303d4",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101046.xml",
+    "sha256": "e081a9eb5a9bf8c60cf47ab0fb2128614a774bb609c415946a804f82820843e6",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101049.xml",
+    "sha256": "ba64bb93c568178bc2cec50e29a72e3dbfde863388437e21eb8a8fae2878a1ea",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101050.xml",
+    "sha256": "998db15e566d4f0cdc293f9ac0151ce7b2271336938a50b5dbd9ee296e4d2c46",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101051.xml",
+    "sha256": "bc912660b93b3f5f84b1649d8c249842010bc799293b6f2f40883f02e8a595d8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101053.xml",
+    "sha256": "b6b346e0f0ab022bbcd2b42d79c37129e71228256c978278ad18d5039d7f9e0d",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101056.xml",
+    "sha256": "ccb2da7a0360aa12e76942165e371004150365882f095d61cfed74db9d793a92",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101057.xml",
+    "sha256": "bb974d27601c53806831d6b9daa74c68b7321ef5e96933c3833eb580a827439a",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101069.xml",
+    "sha256": "910a6a91a60971970772758de4b4fdfa951d8c90380b6b44e78d8d957bd9701f",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101070.xml",
+    "sha256": "9992fbe3794ceff23a121e0be281bf96f844011487ca3f718d788d71cb081dad",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101079.xml",
+    "sha256": "63e4b6e6938e19d5b3531611a482f02e88b007de7502cb2e4d4c2c6fce811d53",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306101113.xml",
+    "sha256": "6ee8150188d18331abbdc7233e761f60040105ee2760546157e367af68004576",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB306132039.xml",
+    "sha256": "9ff6cba742261741c2609ee0f8941bc9cf27473ea68a77e55d95721e663f7fa8",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB312302214.xml",
+    "sha256": "38562b3db5fd5d4c3e37db0ee8b36d03dd4464e46af934e2d3eee4bc28794439",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stop_routes_JUB316032081.xml",
+    "sha256": "a3f4a4501b3e2945e2b2deaca6451ccf159a5c171d4b2bddd5c81f91190272ea",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  },
+  {
+    "type": "bus_tago",
+    "filename": "bus/tago/stops_city_35010.xml",
+    "sha256": "3b334c1512fc728ecdda7def6d36727f2731e378c56daa4be46ea46d230fc24c",
+    "source_url": "https://www.data.go.kr/data/15098529/openapi.do ; https://www.data.go.kr/data/15098534/openapi.do",
+    "checked_date": "2026-11-13"
+  }
+]

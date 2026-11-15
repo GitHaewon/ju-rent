@@ -5,10 +5,10 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException
 from fastapi.exceptions import RequestValidationError as FastAPIValidationError
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from src import analyze_rentals as audit
-from src.jurent import area, engine
+from src.jurent import area, commute, engine
 from src.jurent.explanation import ai_explanation, rule_explanation
 
 app = FastAPI(title="JU RENT API")
@@ -32,6 +32,8 @@ class ContractInput(BaseModel):
     monthly: float
     construction_year: int | None = None
     rate_pct: float | None = None
+    dong: str | None = None
+    school: str | None = None
 
 
 class BudgetInput(BaseModel):
@@ -44,10 +46,14 @@ class BudgetInput(BaseModel):
     housing: str | None = None
     priority: str = "cheap"
     rate_pct: float | None = None
+    scope: str = Field(default="commute", description="기본 통학권: 대학가 동과 선택 학교의 직행 통학권 동. campus를 주면 대학가 동만 비교합니다.")
+    school: str | None = None
 
 
 def area_input_error(exc: ValueError) -> str:
     message = str(exc)
+    if "school" in message or "scope" in message:
+        return "학교와 추천 범위를 목록에서 다시 선택해 주세요."
     if "campus" in message or "housing type" in message:
         return "대학가와 집 종류를 목록에서 다시 선택해 주세요."
     if "priority" in message:
@@ -63,6 +69,8 @@ def area_input_error(exc: ValueError) -> str:
 
 def input_error(exc: ValueError) -> str:
     message = str(exc)
+    if "school" in message or "dong" in message:
+        return "학교와 동네를 목록에서 다시 선택해 주세요."
     if "campus" in message or "housing type" in message:
         return "대학가와 집 종류를 목록에서 다시 선택해 주세요."
     if "Area" in message:
@@ -91,6 +99,13 @@ def meta() -> dict:
     config = engine.settings()
     return {
         "campuses": list(audit.CAMPUS_AREAS),
+        "schools_by_campus": {campus: list(schools) for campus, schools in commute.SCHOOLS_BY_CAMPUS.items()},
+        "commute_deal_counts_by_school": area.commute_dong_deal_counts(),
+        "commute_by_school": {
+            school: commute.commute_rows(campus, school)
+            for campus, schools in commute.SCHOOLS_BY_CAMPUS.items()
+            for school in schools
+        },
         "housing_types": HOUSING,
         "rate": {
             "default_pct": engine.default_rate_pct(config),
@@ -107,7 +122,10 @@ def meta() -> dict:
 
 def calculate(payload: ContractInput) -> dict:
     try:
-        return engine.judge(**payload.model_dump())
+        values = payload.model_dump(exclude={"dong", "school"})
+        if payload.dong is not None:
+            values.update(dong=payload.dong, school=payload.school)
+        return engine.judge(**values)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=input_error(exc)) from None
 
@@ -137,14 +155,15 @@ def budget(payload: BudgetInput) -> dict:
         return area.budget_search(
             payload.campus, payload.deposit, payload.monthly, minimum,
             payload.housing, payload.priority, payload.rate_pct,
+            scope=payload.scope, school=payload.school,
         )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=area_input_error(exc)) from None
 
 
 @app.get("/api/compare")
-def campus_compare(rate_pct: float | None = None) -> dict:
+def campus_compare(rate_pct: float | None = None, school: str | None = None) -> dict:
     try:
-        return area.campus_compare(rate_pct)
+        return area.campus_compare(rate_pct, school)
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=area_input_error(exc)) from None

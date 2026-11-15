@@ -6,10 +6,28 @@ export type ContractInput = {
   monthly: number
   construction_year: number | null
   rate_pct: number
+  school?: string | null
+  dong?: string | null
+}
+
+export type CommuteAccess = {
+  dong: string
+  emd_cd: string
+  campus_area: boolean
+  campus_adjacent: boolean
+  min_stops: number
+  median_stops: number
+  boarding_stops: number
+  direct_routes: number
+  interval_min: number | null
+  planned_interval_min: number | null
 }
 
 export type Meta = {
   campuses: string[]
+  schools_by_campus: Record<string, string[]>
+  commute_by_school: Record<string, CommuteAccess[]>
+  commute_deal_counts_by_school: Record<string, Record<string, Record<string, number>>>
   housing_types: { code: string; name: string; description: string }[]
   rate: {
     default_pct: number
@@ -24,7 +42,7 @@ export type Meta = {
 }
 
 export type Judgment = {
-  input: { campus: string; housing_type: string; area_sqm: number; deposit_10k_krw: number; monthly_10k_krw: number; construction_year: number | null }
+  input: { campus: string; housing_type: string; area_sqm: number; deposit_10k_krw: number; monthly_10k_krw: number; construction_year: number | null; dong?: string; school?: string }
   rate_pct: number
   converted_monthly_10k_krw: number | null
   n: number
@@ -57,10 +75,15 @@ export type BudgetRecommendation = {
   monthly_median_10k_krw: number
   area_median_sqm: number
   typical_terms_note: string
+  commute?: Omit<CommuteAccess, 'dong' | 'emd_cd' | 'min_stops' | 'median_stops' | 'boarding_stops' | 'direct_routes'> & {
+    min_stops: number | null; median_stops: number | null;
+    boarding_stops: number | null; direct_routes: number | null
+  }
+  campus_price_difference_10k_krw?: number | null
 }
 
 export type BudgetResult = {
-  input: { campus: string; deposit_10k_krw: number; monthly_10k_krw: number; min_area_sqm: number; housing_type: string | null; priority: string }
+  input: { campus: string; deposit_10k_krw: number; monthly_10k_krw: number; min_area_sqm: number; housing_type: string | null; priority: string; scope?: string; school?: string }
   rate_pct: number
   data_as_of: string
   total_combinations: number
@@ -100,4 +123,14 @@ export type CampusComparison = {
   data_as_of: string
   area_bands: AreaBand[]
   yearly_trend: PriceTrend[]
+  commute_school: string
+  commute_neighborhoods: Record<string, CommuteNeighborhood[]>
+}
+
+export type CommuteNeighborhood = CommuteAccess & {
+  n: number
+  sample_note: string
+  quantiles_10k_krw: { p25: number; p50: number; p75: number } | null
+  deposit_median_10k_krw: number | null
+  monthly_median_10k_krw: number | null
 }

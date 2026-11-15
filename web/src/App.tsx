@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BudgetView, CompareView } from './AreaViews'
 import Count from './Count'
+import { visibleCommuteDongs } from './commuteChoices'
 import { comparisonSentence, displayWarning, monthPeriod, negotiationSentence, percentileSentence, rateHint, verdictText } from './copy'
 import { distributionAxis, pinPlacement, positionOnAxis, shouldDrawDistribution } from './distribution'
 import { areaBounds, clampArea, housingName, housingOptions } from './housing'
@@ -9,6 +10,8 @@ import type { ContractInput, Explanation, Judgment, Meta } from './types'
 
 type FormState = {
   campus: string
+  school: string
+  dong: string | null
   housing_type: string
   area: number
   deposit: string
@@ -20,7 +23,7 @@ type FormState = {
 }
 
 const initialForm: FormState = {
-  campus: '', housing_type: '', area: 25, deposit: '500', monthly: '35', fee: '5',
+  campus: '', school: '', dong: null, housing_type: '', area: 25, deposit: '500', monthly: '35', fee: '5',
   useYear: false, construction_year: '', rate_pct: 5,
 }
 
@@ -63,6 +66,7 @@ function payload(form: FormState): ContractInput {
     monthly: Number(form.monthly),
     construction_year: form.useYear ? Number(form.construction_year) : null,
     rate_pct: form.rate_pct,
+    ...(form.dong ? { dong: form.dong, school: form.school } : {}),
   }
 }
 
@@ -151,6 +155,7 @@ export default function App() {
       .then(data => {
         setMeta(data)
         setForm(current => ({ ...current, campus: data.campuses[0],
+          school: data.schools_by_campus[data.campuses[0]][0], dong: null,
           housing_type: housingOptions(data)[0]?.code ?? '', rate_pct: data.rate.default_pct }))
       })
       .catch(error => { if (error.name !== 'AbortError') setServerError({ field: 'general', message: error.message }) })
@@ -222,10 +227,12 @@ export default function App() {
     result.input.deposit_10k_krw === Number(form.deposit) &&
     result.input.monthly_10k_krw === Number(form.monthly) &&
     result.input.construction_year === (form.useYear ? Number(form.construction_year) : null) &&
+    (result.input.dong ?? null) === form.dong &&
     result.rate_pct === form.rate_pct
 
   const chooseBudgetCard = (values: ContractInput) => {
-    update({ campus: values.campus, housing_type: values.housing_type, area: values.area,
+    update({ campus: values.campus, school: values.school ?? meta?.schools_by_campus[values.campus][0] ?? '',
+      dong: values.dong ?? null, housing_type: values.housing_type, area: values.area,
       deposit: String(values.deposit), monthly: String(values.monthly),
       useYear: false, construction_year: '', rate_pct: values.rate_pct })
     setResult(null)
@@ -264,16 +271,26 @@ export default function App() {
             animate={{ x: form.campus === meta?.campuses[1] ? '100%' : '0%' }}
             transition={reducedMotion ? { duration: 0 } : { type: 'spring', stiffness: 260, damping: 26 }} />
           {meta?.campuses.map(campus => <button key={campus} type="button"
-            aria-pressed={form.campus === campus} onClick={() => update({ campus })}>{campus}</button>)}
+            aria-pressed={form.campus === campus} onClick={() => update({ campus, school: meta.schools_by_campus[campus][0], dong: null })}>{campus}</button>)}
         </div>
         <div className="hint">효자동권은 전주대·전주비전대, 전북대권은 전북대 주변 법정동이에요.</div>
       </div>
+      {meta && <><div className="field"><div className="lab">학교</div><div className="chips" role="group" aria-label="계약 판단 학교">
+        {meta.schools_by_campus[form.campus]?.map(school => <button key={school} type="button"
+          aria-pressed={form.school === school} onClick={() => update({ school, dong: null })}>{school}</button>)}</div></div>
+        <div className="field"><label htmlFor="judge-dong">동네</label><select id="judge-dong" value={form.dong ?? ''}
+          onChange={event => update({ dong: event.target.value || null })}>
+          <option value="">캠퍼스 주변</option>
+          {visibleCommuteDongs(meta, form.school, form.housing_type).map(({ row, label }) =>
+            <option key={row.emd_cd} value={row.dong}>{label} · {row.campus_adjacent ? '캠퍼스 바로 옆' : `버스 정류장 ${row.min_stops}~${Math.round(row.median_stops)}개`}</option>)}</select></div></>}
       <div className="field">
         <div className="lab">집 종류</div>
         <div className="chips" role="group" aria-label="집 종류">
           {meta && housingOptions(meta).map(kind => <button key={kind.code} type="button"
             aria-pressed={form.housing_type === kind.code}
-            onClick={() => update({ housing_type: kind.code, area: clampArea(form.area, kind.code) })}>{kind.name}</button>)}
+            onClick={() => update({ housing_type: kind.code, area: clampArea(form.area, kind.code),
+              dong: form.dong && visibleCommuteDongs(meta, form.school, kind.code).some(choice => choice.row.dong === form.dong)
+                ? form.dong : null })}>{kind.name}</button>)}
         </div>
         <div className="hint">건물 이름에 '오피스텔'이 있으면 오피스텔, 아파트라면 아파트, 나머지는 원룸·투룸·빌라를 고르세요.</div>
       </div>
@@ -319,7 +336,7 @@ export default function App() {
     <main className="main">
       {result ? <>
         <section className={`hero glass reveal d2 ${converted === null ? 'hero-unavailable' : ''}`} id="result" aria-live="polite" ref={heroRef}>
-          <div><div className="context">{result.input.campus} {selectedName}, {format(result.input.area_sqm, 1)}㎡</div>
+          <div><div className="context">{result.input.campus}{result.input.dong ? ` · ${result.input.dong}` : ''} {selectedName}, {format(result.input.area_sqm, 1)}㎡</div>
             <div className="verdict" style={{ color: colors[result.label] }}>{label}</div>
             <div className="verdict-line">{progress === null ? percentileSentence(result) :
               <>비슷한 방 100곳 중 <b><Count value={Math.round(progress)} /></b>곳이 이 방보다 쌌어요.</>}</div>
@@ -356,7 +373,10 @@ export default function App() {
               {explainLoading ? '설명 준비 중…' : 'AI 설명 듣기'}</button>
           </div>
           <div className="card glass reveal d4"><h3>알아두세요</h3>
-            <ul className="notes">{result.warnings.map(warning => <li key={warning}>{displayWarning(warning)}</li>)}</ul>
+            <ul className="notes">{result.warnings.map(warning => <li key={warning}>{
+              result.input.dong && warning === '대학가 법정동 범위는 캠퍼스 도보권의 대리범위입니다.'
+                ? `${result.input.dong} 거래끼리 비교했어요` : displayWarning(warning)
+            }</li>)}</ul>
             <div className="source">자료: 국토교통부 실거래가 공개시스템 · 기준일 <span className="source-date">{result.data_as_of}</span></div>
           </div>
         </section>
@@ -377,5 +397,6 @@ export default function App() {
         <CompareView meta={meta} rate={form.rate_pct} onRateChange={rate_pct => update({ rate_pct })} />
       </motion.div> : null}
     </AnimatePresence>
+    <p className="commute-guidance">정류장을 적게 서는 노선이 있어 정류장 수가 적어도 거리가 멀 수 있어요. 배차 간격은 게시 운행계획 기준이에요.</p>
   </div>
 }

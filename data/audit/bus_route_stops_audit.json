@@ -1,5 +1,12 @@
 {
   "route_variant_count": 180,
   "routes_without_stops": [],
-  "new_api_calls": 179
+  "new_api_calls": 179,
+  "nodeord_checked_route_count": 180,
+  "missing_nodeord_by_route": {
+    "JUB305001019": [
+      5
+    ]
+  },
+  "nodeord_gap_note": "nodeord 순으로 정렬한 뒤 배열 위치 차이로 정류장 수를 계산하므로 결과 영향 없음"
 }

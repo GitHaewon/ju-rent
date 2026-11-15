@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useState } from 'react'
-import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, cardToContract, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
+import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, budgetPriceDifference, cardToContract, commuteDetail, commuteLabel, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import Count from './Count'
 import { rateHint } from './copy'
 import { housingName } from './housing'
@@ -8,11 +8,12 @@ import type { BudgetRecommendation, BudgetResult, CampusComparison, ContractInpu
 
 type SharedProps = { meta: Meta; rate: number; onRateChange: (rate: number) => void }
 type BudgetProps = SharedProps & { onChoose: (values: ContractInput) => void }
-type Priority = 'cheap' | 'new' | 'large'
+type Priority = 'cheap' | 'new' | 'large' | 'commute'
 type BudgetHousing = 'oneroom' | 'officetel' | 'apartment' | null
 
 const priorityOptions: { code: Priority; name: string }[] = [
-  { code: 'cheap', name: '저렴하게' }, { code: 'new', name: '새 건물' }, { code: 'large', name: '넓게' },
+  { code: 'cheap', name: '저렴하게' }, { code: 'new', name: '새 건물' },
+  { code: 'large', name: '넓게' }, { code: 'commute', name: '통학 가깝게' },
 ]
 const budgetHousing: { code: BudgetHousing; name: string }[] = [
   { code: null, name: '전체' }, { code: 'oneroom', name: '원룸·투룸·빌라' },
@@ -29,20 +30,24 @@ function SourceNote({ date }: { date: string }) {
   </p>
 }
 
-function BudgetCard({ card, campus, rate, onChoose }: {
-  card: BudgetRecommendation; campus: string; rate: number; onChoose: BudgetProps['onChoose']
+function BudgetCard({ card, campus, school, rate, onChoose }: {
+  card: BudgetRecommendation; campus: string; school: string; rate: number; onChoose: BudgetProps['onChoose']
 }) {
   const reduced = useReducedMotion()
+  const comparison = budgetPriceDifference(card)
   return <motion.button layout type="button" className="budget-card glass"
     initial={{ opacity: 0, y: reduced ? 0 : 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -8 }}
     transition={{ duration: reduced ? 0 : 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-    onClick={() => onChoose(cardToContract(card, campus, rate))}
+    onClick={() => onChoose(cardToContract(card, campus, rate, school))}
     aria-label={`${card.dong} ${housingName(card.housing_type)} ${ageBandLabel(card.age_band)}, ${typicalArea(card.area_median_sqm)}, 계약 판단에서 보기`}>
-    <span className="budget-card-head"><span><strong>{card.dong}</strong><small>{housingName(card.housing_type)} · {ageBandLabel(card.age_band)}</small></span>
+    <span className="budget-card-head"><span><strong>{card.dong}</strong>{card.commute && <em className="commute-badge">{commuteLabel(card.commute)}</em>}<small>{housingName(card.housing_type)} · {ageBandLabel(card.age_band)}</small></span>
       <span className={`availability ${availabilityTone(card.availability_label)}`}>{card.availability_label}</span></span>
     <span className="budget-area">{typicalArea(card.area_median_sqm)}</span>
     <span className="budget-terms">{typicalTerms(card)}</span>
-    <span className="budget-typical-note">{card.typical_terms_note}</span>
+    {card.commute && !card.commute.campus_area && <>
+      <span className="budget-commute">{commuteDetail(card.commute)}</span>
+      {comparison && <span className="budget-price-difference">{comparison}</span>}
+    </>}
     <span className="budget-bar-copy">{tenDealSentence(card)} <em>· 거래 <Count value={card.n} />건</em></span>
     <span className="budget-bar" role="img" aria-label={`예산 안 비율 ${card.within_budget_pct.toFixed(1)}%`}>
       <motion.span initial={false} animate={{ width: `${card.within_budget_pct}%` }}
@@ -54,6 +59,7 @@ function BudgetCard({ card, campus, rate, onChoose }: {
 export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) {
   const reduced = useReducedMotion()
   const [campus, setCampus] = useState(meta.campuses[0])
+  const [school, setSchool] = useState(meta.schools_by_campus[meta.campuses[0]][0])
   const [deposit, setDeposit] = useState('500')
   const [monthly, setMonthly] = useState('35')
   const [minArea, setMinArea] = useState(15)
@@ -83,7 +89,7 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
       setLoading(true)
       fetch('/api/budget', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
-        body: JSON.stringify({ campus, deposit: Number(deposit), monthly: Number(monthly),
+        body: JSON.stringify({ campus, school, scope: 'commute', deposit: Number(deposit), monthly: Number(monthly),
           min_area: minArea, housing, priority, rate_pct: rate }),
       }).then(async response => {
         const body = await response.json()
@@ -94,7 +100,7 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
         .finally(() => { if (!controller.signal.aborted) setLoading(false) })
     }, 250)
     return () => { window.clearTimeout(timer); controller.abort() }
-  }, [campus, deposit, monthly, minArea, housing, priority, rate, valid])
+  }, [campus, school, deposit, monthly, minArea, housing, priority, rate, valid])
 
   const changeHousing = (choice: BudgetHousing) => {
     setHousing(choice)
@@ -104,7 +110,8 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
   }
   const displayed = result && result.input.campus === campus && result.input.deposit_10k_krw === Number(deposit) &&
     result.input.monthly_10k_krw === Number(monthly) && result.input.min_area_sqm === minArea &&
-    result.input.housing_type === housing && result.input.priority === priority && result.rate_pct === rate ? result : null
+    result.input.housing_type === housing && result.input.priority === priority &&
+    result.input.scope === 'commute' && result.input.school === school && result.rate_pct === rate ? result : null
   const recommendations = displayed?.recommendations ?? []
   return <>
     <aside className="panel glass budget-panel" aria-label="예산 조건">
@@ -117,8 +124,12 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
             animate={{ x: campus === meta.campuses[1] ? '100%' : '0%' }}
             transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 260, damping: 26 }} />
           {meta.campuses.map(name => <button key={name} type="button" aria-pressed={campus === name}
-            onClick={() => setCampus(name)}>{name}</button>)}
-        </div><div className="hint">캠퍼스 주변 법정동을 기준으로 비교해요.</div></div>
+            onClick={() => { setCampus(name); setSchool(meta.schools_by_campus[name][0]) }}>{name}</button>)}
+        </div><div className="hint">캠퍼스 주변과 학교까지 직행하는 동네를 함께 살펴봐요.</div></div>
+        <div className="field"><div className="lab">학교</div><div className="chips" role="group" aria-label="예산 학교">
+          {meta.schools_by_campus[campus].map(name => <button key={name} type="button"
+            aria-pressed={school === name} onClick={() => setSchool(name)}>{name}</button>)}
+        </div></div>
         <div className="field row2"><div><label htmlFor="budget-deposit">가진 보증금</label>
           <div className="num"><input id="budget-deposit" type="number" inputMode="decimal" min="0" step="0.0001"
             value={deposit} onChange={event => setDeposit(event.target.value)} /><small>만 원</small></div></div>
@@ -135,7 +146,7 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
         </div></div>
         <div className="field"><div className="lab">무엇을 먼저 볼까요?</div>
           <div className="seg" role="group" aria-label="우선순위">
-            <motion.span className="thumb" style={{ width: 'calc((100% - 6px) / 3)' }}
+            <motion.span className="thumb" style={{ width: 'calc((100% - 6px) / 4)' }}
               animate={{ x: `${priorityOptions.findIndex(option => option.code === priority) * 100}%` }}
               transition={reduced ? { duration: 0 } : { type: 'spring', stiffness: 260, damping: 26 }} />
             {priorityOptions.map(option => <button key={option.code} type="button"
@@ -153,12 +164,13 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
       {!displayed && !error && <section className="hero glass area-message" role="status">집 조건을 찾고 있어요…</section>}
       {displayed && <>
         <section className="hero glass budget-summary" aria-live="polite"><div>
-          <div className="context">{campus} · 최근 24개월 계약</div>
+          <div className="context">{campus} · {school} 통학권 · 최근 24개월 계약</div>
           <h1 aria-label={budgetSummary(recommendations.length)}>조건에 맞는 선택지 <Count value={recommendations.length} />개를 찾았어요</h1>
-          <p>예산에 맞았던 과거 거래를 바탕으로 살펴볼 만한 집 조건이에요.</p></div></section>
+          <p>예산에 맞았던 과거 거래를 바탕으로 살펴볼 만한 집 조건이에요. 보증금과 월세는 각각의 중간값이라 한 거래의 조건은 아니에요. 캠퍼스 주변은 학교 주변 법정동이에요.</p></div></section>
         {recommendations.length ? <div className="budget-list" aria-label="예산 추천 목록">
           <AnimatePresence mode="popLayout">{(showAll ? recommendations : recommendations.slice(0, 8)).map(card =>
             <BudgetCard key={`${card.dong}-${card.housing_type}-${card.age_band}`} card={card} campus={displayed.input.campus}
+              school={school}
               rate={displayed.rate_pct} onChoose={onChoose} />)}</AnimatePresence>
         </div> : <section className="card glass budget-empty"><h2>맞는 집을 찾기 어려워요</h2><p>{EMPTY_BUDGET_MESSAGE}</p></section>}
         {!showAll && recommendations.length > 8 && <button className="ai-btn budget-more" type="button"
@@ -207,15 +219,18 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
           {points.map(point => {
             const other = rows.find(row => row.campus !== campus && row.year === point.row.year)
             const otherY = other?.converted_median_10k_krw == null ? null : y(other.converted_median_10k_krw)
-            const close = otherY !== null && Math.abs(otherY - point.y) < 20
-            const lower = close && otherY !== null && point.y > otherY + 1
-            const higherOrEqual = index === 1 && close && otherY !== null && point.y <= otherY + 1
+            const close = otherY !== null && Math.abs(otherY - point.y) < 50
+            const top = otherY === null ? point.y : Math.min(point.y, otherY)
+            const bottom = otherY === null ? point.y : Math.max(point.y, otherY)
+            const labelY = close
+              ? top < 80 ? bottom + (index === 0 ? 18 : 42) : top - (index === 0 ? 14 : 38)
+              : point.y - 14
             return <g key={point.row.year}>
             <circle cx={point.x} cy={point.y} r="5" fill="white">
               <title>{campus} {point.row.year}년 {point.row.converted_median_10k_krw === null ? '표본 부족' : `${decimal(point.row.converted_median_10k_krw)}만 원`}</title>
             </circle>
             {point.row.converted_median_10k_krw !== null && <text
-              x={point.x - (lower ? 18 : 0)} y={point.y - (higherOrEqual ? 28 : 13)}
+              x={point.x} y={labelY}
               textAnchor="middle" className="trend-point-value" fill={color} stroke="none">
               {decimal(point.row.converted_median_10k_krw)}</text>}
           </g>
@@ -229,6 +244,8 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
 }
 
 export function CompareView({ meta, rate, onRateChange }: SharedProps) {
+  const [school, setSchool] = useState(meta.schools_by_campus[meta.campuses[0]][0])
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({})
   const [result, setResult] = useState<CampusComparison | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -236,7 +253,7 @@ export function CompareView({ meta, rate, onRateChange }: SharedProps) {
     const controller = new AbortController()
     setLoading(true)
     setError(null)
-    fetch(`/api/compare?rate_pct=${rate}`, { signal: controller.signal })
+    fetch(`/api/compare?rate_pct=${rate}&school=${encodeURIComponent(school)}`, { signal: controller.signal })
       .then(async response => {
         const body = await response.json()
         if (!response.ok) throw new Error(readableError(response, body))
@@ -245,11 +262,14 @@ export function CompareView({ meta, rate, onRateChange }: SharedProps) {
       .catch(cause => { if (cause.name !== 'AbortError') setError(cause.message) })
       .finally(() => { if (!controller.signal.aborted) setLoading(false) })
     return () => controller.abort()
-  }, [rate])
-  const displayed = result?.rate_pct === rate ? result : null
+  }, [rate, school])
+  const displayed = result?.rate_pct === rate && result.commute_school === school ? result : null
   return <main className="main compare-main" aria-busy={loading}>
     <section className="hero glass compare-intro"><div><div className="context">전주 대학가 월세 비교</div>
       <h1>두 대학가를 나란히 살펴봐요</h1><p>최근 24개월의 새 계약과 미기재 계약을 비교했어요.</p></div>
+      <div className="compare-school"><div className="lab">효자동권 통학 정보 기준 학교</div><div className="chips" role="group" aria-label="비교 학교">
+        {meta.schools_by_campus[meta.campuses[0]].map(name => <button key={name} type="button"
+          aria-pressed={school === name} onClick={() => setSchool(name)}>{name}</button>)}</div></div>
       <div className="compare-rate"><label className="range-head" htmlFor="compare-rate"><span>보증금 월 환산율</span>
         <b>{rate.toFixed(1)}%</b></label><input id="compare-rate" type="range" min={meta.rate.min_pct}
           max={meta.rate.max_pct} step="0.1" value={rate} onChange={event => onRateChange(Number(event.target.value))} />
@@ -269,6 +289,18 @@ export function CompareView({ meta, rate, onRateChange }: SharedProps) {
               보증금 {integerMoney(row.deposit_median_10k_krw!)}만 원<br />월세 {integerMoney(row.monthly_median_10k_krw!)}만 원</span>}</td>
             <td data-label="거래">{row.n.toLocaleString('ko-KR')}건</td>
           </tr>)}</tbody></table></section>)}</div>
+      {Object.entries(displayed.commute_neighborhoods).map(([campusName, rows]) =>
+        <section className="card glass commute-neighborhoods" key={campusName}><h2>통학권 동네 · {campusName === meta.campuses[0] ? school : '전북대학교'}</h2>
+        <p>학교 방향 직행 버스가 서는 동네의 원룸·투룸·빌라 보통 계약 조건이에요.</p>
+        <div className="commute-neighborhood-grid">{(expanded[campusName] ? rows : rows.slice(0, 9)).map(row =>
+          <article className="commute-neighborhood-card" key={row.emd_cd}>
+            <h3>{row.dong} <em className="commute-badge">{commuteLabel(row)}</em></h3>
+            {commuteDetail(row) && <p>{commuteDetail(row)}</p>}
+            {row.sample_note ? <span className="sample-pill">표본 부족</span> : <p>보증금 {integerMoney(row.deposit_median_10k_krw!)}만 원 · 월세 {integerMoney(row.monthly_median_10k_krw!)}만 원 안팎</p>}
+          </article>)}</div>
+        {!expanded[campusName] && rows.length > 9 && <button type="button" className="ai-btn budget-more"
+          onClick={() => setExpanded(current => ({ ...current, [campusName]: true }))}>더 보기</button>}
+        </section>)}
       <section className="card glass trend-section"><h2>원룸·투룸·빌라 월세 흐름</h2>
         <p>25~35㎡의 연도별 한가운데 가격이에요. 보증금을 월세로 바꿔 더했어요.</p>
         <TrendChart rows={displayed.yearly_trend} campuses={meta.campuses} /></section>

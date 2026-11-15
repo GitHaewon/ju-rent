@@ -17,6 +17,10 @@ from src.jurent import area, engine
 client = TestClient(main.app)
 
 
+def campus_budget(*args, **kwargs):
+    return area.budget_search(*args, scope="campus", **kwargs)
+
+
 def deal(dong: str, age: str, deposit: str, monthly: str, area_sqm: str = "25",
          complex_name: str = "") -> dict:
     return {"법정동": dong, "경과연수구간": age, "보증금": deposit,
@@ -63,7 +67,7 @@ def test_exact_budget_and_25_50_percent_edges(monkeypatch):
         rows += [deal(dong, "5년 미만", "500.0001", "35") for _ in range(20 - inside)]
         rows += [deal(dong, "5년 미만", "500", "35.0001") for _ in range(20)]
     patched_deals(monkeypatch, rows)
-    result = area.budget_search("효자동권", 500, 35, housing="oneroom")
+    result = campus_budget("효자동권", 500, 35, housing="oneroom")
     cards = {card["dong"]: card for card in result["recommendations"]}
     assert result["total_combinations"] == 3
     assert result["total_deals"] == 120
@@ -88,7 +92,7 @@ def test_exclusion_counts_partition_every_combination(monkeypatch):
         rows += [deal(dong, "미기재", "0", "30" if i < inside else "40",
                       complex_name="한 건물" if i < named else "") for i in range(count)]
     patched_deals(monkeypatch, rows)
-    result = area.budget_search("효자동권", 500, 35, housing="oneroom")
+    result = campus_budget("효자동권", 500, 35, housing="oneroom")
     assert result["total_combinations"] == 5
     assert result["total_deals"] == sum(item[1] for item in cases)
     assert result["excluded_counts"] == {
@@ -102,7 +106,7 @@ def test_under_30_is_sample_shortage_even_when_one_building_has_half(monkeypatch
     rows = [deal("적은동", "5년 미만", "500", "35",
                  complex_name="한 건물" if index < 20 else "") for index in range(29)]
     patched_deals(monkeypatch, rows)
-    result = area.budget_search("효자동권", 500, 35, housing="oneroom")
+    result = campus_budget("효자동권", 500, 35, housing="oneroom")
     assert result["total_combinations"] == 1
     assert result["recommendations"] == []
     assert result["excluded_counts"] == {
@@ -129,22 +133,22 @@ def test_three_sort_orders_and_share_then_count_ties(monkeypatch, priority, orde
         rows += [deal(dong, age, "1200" if outside_monthly == "30" else "0",
                       outside_monthly, size) for _ in range(count - inside)]
     patched_deals(monkeypatch, rows)
-    result = area.budget_search("효자동권", 500, 35, housing="oneroom", priority=priority)
+    result = campus_budget("효자동권", 500, 35, housing="oneroom", priority=priority)
     assert [card["dong"] for card in result["recommendations"]] == order
     assert result["excluded_counts"] == dict.fromkeys(result["excluded_counts"], 0)
 
 
 def test_real_group_totals_equal_recent_deals_and_apartment_starts_at_40():
-    result = area.budget_search("효자동권", 500, 35)
+    result = campus_budget("효자동권", 500, 35)
     assert result["total_deals"] == sum(
         len(area.recent_deals("효자동권", kind, 40 if kind == "apartment" else 15))
         for kind in area.HOUSING_TYPES
     )
     assert sum(result["excluded_counts"].values()) + len(result["recommendations"]) == result["total_combinations"]
-    apartment = area.budget_search("효자동권", 500, 35, 40, housing="apartment")
+    apartment = campus_budget("효자동권", 500, 35, 40, housing="apartment")
     assert apartment["total_deals"] == len(area.recent_deals("효자동권", "apartment", 40))
     assert client.post("/api/budget", json={"campus": "효자동권", "deposit": 500,
-                                            "monthly": 35, "housing": "apartment"}).json()["input"]["min_area_sqm"] == 40
+                                            "monthly": 35, "housing": "apartment", "scope": "campus"}).json()["input"]["min_area_sqm"] == 40
 
 
 def test_campus_compare_and_fixed_rate_outputs_are_reproducible():
@@ -174,10 +178,10 @@ def test_campus_compare_and_fixed_rate_outputs_are_reproducible():
 
 def test_api_passthrough_and_korean_input_errors():
     payload = {"campus": "전북대권", "deposit": 500, "monthly": 35,
-               "min_area": 15, "priority": "cheap", "rate_pct": 5}
+               "min_area": 15, "priority": "cheap", "rate_pct": 5, "scope": "campus"}
     response = client.post("/api/budget", json=payload)
     assert response.status_code == 200
-    assert response.json() == area.budget_search("전북대권", 500, 35, 15, priority="cheap", rate_pct=5)
+    assert response.json() == campus_budget("전북대권", 500, 35, 15, priority="cheap", rate_pct=5)
     response = client.get("/api/compare", params={"rate_pct": 5})
     assert response.status_code == 200
     assert response.json() == area.campus_compare(5)
