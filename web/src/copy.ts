@@ -1,5 +1,12 @@
 import type { Judgment } from './types'
 
+export function freshnessLabel(end: string, refreshed?: string): string {
+  const [year, month] = end.split('-')
+  if (!refreshed) return `실거래 기준: ${year}년 ${Number(month)}월 계약까지`
+  const [, updatedMonth, updatedDay] = refreshed.split('-')
+  return `실거래 기준: ${year}년 ${Number(month)}월 계약까지 · ${Number(updatedMonth)}월 ${Number(updatedDay)}일 갱신`
+}
+
 const WARNING_COPY: Record<string, string> = {
   '실거래 자료에는 관리비가 포함되지 않습니다.': '실거래 자료에는 관리비가 없어요.',
   '대학가 법정동 범위는 캠퍼스 도보권의 대리범위입니다.': '대학가는 캠퍼스 주변 법정동 기준이라 실제 도보 거리와 다를 수 있어요.',

@@ -14,20 +14,22 @@ import numpy as np
 
 from src import analyze_rentals as audit
 from src.jurent import commute
+from src.jurent import data as rental_data
+from src.jurent import dataset as rental_dataset
 from src.jurent.data import (
     APARTMENT_MAX_AREA_SQM,
     APARTMENT_MIN_AREA_SQM,
-    APARTMENT_PROCESSED,
-    PROCESSED,
     age_band,
     load_processed,
 )
 
 ROOT = Path(__file__).resolve().parents[2]
 SETTINGS = ROOT / "config" / "settings.toml"
-RECENT_START = "2024-11-01"
+PROCESSED = rental_data.PROCESSED
+APARTMENT_PROCESSED = rental_data.APARTMENT_PROCESSED
+RECENT_START = rental_dataset.SNAPSHOT.recent_start
 ALL_START = "2021-01-01"
-DATA_END = "2026-10-31"
+DATA_END = rental_dataset.SNAPSHOT.data_end
 MIN_SAMPLE = 30
 ONEROOM_TYPES = frozenset({"detached_multiunit", "multifamily"})
 SMALL_APARTMENT_REASON = "소형 아파트는 공공임대·특정 단지에 몰려 시세 비교를 제공하지 않아요"
@@ -88,6 +90,7 @@ def label_for_percentile(percentile: Fraction | float) -> str:
 
 def eligible_deals(
     rows: list[dict], campus: str, housing_type: str, start: str, dong: str | None = None,
+    window: rental_dataset.RentalDataset = rental_dataset.SNAPSHOT,
 ) -> list[dict]:
     """Share the D-027 campus/type/period filter without deduplicating source rows."""
     kinds = ONEROOM_TYPES if housing_type == "oneroom" else {housing_type}
@@ -96,16 +99,17 @@ def eligible_deals(
         if (row["대학가"] == campus if dong is None else row["법정동"] == dong)
         and row["주택유형"] in kinds
         and row["계약구분"] in {"신규", "미기재"}
-        and start <= row["계약일"] <= DATA_END
+        and start <= row["계약일"] <= window.data_end
     ]
 
 
 def select_similar(
     rows: list[dict], campus: str, housing_type: str, area: float, dong: str | None = None,
+    window: rental_dataset.RentalDataset = rental_dataset.SNAPSHOT,
 ) -> tuple[list[dict], str, str]:
     """Apply D-028 expansions in order; preserve all NO-only duplicate rows."""
-    same_group = eligible_deals(rows, campus, housing_type, ALL_START, dong)
-    steps = (("기본", 5, RECENT_START), ("면적 ±10㎡", 10, RECENT_START),
+    same_group = eligible_deals(rows, campus, housing_type, ALL_START, dong, window)
+    steps = (("기본", 5, window.recent_start), ("면적 ±10㎡", 10, window.recent_start),
              ("기간 확대", 10, ALL_START))
     exact_area = Fraction(str(area))
     for name, tolerance, start in steps:
@@ -164,9 +168,11 @@ def judge(
     data_path: Path | None = None,
     dong: str | None = None,
     school: str | None = None,
+    dataset: str = "snapshot",
 ) -> dict:
     """Return the complete UI-ready contract judgment without any LLM input."""
     config = settings()
+    window = rental_dataset.select(dataset)
     if campus not in audit.CAMPUS_AREAS or housing_type not in (*audit.TYPES.values(), "oneroom"):
         raise ValueError("Unknown campus area or housing type")
     if dong is not None and dong not in {
@@ -184,7 +190,7 @@ def judge(
         raise ValueError("Deposit must be nonnegative and monthly rent positive")
     if construction_year is not None and (
         isinstance(construction_year, bool) or not isinstance(construction_year, int)
-        or not 1800 <= construction_year <= 2026
+        or not 1800 <= construction_year <= int(window.end_month[:4])
     ):
         raise ValueError("Invalid construction year")
     applied_rate = default_rate_pct(config) if rate_pct is None else rate_pct
@@ -206,8 +212,12 @@ def judge(
                        "legal_spread_pct": config["legal_spread_pct"],
                        "legal_cap_pct": config["legal_cap_pct"],
                        "basis_note": "법정 전환율 상한을 비교 기준으로 사용하며 시장 전환율이 아닙니다."},
-        "warnings": WARNINGS.copy(), "data_as_of": DATA_END,
+        "warnings": (WARNINGS.copy() if dataset == "snapshot" else
+                     [*WARNINGS[:-1], window.incomplete_warning]),
+        "data_as_of": window.data_end,
     }
+    if dataset == "current":
+        common["refreshed_on"] = window.refreshed_on
     if housing_type == "apartment" and area < APARTMENT_MIN_AREA_SQM:
         return {
             **common, "converted_monthly_10k_krw": None, "n": 0,
@@ -217,12 +227,12 @@ def judge(
             "age_band_result": None, "hint": None,
         }
     amount = converted_monthly(deposit, monthly, applied_rate)
-    source = data_path or (APARTMENT_PROCESSED if housing_type == "apartment" else PROCESSED)
-    selected, step, start = select_similar(load_processed(source), campus, housing_type, area, dong)
+    source = data_path or (window.apartment_path if housing_type == "apartment" else window.small_path)
+    selected, step, start = select_similar(load_processed(source), campus, housing_type, area, dong, window)
     values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in selected]
     sufficient = len(values) >= MIN_SAMPLE
     rank = percentile_rank(amount, values) if sufficient else None
-    input_band = age_band(2026 - construction_year) if construction_year is not None else None
+    input_band = age_band(int(window.end_month[:4]) - construction_year) if construction_year is not None else None
     band_rows = [r for r in selected if r["경과연수구간"] == input_band] if input_band else []
     band_values = [converted_monthly(r["보증금"], r["월세"], applied_rate) for r in band_rows]
     band_rank = percentile_rank(amount, band_values) if len(band_values) >= MIN_SAMPLE else None
@@ -251,7 +261,7 @@ def judge(
         **common,
         "converted_monthly_10k_krw": round(float(amount), 2),
         "n": len(selected), "step": step,
-        "comparison_period": {"start": start, "end": DATA_END},
+        "comparison_period": {"start": start, "end": window.data_end},
         "quantiles_10k_krw": quantiles(values) if sufficient else None,
         "histogram_10k_krw": [
             {"left": round(float(left), 2), "right": round(float(right), 2), "count": int(count)}

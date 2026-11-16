@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from api import main
-from src.jurent import engine
+from src.jurent import dataset, engine
 from src.jurent.explanation import ExplanationResult
 
 client = TestClient(main.app)
@@ -22,7 +22,8 @@ def test_meta_comes_from_engine_configuration():
         "oneroom", "detached_multiunit", "officetel", "multifamily", "apartment",
     }
     assert meta["rate"]["default_pct"] == engine.default_rate_pct()
-    assert meta["data_as_of"] == engine.DATA_END
+    assert meta["data_as_of"] == dataset.select("current").data_end
+    assert meta["refreshed_on"] == dataset.select("current").refreshed_on
 
 
 def test_judge_matches_engine_for_every_campus_and_type():
@@ -31,7 +32,7 @@ def test_judge_matches_engine_for_every_campus_and_type():
             payload = {**BASE, "campus": campus, "housing_type": housing_type}
             response = client.post("/api/judge", json=payload)
             assert response.status_code == 200
-            assert response.json() == engine.judge(**payload)
+            assert response.json() == engine.judge(**payload, dataset="current")
 
 
 def test_invalid_inputs_return_korean_422():
@@ -73,7 +74,8 @@ def test_explain_recomputes_on_server_and_rejects_result_dict(monkeypatch):
     payload = {**BASE, "campus": "효자동권", "housing_type": "detached_multiunit"}
     response = client.post("/api/explain", json=payload)
     assert response.json() == {"text": "기본 설명", "source": "rule", "reason": "시간 초과"}
-    assert captured[0] == {**payload, "construction_year": None, "rate_pct": None}
+    assert captured[0] == {**payload, "construction_year": None, "rate_pct": None,
+                           "dataset": "current"}
     assert captured[1] == {"label": "보통", "n": 30}
     assert client.post("/api/explain", json={**payload, "result": {"label": "가짜"}}).status_code == 422
 

@@ -51,7 +51,11 @@ jeonju-rent/
 
 ### 웹 계약 판단 화면
 
-저장소 루트에서 `pip install -r requirements.txt`를 실행한다. 저장된 정제본은 `data/processed/valid_small_monthly.csv`와 `data/processed/valid_apartment_monthly.csv`다. 원본 CSV가 `data/raw/`에 있으면 `python -m src.jurent.data`로 두 정제본을 재생성하고, `python -m src.jurent.compare`로 N-030·N-031 근거 파일을 만든다. 첫 번째 터미널에서 `uvicorn api.main:app --reload --port 8000`으로 Python API를 실행한다.
+저장소 루트에서 `pip install -r requirements.txt`를 실행한다. 고정 근거 정제본은 `data/processed/snapshot_2026-11-07/`, 서비스 정제본은 `data/processed/current/`에 있다. 원본 CSV가 `data/raw/`에 있으면 `python -m src.jurent.data`로 스냅샷을 재생성하고, `python -m src.jurent.compare`로 N-030·N-031 근거 파일을 만든다. 첫 번째 터미널에서 `uvicorn api.main:app --reload --port 8000`으로 Python API를 실행한다.
+
+### 매달 서비스 데이터 갱신
+
+공식 CSV 원본과 `data/audit/manifest.json`, `.env`의 국토부 API 인증키를 준비하고 저장소 루트에서 `python -m src.refresh_rentals`를 한 번 실행한다. 명령은 최근 3개월 API 응답을 다시 받고, 최근 24개월의 CSV 겹침을 재대조한 뒤 통과할 때만 `data/processed/current/`를 교체한다. `outputs/audit/refresh_log.json`의 마지막 실행 `status`, `data_end_month`, 달별 `source_summary.by_month`, `derived_columns`, `api_calls`를 확인한다. 실패하면 이전 current가 유지되므로 로그의 `reason`을 확인한다. 화면의 계약 기준 달과 갱신일도 확인한다. 기준금리가 바뀌면 `config/settings.toml`의 `base_rate_pct`와 `base_rate_date`를 수정한다. N-001~N-040과 `outputs/`의 기존 검증 산출물은 스냅샷 기준으로 유지한다.
 
 두 번째 터미널에서 `cd web`, `npm install`, `npm run dev`를 순서대로 실행한다. Vite가 `/api` 요청을 로컬 API로 전달한다. `POST /api/budget`은 범위를 생략하면 `scope="commute"`로 대학가 동과 선택 학교의 통학권 동을 함께 추천하며, 대학가 동만 보려면 `scope="campus"`를 지정한다. 자세한 요청 예시는 `docs/api.md`를 참고한다. `OPENAI_API_KEY`와 `OPENAI_MODEL`은 선택형 AI 설명에만 필요하며 `.env`에만 저장한다. UI 회귀 검사는 `npm test`, 빌드 검사는 `npm run build`다. 두 서버가 실행 중일 때 `npm run screenshots`로 `docs/design/screens/`의 화면을 갱신할 수 있다.
 

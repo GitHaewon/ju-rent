@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { BudgetView, CompareView } from './AreaViews'
 import Count from './Count'
 import { visibleCommuteDongs } from './commuteChoices'
-import { comparisonSentence, displayWarning, monthPeriod, negotiationSentence, percentileSentence, rateHint, verdictText } from './copy'
+import { comparisonSentence, displayWarning, freshnessLabel, monthPeriod, negotiationSentence, percentileSentence, rateHint, verdictText } from './copy'
 import { distributionAxis, pinPlacement, positionOnAxis, shouldDrawDistribution } from './distribution'
 import { areaBounds, clampArea, housingName, housingOptions } from './housing'
 import type { ContractInput, Explanation, Judgment, Meta } from './types'
@@ -377,7 +377,7 @@ export default function App() {
               result.input.dong && warning === '대학가 법정동 범위는 캠퍼스 도보권의 대리범위입니다.'
                 ? `${result.input.dong} 거래끼리 비교했어요` : displayWarning(warning)
             }</li>)}</ul>
-            <div className="source">자료: 국토교통부 실거래가 공개시스템 · 기준일 <span className="source-date">{result.data_as_of}</span></div>
+            <div className="source">자료: 국토교통부 실거래가 공개시스템 · <span className="source-date">{freshnessLabel(result.data_as_of, result.refreshed_on)}</span></div>
           </div>
         </section>
       </> : <section className="hero glass reveal d2" id="result" aria-live="polite">

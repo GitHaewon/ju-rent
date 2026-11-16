@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest'
-import { comparisonSentence, displayWarning, negotiationSentence, percentileSentence, verdictText } from './copy'
+import { comparisonSentence, displayWarning, freshnessLabel, negotiationSentence, percentileSentence, verdictText } from './copy'
 
 describe('student-facing result text', () => {
+  it('shows the moving contract cutoff and refresh date', () => {
+    expect(freshnessLabel('2026-11-30', '2026-11-16'))
+      .toBe('실거래 기준: 2026년 11월 계약까지 · 11월 16일 갱신')
+    expect(freshnessLabel('2027-01-31', '2027-02-05'))
+      .toBe('실거래 기준: 2027년 1월 계약까지 · 2월 5일 갱신')
+  })
   it('uses the response percentile for the 100 rooms sentence', () => {
     expect(percentileSentence({ label: '보통', percentile: 76.9, n: 300 }))
       .toBe('비슷한 방 100곳 중 77곳이 이 방보다 쌌어요.')
