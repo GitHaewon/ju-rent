@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, budgetPriceDifference, cardToContract, commuteDetail, commuteLabel, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import Count from './Count'
-import { rateHint } from './copy'
+import { freshnessLabel, rateHint } from './copy'
 import { housingName } from './housing'
 import type { BudgetRecommendation, BudgetResult, CampusComparison, ContractInput, Meta, PriceTrend } from './types'
 
@@ -24,8 +24,8 @@ function readableError(response: Response, body: { detail?: string }): string {
   return response.ok ? '' : typeof body.detail === 'string' ? body.detail : '자료를 불러오지 못했어요. 잠시 뒤 다시 시도해 주세요.'
 }
 
-function SourceNote({ date }: { date: string }) {
-  return <p className="area-source">자료: 국토교통부 실거래가 공개시스템 · 기준일 <span className="source-date">{date}</span><br />
+function SourceNote({ date, refreshed }: { date: string; refreshed?: string }) {
+  return <p className="area-source">자료: 국토교통부 실거래가 공개시스템 · <span className="source-date">{freshnessLabel(date, refreshed)}</span><br />
     실거래 자료에는 관리비가 없어요. 과거 계약 기준이며 지금 나와 있는 매물 가격이 아니에요.
   </p>
 }
@@ -177,7 +177,7 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
           onClick={() => setShowAll(true)}>더 보기</button>}
         <section className="card glass exclusion-note" aria-label="제외한 집 조건"><h3>결과에서 뺀 조건</h3>
           <p>거래가 적어서 <b><Count value={displayed.excluded_counts.sample_shortage} />개</b> · 한 건물에 몰려서 <b><Count value={displayed.excluded_counts.complex_concentration} />개</b> · 예산 밖 <b><Count value={displayed.excluded_counts.under_25_pct} />개</b></p>
-          <SourceNote date={displayed.data_as_of} /></section>
+          <SourceNote date={displayed.data_as_of} refreshed={displayed.refreshed_on} /></section>
       </>}
     </main>
   </>
@@ -195,8 +195,9 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
   const high = Math.ceil((Math.max(...values) + 0.8) / tickStep) * tickStep
   const ticks = Array.from({ length: Math.round((high - low) / tickStep) + 1 }, (_, index) => low + index * tickStep)
   const y = (value: number) => 190 - (value - low) / (high - low) * 136
-  const x = (index: number) => 58 + index * 125
   const years = [...new Set(rows.map(row => row.year))].sort()
+  const x = (index: number) => 58 + index * (years.length > 1 ? 625 / (years.length - 1) : 0)
+  const partial = rows.find(row => row.partial_year)
   return <div className="trend-chart">
     <div className="trend-legend">{campuses.map((campus, index) => <span key={campus}>
       <i style={{ background: index === 0 ? 'var(--normal)' : 'var(--very)' }} />{campus}</span>)}</div>
@@ -208,14 +209,14 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
         <text x="36" y={y(tick) + 4} textAnchor="end">{tick.toLocaleString('ko-KR')}</text>
       </g>)}
       {years.map((year, index) => <text key={year} x={x(index)} y="228" textAnchor="middle" className="trend-year">
-        {year === 2026 ? '2026*' : year}</text>)}
+        {year === partial?.year ? `${year}*` : year}</text>)}
       {campuses.map((campus, index) => {
         const points = rows.filter(row => row.campus === campus).sort((a, b) => a.year - b.year)
           .map((row, pointIndex) => ({ row, x: x(pointIndex), y: y(row.converted_median_10k_krw ?? low) }))
         const color = index === 0 ? 'var(--normal)' : 'var(--very)'
         return <g key={campus} fill="none" stroke={color} strokeWidth="3">
-          <polyline points={points.slice(0, 5).map(point => `${point.x},${point.y}`).join(' ')} />
-          <line x1={points[4].x} y1={points[4].y} x2={points[5].x} y2={points[5].y} strokeDasharray="8 6" />
+          <polyline points={points.slice(0, partial ? -1 : undefined).map(point => `${point.x},${point.y}`).join(' ')} />
+          {partial && points.length > 1 && <line x1={points.at(-2)!.x} y1={points.at(-2)!.y} x2={points.at(-1)!.x} y2={points.at(-1)!.y} strokeDasharray="8 6" />}
           {points.map(point => {
             const other = rows.find(row => row.campus !== campus && row.year === point.row.year)
             const otherY = other?.converted_median_10k_krw == null ? null : y(other.converted_median_10k_krw)
@@ -239,7 +240,7 @@ function TrendChart({ rows, campuses }: { rows: PriceTrend[]; campuses: string[]
       })}
     </svg></div>
     <p className="trend-scroll-hint">그래프를 좌우로 밀어 전체 연도를 볼 수 있어요.</p>
-    <p className="hint">* 2026년은 1~10월 계약이며 점선으로 표시했어요.</p>
+    {partial && <p className="hint">* {partial.year}년은 1~{Number(partial.period_end.slice(5, 7))}월 계약이며 점선으로 표시했어요.</p>}
   </div>
 }
 
@@ -304,7 +305,7 @@ export function CompareView({ meta, rate, onRateChange }: SharedProps) {
       <section className="card glass trend-section"><h2>원룸·투룸·빌라 월세 흐름</h2>
         <p>25~35㎡의 연도별 한가운데 가격이에요. 보증금을 월세로 바꿔 더했어요.</p>
         <TrendChart rows={displayed.yearly_trend} campuses={meta.campuses} /></section>
-      <SourceNote date={displayed.data_as_of} />
+      <SourceNote date={displayed.data_as_of} refreshed={displayed.refreshed_on} />
     </>}
   </main>
 }

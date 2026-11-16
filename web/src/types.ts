@@ -39,6 +39,7 @@ export type Meta = {
     max_pct: number
   }
   data_as_of: string
+  refreshed_on: string
 }
 
 export type Judgment = {
@@ -58,6 +59,7 @@ export type Judgment = {
   age_band_result: { band: string; n: number; percentile: number | null; label: string } | null
   warnings: string[]
   data_as_of: string
+  refreshed_on?: string
 }
 
 export type Explanation = { text: string; source: 'ai' | 'rule'; reason: string | null }
@@ -86,6 +88,7 @@ export type BudgetResult = {
   input: { campus: string; deposit_10k_krw: number; monthly_10k_krw: number; min_area_sqm: number; housing_type: string | null; priority: string; scope?: string; school?: string }
   rate_pct: number
   data_as_of: string
+  refreshed_on?: string
   total_combinations: number
   total_deals: number
   excluded_counts: { sample_shortage: number; complex_concentration: number; under_25_pct: number }
@@ -121,6 +124,7 @@ export type PriceTrend = {
 export type CampusComparison = {
   rate_pct: number
   data_as_of: string
+  refreshed_on?: string
   area_bands: AreaBand[]
   yearly_trend: PriceTrend[]
   commute_school: string

@@ -2,7 +2,7 @@
 
 ## 재현
 
-`data/raw/`의 국토교통부 전월세 CSV와 `data/audit/manifest.json`을 준비한 뒤 Windows 작업 폴더에서 `uv pip install --python .venv/Scripts/python.exe -r requirements.txt`, `.venv/Scripts/python.exe -m src.jurent.data`를 실행한다. 정제본은 `data/processed/valid_small_monthly.csv`, 행 수·해시·음수 경과연수 건수는 `data/processed/valid_small_monthly_audit.json`에 기록된다. 원본 CSV는 계속 커밋에서 제외한다.
+`data/raw/`의 국토교통부 전월세 CSV와 `data/audit/manifest.json`을 준비한 뒤 Windows 작업 폴더에서 `uv pip install --python .venv/Scripts/python.exe -r requirements.txt`, `.venv/Scripts/python.exe -m src.jurent.data`를 실행한다. 고정 근거 정제본은 `data/processed/snapshot_2026-11-07/valid_small_monthly.csv`, 행 수·해시·음수 경과연수 건수는 같은 폴더의 `valid_small_monthly_audit.json`에 기록된다. 원본 CSV는 계속 커밋에서 제외한다.
 
 `src.jurent.engine.judge(campus, housing_type, area, deposit, monthly, construction_year=None, rate_pct=None)`가 화면에서 사용할 JSON 형태의 dict를 반환한다. `campus`는 `효자동권` 또는 `전북대권`, `housing_type`은 `apartment`, `multifamily`, `detached_multiunit`, `officetel` 중 하나다. 면적은 ㎡, 보증금·월세는 만 원 단위다. 미리 만든 정제본이 필요하다.
 

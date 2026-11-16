@@ -7,18 +7,16 @@ import json
 import math
 from collections import Counter, defaultdict
 from fractions import Fraction
-from functools import lru_cache
 from pathlib import Path
 from statistics import median
 
 from src import analyze_rentals as audit
 from src.jurent import commute, compare, engine
+from src.jurent import dataset as rental_dataset
 from src.jurent.data import (
     AGE_BANDS,
     APARTMENT_MAX_AREA_SQM,
     APARTMENT_MIN_AREA_SQM,
-    APARTMENT_PROCESSED,
-    PROCESSED,
     load_processed,
 )
 
@@ -45,39 +43,44 @@ def _validate_scope(campus: str, housing: str, min_area: float) -> None:
         raise ValueError("Minimum area outside supported range")
 
 
-def _eligible_rows(campus: str, housing: str, min_area: float, start: str) -> list[dict]:
+def _eligible_rows(campus: str, housing: str, min_area: float, start: str,
+                   dataset: str = "snapshot") -> list[dict]:
     _validate_scope(campus, housing, min_area)
-    source = APARTMENT_PROCESSED if housing == "apartment" else PROCESSED
+    window = rental_dataset.select(dataset)
+    source = window.apartment_path if housing == "apartment" else window.small_path
     return [
-        row for row in engine.eligible_deals(load_processed(source), campus, housing, start)
+        row for row in engine.eligible_deals(load_processed(source), campus, housing, start, window=window)
         if Fraction(str(row["면적"])) >= Fraction(str(min_area))
     ]
 
 
-def recent_deals(campus: str, housing: str, min_area: float) -> list[dict]:
+def recent_deals(campus: str, housing: str, min_area: float,
+                 dataset: str = "snapshot") -> list[dict]:
     """Read the unchanged D-027 processed rows for D-039's recent period."""
-    return _eligible_rows(campus, housing, min_area, engine.RECENT_START)
+    return _eligible_rows(campus, housing, min_area,
+                          rental_dataset.select(dataset).recent_start, dataset)
 
 
-def commute_deals(campus: str, school: str, housing: str, min_area: float) -> list[dict]:
+def commute_deals(campus: str, school: str, housing: str, min_area: float,
+                  dataset: str = "snapshot") -> list[dict]:
     """Use the D-027 filter in the campus and school-specific commute dongs."""
     _validate_scope(campus, housing, min_area)
     dongs = set(audit.CAMPUS_AREAS[campus]["dongs"])
     dongs.update(row["dong"] for row in commute.commute_rows(campus, school))
-    source = APARTMENT_PROCESSED if housing == "apartment" else PROCESSED
+    window = rental_dataset.select(dataset)
+    source = window.apartment_path if housing == "apartment" else window.small_path
     kinds = engine.ONEROOM_TYPES if housing == "oneroom" else {housing}
     minimum = Fraction(str(min_area))
     return [
         row for row in load_processed(source)
         if row["법정동"] in dongs and row["주택유형"] in kinds
         and row["계약구분"] in {"신규", "미기재"}
-        and engine.RECENT_START <= row["계약일"] <= engine.DATA_END
+        and window.recent_start <= row["계약일"] <= window.data_end
         and Fraction(str(row["면적"])) >= minimum
     ]
 
 
-@lru_cache(maxsize=1)
-def commute_dong_deal_counts() -> dict[str, dict[str, dict[str, int]]]:
+def commute_dong_deal_counts(dataset: str = "snapshot") -> dict[str, dict[str, dict[str, int]]]:
     """Count recent eligible deals for every school, housing type, and commute dong."""
     counts = {}
     for campus, schools in commute.SCHOOLS_BY_CAMPUS.items():
@@ -86,7 +89,7 @@ def commute_dong_deal_counts() -> dict[str, dict[str, dict[str, int]]]:
             counts[school] = {}
             for kind in HOUSING_TYPES:
                 minimum = APARTMENT_MIN_AREA_SQM if kind == "apartment" else audit.MIN_AREA_SQM
-                rows = commute_deals(campus, school, kind, minimum)
+                rows = commute_deals(campus, school, kind, minimum, dataset)
                 by_dong = Counter(row["법정동"] for row in rows if row["법정동"] in allowed)
                 counts[school][kind] = dict(by_dong)
     return counts
@@ -125,6 +128,7 @@ def budget_search(
     campus: str, deposit: float, monthly: float, min_area: float = 15,
     housing: str | None = None, priority: str = "cheap", rate_pct: float | None = None,
     scope: str = "commute", school: str | None = None,
+    dataset: str = "snapshot",
 ) -> dict:
     """Recommend sufficiently sampled legal-dong/type/age groups within a budget."""
     if campus not in audit.CAMPUS_AREAS or (housing is not None and housing not in HOUSING_TYPES):
@@ -143,6 +147,7 @@ def budget_search(
     if housing is not None:
         _validate_scope(campus, housing, min_area)
     rate = _rate(rate_pct)
+    window = rental_dataset.select(dataset)
     commute_info = commute.commute_by_dong(campus, selected_school) if selected_school else {}
     groups: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
     campus_medians = {}
@@ -150,13 +155,15 @@ def budget_search(
         if kind != "apartment" and min_area > audit.MAX_AREA_SQM:
             continue
         kind_min_area = max(min_area, APARTMENT_MIN_AREA_SQM) if kind == "apartment" else min_area
-        campus_rows = recent_deals(campus, kind, kind_min_area)
+        campus_rows = (recent_deals(campus, kind, kind_min_area) if dataset == "snapshot"
+                       else recent_deals(campus, kind, kind_min_area, dataset))
         if scope == "commute":
             campus_medians.update({
                 (kind, age): value for age, value in _campus_age_medians(campus_rows, rate).items()
             })
-        source_rows = campus_rows if scope == "campus" else commute_deals(
-            campus, selected_school, kind, kind_min_area
+        source_rows = campus_rows if scope == "campus" else (
+            commute_deals(campus, selected_school, kind, kind_min_area) if dataset == "snapshot"
+            else commute_deals(campus, selected_school, kind, kind_min_area, dataset)
         )
         for row in source_rows:
             groups[row["법정동"], kind, row["경과연수구간"]].append(row)
@@ -226,19 +233,23 @@ def budget_search(
                     "housing_type": housing, "priority": priority}
     if scope == "commute":
         input_values.update(scope=scope, school=selected_school)
-    return {
+    response = {
         "input": input_values,
-        "rate_pct": rate, "data_as_of": engine.DATA_END,
+        "rate_pct": rate, "data_as_of": window.data_end,
         "total_combinations": len(groups), "total_deals": sum(map(len, groups.values())),
         "excluded_counts": excluded,
         "recommendations": [result for _, result in ranked],
     }
+    if dataset == "current":
+        response["refreshed_on"] = window.refreshed_on
+    return response
 
 
-def commute_neighborhoods(campus: str, school: str, rate: float) -> list[dict]:
+def commute_neighborhoods(campus: str, school: str, rate: float,
+                          dataset: str = "snapshot") -> list[dict]:
     """Show D-036 one-room typical terms for each school-specific commute dong."""
     bus_rows = commute.commute_rows(campus, school)
-    deals = commute_deals(campus, school, "oneroom", 15)
+    deals = commute_deals(campus, school, "oneroom", 15, dataset)
     grouped = defaultdict(list)
     for row in deals:
         grouped[row["법정동"]].append(row)
@@ -255,27 +266,29 @@ def commute_neighborhoods(campus: str, school: str, rate: float) -> list[dict]:
     return result
 
 
-def campus_compare(rate_pct: float | None = None, school: str | None = None) -> dict:
+def campus_compare(rate_pct: float | None = None, school: str | None = None,
+                   dataset: str = "snapshot") -> dict:
     """Return D-043 recent area bands and annual one-room price trend."""
     rate = _rate(rate_pct)
+    window = rental_dataset.select(dataset)
     area_bands = []
     trend = []
     for campus in audit.CAMPUS_AREAS:
         for housing in HOUSING_TYPES:
             bands = compare.APARTMENT_BANDS if housing == "apartment" else compare.ONEROOM_BANDS
-            rows = recent_deals(campus, housing, bands[0][0])
+            rows = recent_deals(campus, housing, bands[0][0], dataset)
             for index, (low, high) in enumerate(bands):
                 chosen = [row for row in rows if compare.in_band(
                     float(row["면적"]), low, high, index == len(bands) - 1,
                 )]
                 area_bands.append({
                     "campus": campus, "housing_type": housing, "area_band": f"{low}~{high}㎡",
-                    "period_start": engine.RECENT_START, "period_end": engine.DATA_END,
+                    "period_start": window.recent_start, "period_end": window.data_end,
                     "n": len(chosen), "sample_note": "표본 부족" if len(chosen) < engine.MIN_SAMPLE else "",
                     **_price_summary(chosen, rate),
                 })
-        all_oneroom = _eligible_rows(campus, "oneroom", 25, engine.ALL_START)
-        for year in range(2021, 2027):
+        all_oneroom = _eligible_rows(campus, "oneroom", 25, engine.ALL_START, dataset)
+        for year in range(2021, int(window.end_month[:4]) + 1):
             chosen = [row for row in all_oneroom
                       if row["계약일"].startswith(str(year))
                       and compare.in_band(float(row["면적"]), 25, 35, False)]
@@ -283,21 +296,24 @@ def campus_compare(rate_pct: float | None = None, school: str | None = None) -> 
             trend.append({
                 "campus": campus, "housing_type": "oneroom", "area_band": "25~35㎡",
                 "year": year, "period_start": f"{year}-01-01",
-                "period_end": engine.DATA_END if year == 2026 else f"{year}-12-31",
-                "partial_year": year == 2026, "n": len(chosen),
+                "period_end": window.data_end if year == int(window.end_month[:4]) else f"{year}-12-31",
+                "partial_year": year == window.partial_year, "n": len(chosen),
                 "converted_median_10k_krw": engine.quantiles(values)["p50"] if values else None,
                 "sample_note": "표본 부족" if len(chosen) < engine.MIN_SAMPLE else "",
             })
     selected_school = commute.choose_school("효자동권", school)
-    return {
-        "rate_pct": rate, "data_as_of": engine.DATA_END,
+    response = {
+        "rate_pct": rate, "data_as_of": window.data_end,
         "area_bands": area_bands, "yearly_trend": trend,
         "commute_neighborhoods": {
-            "효자동권": commute_neighborhoods("효자동권", selected_school, rate),
-            "전북대권": commute_neighborhoods("전북대권", "전북대학교", rate),
+            "효자동권": commute_neighborhoods("효자동권", selected_school, rate, dataset),
+            "전북대권": commute_neighborhoods("전북대권", "전북대학교", rate, dataset),
         },
         "commute_school": selected_school,
     }
+    if dataset == "current":
+        response["refreshed_on"] = window.refreshed_on
+    return response
 
 
 def write_reference_outputs() -> tuple[Path, Path, Path]:

@@ -29,7 +29,7 @@ def test_campus_scope_reproduces_verified_n036_and_default_judge():
     assert engine.judge(*args) == engine.judge(*args, dong=None)
     request = {"campus": "효자동권", "housing_type": "oneroom", "area": 25,
                "deposit": 500, "monthly": 35}
-    assert CLIENT.post("/api/judge", json=request).json() == engine.judge(*args)
+    assert CLIENT.post("/api/judge", json=request).json() == engine.judge(*args, dataset="current")
 
 
 def test_commute_priority_school_scope_and_price_baseline():
@@ -117,7 +117,8 @@ def test_meta_adjacent_interval_and_reference_output():
         for school in schools:
             for kind in area.HOUSING_TYPES:
                 expected = {}
-                for row in area.commute_deals(campus, school, kind, 40 if kind == "apartment" else 15):
+                for row in area.commute_deals(campus, school, kind, 40 if kind == "apartment" else 15,
+                                              dataset="current"):
                     expected[row["법정동"]] = expected.get(row["법정동"], 0) + 1
                 for bus in commute.commute_rows(campus, school):
                     assert counts[school][kind].get(bus["dong"], 0) == expected.get(bus["dong"], 0)

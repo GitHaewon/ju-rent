@@ -1,0 +1,757 @@
+{
+  "runs": [
+    {
+      "run_date": "2026-11-16",
+      "through_month": "202611",
+      "status": "failed",
+      "reason": "Construction year is more than one year after contract",
+      "api_calls": 32,
+      "api_failures": []
+    },
+    {
+      "run_date": "2026-11-16",
+      "through_month": "202611",
+      "status": "complete",
+      "data_end_month": "202611",
+      "data_as_of": "2026-11-30",
+      "source_summary": {
+        "by_month": {
+          "202101": {
+            "csv_retained": 1811
+          },
+          "202102": {
+            "csv_retained": 1725
+          },
+          "202103": {
+            "csv_retained": 2031
+          },
+          "202104": {
+            "csv_retained": 1374
+          },
+          "202105": {
+            "csv_retained": 1295
+          },
+          "202106": {
+            "csv_retained": 1672
+          },
+          "202107": {
+            "csv_retained": 1877
+          },
+          "202108": {
+            "csv_retained": 1803
+          },
+          "202109": {
+            "csv_retained": 1749
+          },
+          "202110": {
+            "csv_retained": 1910
+          },
+          "202111": {
+            "csv_retained": 1796
+          },
+          "202112": {
+            "csv_retained": 2213
+          },
+          "202201": {
+            "csv_retained": 2333
+          },
+          "202202": {
+            "csv_retained": 2284
+          },
+          "202203": {
+            "csv_retained": 1696
+          },
+          "202204": {
+            "csv_retained": 3008
+          },
+          "202205": {
+            "csv_retained": 2000
+          },
+          "202206": {
+            "csv_retained": 1887
+          },
+          "202207": {
+            "csv_retained": 1892
+          },
+          "202208": {
+            "csv_retained": 1696
+          },
+          "202209": {
+            "csv_retained": 1814
+          },
+          "202210": {
+            "csv_retained": 1766
+          },
+          "202211": {
+            "csv_retained": 1646
+          },
+          "202212": {
+            "csv_retained": 1644
+          },
+          "202301": {
+            "csv_retained": 1761
+          },
+          "202302": {
+            "csv_retained": 3223
+          },
+          "202303": {
+            "csv_retained": 1709
+          },
+          "202304": {
+            "csv_retained": 1363
+          },
+          "202305": {
+            "csv_retained": 1406
+          },
+          "202306": {
+            "csv_retained": 1398
+          },
+          "202307": {
+            "csv_retained": 1499
+          },
+          "202308": {
+            "csv_retained": 1511
+          },
+          "202309": {
+            "csv_retained": 1493
+          },
+          "202310": {
+            "csv_retained": 2457
+          },
+          "202311": {
+            "csv_retained": 1620
+          },
+          "202312": {
+            "csv_retained": 1643
+          },
+          "202401": {
+            "csv_retained": 2022
+          },
+          "202402": {
+            "csv_retained": 1845
+          },
+          "202403": {
+            "csv_retained": 1559
+          },
+          "202404": {
+            "csv_retained": 1874
+          },
+          "202405": {
+            "csv_retained": 1539
+          },
+          "202406": {
+            "csv_retained": 1392
+          },
+          "202407": {
+            "csv_retained": 1402
+          },
+          "202408": {
+            "csv_retained": 1326
+          },
+          "202409": {
+            "csv_retained": 1247
+          },
+          "202410": {
+            "csv_retained": 2366
+          },
+          "202411": {
+            "csv_retained": 1416
+          },
+          "202412": {
+            "csv_retained": 1606,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 11,
+            "api_only_added": 0
+          },
+          "202501": {
+            "csv_retained": 1645,
+            "csv_unmatched_to_api": 0,
+            "api_only_added": 1,
+            "build_year_updated": 5
+          },
+          "202502": {
+            "csv_retained": 3048,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 12,
+            "api_only_added": 1
+          },
+          "202503": {
+            "csv_retained": 1477,
+            "csv_unmatched_to_api": 0,
+            "api_only_added": 0,
+            "build_year_updated": 5
+          },
+          "202504": {
+            "csv_retained": 1343,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 2
+          },
+          "202505": {
+            "csv_retained": 1236,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202506": {
+            "csv_retained": 1400,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 1
+          },
+          "202507": {
+            "csv_retained": 1438,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 8,
+            "api_only_added": 0
+          },
+          "202508": {
+            "csv_retained": 1333,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202509": {
+            "csv_retained": 1366,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 9,
+            "api_only_added": 0
+          },
+          "202510": {
+            "csv_retained": 1157,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202511": {
+            "csv_retained": 1407,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 0
+          },
+          "202512": {
+            "csv_retained": 1695,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 9,
+            "api_only_added": 0
+          },
+          "202601": {
+            "csv_retained": 2085,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 12,
+            "api_only_added": 2
+          },
+          "202602": {
+            "csv_retained": 1911,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 1
+          },
+          "202603": {
+            "csv_retained": 1530,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 12,
+            "api_only_added": 0
+          },
+          "202604": {
+            "csv_retained": 2767,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 4,
+            "api_only_added": 0
+          },
+          "202605": {
+            "csv_retained": 1189,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 8,
+            "api_only_added": 0
+          },
+          "202606": {
+            "csv_retained": 1370,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202607": {
+            "csv_retained": 1163,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 2
+          },
+          "202608": {
+            "csv_retained": 1061,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 4
+          },
+          "202609": {
+            "api_month_rows": 1054
+          },
+          "202610": {
+            "api_month_rows": 1191
+          },
+          "202611": {
+            "api_month_rows": 296
+          }
+        },
+        "age_band_changes_from_build_year": 0
+      },
+      "derived_columns": {
+        "by_source": {
+          "api_month": {
+            "processed_rows": 1485,
+            "empty_lot": 598,
+            "duplicate_true": 87,
+            "incomplete_recent_true": 896
+          },
+          "api_only": {
+            "processed_rows": 8,
+            "empty_lot": 2,
+            "duplicate_true": 2,
+            "incomplete_recent_true": 0
+          },
+          "csv": {
+            "processed_rows": 50447,
+            "empty_lot": 4,
+            "duplicate_true": 3981,
+            "incomplete_recent_true": 0
+          }
+        },
+        "snapshot_duplicate_true": 4060,
+        "current_duplicate_true": 4070,
+        "snapshot_incomplete_recent_true": 1256,
+        "current_incomplete_recent_true": 896,
+        "snapshot_empty_lot": 4,
+        "current_empty_lot": 604,
+        "note": "전체 집계 차이에는 API 추가·최근 달 이동이 함께 포함됨; 원본 CSV 기간의 주소 열은 보존",
+        "age_band_changes_from_build_year": 0
+      },
+      "processed_rows": {
+        "small": 26848,
+        "apartment": 25092
+      },
+      "d050": {
+        "period": [
+          "202412",
+          "202608"
+        ],
+        "status": "통과",
+        "summary": {
+          "checked_groups": 168,
+          "expected_groups": 168,
+          "csv_rows": 33227,
+          "api_rows": 33241,
+          "transaction_difference_groups": 9,
+          "transaction_csv_only_rows": 0,
+          "transaction_api_only_rows": 14,
+          "transaction_api_only_pct": 0.042134,
+          "build_year_changed_rows": 155,
+          "build_year_changed_pct": 0.466488,
+          "build_year_limit_pct": 1,
+          "build_year_identity_uncertain_rows": 0
+        },
+        "criteria": {
+          "complete": {
+            "checked_groups": 168,
+            "expected_groups": 168,
+            "passed": true
+          },
+          "csv_only": {
+            "rows": 0,
+            "maximum_rows": 0,
+            "passed": true
+          },
+          "api_only": {
+            "rows": 14,
+            "pct": 0.042134,
+            "maximum_pct": 0.5,
+            "passed": true
+          },
+          "build_year": {
+            "rows": 155,
+            "pct": 0.466488,
+            "maximum_pct": 1,
+            "passed": true
+          }
+        }
+      },
+      "api_calls": 24,
+      "api_failures": []
+    },
+    {
+      "run_date": "2026-11-16",
+      "through_month": "202611",
+      "status": "complete",
+      "reuse_saved": true,
+      "in_progress": {
+        "month": "202611",
+        "raw_rows": 296,
+        "raw_directory": "data/raw/rtms_api/202611/",
+        "included_in_current": false
+      },
+      "data_end_month": "202610",
+      "data_as_of": "2026-10-31",
+      "source_summary": {
+        "by_month": {
+          "202101": {
+            "csv_retained": 1811
+          },
+          "202102": {
+            "csv_retained": 1725
+          },
+          "202103": {
+            "csv_retained": 2031
+          },
+          "202104": {
+            "csv_retained": 1374
+          },
+          "202105": {
+            "csv_retained": 1295
+          },
+          "202106": {
+            "csv_retained": 1672
+          },
+          "202107": {
+            "csv_retained": 1877
+          },
+          "202108": {
+            "csv_retained": 1803
+          },
+          "202109": {
+            "csv_retained": 1749
+          },
+          "202110": {
+            "csv_retained": 1910
+          },
+          "202111": {
+            "csv_retained": 1796
+          },
+          "202112": {
+            "csv_retained": 2213
+          },
+          "202201": {
+            "csv_retained": 2333
+          },
+          "202202": {
+            "csv_retained": 2284
+          },
+          "202203": {
+            "csv_retained": 1696
+          },
+          "202204": {
+            "csv_retained": 3008
+          },
+          "202205": {
+            "csv_retained": 2000
+          },
+          "202206": {
+            "csv_retained": 1887
+          },
+          "202207": {
+            "csv_retained": 1892
+          },
+          "202208": {
+            "csv_retained": 1696
+          },
+          "202209": {
+            "csv_retained": 1814
+          },
+          "202210": {
+            "csv_retained": 1766
+          },
+          "202211": {
+            "csv_retained": 1646
+          },
+          "202212": {
+            "csv_retained": 1644
+          },
+          "202301": {
+            "csv_retained": 1761
+          },
+          "202302": {
+            "csv_retained": 3223
+          },
+          "202303": {
+            "csv_retained": 1709
+          },
+          "202304": {
+            "csv_retained": 1363
+          },
+          "202305": {
+            "csv_retained": 1406
+          },
+          "202306": {
+            "csv_retained": 1398
+          },
+          "202307": {
+            "csv_retained": 1499
+          },
+          "202308": {
+            "csv_retained": 1511
+          },
+          "202309": {
+            "csv_retained": 1493
+          },
+          "202310": {
+            "csv_retained": 2457
+          },
+          "202311": {
+            "csv_retained": 1620
+          },
+          "202312": {
+            "csv_retained": 1643
+          },
+          "202401": {
+            "csv_retained": 2022
+          },
+          "202402": {
+            "csv_retained": 1845
+          },
+          "202403": {
+            "csv_retained": 1559
+          },
+          "202404": {
+            "csv_retained": 1874
+          },
+          "202405": {
+            "csv_retained": 1539
+          },
+          "202406": {
+            "csv_retained": 1392
+          },
+          "202407": {
+            "csv_retained": 1402
+          },
+          "202408": {
+            "csv_retained": 1326
+          },
+          "202409": {
+            "csv_retained": 1247
+          },
+          "202410": {
+            "csv_retained": 2366
+          },
+          "202411": {
+            "csv_retained": 1416,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 1
+          },
+          "202412": {
+            "csv_retained": 1606,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 11,
+            "api_only_added": 0
+          },
+          "202501": {
+            "csv_retained": 1645,
+            "csv_unmatched_to_api": 0,
+            "api_only_added": 1,
+            "build_year_updated": 5
+          },
+          "202502": {
+            "csv_retained": 3048,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 12,
+            "api_only_added": 1
+          },
+          "202503": {
+            "csv_retained": 1477,
+            "csv_unmatched_to_api": 0,
+            "api_only_added": 0,
+            "build_year_updated": 5
+          },
+          "202504": {
+            "csv_retained": 1343,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 2
+          },
+          "202505": {
+            "csv_retained": 1236,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202506": {
+            "csv_retained": 1400,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 1
+          },
+          "202507": {
+            "csv_retained": 1438,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 8,
+            "api_only_added": 0
+          },
+          "202508": {
+            "csv_retained": 1333,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202509": {
+            "csv_retained": 1366,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 9,
+            "api_only_added": 0
+          },
+          "202510": {
+            "csv_retained": 1157,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202511": {
+            "csv_retained": 1407,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 0
+          },
+          "202512": {
+            "csv_retained": 1695,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 9,
+            "api_only_added": 0
+          },
+          "202601": {
+            "csv_retained": 2085,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 12,
+            "api_only_added": 2
+          },
+          "202602": {
+            "csv_retained": 1911,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 1
+          },
+          "202603": {
+            "csv_retained": 1530,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 12,
+            "api_only_added": 0
+          },
+          "202604": {
+            "csv_retained": 2767,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 4,
+            "api_only_added": 0
+          },
+          "202605": {
+            "csv_retained": 1189,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 8,
+            "api_only_added": 0
+          },
+          "202606": {
+            "csv_retained": 1370,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 7,
+            "api_only_added": 0
+          },
+          "202607": {
+            "csv_retained": 1163,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 2
+          },
+          "202608": {
+            "csv_retained": 1061,
+            "csv_unmatched_to_api": 0,
+            "build_year_updated": 5,
+            "api_only_added": 4
+          },
+          "202609": {
+            "api_month_rows": 1054
+          },
+          "202610": {
+            "api_month_rows": 1191
+          }
+        },
+        "age_band_changes_from_build_year": 0
+      },
+      "derived_columns": {
+        "by_source": {
+          "api_month": {
+            "processed_rows": 1309,
+            "empty_lot": 544,
+            "duplicate_true": 82,
+            "incomplete_recent_true": 1309
+          },
+          "api_only": {
+            "processed_rows": 8,
+            "empty_lot": 2,
+            "duplicate_true": 2,
+            "incomplete_recent_true": 0
+          },
+          "csv": {
+            "processed_rows": 50447,
+            "empty_lot": 4,
+            "duplicate_true": 3981,
+            "incomplete_recent_true": 0
+          }
+        },
+        "snapshot_duplicate_true": 4060,
+        "current_duplicate_true": 4065,
+        "snapshot_incomplete_recent_true": 1256,
+        "current_incomplete_recent_true": 1309,
+        "snapshot_empty_lot": 4,
+        "current_empty_lot": 550,
+        "note": "전체 집계 차이에는 API 추가·최근 달 이동이 함께 포함됨; 원본 CSV 기간의 주소 열은 보존",
+        "age_band_changes_from_build_year": 0
+      },
+      "processed_rows": {
+        "small": 26774,
+        "apartment": 24990
+      },
+      "d050": {
+        "period": [
+          "202411",
+          "202608"
+        ],
+        "status": "통과",
+        "summary": {
+          "checked_groups": 176,
+          "expected_groups": 176,
+          "csv_rows": 34643,
+          "api_rows": 34658,
+          "transaction_difference_groups": 10,
+          "transaction_csv_only_rows": 0,
+          "transaction_api_only_rows": 15,
+          "transaction_api_only_pct": 0.043299,
+          "build_year_changed_rows": 160,
+          "build_year_changed_pct": 0.461854,
+          "build_year_limit_pct": 1,
+          "build_year_identity_uncertain_rows": 0
+        },
+        "criteria": {
+          "complete": {
+            "checked_groups": 176,
+            "expected_groups": 176,
+            "passed": true
+          },
+          "csv_only": {
+            "rows": 0,
+            "maximum_rows": 0,
+            "passed": true
+          },
+          "api_only": {
+            "rows": 15,
+            "pct": 0.043299,
+            "maximum_pct": 0.5,
+            "passed": true
+          },
+          "build_year": {
+            "rows": 160,
+            "pct": 0.461854,
+            "maximum_pct": 1,
+            "passed": true
+          }
+        }
+      },
+      "api_calls": 8,
+      "api_failures": []
+    }
+  ]
+}

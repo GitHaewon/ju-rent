@@ -181,10 +181,11 @@ def test_api_passthrough_and_korean_input_errors():
                "min_area": 15, "priority": "cheap", "rate_pct": 5, "scope": "campus"}
     response = client.post("/api/budget", json=payload)
     assert response.status_code == 200
-    assert response.json() == campus_budget("전북대권", 500, 35, 15, priority="cheap", rate_pct=5)
+    assert response.json() == campus_budget("전북대권", 500, 35, 15, priority="cheap", rate_pct=5,
+                                            dataset="current")
     response = client.get("/api/compare", params={"rate_pct": 5})
     assert response.status_code == 200
-    assert response.json() == area.campus_compare(5)
+    assert response.json() == area.campus_compare(5, dataset="current")
     for change in ({"deposit": -1}, {"monthly": -0.01}, {"min_area": 14.99},
                    {"min_area": 132.01}, {"housing": "apartment", "min_area": 39.99},
                    {"housing": "unknown"}, {"priority": "unknown"}, {"rate_pct": 10.01}):

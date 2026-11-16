@@ -15,10 +15,11 @@ from src import analyze_rentals as audit
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw"
 MANIFEST = ROOT / "data" / "audit" / "manifest.json"
-PROCESSED = ROOT / "data" / "processed" / "valid_small_monthly.csv"
-PROCESSED_AUDIT = ROOT / "data" / "processed" / "valid_small_monthly_audit.json"
-APARTMENT_PROCESSED = ROOT / "data" / "processed" / "valid_apartment_monthly.csv"
-APARTMENT_AUDIT = ROOT / "data" / "processed" / "valid_apartment_monthly_audit.json"
+SNAPSHOT = ROOT / "data" / "processed" / "snapshot_2026-11-07"
+PROCESSED = SNAPSHOT / "valid_small_monthly.csv"
+PROCESSED_AUDIT = SNAPSHOT / "valid_small_monthly_audit.json"
+APARTMENT_PROCESSED = SNAPSHOT / "valid_apartment_monthly.csv"
+APARTMENT_AUDIT = SNAPSHOT / "valid_apartment_monthly_audit.json"
 DATE_START = date(2021, 1, 1)
 DATE_END = date(2026, 10, 31)
 APARTMENT_MIN_AREA_SQM = 40

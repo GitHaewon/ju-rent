@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from src import analyze_rentals as audit
 from src.jurent import area, commute, engine
+from src.jurent import dataset as rental_dataset
 from src.jurent.explanation import ai_explanation, rule_explanation
 
 app = FastAPI(title="JU RENT API")
@@ -97,10 +98,11 @@ async def validation_error_handler(_request, _exc: FastAPIValidationError) -> JS
 @app.get("/api/meta")
 def meta() -> dict:
     config = engine.settings()
+    window = rental_dataset.select("current")
     return {
         "campuses": list(audit.CAMPUS_AREAS),
         "schools_by_campus": {campus: list(schools) for campus, schools in commute.SCHOOLS_BY_CAMPUS.items()},
-        "commute_deal_counts_by_school": area.commute_dong_deal_counts(),
+        "commute_deal_counts_by_school": area.commute_dong_deal_counts("current"),
         "commute_by_school": {
             school: commute.commute_rows(campus, school)
             for campus, schools in commute.SCHOOLS_BY_CAMPUS.items()
@@ -116,7 +118,8 @@ def meta() -> dict:
             "min_pct": config["user_min_pct"],
             "max_pct": config["user_max_pct"],
         },
-        "data_as_of": engine.DATA_END,
+        "data_as_of": window.data_end,
+        "refreshed_on": window.refreshed_on,
     }
 
 
@@ -125,7 +128,7 @@ def calculate(payload: ContractInput) -> dict:
         values = payload.model_dump(exclude={"dong", "school"})
         if payload.dong is not None:
             values.update(dong=payload.dong, school=payload.school)
-        return engine.judge(**values)
+        return engine.judge(**values, dataset="current")
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=input_error(exc)) from None
 
@@ -155,7 +158,7 @@ def budget(payload: BudgetInput) -> dict:
         return area.budget_search(
             payload.campus, payload.deposit, payload.monthly, minimum,
             payload.housing, payload.priority, payload.rate_pct,
-            scope=payload.scope, school=payload.school,
+            scope=payload.scope, school=payload.school, dataset="current",
         )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=area_input_error(exc)) from None
@@ -164,6 +167,6 @@ def budget(payload: BudgetInput) -> dict:
 @app.get("/api/compare")
 def campus_compare(rate_pct: float | None = None, school: str | None = None) -> dict:
     try:
-        return area.campus_compare(rate_pct, school)
+        return area.campus_compare(rate_pct, school, dataset="current")
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=area_input_error(exc)) from None
