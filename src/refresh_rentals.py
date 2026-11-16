@@ -71,24 +71,26 @@ def _api_group(kind: str, gu: str, month: str, fetch_audit: dict,
             for index, item in enumerate(items, 1)]
 
 
-def collect_api(through_month: str, fetch_audit: dict) -> dict[tuple[str, str, str], list[dict[str, str]]]:
-    """Reuse overlap pages; refetch every API-built month in the latest three."""
+def service_end_month(run_date: date) -> str:
+    """The running contract month is not complete enough for service comparisons."""
+    return dataset.shift_month(run_date.strftime("%Y%m"), -1)
+
+
+def collect_api(end_month: str, in_progress_month: str, fetch_audit: dict, *,
+                reuse_saved: bool = False) -> dict[tuple[str, str, str], list[dict[str, str]]]:
+    """Fetch current-month raw rows; only completed months can enter the service."""
     groups = {}
-    for month in fetch_rtms.month_range(API_FIRST_MONTH, through_month):
-        refresh = month >= dataset.shift_month(through_month, -2)
-        for kind in fetch_rtms.SERVICES:
-            for gu in fetch_rtms.DISTRICTS:
-                groups[kind, gu, month] = _api_group(kind, gu, month, fetch_audit, refresh=refresh)
-    end_month = max((month for (_, _, month), rows in groups.items() if rows), default=CSV_END_MONTH)
-    # The requested month can be empty. In that case the last three populated
-    # API months, rather than the last three requested months, must be refreshed.
     if end_month >= API_FIRST_MONTH:
-        for month in fetch_rtms.month_range(max(API_FIRST_MONTH, dataset.shift_month(end_month, -2)), end_month):
-            if month >= dataset.shift_month(through_month, -2):
-                continue
+        for month in fetch_rtms.month_range(API_FIRST_MONTH, end_month):
+            refresh = not reuse_saved and month >= dataset.shift_month(end_month, -2)
             for kind in fetch_rtms.SERVICES:
                 for gu in fetch_rtms.DISTRICTS:
-                    groups[kind, gu, month] = _api_group(kind, gu, month, fetch_audit, refresh=True)
+                    groups[kind, gu, month] = _api_group(kind, gu, month, fetch_audit, refresh=refresh)
+    for kind in fetch_rtms.SERVICES:
+        for gu in fetch_rtms.DISTRICTS:
+            groups[kind, gu, in_progress_month] = _api_group(
+                kind, gu, in_progress_month, fetch_audit, refresh=not reuse_saved,
+            )
     first = max(FIRST_MONTH, dataset.shift_month(end_month, -23))
     last = min(CSV_END_MONTH, end_month)
     if first <= last:
@@ -289,23 +291,29 @@ def _append_log(entry: dict, path: Path = REFRESH_LOG) -> None:
     path.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def refresh(through_month: str | None = None) -> dict:
+def refresh(*, reuse_saved: bool = False) -> dict:
     """Run one checked refresh; never replace current before the D-050 gate passes."""
     now = today_kst()
-    through = through_month or now.strftime("%Y%m")
-    fetch_rtms.month_range(through, through)
-    if not API_FIRST_MONTH <= through <= now.strftime("%Y%m"):
-        raise RefreshError("Through month must be between 2026-09 and the current month")
+    in_progress_month = now.strftime("%Y%m")
+    end_month = service_end_month(now)
+    if end_month < CSV_END_MONTH:
+        raise RefreshError("Refresh cannot end before the preserved CSV period")
     fetch_audit: dict = {"calls": 0, "pages": [], "failures": []}
-    entry: dict = {"run_date": now.isoformat(), "through_month": through, "status": "running"}
+    entry: dict = {"run_date": now.isoformat(), "through_month": in_progress_month,
+                   "status": "running", "reuse_saved": reuse_saved}
     try:
         originals = csv_groups()
-        api_groups = collect_api(through, fetch_audit)
-        end_month = max((month for (_, _, month), rows in api_groups.items()
-                         if month >= API_FIRST_MONTH and rows), default=CSV_END_MONTH)
+        api_groups = collect_api(end_month, in_progress_month, fetch_audit, reuse_saved=reuse_saved)
+        entry["in_progress"] = {
+            "month": in_progress_month,
+            "raw_rows": sum(len(rows) for (_, _, month), rows in api_groups.items()
+                            if month == in_progress_month),
+            "raw_directory": f"data/raw/rtms_api/{in_progress_month}/",
+            "included_in_current": False,
+        }
         if CURRENT.exists():
             previous = json.loads((CURRENT / "metadata.json").read_text(encoding="utf-8"))["data_end_month"]
-            if end_month < previous:
+            if end_month < previous and previous != in_progress_month:
                 raise RefreshError("API data end moved backward; previous current retained")
         reconcile = reconcile_recent(end_month)
         merged, source_summary = merge_source_rows(originals, api_groups, end_month)
@@ -329,10 +337,11 @@ def refresh(through_month: str | None = None) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--through-month", help="Last contract month to request (YYYYMM; default current KST month)")
+    parser.add_argument("--reuse-saved", action="store_true",
+                        help="Reuse saved API pages for a same-day correction; normal runs refetch recent months")
     args = parser.parse_args()
     try:
-        result = refresh(args.through_month)
+        result = refresh(reuse_saved=args.reuse_saved)
     except (RefreshError, fetch_rtms.FetchError, ValueError, OSError) as exc:
         print(f"갱신 중단: {exc}; 기존 current 유지, outputs/audit/refresh_log.json 확인")
         raise SystemExit(1) from None

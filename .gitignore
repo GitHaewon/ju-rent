@@ -17,7 +17,7 @@ web/dist/
 web/*.tsbuildinfo
 .ipynb_checkpoints/
 .pytest_cache/
-/.pytest-tmp-refresh*/
+/.pytest-tmp-*/
 
 # OS / 편집기
 .DS_Store
