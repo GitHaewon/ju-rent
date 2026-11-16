@@ -128,6 +128,98 @@ def test_in_progress_api_rows_are_raw_only(tmp_path, monkeypatch):
     assert ("202611", False) in calls
 
 
+@pytest.mark.parametrize("run_date", [date(2027, 1, 15), date(2027, 6, 15)])
+def test_saved_csv_period_corrections_survive_moving_window(run_date, tmp_path, monkeypatch):
+    kind, gu, year = "apartment", "wansan", 2024
+    area_field = refresh_rentals.audit.AREA_COLUMNS[kind][0]
+
+    def transaction(month, day, built_year):
+        return {"NO": "1", "계약년월": month, "계약일": str(day),
+                "시군구": "전북특별자치도 전주시 완산구 효자동3가",
+                area_field: "59.0", "보증금(만원)": "500", "월세금(만원)": "35",
+                "전월세구분": "월세", "계약구분": "신규", "번지": "101",
+                "단지명": "테스트아파트", "건축년도": str(built_year),
+                "층": "3", "계약기간": "-"}
+
+    untouched = transaction("202410", 5, 2010)
+    november = transaction("202411", 5, 2014)
+    december = transaction("202412", 5, 2013)
+    originals = {(kind, gu, year): [untouched, november, december]}
+    saved = {
+        "202411": [transaction("202411", 5, 2015), transaction("202411", 20, 2015)],
+        "202412": [transaction("202412", 5, 2014)],
+    }
+    for month in saved:
+        (tmp_path / f"{month}.xml").touch()
+    calls = []
+
+    def raw_path(_kind, _gu, month, _page):
+        return tmp_path / f"{month}.xml"
+
+    def fake_group(_kind, _gu, month, _audit, *, refresh=False, offline=False):
+        calls.append((month, offline))
+        return saved.get(month, [])
+
+    monkeypatch.setattr(refresh_rentals.fetch_rtms, "SERVICES", (kind,))
+    monkeypatch.setattr(refresh_rentals.fetch_rtms, "DISTRICTS", (gu,))
+    monkeypatch.setattr(refresh_rentals.fetch_rtms, "raw_path", raw_path)
+    monkeypatch.setattr(refresh_rentals, "_api_group", fake_group)
+    end_month = refresh_rentals.service_end_month(run_date)
+    groups = refresh_rentals.collect_api(end_month, run_date.strftime("%Y%m"), {}, reuse_saved=True)
+    assert ("202411", True) in calls and ("202412", True) in calls
+    assert not any(month == "202410" for month, _ in calls)
+    merged, summary = refresh_rentals.merge_source_rows(originals, groups, end_month)
+    rows = merged[kind, gu, year]
+    assert [(row, origin) for row, origin in rows if row["계약년월"] == "202410"] == [
+        (untouched, "csv"),
+    ]
+    assert [row["건축년도"] for row, _ in rows if row["계약년월"] == "202411"] == [
+        "2015", "2015",
+    ]
+    assert [row["건축년도"] for row, _ in rows if row["계약년월"] == "202412"] == ["2014"]
+    assert summary["by_month"]["202411"]["build_year_updated"] == 1
+    assert summary["by_month"]["202411"]["api_only_added"] == 1
+    assert summary["by_month"]["202412"]["build_year_updated"] == 1
+    assert summary["by_month"]["202410"] == {"csv_retained": 1}
+
+
+@pytest.mark.parametrize(("end_month", "first"), [
+    ("202612", "202501"), ("202705", "202506"),
+])
+def test_recheck_window_stays_recent_even_with_older_saved_pages(end_month, first, monkeypatch):
+    captured = []
+
+    def fake_compare(**kwargs):
+        captured.append(kwargs)
+        return {"status": "통과"}
+
+    monkeypatch.setattr(refresh_rentals.compare_rtms_csv, "compare", fake_compare)
+    refresh_rentals.reconcile_recent(end_month)
+    assert captured[0]["first"] == first
+    assert captured[0]["last"] == "202608"
+
+
+def test_current_bytes_unchanged_with_saved_pages(tmp_path, monkeypatch):
+    if not refresh_rentals.audit.RAW.exists() or not refresh_rentals.fetch_rtms.raw_path(
+            "apartment", "wansan", "202411", 1).exists():
+        pytest.skip("Local raw CSV and API pages are not available")
+    monkeypatch.setattr(refresh_rentals.fetch_rtms, "request_page",
+                        lambda *_: pytest.fail("Current verification must not call the API"))
+    before = {name: (refresh_rentals.CURRENT / name).read_bytes() for name in (
+        "valid_small_monthly.csv", "valid_apartment_monthly.csv",
+    )}
+    fetch_audit = {"calls": 0, "pages": [], "failures": []}
+    groups = refresh_rentals.collect_api("202610", "202611", fetch_audit, reuse_saved=True)
+    merged, _ = refresh_rentals.merge_source_rows(refresh_rentals.csv_groups(), groups, "202610")
+    small, apartment, _ = refresh_rentals.normalize_groups(merged, "202610")
+    refresh_rentals._write_table(tmp_path / "valid_small_monthly.csv", small)
+    refresh_rentals._write_table(tmp_path / "valid_apartment_monthly.csv", apartment)
+    assert fetch_audit["calls"] == 0
+    for name, content in before.items():
+        assert (tmp_path / name).read_bytes() == content
+        assert (refresh_rentals.CURRENT / name).read_bytes() == content
+
+
 def test_failed_recheck_keeps_previous_current(tmp_path, monkeypatch):
     current = tmp_path / "current"
     current.mkdir()

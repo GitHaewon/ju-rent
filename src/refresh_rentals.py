@@ -65,8 +65,8 @@ def csv_groups() -> dict[tuple[str, str, int], list[dict[str, str]]]:
 
 
 def _api_group(kind: str, gu: str, month: str, fetch_audit: dict,
-               *, refresh: bool = False) -> list[dict[str, str]]:
-    items = fetch_rtms.fetch_group(kind, gu, month, fetch_audit, refresh=refresh)
+               *, refresh: bool = False, offline: bool = False) -> list[dict[str, str]]:
+    items = fetch_rtms.fetch_group(kind, gu, month, fetch_audit, refresh=refresh, offline=offline)
     return [rtms_to_rows.convert_item(item, kind, gu, month, index)
             for index, item in enumerate(items, 1)]
 
@@ -100,13 +100,14 @@ def collect_api(end_month: str, in_progress_month: str, fetch_audit: dict, *,
                     key = kind, gu, month
                     if key not in groups:
                         groups[key] = _api_group(kind, gu, month, fetch_audit)
-    # Previously checked pages remain the source for older CSV build-year corrections.
-    for month in fetch_rtms.month_range("202501", CSV_END_MONTH):
+    # Keep every saved CSV-period correction, even after its month leaves the
+    # 24-month D-050 recheck window. Never fetch or recheck these older groups.
+    for month in fetch_rtms.month_range(FIRST_MONTH, CSV_END_MONTH):
         for kind in fetch_rtms.SERVICES:
             for gu in fetch_rtms.DISTRICTS:
                 key = kind, gu, month
                 if key not in groups and fetch_rtms.raw_path(kind, gu, month, 1).exists():
-                    groups[key] = _api_group(kind, gu, month, fetch_audit)
+                    groups[key] = _api_group(kind, gu, month, fetch_audit, offline=True)
     return groups
 
 
