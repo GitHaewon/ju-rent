@@ -34,6 +34,7 @@ jobs:
           run_checked() {
             "$@" >> "$RUNNER_TEMP/pages-build.log" 2>&1 || {
               python -m src.check_static_secrets --log "$RUNNER_TEMP/pages-build.log"
+              tail -n 80 "$RUNNER_TEMP/pages-build.log"
               exit 1
             }
           }
@@ -47,6 +48,7 @@ jobs:
           run_checked node web/scripts/static-parity.mjs
           run_checked env VITE_JU_RENT_MODE=static JU_RENT_BASE=/ju-rent/ npm --prefix web run build
           python -m src.check_static_secrets --log "$RUNNER_TEMP/pages-build.log"
+          tail -n 12 "$RUNNER_TEMP/pages-build.log"
       - name: Keep verified site for deployment
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
