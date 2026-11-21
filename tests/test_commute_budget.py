@@ -134,6 +134,8 @@ def test_meta_adjacent_interval_and_reference_output():
 
 
 def test_saved_bus_schedule_average_requires_valid_trip_count(tmp_path, monkeypatch):
+    from src import build_route_intervals
+
     assert commute.planned_average_interval("0550", "2250", "46") == round(1020 / 45)
     for values in (("0550", "2250", ""), ("0550", "2250", "1"),
                    ("2500", "2250", "46"), ("2250", "0550", "46")):
@@ -146,8 +148,11 @@ def test_saved_bus_schedule_average_requires_valid_trip_count(tmp_path, monkeypa
         "<endvehicletime>2250</endvehicletime></item></response>", encoding="utf-8",
     )
     gw = tmp_path / "route_info.xml"
-    monkeypatch.setattr(commute, "GW_ROUTE_INFO", gw)
-    monkeypatch.setattr(commute, "TAGO_RAW", tago_dir)
+    fixed = tmp_path / "route_intervals.csv"
+    monkeypatch.setattr(build_route_intervals, "GW_ROUTE_INFO", gw)
+    monkeypatch.setattr(build_route_intervals, "TAGO_RAW", tago_dir)
+    monkeypatch.setattr(build_route_intervals, "OUTPUT", fixed)
+    monkeypatch.setattr(commute, "ROUTE_INTERVALS", fixed)
     try:
         for trips, expected in (("0", {}), ("46", {route_id: round(1020 / 45)})):
             gw.write_text(
@@ -155,8 +160,13 @@ def test_saved_bus_schedule_average_requires_valid_trip_count(tmp_path, monkeypa
                 f"<brtLastTime>2250</brtLastTime><TCount>46</TCount><BCount>{trips}</BCount>"
                 "</list></response>", encoding="utf-8",
             )
+            build_route_intervals.build()
             commute.planned_intervals_by_route.cache_clear()
             assert commute.planned_intervals_by_route() == expected
+            monkeypatch.setattr(build_route_intervals, "GW_ROUTE_INFO", tmp_path / "raw-hidden.xml")
+            commute.planned_intervals_by_route.cache_clear()
+            assert commute.planned_intervals_by_route() == expected
+            monkeypatch.setattr(build_route_intervals, "GW_ROUTE_INFO", gw)
     finally:
         commute.planned_intervals_by_route.cache_clear()
 

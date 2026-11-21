@@ -8,9 +8,6 @@ from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 from typing import NamedTuple
 
-from dotenv import dotenv_values
-from openai import APITimeoutError
-
 ROOT = Path(__file__).resolve().parents[2]
 NUMBER = re.compile(r"(?<![0-9A-Za-z_.])\d+(?:,\d{3})*(?:\.\d+)?(?![0-9A-Za-z_.])")
 
@@ -102,6 +99,9 @@ def ai_explanation(result: dict, env_path: Path = ROOT / ".env") -> ExplanationR
     """Make one bounded API request and return text with a safe fallback reason."""
     fallback = rule_explanation(result)
     try:
+        from dotenv import dotenv_values
+        from openai import OpenAI
+
         config = dotenv_values(env_path)
         key = config.get("OPENAI_API_KEY")
         model = config.get("OPENAI_MODEL")
@@ -110,8 +110,6 @@ def ai_explanation(result: dict, env_path: Path = ROOT / ".env") -> ExplanationR
         if not model:
             return ExplanationResult(fallback, "모델 없음")
         effort = config.get("OPENAI_REASONING_EFFORT") or lowest_reasoning_effort(model)
-        from openai import OpenAI
-
         client = OpenAI(api_key=key, timeout=10, max_retries=0)
         request = {
             "model": model,
@@ -135,7 +133,7 @@ def ai_explanation(result: dict, env_path: Path = ROOT / ".env") -> ExplanationR
         if rejected:
             return ExplanationResult(fallback, f"숫자 검사 실패: {', '.join(rejected)}")
         return ExplanationResult(output)
-    except (TimeoutError, APITimeoutError):
-        return ExplanationResult(fallback, "시간 초과")
     except Exception as exc:  # noqa: BLE001 - optional service failures must never stop judgment
+        if isinstance(exc, TimeoutError) or type(exc).__name__ == "APITimeoutError":
+            return ExplanationResult(fallback, "시간 초과")
         return ExplanationResult(fallback, f"API 오류({type(exc).__name__})")

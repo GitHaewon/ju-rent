@@ -5,7 +5,6 @@ from __future__ import annotations
 import csv
 from functools import lru_cache
 from pathlib import Path
-from xml.etree import ElementTree as ET
 
 from src import analyze_rentals as audit
 
@@ -13,8 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 ACCESS = ROOT / "outputs/bus/commute_access.csv"
 STOPS = ROOT / "outputs/bus/stops_by_dong.csv"
 CAMPUS_STOPS = ROOT / "outputs/bus/campus_stops_candidates.csv"
-GW_ROUTE_INFO = ROOT / "data/raw/bus/route_2_info.xml"
-TAGO_RAW = ROOT / "data/raw/bus/tago"
+ROUTE_INTERVALS = ROOT / "outputs/bus/route_intervals.csv"
 SCHOOLS_BY_CAMPUS = {
     "효자동권": ("전주대학교", "전주비전대학교"),
     "전북대권": ("전북대학교",),
@@ -48,29 +46,11 @@ def planned_average_interval(first: str, last: str, departures: str) -> int | No
 
 @lru_cache(maxsize=1)
 def planned_intervals_by_route() -> dict[str, int]:
-    """Use only saved GW counts tied to the same TAGO direction and schedule."""
-    if not GW_ROUTE_INFO.exists():
+    """Use the reviewed, committed planned intervals without raw responses."""
+    if not ROUTE_INTERVALS.exists():
         return {}
-    result = {}
-    for row in ET.fromstring(GW_ROUTE_INFO.read_bytes()).findall(".//list"):
-        route = row.findtext("brtStdid")
-        if not route:
-            continue
-        route_id = f"JUB{route}"
-        tago_path = TAGO_RAW / f"route_info_{route_id}.xml"
-        if not tago_path.exists():
-            continue
-        tago = ET.fromstring(tago_path.read_bytes()).find(".//item")
-        if tago is None or tago.findtext("routeid") != route_id:
-            continue
-        first, last = row.findtext("brtFirstTime"), row.findtext("brtLastTime")
-        if ((first or "").zfill(4) != (tago.findtext("startvehicletime") or "").zfill(4)
-                or (last or "").zfill(4) != (tago.findtext("endvehicletime") or "").zfill(4)):
-            continue
-        value = planned_average_interval(first, last, row.findtext("BCount"))
-        if value is not None:
-            result[route_id] = value
-    return result
+    with ROUTE_INTERVALS.open(encoding="utf-8", newline="") as handle:
+        return {row["route_id"]: int(row["weekday_interval_min"]) for row in csv.DictReader(handle)}
 
 
 @lru_cache(maxsize=1)

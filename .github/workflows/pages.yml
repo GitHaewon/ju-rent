@@ -1,0 +1,80 @@
+name: Pages static site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Test and build with captured logs
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_checked() {
+            "$@" >> "$RUNNER_TEMP/pages-build.log" 2>&1 || {
+              python -m src.check_static_secrets --log "$RUNNER_TEMP/pages-build.log"
+              tail -n 80 "$RUNNER_TEMP/pages-build.log"
+              exit 1
+            }
+          }
+          run_checked python -m pip install -r requirements.txt
+          run_checked python -m pytest -q
+          run_checked ruff check src tests app api
+          run_checked npm --prefix web ci
+          run_checked npm --prefix web test
+          run_checked python -m src.build_static
+          run_checked python -m src.static_parity
+          run_checked node web/scripts/static-parity.mjs
+          run_checked env VITE_JU_RENT_MODE=static JU_RENT_BASE=/ju-rent/ npm --prefix web run build
+          python -m src.check_static_secrets --log "$RUNNER_TEMP/pages-build.log"
+          tail -n 12 "$RUNNER_TEMP/pages-build.log"
+      - name: Keep verified site for deployment
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-site
+          path: web/dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: pages-site
+          path: site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

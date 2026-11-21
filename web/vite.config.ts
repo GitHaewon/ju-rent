@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', 'JU_RENT_')
   return {
+    base: env.JU_RENT_BASE || '/',
     plugins: [react()],
     server: { proxy: { '/api': env.JU_RENT_API_TARGET || 'http://127.0.0.1:8000' } },
     preview: { proxy: { '/api': env.JU_RENT_API_TARGET || 'http://127.0.0.1:8000' } },
