@@ -18,6 +18,10 @@ def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
         "test_commute_budget.py": {"test_split_manifests_survive_rental_analysis"},
         "test_judge_guards.py": {"test_multifamily_names_match_raw_building_names"},
         "test_field_coverage.py": {"test_generated_coverage_accounts_for_all_public_rows"},
+        "test_rtms_api.py": {
+            "test_converter_matches_csv_columns_amounts_blank_contract_and_d011_area",
+            "test_n040_verified_offline_gate_and_complex_attribution",
+        },
     }
     fixture_dependent = {
         "test_contract_engine.py": {"prepared"},
