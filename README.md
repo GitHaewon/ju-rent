@@ -1,5 +1,8 @@
 # JU RENT · 전주시 대학가 월세 판단 서비스
 
+**▶ 바로 써 보기: https://githaewon.github.io/ju-rent/**
+(설치 없이 브라우저에서 동작해요. 공개 사이트에서는 AI 설명 대신 기본 설명을 보여줍니다.)
+
 전주대학교 리빙랩 프로젝트. 전주시 대학가에서 자취방을 구하는 대학생이
 국토교통부 실거래 자료를 근거로 **동네를 고르고**, **제안받은 계약 조건이 적정한지 판단**하도록 돕는다.
 
@@ -59,16 +62,59 @@ jeonju-rent/
 
 두 번째 터미널에서 `cd web`, `npm install`, `npm run dev`를 순서대로 실행한다. Vite가 `/api` 요청을 로컬 API로 전달한다. `POST /api/budget`은 범위를 생략하면 `scope="commute"`로 대학가 동과 선택 학교의 통학권 동을 함께 추천하며, 대학가 동만 보려면 `scope="campus"`를 지정한다. 자세한 요청 예시는 `docs/api.md`를 참고한다. `OPENAI_API_KEY`와 `OPENAI_MODEL`은 선택형 AI 설명에만 필요하며 `.env`에만 저장한다. UI 회귀 검사는 `npm test`, 빌드 검사는 `npm run build`다. 두 서버가 실행 중일 때 `npm run screenshots`로 `docs/design/screens/`의 화면을 갱신할 수 있다.
 
+### 공개 사이트 배포
+
+main에 머지되면 GitHub Actions가 테스트와 CPython·Pyodide 결과 일치 검사를 통과한 뒤 자동 배포한다. 데이터 갱신은 로컬에서 `python -m src.refresh_rentals` 실행 후 정제본을 커밋·머지한다. 배포 결과는 저장소 Actions 탭에서 확인한다.
+
 ### 계약 판단 화면 실행
 
 Python 가상환경을 만든 뒤 `pip install -r requirements.txt`를 실행한다. `.env.example`을 `.env`로 복사하고, AI 설명을 사용하려면 `OPENAI_API_KEY`와 `OPENAI_MODEL`을 채운다. `OPENAI_REASONING_EFFORT`는 선택 사항이며 비워 두면 설정 모델에서 허용하는 최저 추론 수준을 사용한다. 계약 판단 자체는 API 키 없이 동작한다.
 
 내부 확인용 Streamlit 앱은 저장소 루트에서 `streamlit run app/streamlit_app.py`로 연다. 입력 면적은 아파트 40~132㎡, 그 외 15~45㎡이고 관리비는 계약 판단에서 제외한다. `pytest -q`와 `ruff check src tests app api`로 검증한다.
 
-1. `.env.example`을 복사해 `.env`를 만들고 공공데이터포털 인증키를 넣는다.
-2. `data/raw/`에 원본 데이터를 내려받는다 (방법은 `src/` 수집 스크립트 참고).
-3. 분석 스크립트를 실행하면 `outputs/`에 결과가 생성된다.
-
 ## 데이터 출처
 - 국토교통부 실거래가 공개시스템 / 공공데이터포털 전월세 실거래 API
 - 부동산 플랫폼(네이버·직방·다방·당근) 데이터는 사용하지 않는다 (DECISIONS.md D-003).
+
+## 개발 환경과 실행 방법
+
+### 개발 환경
+| 항목 | 버전 |
+|---|---|
+| 운영체제 | Windows |
+| Python | 3.12.14 (uv로 만든 `.venv`) |
+| Node.js / npm | 26.13.0 / 11.20.0 |
+| 웹 | React 19, Vite 7, TypeScript 5.9, motion 12, Pretendard |
+| API | FastAPI, uvicorn |
+| 공개 사이트 | GitHub Pages + Pyodide 314.0.8 (브라우저에서 같은 Python 엔진 실행) |
+
+### 필요한 것
+- Python 3.12 이상 (3.12.14에서 개발·검증)
+- Node.js 22.12 이상 (26.13.0에서 개발)
+- Python 라이브러리 목록은 `requirements.txt`, 웹 라이브러리 목록은 `web/package.json`
+
+### 설치 (저장소 폴더에서 한 줄)
+```bash
+pip install -r requirements.txt && npm --prefix web install
+```
+Windows PowerShell 5에서는 `&&` 대신 `;`를 쓰고, `npm`이 막히면 `npm.cmd`로 바꿔 실행한다.
+```powershell
+pip install -r requirements.txt; npm.cmd --prefix web install
+```
+가상환경을 쓰려면 먼저 `python -m venv .venv` 후 활성화한다(Windows `.venv\Scripts\activate`, macOS·Linux `source .venv/bin/activate`).
+
+### 실행
+| 터미널 | 명령 | 설명 |
+|---|---|---|
+| 1 | `python -m uvicorn api.main:app --port 8000` | 계산 API |
+| 2 | `npm --prefix web run dev` | 웹 화면 → http://127.0.0.1:5173 |
+
+AI 설명(선택): `.env.example`을 `.env`로 복사하고 `OPENAI_API_KEY`, `OPENAI_MODEL`을 채운다. 키가 없어도 계약 판단은 동작한다.
+
+### 검사
+```bash
+pytest -q
+ruff check src tests app api
+npm --prefix web test
+npm --prefix web run build
+```

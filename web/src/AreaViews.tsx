@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import { backendFetch } from './backend'
 import { EMPTY_BUDGET_MESSAGE, ageBandLabel, availabilityTone, budgetSummary, budgetPriceDifference, cardToContract, commuteDetail, commuteLabel, integerMoney, tenDealSentence, typicalArea, typicalRange, typicalTerms } from './areaCopy'
 import Count from './Count'
 import { freshnessLabel, rateHint } from './copy'
@@ -87,7 +88,7 @@ export function BudgetView({ meta, rate, onRateChange, onChoose }: BudgetProps) 
     const controller = new AbortController()
     const timer = window.setTimeout(() => {
       setLoading(true)
-      fetch('/api/budget', {
+      backendFetch('/api/budget', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
         body: JSON.stringify({ campus, school, scope: 'commute', deposit: Number(deposit), monthly: Number(monthly),
           min_area: minArea, housing, priority, rate_pct: rate }),
@@ -254,7 +255,7 @@ export function CompareView({ meta, rate, onRateChange }: SharedProps) {
     const controller = new AbortController()
     setLoading(true)
     setError(null)
-    fetch(`/api/compare?rate_pct=${rate}&school=${encodeURIComponent(school)}`, { signal: controller.signal })
+    backendFetch(`/api/compare?rate_pct=${rate}&school=${encodeURIComponent(school)}`, { signal: controller.signal })
       .then(async response => {
         const body = await response.json()
         if (!response.ok) throw new Error(readableError(response, body))

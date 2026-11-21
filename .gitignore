@@ -14,6 +14,8 @@ venv/
 .tools/
 web/node_modules/
 web/dist/
+web/public/py/jurent_bundle.zip
+web/public/py/bundle_manifest.json
 web/*.tsbuildinfo
 .ipynb_checkpoints/
 .pytest_cache/

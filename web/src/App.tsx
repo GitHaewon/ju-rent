@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BudgetView, CompareView } from './AreaViews'
+import { backendFetch, staticMode } from './backend'
 import Count from './Count'
 import { visibleCommuteDongs } from './commuteChoices'
 import { comparisonSentence, displayWarning, freshnessLabel, monthPeriod, negotiationSentence, percentileSentence, rateHint, verdictText } from './copy'
@@ -147,9 +148,9 @@ export default function App() {
 
   useEffect(() => {
     const controller = new AbortController()
-    fetch('/api/meta', { signal: controller.signal })
+    backendFetch('/api/meta', { signal: controller.signal })
       .then(async response => {
-        if (!response.ok) throw new Error('설정을 불러오지 못했어요. 잠시 뒤 다시 시도해 주세요.')
+        if (!response.ok) throw new Error(staticMode ? '계산 도구를 불러오지 못했어요. 인터넷 연결을 확인하고 새로 고침해 주세요' : '설정을 불러오지 못했어요. 잠시 뒤 다시 시도해 주세요.')
         return response.json() as Promise<Meta>
       })
       .then(data => {
@@ -167,14 +168,22 @@ export default function App() {
     const controller = new AbortController()
     const timer = window.setTimeout(() => {
       setLoading(true)
-      fetch('/api/judge', {
+      backendFetch('/api/judge', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload(form)), signal: controller.signal,
       }).then(async response => {
         const data = await response.json()
         if (!response.ok) throw new Error(typeof data.detail === 'string' ? data.detail : '입력을 확인해 주세요.')
         return data as Judgment
-      }).then(data => { setResult(data); setSettledFee(Number(form.fee || 0)); setServerError(null) })
+      }).then(data => {
+        setResult(data); setSettledFee(Number(form.fee || 0)); setServerError(null)
+        if (staticMode) {
+          backendFetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload(form)), signal: controller.signal })
+            .then(response => response.json()).then(value => setExplanation(value as Explanation))
+            .catch(() => {})
+        }
+      })
         .catch(error => { if (error.name !== 'AbortError') setServerError({ field: apiErrorField(error.message), message: error.message }) })
         .finally(() => { if (!controller.signal.aborted) setLoading(false) })
     }, 250)
@@ -203,7 +212,7 @@ export default function App() {
     explainAbort.current = controller
     setExplainLoading(true)
     try {
-      const response = await fetch('/api/explain', {
+      const response = await backendFetch('/api/explain', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload(form)), signal: controller.signal,
       })
@@ -367,10 +376,11 @@ export default function App() {
         <section className="split">
           <div className="card glass reveal d4"><h3>쉽게 풀어보면</h3>
             <p className="ai-text">{explanation ? explanation.text :
-              <span className="muted">버튼을 누르면 이 결과를 쉬운 말로 설명해 드려요.</span>}</p>
-            {explanation?.source === 'rule' && <p className="hint">AI 설명을 쓰지 못해 기본 설명을 보여드려요({explanation.reason}).</p>}
-            <button className="ai-btn" type="button" onClick={explain} disabled={explainLoading || !resultMatchesForm}>
-              {explainLoading ? '설명 준비 중…' : 'AI 설명 듣기'}</button>
+              <span className="muted">{staticMode ? '기본 설명을 준비하고 있어요.' : '버튼을 누르면 이 결과를 쉬운 말로 설명해 드려요.'}</span>}</p>
+            {staticMode ? <p className="hint">공개 사이트에서는 기본 설명을 보여드려요</p> : <>
+              {explanation?.source === 'rule' && <p className="hint">AI 설명을 쓰지 못해 기본 설명을 보여드려요({explanation.reason}).</p>}
+              <button className="ai-btn" type="button" onClick={explain} disabled={explainLoading || !resultMatchesForm}>
+                {explainLoading ? '설명 준비 중…' : 'AI 설명 듣기'}</button></>}
           </div>
           <div className="card glass reveal d4"><h3>알아두세요</h3>
             <ul className="notes">{result.warnings.map(warning => <li key={warning}>{
@@ -381,7 +391,8 @@ export default function App() {
           </div>
         </section>
       </> : <section className="hero glass reveal d2" id="result" aria-live="polite">
-        <div className="context">{serverError?.message ?? '실거래 자료를 불러오고 있어요…'}</div>
+        <div className="context">{serverError?.message ?? (staticMode ? '계산 준비 중이에요. 처음 한 번만 10초쯤 걸려요' : '실거래 자료를 불러오고 있어요…')}</div>
+        {staticMode && !serverError && <div className="panel-progress" role="progressbar" aria-label="계산 도구 준비 중" />}
       </section>}
     </main>
       </motion.div> : tab === 'budget' && meta ? <motion.div key="budget" id="budget-view" className="tab-pane"
